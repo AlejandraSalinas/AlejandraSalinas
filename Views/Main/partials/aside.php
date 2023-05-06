@@ -1,93 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-laugh-wink"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">Registro y Control</div>
+    </a>
 
-    <!-- Custom fonts for this template-->
-    <!-- <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> -->
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
 
-    <!-- Custom styles for this template-->
-    <link href="public/css/sb-admin-2.min.css" rel="stylesheet">
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item">
+        <a class="nav-link" href="index.html">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Menu Principal</span></a>
+    </li>
 
-</head>
-<body id="page-top">
-    <div id="wrapper">
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-        
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
-            </a>
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Menú Principal</span>
-                </a>
-            </li>
+    <!-- Divider -->
+    <hr class="sidebar-divider">
 
-            <li class="nav-item active">
-                <a class="nav-link" href="Views/Main/registrar/registro.php">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Registrarse</span>
-                </a>
-            </li>
-
-            <li class="nav-item active">
-                <a class="nav-link" href="Views/Main/update_user/update.php">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Actualizar Usuario</span>
-                </a>
-            </li>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Admin</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        
-                        <a class="collapse-item" href="Views/Main/iniciar_sesion_admin/admin.php">Iniciar Sesión Administrador</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                    </div>
-                </div>
-            </li>
-
-        </ul>
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Interface
     </div>
-      
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePersonas" aria-expanded="true" aria-controls="collapsePersonas">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Personas</span>
+        </a>
+        <div id="collapsePersonas" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Opciones:</h6>
+                <a class="collapse-item" href="#">Ver Todos</a>
+                <a class="collapse-item" href="#">Crear</a>
+            </div>
+        </div>
+    </li>
 
-    <!-- Custom scripts for all pages-->
-    <script src="public/js/sb-admin-2.min.js"></script>
+    <!-- Divider -->
+    <hr class="sidebar-divider">
 
-    <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePersonas" aria-expanded="true" aria-controls="collapsePersonas">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Dispositivos</span>
+        </a>
+        <div id="collapsePersonas" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Opciones:</h6>
+                <a class="collapse-item" href="#">Ver todos</a>
+                <a class="collapse-item" href="#">Crear</a>
+            </div>
+        </div>
+    </li>
 
-    <!-- Page level custom scripts -->
-    <script src="public/js/demo/chart-area-demo.js"></script>
-    <script src="public/js/demo/chart-pie-demo.js"></script>
-</body>
-</html>
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+
+</ul>
