@@ -46,6 +46,8 @@
                 <h6 class="collapse-header">Personas:</h6>
                 <a class="collapse-item" href="#">Actualizar Usuario</a>
                 <a class="collapse-item" href="#">Ver Usuario</a>
+                <a href="http://">Lorenso</a>
+
             </div>
         </div>
     </li>
