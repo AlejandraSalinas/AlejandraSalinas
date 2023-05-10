@@ -39,13 +39,13 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePersonas" aria-expanded="true" aria-controls="collapsePersonas">
             <i class="fas fa-fw fa-cog"></i>
-            <span>Dispositivos</span>
+            <span>Personas</span>
         </a>
         <div id="collapsePersonas" class="collapse" aria-labelledby="headingpersonas" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Opciones:</h6>
-                <a class="collapse-item" href="#">Ver todos</a>
-                <a class="collapse-item" href="#">Registar Equipo</a>
+                <h6 class="collapse-header">Personas:</h6>
+                <a class="collapse-item" href="#">Actualizar Usuario</a>
+                <a class="collapse-item" href="#">Ver Usuario</a>
             </div>
         </div>
     </li>

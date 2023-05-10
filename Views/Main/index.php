@@ -1,7 +1,7 @@
 <?php
     // header
     require_once "partials/header.php";
-    ?>
+?>
 
 <!-- Begin Page Content -->
 
