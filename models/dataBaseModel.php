@@ -1,11 +1,11 @@
 <?php	
 class DataBase
 {
-	public $host;
-	public $db;
-	public $user;
-	public $password;
-	public $charset;
+	private $host;
+	private $db;
+	private $user;
+	private $password;
+	private $charset;
 
 	public function __construct()
 	{

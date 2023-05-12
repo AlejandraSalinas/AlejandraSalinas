@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="">
-
+    <meta name="author" content="Maira Alejandra Salinas Baez">
+    <meta name="author" content="Erin Paola Lopez Triana">
     <title>SENA - Login</title>
 
     <!-- Custom fonts for this template-->
@@ -16,18 +17,13 @@
 
     <!-- Custom styles for this template-->
     <link href="Public/css/sb-admin-2.min.css" rel="stylesheet">
-
 </head>
 
 <body class="bg-gradient-primary">
-
     <div class="container">
-
         <!-- Outer Row -->
         <div class="row justify-content-center">
-
             <div class="col-xl-10 col-lg-12 col-md-9">
-
                 <div class="card o-hidden border-0 shadow-lg my-5">
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
@@ -47,9 +43,9 @@
                                             <label for="text">Ingresar Contraseña:</label>
                                             <input type="password" class="form-control form-control-user" id="id_contraseña" placeholder="Ingrese su Contraseña">
                                         </div>
-                                        
+
                                         <a href="<?= "Views/Main/index.php" ?>" class="btn btn-primary btn-user btn-block">
-                                            Iniciar Sesión 
+                                            Iniciar Sesión
                                         </a>
                                         <hr>
                                     </form>
@@ -58,18 +54,15 @@
                                         <a class="small" href="forgot-password.html">Has olvidado tu Contraseña?</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="Views/registrar/index.php">Crear una Cuenta!</a>
+                                        <a class="small" href="Views/crear_usuario/index.php">Crear una Cuenta!</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
-
     </div>
 
     <!-- Bootstrap core JavaScript-->
