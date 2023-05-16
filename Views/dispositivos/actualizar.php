@@ -38,6 +38,16 @@ foreach ($registroDispositivo as $dispositivo) {
                     <input type="hidden" name="c" value="3">
                     <input type="hidden" name="id" value="<?= $id ?>">
                     <div class="mb-3">
+                        <label for="tipo_identificacion" >Tipo de Identificación</label>
+                        <select class="form-select" id="tipo_identificacion" name="tipo_identificacion">
+                            <option value="1">Tarjeta de Identificación</option>
+                            <option value="2">Cédula de Cuidadanía</option>
+                            <option value="3">Tarjeta de Extranjería</option>
+                            <option value="4">Cédula de Extranjería</option>
+                            <option value="5">Pasaporte</option>
+                        </select>
+                        </div>
+                    <div class="mb-3">
                         <label for="numero_identificacion" >Número de Identificación</label>
                         <input type="number" class="form-control" id="numero_identificacion" name="numero_identificacion">
                     </div>

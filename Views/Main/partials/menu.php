@@ -22,8 +22,8 @@
     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Opciones:</h6>
-            <a class="collapse-item" href="#">Ver</a>
-            <a class="collapse-item" href="#">Crear</a>
+            <a class="collapse-item" href="../../Views/dispositivos/index.php">Ver</a>
+            <a class="collapse-item" href="../../Views/dispositivos/crear.php">Crear</a>
         </div>
     </div>
 </li>

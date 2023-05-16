@@ -7,6 +7,7 @@ require_once 'dataBaseModel.php';
 class DispositivoModel extends stdClass
 {
     private $id;
+    public $tipo_identificacion;
     public $numero_identificacion;
     public $tipo;
     public $marca;
@@ -38,6 +39,7 @@ class DispositivoModel extends stdClass
             while ($row = $query->fetch()) {
                 $item            = new DispositivoModel();
                 $item->id        = $row['id'];
+                $item->tipo_identificacion   = $row['tipo_identificacion'];
                 $item->numero_identificacion   = $row['numero_identificacion'];
                 $item->tipo   = $row['tipo'];
                 $item->marca = $row['marca'];
@@ -60,20 +62,15 @@ class DispositivoModel extends stdClass
         $items = [];
 
         try {
-
-            ///$sql = 'SELECT operaciones.id, operaciones.num_uno, operaciones.num_dos, OPERADORES.nombre AS operacion,
-            //operaciones.resultado FROM dispositivo 
-            //JOIN DISPOSITIVO ON tipo.dispositivo = DISPOSITIVO.id 
-            //JOIN DISPOSITIVO ON dispositivo.operacion = DISPOSITIVO.id 
-            //JOIN DISPOSITIVO ON dispositivo.operacion = DISPOSITIVO.id
-            //JOIN DISPOSITIVO ON dispositivo.operacion = DISPOSITIVO.id
-          //  JOIN DISPOSITIVO ON dispositivo.operacion = DISPOSITIVO.id';
+            $sql = 'SELECT '
+     
             $query  = $this->db->conect()->query($sql);
 
 
             while ($row = $query->fetch()) {
                 $item            = new DispositivoModel();
                 $item->id        = $row['id'];
+                $item->tipo_identificacion = $row['tipo_identificacion'];
                 $item->numero_identificacion   = $row['numero_identificacion'];
                 $item->tipo   = $row['tipo'];
                 $item->marca = $row['marca'];

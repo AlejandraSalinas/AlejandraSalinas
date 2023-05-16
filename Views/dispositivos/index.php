@@ -25,11 +25,12 @@ $registroDispositivo = $data->getAll();
                 <table class="table table-sm table-hover">
                     <thead>
                         <tr class="text-center">
+                            <th scope="col">Tipo de Identificciones</th>
                             <th scope="col">Número de Identificciones</th>
                             <th scope="col">Tipo de Dispositivo</th>
-                            <th scope="col">Marca</th>
-                            <th scope="col">Serie</th>
-                            <th scope="col">Color</th>
+                            <th scope="col">Marca de Dispositivo</th>
+                            <th scope="col">Serie del Dispositivo</th>
+                            <th scope="col">Color del Dispositivo</th>
                             <th scope="col">Accesorios</th>
                             <th scope="col">Fotografia</th>
                             <th scope="col" colspan="2">Opciones</th>
@@ -43,6 +44,7 @@ $registroDispositivo = $data->getAll();
                         ?>
                                 <tr class="text-center">
                                     <td><?= $row->tipo_identificacion ?></td>
+                                    <td><?= $row->numero_identificacion ?></td>
                                     <td><?= $row->tipo ?></td>
                                     <td><?= $row->marca ?></td>
                                     <td><?= $row->color ?></td>
