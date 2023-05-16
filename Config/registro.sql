@@ -15,6 +15,16 @@ CREATE SCHEMA IF NOT EXISTS `registro_base_datos` DEFAULT CHARACTER SET utf8 ;
 USE `registro_base_datos` ;
 
 -- -----------------------------------------------------
+-- Table `registro_base_datos`.`TipoIdentificacion`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `registro_base_datos`.`TipoIdentificacion` (
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(40) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `registro_base_datos`.`Roles`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `registro_base_datos`.`Roles` (
@@ -39,9 +49,16 @@ CREATE TABLE IF NOT EXISTS `registro_base_datos`.`Personas` (
   `Direccion` VARCHAR(45) NOT NULL,
   `Genero` TINYINT NOT NULL COMMENT '1 H, 0 M',
   `id_rol` BIGINT NOT NULL,
+  `id_tipo_identificacion` BIGINT NOT NULL,
   PRIMARY KEY (`id_persona`),
-  INDEX `FK_RegistorUsuario_Roles_id_idx` (`id_rol` ASC) VISIBLE,
-  CONSTRAINT `FK_RegistorUsuario_Roles_id`
+  INDEX `personas_idx` (`id_tipo_identificacion` ASC) VISIBLE,
+  INDEX `personas_idx1` (`id_rol` ASC) VISIBLE,
+  CONSTRAINT `personas`
+    FOREIGN KEY (`id_tipo_identificacion`)
+    REFERENCES `registro_base_datos`.`TipoIdentificacion` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `personas`
     FOREIGN KEY (`id_rol`)
     REFERENCES `registro_base_datos`.`Roles` (`id`)
     ON DELETE NO ACTION
@@ -69,9 +86,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `registro_base_datos`.`tipo`
+-- Table `registro_base_datos`.`tipoDispositivos`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `registro_base_datos`.`tipo` (
+CREATE TABLE IF NOT EXISTS `registro_base_datos`.`tipoDispositivos` (
   `id_tipo` BIGINT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
   `descripcion` VARCHAR(50) NULL,
@@ -117,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `registro_base_datos`.`RegistroDispositivos` (
   INDEX `FK_RegistroDispositivos_color_id_idx` (`id_color` ASC) VISIBLE,
   CONSTRAINT `FK_RegistroDispositivos_tipo_id`
     FOREIGN KEY (`id_tipo`)
-    REFERENCES `registro_base_datos`.`tipo` (`id_tipo`)
+    REFERENCES `registro_base_datos`.`tipoDispositivos` (`id_tipo`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_RegistroDispositivos_marca_id`
