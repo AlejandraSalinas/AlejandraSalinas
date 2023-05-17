@@ -51,7 +51,7 @@ class RegistroController{
         $result = $this->registro->store($datos);
 
         if ($result) {
-            header("Location: " . constant('URL') . "Views/Main/index.php");
+            header("Location: " . constant('URL') . "../Views/Main/index.php");
             exit();
         }
 

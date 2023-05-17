@@ -8,7 +8,7 @@ define('DIR', dirname(__FILE__));
 
 //Parámetros para la base de datos
 define('HOST', 'localhost');
-define('DB', 'registro_base_datos');
+define('DB', 'registro_control');
 define('USER', 'root');
-define('PASSWORD', '');
+define('PASSWORD', 'root');
 define('CHARSET', 'utf8mb4');
