@@ -10,12 +10,12 @@
 
         public function __construct()
         {
-            $this->dispositivo = new DispositivoModel();
+            $this->dispositivore = new DispositivoModel();
         }
 
         public function index()
         {
-            return $this->dispositivo->getAll();
+            return $this->dispositivoRE->getAll();
         }
 
         public function show()
@@ -29,11 +29,11 @@
         public function delete()
         {
             $id = $_REQUEST['id'];
-            $result = $this->dispositivo->delete($id);
+            $result = $this->dispositivoRE->delete($id);
             if ($result) {
                 header("Location: " . constant('URL') . "Views/dispositivo/index.php");
                 exit();
             }
         }
     }
-?
+?>

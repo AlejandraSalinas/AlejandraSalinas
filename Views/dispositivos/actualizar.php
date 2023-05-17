@@ -1,13 +1,14 @@
 <?php include_once('../../Views/Main/partials/header.php');?>
 <?php
 include_once '../../Config/config.php';
-include_once '../../models/dispositivosModel.php';
+include_once '../../models/dataBaseModel.php';
 
 $data = new DispositivoModel();
 $registroDispositivo = $data->getbyId($_REQUEST['id']);
 
 foreach ($registroDispositivo as $dispositivo) {
     $id        = $dispositivo->getId();
+    $tipo_identificacion = $tipo_identificacion -> tipo_identificacion;
     $numero_identificacion   = $dispositivo->numero_identificacion;
     $tipo   = $dispositivo->tipo;
     $marca  = $dispositivo->marca;
@@ -34,40 +35,27 @@ foreach ($registroDispositivo as $dispositivo) {
         <div class="row">
             <div class="col">
                 <h1>Registro de Dispositivo</h1>
-                <form action="<?= constant('URL') ?>controllers/dispositivoController.php method="POST">
+                <form action="<?= constant('URL')?>../../../../controllers//dispositivosController.php method="POST">
                     <input type="hidden" name="c" value="3">
-                    <input type="hidden" name="id" value="<?= $id ?>">
-                    <div class="mb-3">
-                        <label for="tipo_identificacion" >Tipo de Identificación</label>
-                        <select class="form-select" id="tipo_identificacion" name="tipo_identificacion">
-                            <option value="1">Tarjeta de Identificación</option>
-                            <option value="2">Cédula de Cuidadanía</option>
-                            <option value="3">Tarjeta de Extranjería</option>
-                            <option value="4">Cédula de Extranjería</option>
-                            <option value="5">Pasaporte</option>
-                        </select>
-                        </div>
-                    <div class="mb-3">
-                        <label for="numero_identificacion" >Número de Identificación</label>
-                        <input type="number" class="form-control" id="numero_identificacion" name="numero_identificacion">
-                    </div>
                     <div class="mb-3">
                         <label for="tipo" >Tipo de Dispositivo</label>
                         <select class="form-select" id="tipo" name="tipo">
                             <option value="1">Portátil</option>
                             <option value="2">Computador</option>
                             <option value="3">Tables</option>
+                            <option value="4">Otro</option>
                         </select>
                         </div>
                     <div class="mb-3">
                         <label for="marca">Marca</label>
                         <select class="form-select" id="marca" name="marca">
-                            <option value="3">Acer</option>
-                            <option value="6">Apple</option>
-                            <option value="4">Asus</option>
-                            <option value="1">Dell</option>
-                            <option value="2">Hp</option>
-                            <option value="5">Lenovo</option>
+                        <option value="1">Acer</option>
+                            <option value="2">Apple</option>
+                            <option value="3">Asus</option>
+                            <option value="4">Dell</option>
+                            <option value="5">Hp</option>
+                            <option value="6">Lenovo</option>
+                            <option value="7">Otro</option>
                         </select>
                     </div>
                     <div class="mb-3">
@@ -76,9 +64,10 @@ foreach ($registroDispositivo as $dispositivo) {
                     <div class="mb-3">
                         <label for="color" >Color</label>
                         <select class="form-select" id="color" name="color">
-                            <option value="3">Blanco</option>
+                            <option value="1">Blanco</option>
                             <option value="2">Gris</option>
-                            <option value="1">Negro</option>
+                            <option value="3">Negro</option>
+                            <option value="4">Otro</option>
                         </select>
                     </div>
                     <div class="mb-3">
@@ -87,6 +76,7 @@ foreach ($registroDispositivo as $dispositivo) {
                             <option value="1">Cargador</option>
                             <option value="2">Mouse</option>
                             <option value="3">Teclado</option>
+                            <option value="4">Otro</option>
 
                         </select>
                     </div>
@@ -107,4 +97,4 @@ foreach ($registroDispositivo as $dispositivo) {
 
 </html>
 
-<?php require_once('../../views/main/partials/footer.php');?>
+<?php require_once('../Main/partials/footer.php');?>
