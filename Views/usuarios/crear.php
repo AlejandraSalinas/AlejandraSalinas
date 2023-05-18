@@ -9,8 +9,8 @@
 
     <form action="<?= constant('URL') ?>../../../../controllers/registroController.php" method="post">
         <div class="row">
-            <div class="mb-3 col-3">
-                <label for="tipo_identificacion" class="form-label">Tipo de Identificación</label>
+            <div class="mb-3 col-6">
+                <label for="tipo_identificacion" class="form-label">Tipo de Identificación:</label>
                 <select class="form-select" id="tipo_identificacion" name="tipo_identificacion">
                     <option value="1">Cédula de Ciudadania</option>
                     <option value="2">Targeta de Identidad</option>
@@ -19,40 +19,40 @@
                     <option value="5">Pasaporte</option>
                 </select>
             </div>
-            <div class="col-4 mb-3">
-                <label for="numero_identificacion" class="form-label">Número de Identificación</label>
+            <div class="col-6 mb-3">
+                <label for="numero_identificacion" class="form-label">Número de Identificación:</label>
                 <input type="number" class="form-control" id="numero_identificacion" name="numero_identificacion">
             </div>
             <input type="hidden" name="c" value="1">
-            <div class="mb-3 col-4">
+            <div class="mb-2 col-6">
                 <label for="primer_nombre" class="form-label">Primer Nombre:</label>
                 <input type="text" class="form-control" name="primer_nombre" id="primer_nombre">
             </div>
-            <div class="mb-2">
+            <div class="col-6 mb-2">
                 <label for="Segundo_nombre" class="form-label">Segundo Nombre:</label>
                 <input type="text" class="form-control" name="Segundo_nombre" id="Segundo_nombre">
             </div>
-            <div class="mb-2">
+            <div class="mb-2 col-6">
                 <label for="primer_apellido" class="form-label">Primer Apellido:</label>
                 <input type="text" class="form-control" name="primer_apellido" id="primer_apellido">
             </div>
-            <div class="mb-2">
+            <div class="col-6 mb-2">
                 <label for="Segundo_apellido" class="form-label">Segundo Apellido:</label>
                 <input type="text" class="form-control" name="Segundo_apellido" id="Segundo_apellido">
             </div>
-            <div class="mb-2">
+            <div class="mb-2 col-6">
                 <label for="email" class="form-label">Email:</label>
                 <input type="email" class="form-control" id="email">
             </div>
-            <div class="mb-2">
-                <label for="telefono" class="form-label">Teléfono</label>
+            <div class="col-6 mb-2">
+                <label for="telefono" class="form-label">Teléfono:</label>
                 <input type="number" class="form-control" id="telefono" name="telefono">
             </div>
             <div class="col-6 mb-2">
                 <label for="direccion" class="form-label">Dirección:</label>
                 <input type="text" class="form-control" id="direccion" name="direccion">
             </div>
-            <div class="col-3 mb-2">
+            <div class="mb-2 col-6">
                 <label for="sexo" class="form-label">Sexo:</label>
                 <select class="form-select" id="rol" name="rol">
                     <option value="0">Mujer</option>
@@ -69,7 +69,7 @@
                     <option value="5">Administrador</option>
                 </select>
             </div>
-            <div class="col-6 mb-2">
+            <div class="mb-5 col-6">
                 <button type="submit" class="btn btn-primary mb-3" href="<?php constant('URL') ?>index.php">Guardar</button>
             </div>
     </form>
