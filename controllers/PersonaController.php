@@ -1,12 +1,13 @@
 <?php
-require_once  '../models/registroModels.php';
+require_once  '../models/PersonaModel.php';
 // calculadora
-$registro = new RegistroController;
+$controller = new PersonaController;
 
-class RegistroController{
-    private $registro;
+class PersonaController{
+    private $persona;
+
     public function __construct(){
-        $this->registro = new RegistroModel();
+        $this->persona = new persona();
 
         if (isset($_REQUEST['c'])) {
             switch ($_REQUEST['c']) {
@@ -30,7 +31,7 @@ class RegistroController{
     }
     public function index()
     {
-        return $this->registro->getAll();
+        return $this->persona->getAll();
     }
     public function store()
     {
@@ -44,11 +45,11 @@ class RegistroController{
             'email'                 => $_REQUEST['email'],
             'telefono'              => $_REQUEST['telefono'],
             'direccion'             => $_REQUEST['direccion'],
-            'sexo'                  => $_REQUEST['sexo'],
-            'rol'                   => $_REQUEST['rol'],
+            'id_sexo'               => $_REQUEST['id_sexo'],
+            'id_rol'                => $_REQUEST['id_rol'],
         ];
 
-        $result = $this->registro->store($datos);
+        $result = $this->persona->store($datos);
 
         if ($result) {
             header("Location: " . constant('URL') . "../Views/Main/index.php");
