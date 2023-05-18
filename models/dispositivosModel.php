@@ -6,13 +6,13 @@ require_once 'dataBaseModel.php';
 
 class DispositivoModel extends stdClass
 {
-    private $id;
-    private $tipo;
-    private $marca;
-    private $Serie;
-    private $color;
-    private $accesorios;
-    private $fotografia;
+
+    private $id_registro_dispositivos;
+    private $id_tipo_dispositivos;
+    private $id_marca;
+    private $id_color;
+    private $id_accesorios;
+    private $serie;
     private $db;
 
     public function __construct()
@@ -30,19 +30,18 @@ class DispositivoModel extends stdClass
         $dipositivo = [];
 
         try {
-            $sql = "SELECT * FROM dispositivo WHERE id = $id";
+            $sql = "SELECT * FROM dispositivo WHERE id_registro_dispositivos = $id";
             $query  = $this->db->conect()->query($sql);
 
 
             while ($row = $query->fetch()) {
-                $item                            = new DispositivoModel();
-                $item -> id                      = $row['id'];
-                $item -> tipo                    = $row['tipo'];
-                $item -> marca                   = $row['marca'];
-                $item -> Serie                   = $row['Serie'];
-                $item -> color                   = $row['color'];
-                $item -> accesorios              = $row['accesorios'];
-                $item -> fotografia              = $row['fotografia'];
+                $item                                   = new DispositivoModel();
+                $item -> id_registro_dispositivos       = $row['id_registro_dispositivos'];
+                $item -> id_tipo_dispositivos           = $row['id_tipo_dispositivos'];
+                $item -> id_marca                       = $row['id_marca'];
+                $item -> id_color                       = $row['id_color'];
+                $item -> accesoid_accesoriosrios        = $row['id_accesorios'];
+                $item -> serie                          = $row['serie'];
                 array_push($dipositivo, $item);
             }
 
@@ -64,15 +63,13 @@ class DispositivoModel extends stdClass
 
 
             while ($row = $query->fetch()) {
-                $item            = new DispositivoModel();
-                $item->id        = $row['id'];
-                $item->tipo   = $row['tipo'];
-                $item->marca = $row['marca'];
-                $item->Serie = $row['Serie'];
-                $item->color = $row['color'];
-                $item->accesorios = $row['accesorios'];
-                $item->fotografia = $row['fotografia'];
-
+                $item               = new DispositivoModel();
+                $item->id_registro_dispositivos         = $row['id_registro_dispositivos'];
+                $item->id_tipo_dispositivos             = $row['id_tipo_dispositivos'];
+                $item->id_marca                         = $row['id_marca'];
+                $item->id_color                         = $row['id_color'];
+                $item->id_accesorios                    = $row['id_accesorios'];
+                $item->serie                            = $row['serie'];
                 array_push($items, $item);
             }
 

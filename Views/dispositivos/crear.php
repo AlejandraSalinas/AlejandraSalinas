@@ -17,17 +17,17 @@
                     <form action="<?= constant('URL')?>../../../../controllers/dispositivosController.php" method="POST">
                     <h1>Registro de Dispositivo</h1>
                         <div class="mb-3">
-                            <label for="tipo" >Tipo de Dispositivo</label>
-                            <select class="form-select" id="tipo" name="tipo">
-                                <option value="1">Portátil</option>
-                                <option value="2">Computador</option>
-                                <option value="3">Tables</option>
+                            <label for="id_tipo_dispositivos" class="form_label">Tipo de Dispositivo</label>
+                            <select class="form-select" id="id_tipo_dispositivos" name="id_tipo_dispositivos">
+                                <option value="1">Computador</option>
+                                <option value="2">Portátil</option>
+                                <option value="3">Tablets</option>
                                 <option value="4">Otro</option>
                             </select>
                             </div>
                         <div class="mb-3">
-                            <label for="marca">Marca</label>
-                            <select class="form-select" id="marca" name="marca">
+                            <label for="id_marca" class="form_label">Marca</label>
+                            <select class="form-select" id="id_marca" name="id_marca">
                                 <option value="1">Acer</option>
                                 <option value="2">Apple</option>
                                 <option value="3">Asus</option>
@@ -38,11 +38,8 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="Serie">Serie</label>
-                            <input type="number" class="form-control" id="Serie" name="Serie">
-                        <div class="mb-3">
-                            <label for="color" >Color</label>
-                            <select class="form-select" id="color" name="color">
+                            <label for="id_color" class="form_label">Color</label>
+                            <select class="form-select" id="id_color" name="id_color">
                                 <option value="1">Blanco</option>
                                 <option value="2">Gris</option>
                                 <option value="3">Negro</option>
@@ -50,8 +47,8 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="accesorios" >Accesorios</label>
-                            <select class="form-select" id="accesorios" name="accesorios">
+                            <label for="id_accesorios" class="form_label">Accesorios</label>
+                            <select class="form-select" id="id_accesorios" name="id_accesorios">
                                 <option value="1">Cargador</option>
                                 <option value="2">Mouse</option>
                                 <option value="3">Teclado</option>
@@ -60,8 +57,7 @@
                             </select>
                         </div>    
                         <div class="mb-3">
-                            <label for="fotografia" >Fotografia</label>
-                            <input type="img" class="form-control" id="fotografia" name="fotografia">
+                            <label for="serie"class="form_label">Serie</label>
                         </div>
                         <div class="mb-3">
                             <button type="submit" class="btn btn-primary mb-3">Guardar</button>            

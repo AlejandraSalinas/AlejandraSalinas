@@ -21,18 +21,15 @@ $registroDispositivo = $data->getAll();
             <div class="col">
                 <h1>Registro de Dispositivo</h1>
                 <hr>
-                <h3>Base de datos de los dispositivos regitrados/h3>
+                <h3>Base de datos de los dispositivos registrados</h3>
                 <table class="table table-sm table-hover">
                     <thead>
                         <tr class="text-center">
-                            <th scope="col">Tipo de Identificciones</th>
-                            <th scope="col">Número de Identificciones</th>
                             <th scope="col">Tipo de Dispositivo</th>
                             <th scope="col">Marca de Dispositivo</th>
-                            <th scope="col">Serie del Dispositivo</th>
                             <th scope="col">Color del Dispositivo</th>
                             <th scope="col">Accesorios</th>
-                            <th scope="col">Fotografia</th>
+                            <th scope="col">Serie del Dispositivo</th>
                             <th scope="col" colspan="2">Opciones</th>
                         </tr>
                     </thead>
@@ -43,14 +40,11 @@ $registroDispositivo = $data->getAll();
                             foreach ($registroDispositivo as $row) {
                         ?>
                                 <tr class="text-center">
-                                    <td><?= $row->tipo_identificacion ?></td>
-                                    <td><?= $row->numero_identificacion ?></td>
-                                    <td><?= $row->tipo ?></td>
-                                    <td><?= $row->marca ?></td>
-                                    <td><?= $row->color ?></td>
-                                    <td><?= $row->Serie ?></td>
+                                    <td><?= $row->id_tipo_dispositivos ?></td>
+                                    <td><?= $row->id_marca ?></td>
+                                    <td><?= $row->id_color ?></td>
+                                    <td><?= $row->id_accesorios ?></td>
                                     <td><?= $row->accesorios ?></td>
-                                    <td><?= $row->fotografia ?></td>
                                     <td>
                                         <a class="btn btn-sm btn-outline-warning" href="../../Controllers/dispositivoController.php?c=2&id=<?= $row->getId() ?>">Actualizar</a>
                                     </td>
