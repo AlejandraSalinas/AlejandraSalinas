@@ -76,6 +76,5 @@
 </div>
 
 </div>
-<!-- /.container-fluid -->
 
 <?php require_once("../Main/partials/footer.php"); ?>
