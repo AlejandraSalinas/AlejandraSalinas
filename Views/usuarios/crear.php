@@ -1,6 +1,21 @@
-<?php require_once dirname(__FILE__) . '../../../config/config.php'; ?>
+<?php
+require_once dirname(__FILE__) . '../../../config/config.php';
+require_once("../Main/partials/header.php");
 
-<?php require_once("../Main/partials/header.php"); ?>
+require_once '../../models/tipoIdentificacionModel.php';
+require_once '../../models/RolesModel.php';
+require_once '../../models/SexoModel.php';
+
+$datos_identificacion = new TipoIdentificacionModel();
+$registro = $datos_identificacion->getAll();
+
+$datos_rol  = new RolesModel();
+$data  = $datos_rol->getAll();
+
+$datos_sexo = new SexoModel();
+$genero = $datos_sexo->getAll();
+
+?>
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
@@ -13,11 +28,12 @@
             <div class="mb-3 col-6">
                 <label for="tipo_identificacion" class="form-label">Tipo de Identificación:</label>
                 <select class="form-select" id="tipo_identificacion" name="tipo_identificacion">
-                    <option value="1">Cédula de Ciudadania</option>
-                    <option value="2">Targeta de Identidad</option>
-                    <option value="3">Targeta de Extranjeria</option>
-                    <option value="4">Cédula de Extranjeria</option>
-                    <option value="5">Pasaporte</option>
+                    <option selected>Seleccionar</option>
+                    <?php
+                    foreach ($registro  as $datos) {
+                        echo '<option value="' . $datos->getId() . '">' . $datos->getTipoIdentificacion() . '</option>';
+                    }
+                    ?>
                 </select>
             </div>
             <div class="col-6 mb-3">
@@ -55,19 +71,23 @@
             <div class="mb-2 col-6">
                 <label for="id_sexo" class="form-label">Sexo:</label>
                 <select class="form-select" id="id_sexo" name="id_sexo">
-                    <option value="1">Mujer</option>
-                    <option value="2">Hombre</option>
+                <option selected>Seleccionar</option>
+                <?php
+                foreach ($genero  as $datos) {
+                    echo '<option value="' . $datos->getId() . '">' . $datos->getSexo() . '</option>';
+                }
+                ?>
                 </select>
             </div>
             <div class="col-6 mb-2">
                 <label for="id_rol" class="form-label">Rol:</label>
                 <select class="form-select" id="id_rol" name="id_rol">
-                    <option value="1">Aprediz</option>
-                    <option value="2">Instructor</option>
-                    <option value="3">Visitante</option>
-                    <option value="4">Vigilante</option>
-                    <option value="5">Supervisor</option>
-                    <option value="6">Administrador</option>
+                <option selected>Seleccionar</option>
+                <?php
+                foreach ($data  as $datos) {
+                    echo '<option value="' . $datos->getId() . '">' . $datos->getRoles() . '</option>';
+                }
+                ?>
                 </select>
             </div>
             <div class="mb-6 col-3">

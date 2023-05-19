@@ -7,7 +7,7 @@ class PersonaController{
     private $persona;
 
     public function __construct(){
-        $this->persona = new persona();
+        $this->persona = new personaModel();
 
         if (isset($_REQUEST['c'])) {
             switch ($_REQUEST['c']) {

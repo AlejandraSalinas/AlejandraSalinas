@@ -1,10 +1,10 @@
 <?php
 include_once dirname(__FILE__) . '../../Config/config.php';
 
-require_once 'dataBaseModel.php';
+require_once 'DataBaseModel.php';
 
 
-class Persona
+class PersonaModel
 {
     private $id_persona;
     private $tipo_identificacion;
@@ -30,7 +30,7 @@ class Persona
         return $this->id_persona;
     }
 
-    public function getbyId($id_persona)
+    public function getById($id_persona)
     {
         // operacion
         $datos_usuario = [];
@@ -43,7 +43,7 @@ class Persona
             ]);
 
             while ($row = $query->fetch()) {
-                $item                        = new Persona();
+                $item                        = new PersonaModel();
                 $item->id_persona            = $row['id_persona'];
                 $item->tipo_identificacion   = $row['tipo_identificacion'];
                 $item->numero_identificacion = $row['numero_identificacion'];
@@ -83,7 +83,7 @@ class Persona
             var_dump($query);
 
             while ($row = $query->fetch()) {
-                $item                        = new Persona();
+                $item                        = new PersonaModel();
                 $item->id_persona            = $row['id_persona'];
                 $item->tipo_identificacion   = $row['tipo_identificacion'];
                 $item->numero_identificacion = $row['numero_identificacion'];
@@ -124,8 +124,8 @@ class Persona
                 'email'                  => $datos['email'],
                 'telefono'               => $datos['telefono'],
                 'direccion'              => $datos['direccion'],
-                'id_sexo'                   => $datos['id_sexo'],
-                'id_rol'                    => $datos['id_rol'],
+                'id_sexo'                => $datos['id_sexo'],
+                'id_rol'                 => $datos['id_rol'],
             ]);
 
             if ($query) {
