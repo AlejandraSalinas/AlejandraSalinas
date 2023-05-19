@@ -16,7 +16,7 @@
 
 
 -- Volcando estructura de base de datos para registro_control
-CREATE DATABASE IF NOT EXISTS `registro_control` /*!40100 DEFAULT CHARACTER SET utf8mb3 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE IF NOT EXISTS `registro_control` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `registro_control`;
 
 -- Volcando estructura para tabla registro_control.accesorios
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `accesorios` (
   PRIMARY KEY (`id_accesorios`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- Volcando datos para la tabla registro_control.accesorios: ~0 rows (aproximadamente)
+-- La exportación de datos fue deseleccionada.
 
 -- Volcando estructura para tabla registro_control.color
 CREATE TABLE IF NOT EXISTS `color` (
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `color` (
   PRIMARY KEY (`id_color`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- Volcando datos para la tabla registro_control.color: ~0 rows (aproximadamente)
+-- La exportación de datos fue deseleccionada.
 
 -- Volcando estructura para tabla registro_control.dispositivos
 CREATE TABLE IF NOT EXISTS `dispositivos` (
@@ -45,18 +45,21 @@ CREATE TABLE IF NOT EXISTS `dispositivos` (
   `id_tipo_dispositivo` bigint unsigned NOT NULL,
   `id_marca` bigint unsigned NOT NULL,
   `id_color` bigint unsigned NOT NULL,
+  `id_accesorios` bigint unsigned NOT NULL,
   `serie` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `descripcion` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`id_registro_dispositivos`),
   KEY `FK_dispositivos_tipo_dispositivos` (`id_tipo_dispositivo`),
   KEY `FK_dispositivos_marcas` (`id_marca`),
   KEY `FK_dispositivos_color` (`id_color`),
+  KEY `FK_dispositivos_accesorios` (`id_accesorios`),
+  CONSTRAINT `FK_dispositivos_accesorios` FOREIGN KEY (`id_accesorios`) REFERENCES `accesorios` (`id_accesorios`),
   CONSTRAINT `FK_dispositivos_color` FOREIGN KEY (`id_color`) REFERENCES `color` (`id_color`),
   CONSTRAINT `FK_dispositivos_marcas` FOREIGN KEY (`id_marca`) REFERENCES `marcas` (`id_marca`),
   CONSTRAINT `FK_dispositivos_tipo_dispositivos` FOREIGN KEY (`id_tipo_dispositivo`) REFERENCES `tipo_dispositivos` (`id_tipo_dispositivo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- Volcando datos para la tabla registro_control.dispositivos: ~0 rows (aproximadamente)
+-- La exportación de datos fue deseleccionada.
 
 -- Volcando estructura para tabla registro_control.ingresar
 CREATE TABLE IF NOT EXISTS `ingresar` (
@@ -72,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `ingresar` (
   CONSTRAINT `FK_ingresar_personas` FOREIGN KEY (`id_persona`) REFERENCES `personas` (`id_persona`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- Volcando datos para la tabla registro_control.ingresar: ~0 rows (aproximadamente)
+-- La exportación de datos fue deseleccionada.
 
 -- Volcando estructura para tabla registro_control.marcas
 CREATE TABLE IF NOT EXISTS `marcas` (
@@ -82,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `marcas` (
   PRIMARY KEY (`id_marca`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- Volcando datos para la tabla registro_control.marcas: ~0 rows (aproximadamente)
+-- La exportación de datos fue deseleccionada.
 
 -- Volcando estructura para tabla registro_control.personas
 CREATE TABLE IF NOT EXISTS `personas` (
@@ -95,18 +98,20 @@ CREATE TABLE IF NOT EXISTS `personas` (
   `telefono` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `email` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `direccion` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
-  `genero` tinyint unsigned NOT NULL COMMENT '1 H, 0 M',
+  `id_sexo` bigint unsigned NOT NULL DEFAULT '0' COMMENT '1 H, 2 M',
   `id_rol` bigint unsigned NOT NULL,
   `id_tipo_identificacion` bigint unsigned NOT NULL,
   `foto` longtext,
   PRIMARY KEY (`id_persona`),
   KEY `FK_personas_roles` (`id_rol`),
   KEY `FK_personas_tipo_identificacion` (`id_tipo_identificacion`),
+  KEY `FK_personas_sexo` (`id_sexo`),
   CONSTRAINT `FK_personas_roles` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id_rol`),
+  CONSTRAINT `FK_personas_sexo` FOREIGN KEY (`id_sexo`) REFERENCES `sexo` (`id_sexo`),
   CONSTRAINT `FK_personas_tipo_identificacion` FOREIGN KEY (`id_tipo_identificacion`) REFERENCES `tipo_identificacion` (`id_tipo_identificacion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- Volcando datos para la tabla registro_control.personas: ~0 rows (aproximadamente)
+-- La exportación de datos fue deseleccionada.
 
 -- Volcando estructura para tabla registro_control.posiciones
 CREATE TABLE IF NOT EXISTS `posiciones` (
@@ -116,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `posiciones` (
   PRIMARY KEY (`id_posicion`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='Sectores de vigilancia';
 
--- Volcando datos para la tabla registro_control.posiciones: ~0 rows (aproximadamente)
+-- La exportación de datos fue deseleccionada.
 
 -- Volcando estructura para tabla registro_control.registroaccesorios
 CREATE TABLE IF NOT EXISTS `registroaccesorios` (
@@ -128,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `registroaccesorios` (
   CONSTRAINT `FK_registroaccesorios_dispositivos` FOREIGN KEY (`id_registro_dispositivos`) REFERENCES `dispositivos` (`id_registro_dispositivos`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- Volcando datos para la tabla registro_control.registroaccesorios: ~0 rows (aproximadamente)
+-- La exportación de datos fue deseleccionada.
 
 -- Volcando estructura para tabla registro_control.roles
 CREATE TABLE IF NOT EXISTS `roles` (
@@ -137,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `roles` (
   PRIMARY KEY (`id_rol`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- Volcando datos para la tabla registro_control.roles: ~0 rows (aproximadamente)
+-- La exportación de datos fue deseleccionada.
 
 -- Volcando estructura para tabla registro_control.sedes
 CREATE TABLE IF NOT EXISTS `sedes` (
@@ -147,7 +152,16 @@ CREATE TABLE IF NOT EXISTS `sedes` (
   PRIMARY KEY (`id_sede`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- Volcando datos para la tabla registro_control.sedes: ~0 rows (aproximadamente)
+-- La exportación de datos fue deseleccionada.
+
+-- Volcando estructura para tabla registro_control.sexo
+CREATE TABLE IF NOT EXISTS `sexo` (
+  `id_sexo` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `nombre` tinyint unsigned NOT NULL DEFAULT '0' COMMENT '1 H, 2 M',
+  PRIMARY KEY (`id_sexo`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- La exportación de datos fue deseleccionada.
 
 -- Volcando estructura para tabla registro_control.supervisores
 CREATE TABLE IF NOT EXISTS `supervisores` (
@@ -160,7 +174,7 @@ CREATE TABLE IF NOT EXISTS `supervisores` (
   CONSTRAINT `FK_supervisores_personas` FOREIGN KEY (`id_persona`) REFERENCES `personas` (`id_persona`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- Volcando datos para la tabla registro_control.supervisores: ~0 rows (aproximadamente)
+-- La exportación de datos fue deseleccionada.
 
 -- Volcando estructura para tabla registro_control.tipo_dispositivos
 CREATE TABLE IF NOT EXISTS `tipo_dispositivos` (
@@ -170,7 +184,7 @@ CREATE TABLE IF NOT EXISTS `tipo_dispositivos` (
   PRIMARY KEY (`id_tipo_dispositivo`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- Volcando datos para la tabla registro_control.tipo_dispositivos: ~0 rows (aproximadamente)
+-- La exportación de datos fue deseleccionada.
 
 -- Volcando estructura para tabla registro_control.tipo_identificacion
 CREATE TABLE IF NOT EXISTS `tipo_identificacion` (
@@ -179,13 +193,7 @@ CREATE TABLE IF NOT EXISTS `tipo_identificacion` (
   PRIMARY KEY (`id_tipo_identificacion`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 
--- Volcando datos para la tabla registro_control.tipo_identificacion: ~5 rows (aproximadamente)
-INSERT INTO `tipo_identificacion` (`id_tipo_identificacion`, `nombre`) VALUES
-	(1, 'Cédula de Ciudadania'),
-	(2, 'Targeta de Identidad'),
-	(3, 'Targeta de Extranjeria'),
-	(4, 'Cédula de Extranjeria'),
-	(5, 'Pasaporte');
+-- La exportación de datos fue deseleccionada.
 
 -- Volcando estructura para tabla registro_control.turnos
 CREATE TABLE IF NOT EXISTS `turnos` (
@@ -208,7 +216,7 @@ CREATE TABLE IF NOT EXISTS `turnos` (
   CONSTRAINT `FK_turnos_vigilantes` FOREIGN KEY (`id_vigilante`) REFERENCES `vigilantes` (`id_vigilante`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- Volcando datos para la tabla registro_control.turnos: ~0 rows (aproximadamente)
+-- La exportación de datos fue deseleccionada.
 
 -- Volcando estructura para tabla registro_control.vigilantes
 CREATE TABLE IF NOT EXISTS `vigilantes` (
@@ -223,7 +231,7 @@ CREATE TABLE IF NOT EXISTS `vigilantes` (
   CONSTRAINT `FK_vigilantes_personas` FOREIGN KEY (`id_persona`) REFERENCES `personas` (`id_persona`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
--- Volcando datos para la tabla registro_control.vigilantes: ~0 rows (aproximadamente)
+-- La exportación de datos fue deseleccionada.
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
