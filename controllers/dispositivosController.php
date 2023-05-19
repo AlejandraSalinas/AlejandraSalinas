@@ -40,7 +40,12 @@
         public function store()
         {
             $datos = [
-                //
+                'id_registro_dispositivos'   => $_REQUEST['id_registro_dispositivos',
+                'id_tipo_dispositivos'       => $_REQUEST['id_tipo_dispositivos'],
+                'id_marca'                   => $_REQUEST['id_marca'],
+                'id_color'                   => $_REQUEST['id_color'],
+                'id_accesorios'              => $_REQUEST['id_accesorios'],
+                'serie'                      => $_REQUEST['serie'],
             ];
             $result = $this->registroDispositivo->store($datos);
             if ($result) {
@@ -53,7 +58,7 @@
         public function show()
         {
             $id = $_REQUEST['id_tipo_dispositivos'];
-            header("Location: ../Views/dispositivos/index.php?id_=" . $id);
+            header("Location: ../Views/dispositivos/index.php?id_trpo_dispositivo=".$id);
         }
         public function delete()
         {
@@ -63,16 +68,16 @@
         public function update()
         {
             $datos = [
-                'id_tipo_dispositivos' => $_REQUEST['id_tipo_dispositivos'],
-                
-                
-
-
+                'id_tipo_dispositivos'       = $_REQUEST['id_tipo_dispositivos'],
+                'id_marca'                   = $_REQUEST['id_marca'],
+                'id_color'                   = $_REQUEST['id_color'],
+                'id_accesorios'              = $_REQUEST['id_accesorios'],
+                'serie'                      = $_REQUEST['serie']
             ];
             $result = $this->registroDispositivo->update($datos);
     
             if ($result) {
-                header("Location: ../Views/dispositivos/update.php");
+                header("Location: ../Views/dispositivos/actualizar.php");
                 exit();
             }
             return $result;

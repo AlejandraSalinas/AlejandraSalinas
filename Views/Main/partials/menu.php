@@ -24,6 +24,7 @@
             <h6 class="collapse-header">Opciones:</h6>
             <a class="collapse-item" href="../../Views/dispositivos/index.php">Ver</a>
             <a class="collapse-item" href="../../Views/dispositivos/crear.php">Crear</a>
+            <a href="../"></a>
         </div>
     </div>
 </li>

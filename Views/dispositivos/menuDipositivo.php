@@ -66,6 +66,8 @@
 
                         </div>
                         <div class="mb-3">
+                            <button type="submit" class="btn btn-primary mb-3">Entrada</button>
+                            <button type="submit" class="btn btn-primary mb-3">Salida</button>
                             <button type="submit" class="btn btn-primary mb-3">Guardar</button>
                         </div>
                     </form>
