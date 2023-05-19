@@ -70,6 +70,7 @@
                             <button type="submit" class="btn btn-primary mb-3">Salida</button>
                             <button type="submit" class="btn btn-primary mb-3">Guardar</button>
                         </div>
+                        echo " hola ";
                     </form>
                 </div>
             </div>
