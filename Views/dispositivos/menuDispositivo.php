@@ -37,6 +37,12 @@
                 <label for="numero_identificacion" class="form-label">Número de Identificación:</label>
                 <input type="number" class="form-control" id="numero_identificacion" name="numero_identificacion">
             </div>
+            </select>
+            </div>
+            <div class="col-6 mb-3">
+                <label for="numero_identificacion" class="form-label">Número de Identificación:</label>
+                <input type="number" class="form-control" id="numero_identificacion" name="numero_identificacion">
+            </div>
                         <div class="mb-3">
                             <button type="submit" class="btn btn-primary mb-3">Entrada</button>
                             <button type="submit" class="btn btn-primary mb-3">Salida</button>
