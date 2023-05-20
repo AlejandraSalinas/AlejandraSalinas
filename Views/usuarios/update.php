@@ -1,10 +1,16 @@
-<?php
+<?php 
 require_once dirname(__FILE__) . '../../../config/config.php';
-require_once("../Main/partials/header.php");
 
+require_once("../Main/partials/header.php"); 
+
+require_once '../../models/PersonaModel.php';
 require_once '../../models/tipoIdentificacionModel.php';
 require_once '../../models/RolesModel.php';
 require_once '../../models/SexoModel.php';
+
+
+$datos = new PersonaModel();
+$registro = $datos->getById($_REQUEST['id_persona']);
 
 $datos_identificacion = new TipoIdentificacionModel();
 $registro = $datos_identificacion->getAll();
@@ -15,16 +21,29 @@ $data  = $datos_rol->getAll();
 $datos_sexo = new SexoModel();
 $genero = $datos_sexo->getAll();
 
+foreach ($registro as $cliente) {
+    $id_persona            = $persona->getId();
+    $tipo_identificacion   = $persona->getTipoIdentificacion();
+    $numero_identificacion = $persona->getNumeroIdentificacion();
+    $primer_nombre         = $persona->getPrimerNombre();
+    $segundo_nombre        = $persona->getSegundoNombre();
+    $primer_apellido       = $persona->getPrimerApellido();
+    $segundo_apellido      = $persona->getSegundoApellido();
+    $email                 = $persona->getEmail();
+    $telefono              = $persona->getTelefono();
+    $direccion             = $persona->getDireccion();
+    $id_sexo               = $persona->getSexo();
+    $id_rol                = $persona->getRol();
+}
 ?>
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
-
-    <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Crear Usuario</h1>
+    <h1 class="h3 mb-4 text-gray-800">Actualizar Usuario</h1>
     <hr class="hr mb-5">
-    <form action="../../controllers/PersonaController.php" method="post">
-        <input type="hidden" name="c" value="1">
+    <form action="<?= constant('URL') ?>/controllers/PersonaController.php" method="post">
+        <input type="hidden" name="c" value="3">
+        <input type="hidden" name="id" value="<?= $id_persona ?>">
         <div class="container">
             <div class="row">
                 <div class="mb-4 col-6">
@@ -40,7 +59,7 @@ $genero = $datos_sexo->getAll();
                 </div>
                 <div class="col-6 mb-4">
                     <label for="numero_identificacion" class="form-label">Número de Identificación:</label>
-                    <input type="number" class="form-control" id="numero_identificacion" name="numero_identificacion" required="required" maxlength="10" minlength="10">
+                    <input type="number" class="form-control" id="numero_identificacion" name="numero_identificacion" required="required">
                 </div>
                 <div class="mb-4 col-6">
                     <label for="primer_nombre" class="form-label">Primer Nombre:</label>
@@ -97,8 +116,12 @@ $genero = $datos_sexo->getAll();
                         <button type="submit" class="btn btn-outline-primary">Guardar</button>
                     </div>    
                 </div>
-            </div>  
+          
         </div>        
     </form>
+
 </div>
+<!-- /.container-fluid -->
+
+
 <?php require_once("../Main/partials/footer.php"); ?>

@@ -6,7 +6,7 @@ require_once("../Main/partials/header.php");
 require_once('../../Models/PersonaModel.php');
 
 $data = new PersonaModel();
-$registros = $data->getAll();
+$registro = $data->getAll();
 
 ?>
 <!-- Begin Page Content -->
@@ -15,58 +15,60 @@ $registros = $data->getAll();
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800">Vista de usuarios</h1>
 
-    <h1>
-        Tabla de registros ingresados
-    </h1>
     <table class="table table-sm table-hover">
         <thead>
-            <tr class="text-center">
-                <th scope="col">Tipo de Identificación</th>
+            <tr class="text-center">          
                 <th scope="col">Número de Identificación</th>
-                <th scope="col">Primer Nombre:</th>
-                <th scope="col">Segundo Nombre:</th>
-                <th scope="col">Primer Apellido:</th>
-                <th scope="col">Segundo Apellido:</th>
+                <th scope="col">Primer Nombre</th>
+                <th scope="col">Segundo Nombre</th>
+                <th scope="col">Primer Apellido</th>
+                <th scope="col">Segundo Apellido</th>
                 <th scope="col">Email:</th>
                 <th scope="col">Teléfono:</th>
                 <th scope="col">Dirección:</th>
                 <th scope="col">Sexo:</th>
                 <th scope="col">Rol:</th>
-                <th scope="col" colspan="2">Opciones</th>
+                <th scope="col" colspan="3">Opciones</th>
             </tr>
         </thead>
         <tbody>
             <?php
-            if ($registros) {
+            if ($registro) {
+                $pos = 1;
 
-                foreach ($registros as $row) {
+                foreach ($registro as $row) {
             ?>
                     <tr class="text-center">
-                        <td><?= $row->tipo_identificación ?></td>
-                        <td><?= $row->numero_identificación ?></td>
-                        <td><?= $row->primer_nombre ?></td>
-                        <td><?= $row->segundo_nombre ?></td>
-                        <td><?= $row->primer_apellido ?></td>
-                        <td><?= $row->segundo_apellido ?></td>
-                        <td><?= $row->email ?></td>
-                        <td><?= $row->telefono ?></td>
-                        <td><?= $row->direccion ?></td>
-                        <td><?= $row->sexo ?></td>
-                        <td><?= $row->rol ?></td>
+                        <td><?= $row->getNumeroIdentificacion()?></td>
+                        <td><?= $row->getPrimerNombre()?></td>
+                        <td><?= $row->getSegundoNombre()?></td>
+                        <td><?= $row->getPrimerApellido()?></td>
+                        <td><?= $row->getSegundoApellido()?></td>
+                        <td><?= $row->getEmail()?></td>
+                        <td><?= $row->getTelefono() ?></td>
+                        <td><?= $row->getDireccion() ?></td>
+                        <td><?= $row->getSexo() ?></td>
+                        <td><?= $row->getRol()?></td>
 
                         <td>
-                            <a class="btn btn-sm btn-outline-warning" href=" ?>">Ver</a>
+                            <a class="btn btn-sm btn-outline-warning" href="../usuarios/show.php">Ver</a>
                         </td>
                         <td>
-                            <a class="btn btn-sm btn-outline-warning" href="">Actualizar</a>
+                            <a class="btn btn-sm btn-outline-warning" href="update.php?c=3&id_persona=<?= $row->getId() ?>">Actualizar</a>
+                            
+                        </td>
+                        <td>
+                            <a class="btn btn-sm btn-outline-warning" href="../../controller/clienteController.php?c=4&id_persona=<?= $row->getId() ?>">Eliminar</a>
                         </td>
                     </tr>
+                    
                 <?php
+                    $pos++;
                 }
             } else {
                 ?>
                 <tr class=" text-center">
-                    <td colspan="6">Sin datos</td>
+                    <td colspan="10">Sin datos</td>
                 </tr>
             <?php
             }

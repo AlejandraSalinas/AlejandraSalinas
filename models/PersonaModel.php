@@ -1,10 +1,10 @@
 <?php
 include_once dirname(__FILE__) . '../../Config/config.php';
 
-require_once 'dataBaseModel.php';
+require_once 'DataBaseModel.php';
 
 
-class Persona
+class PersonaModel
 {
     private $id_persona;
     private $tipo_identificacion;
@@ -16,8 +16,8 @@ class Persona
     private $email;
     private $telefono;
     private $direccion;
-    private $id_sexo;
-    private $id_rol;
+    private $sexo;
+    private $rol;
     private $db;
 
     public function __construct()
@@ -30,7 +30,7 @@ class Persona
         return $this->id_persona;
     }
 
-    public function getbyId($id_persona)
+    public function getById($id_persona)
     {
         // operacion
         $datos_usuario = [];
@@ -43,7 +43,7 @@ class Persona
             ]);
 
             while ($row = $query->fetch()) {
-                $item                        = new Persona();
+                $item                        = new PersonaModel();
                 $item->id_persona            = $row['id_persona'];
                 $item->tipo_identificacion   = $row['tipo_identificacion'];
                 $item->numero_identificacion = $row['numero_identificacion'];
@@ -54,8 +54,8 @@ class Persona
                 $item->email                 = $row['email'];
                 $item->telefono              = $row['telefono'];
                 $item->direccion             = $row['direccion'];
-                $item->id_sexo               = $row['id_sexo'];
-                $item->id_rol                = $row['id_rol'];
+                $item->sexo               = $row['sexo'];
+                $item->rol                = $row['rol'];
 
                 array_push($datos_usuario, $item);
             }
@@ -73,17 +73,16 @@ class Persona
 
         try {
 
-            $sql = 'SELECT id_persona, tipo_identificacion.nombre AS tipo_identificacion, numero_identificacion, roles.nombre AS rol, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, sexo.nombre AS sexo
+            $sql = 'SELECT id_persona, tipo_identificacion.nombre AS tipo_identificacion, numero_identificacion, roles.nombre AS rol, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, telefono, direccion, sexo.nombre AS sexo
             FROM personas
             JOIN tipo_identificacion ON personas.id_tipo_identificacion = tipo_identificacion.id_tipo_identificacion
             JOIN roles ON personas.id_rol = roles.id_rol
             JOIN sexo ON personas.id_sexo = sexo.id_sexo';
             $query  = $this->db->conect()->query($sql);
 
-            var_dump($query);
 
             while ($row = $query->fetch()) {
-                $item                        = new Persona();
+                $item                        = new PersonaModel();
                 $item->id_persona            = $row['id_persona'];
                 $item->tipo_identificacion   = $row['tipo_identificacion'];
                 $item->numero_identificacion = $row['numero_identificacion'];
@@ -94,8 +93,8 @@ class Persona
                 $item->email                 = $row['email'];
                 $item->telefono              = $row['telefono'];
                 $item->direccion             = $row['direccion'];
-                $item->id_sexo               = $row['id_sexo'];
-                $item->id_rol                = $row['id_rol'];
+                $item->sexo               = $row['sexo'];
+                $item->rol                = $row['rol'];
 
                 array_push($items, $item);
             }
@@ -124,8 +123,8 @@ class Persona
                 'email'                  => $datos['email'],
                 'telefono'               => $datos['telefono'],
                 'direccion'              => $datos['direccion'],
-                'id_sexo'                   => $datos['id_sexo'],
-                'id_rol'                    => $datos['id_rol'],
+                'id_sexo'                => $datos['id_sexo'],
+                'id_rol'                 => $datos['id_rol'],
             ]);
 
             if ($query) {
@@ -135,6 +134,62 @@ class Persona
             die($e->getMessage());
         }
     }
+    public function Update($datos)
+    {
+        try {
+            $sql = 'UPDATE id_tipo_identificacion = :id_tipo_identificacion,
+            numero_identificacion = :numero_identificacion,
+            primer_nombre = :primer_nombre,
+            segundo_nombre = :segundo_nombre, 
+            primer_apellido = :primer_apellido, 
+            segundo_apellido = :segundo_apellido,
+            email = :email, 
+            telefono = :telefono, 
+            direccion = :direccion,
+            id_sexo = :id_sexo,
+            id_rol = :id_rol,  
+            WHERE id_persona = :id_persona';
+
+            $prepare = $this->db->conect()->query($datos);
+            $query = $prepare->execute([
+                'id_persona'             => $datos['id_persona'],  
+                'tipo_identificacion'    => $datos['tipo_identificacion'],
+                'numero_identificacion'  => $datos['numero_identificacion'],
+                'primer_nombre'          => $datos['primer_nombre'],
+                'segundo_nombre'         => $datos['segundo_nombre'],
+                'primer_apellido'        => $datos['primer_apellido'],
+                'segundo_apellido'       => $datos['segundo_apellido'],
+                'email'                  => $datos['email'],
+                'telefono'               => $datos['telefono'],
+                'direccion'              => $datos['direccion'],
+                'id_sexo'                => $datos['id_sexo'],
+                'id_rol'                 => $datos['id_rol'],
+            ]);
+            if($query){
+                return true;
+            }
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+    public function delete($id_persona)
+    {
+        try {
+            $sql = 'DELETE FROM personas WHERE id_persona = :id_persona';
+
+            $prepare = $this->db->conect()->prepare($sql);
+            $query = $prepare->execute([
+                'id_persona'        => $id_persona
+            ]);
+            if ($query) {
+                return true;
+            }
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+
     // GETTER Y SETTER
     public function getTipoIdentificacion()
     {
@@ -219,19 +274,19 @@ class Persona
 
     public function getSexo()
     {
-        return $this->id_sexo;
+        return $this->sexo;
     }
-    public function setSexo($id_sexo)
+    public function setSexo($sexo)
     {
-        return $this->id_sexo;
+        return $this->sexo;
     }
 
     public function getRol()
     {
-        return $this->id_rol;
+        return $this->rol;
     }
-    public function setRol($id_rol)
+    public function setRol($rol)
     {
-        return $this->id_rol;
+        return $this->rol;
     }
 }
