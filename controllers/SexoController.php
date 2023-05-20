@@ -1,7 +1,5 @@
 <?php
 
-use LDAP\Result;
-
 require_once '../models/SexoModel.php';
 
 $controller = new SexoController;
@@ -19,7 +17,7 @@ class SexoController
                 case '1': //Almacenar en la base de datos
                     self::store();
                     break;
-                
+                    
                 default:
                     self::index();
                     break;
@@ -44,4 +42,5 @@ class SexoController
         }
         return $result;
     }
+    
 }

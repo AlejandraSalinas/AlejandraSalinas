@@ -21,7 +21,7 @@ class RolesController
                 // case 3: //Actualizar el registro 
                 //     self::update();
                 //     break;
-                // case 4: //Actualizar el registro 
+                // case 4: //Eliminar el registro 
                 //     self::delete();
                 //     break;
                 default:
