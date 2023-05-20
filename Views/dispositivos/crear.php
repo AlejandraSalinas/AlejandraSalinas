@@ -20,7 +20,7 @@
                 <div class="col">
                     <form action="<?= constant('URL') ?>../../../../controllers/dispositivosController.php" method="POST">
                         <h1>Registro de Dispositivo</h1>
-                        <div class="mb-3">
+                        <div class="mb-3 col-6">
                             <label for="id_tipo_dispositivos" class="form_label">Tipo de Dispositivo</label>
                             <select class="form-select" id="id_tipo_dispositivos" name="id_tipo_dispositivos">
                                 <option value="1">Computador</option>
@@ -29,7 +29,7 @@
                                 <option value="4">Otro</option>
                             </select>
                         </div>
-                        <div class="mb-3">
+                        <div class="col-6 mb-3">
                             <label for="id_marca" class="form_label">Marca</label>
                             <select class="form-select" id="id_marca" name="id_marca">
                                 <option value="1">Acer</option>

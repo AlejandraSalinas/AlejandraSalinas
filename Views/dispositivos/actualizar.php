@@ -37,6 +37,7 @@ foreach ($registroDispositivo as $dispositivo) {
                     <div class="mb-3">
                         <label for="id_tipo_dispositivos" class="form_label">Tipo de Dispositivo</label>
                         <select class="form-select" id="id_tipo_dispositivos" name="id_tipo_dispositivos">
+                            
                             <option value="1">Computador</option>
                             <option value="2">Portátil</option>
                             <option value="3">Tablets</option>
