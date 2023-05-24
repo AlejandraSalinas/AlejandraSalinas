@@ -2,6 +2,8 @@
     require_once dirname(__FILE__) . '../../../config/config.php';
     include_once '../../Config/config.php';
     include_once('../../Views/Main/partials/header.php'); 
+    include_once('../../controllers/entradaController.php');
+    include_once('../../controllers/salidaController.php');
     ?>
 <div class="container-fluid">
     <!DOCTYPE html>
@@ -19,39 +21,28 @@
         <div class="container">
             <div class="row">
                 <div class="col">
+                    <h1>Bienvenidos </h1>
+                    <p class="ndi">Ingrese su número de identificación</p>
                     <form action="<?= constant('URL') ?>../../../../controllers/dispositivosController.php" method="POST">
-                        <h1>Bienv </h1>
+                        <div class="col-6 mb-3">
+                            <input type="number" placeholder="Número de identificación" class="form-control" id="numero_identificacion" name="numero_identificacion">
+                        </div>
                         <div class="mb-3">
-                        <label for="tipo_identificacion" class="form-label">Tipo de Identificación:</label>
-                <select class="form-select" id="tipo_identificacion" name="tipo_identificacion">
-                    <option selected>Seleccionar</option>
-                    <option value="1">Cédula de Cuidadanía</option>
-                    <option value="2">Tarjeta de Identificación</option>
-                    <option value="3">Tarjeta de Extranjería</option>
-                    <option value="4">Cédula de Extranjería</option>
-                    <option value="5">Pasaporte</option>
-        
-                </select>
-            </div>
-            <div class="col-6 mb-3">
-                <label for="numero_identificacion" class="form-label">Número de Identificación:</label>
-                <input type="number" class="form-control" id="numero_identificacion" name="numero_identificacion">
-            </div>
-            </select>
-            </div>
-            <div class="col-6 mb-3">
-                <label for="numero_identificacion" class="form-label">Número de Identificación:</label>
-                <input type="number" class="form-control" id="numero_identificacion" name="numero_identificacion">
-            </div>
-                        <div class="mb-3">
-                            <button type="submit" class="btn btn-primary mb-3">Entrada</button>
-                            <button type="submit" class="btn btn-primary mb-3">Salida</button>
+                            <button type="submit" class="btn btn-primary mb-3" name="fecha_entrada" id="fecha_entrada">Entrada</button>
+                            <button type="submit" class="btn btn-primary mb-3" name="fecha_salida" id="fecha_salida">Salida</button>
                             <button type="submit" class="btn btn-primary mb-3">Guardar</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
+        <script>
+            setInterval(() => {
+                let fecha = new Date();
+                let fechaHora = fecha.toLocaleString();
+                Document.getElementById("fecha").textContent = fechaHora
+            ), 1000};
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
     </body>
 

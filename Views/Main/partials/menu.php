@@ -15,7 +15,7 @@
 
 <!-- Nav Item - Utilities Collapse Menu -->
 <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+    <a class="nav-link collapsed" href="../../../Views/dispositivos/menuDispositivo.php" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
         <i class="fas fa-fw fa-wrench"></i>
         <span>Dispositivos</span>
     </a>
@@ -23,8 +23,16 @@
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Opciones:</h6>
             <a class="collapse-item" href="../../Views/dispositivos/index.php">Ver</a>
-            <a class="collapse-item" href="../../Views/dispositivos/menuDispositivo.php">Crear</a>
+            <a class="collapse-item" href="../../Views/dispositivos/crear.php">Crear</a>
             <a href="../"></a>
         </div>
     </div>
+    <script>
+
+        $("#span").click( function()
+           {
+             console.log(Recno);
+           }
+        );
+</script>
 </li>
