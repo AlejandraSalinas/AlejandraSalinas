@@ -32,12 +32,11 @@ class PersonaModel
 
     public function getById($id_persona)
     {
-        // operacion
         $datos_usuario = [];
 
         try {
-            $sql = "SELECT * FROM personas WHERE id_persona = $id_persona";
-            $query  = $this->db->conect()->query($sql);
+            $sql  = 'SELECT * FROM personas WHERE id_persona = :id_persona';
+            $query = $this->db->conect()->prepare($sql);
             $query->execute([
                 'id_persona' => $id_persona
             ]);
@@ -45,7 +44,7 @@ class PersonaModel
             while ($row = $query->fetch()) {
                 $item                        = new PersonaModel();
                 $item->id_persona            = $row['id_persona'];
-                $item->tipo_identificacion   = $row['tipo_identificacion'];
+                $item->tipo_identificacion   = $row['id_tipo_identificacion'];
                 $item->numero_identificacion = $row['numero_identificacion'];
                 $item->primer_nombre         = $row['primer_nombre'];
                 $item->segundo_nombre        = $row['segundo_nombre'];
@@ -54,8 +53,8 @@ class PersonaModel
                 $item->email                 = $row['email'];
                 $item->telefono              = $row['telefono'];
                 $item->direccion             = $row['direccion'];
-                $item->sexo               = $row['sexo'];
-                $item->rol                = $row['rol'];
+                $item->sexo                  = $row['id_sexo'];
+                $item->rol                   = $row['id_rol'];
 
                 array_push($datos_usuario, $item);
             }
@@ -93,8 +92,8 @@ class PersonaModel
                 $item->email                 = $row['email'];
                 $item->telefono              = $row['telefono'];
                 $item->direccion             = $row['direccion'];
-                $item->sexo               = $row['sexo'];
-                $item->rol                = $row['rol'];
+                $item->sexo                  = $row['sexo'];
+                $item->rol                   = $row['rol'];
 
                 array_push($items, $item);
             }
@@ -109,7 +108,6 @@ class PersonaModel
     {
         try {
 
-            // $resultado = self::resultadoRegistro($datos);
             $sql = 'INSERT INTO personas(id_tipo_identificacion, numero_identificacion, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, telefono, direccion, id_sexo, id_rol) VALUES(:tipo_identificacion, :numero_identificacion, :primer_nombre, :primer_apellido, :segundo_apellido, :segundo_nombre, :email, :telefono, :direccion, :id_sexo, :id_rol)';
 
             $prepare = $this->db->conect()->prepare($sql);
@@ -134,7 +132,7 @@ class PersonaModel
             die($e->getMessage());
         }
     }
-    public function Update($datos)
+    public function update($datos)
     {
         try {
             $sql = 'UPDATE id_tipo_identificacion = :id_tipo_identificacion,
@@ -150,10 +148,10 @@ class PersonaModel
             id_rol = :id_rol,  
             WHERE id_persona = :id_persona';
 
-            $prepare = $this->db->conect()->query($datos);
+            $prepare = $this->db->conect()->query($sql);
             $query = $prepare->execute([
-                'id_persona'             => $datos['id_persona'],  
-                'tipo_identificacion'    => $datos['tipo_identificacion'],
+                'id_persona'             => $datos['id_persona'],
+                'id_tipo_identificacion' => $datos['id_tipo_identificacion'],
                 'numero_identificacion'  => $datos['numero_identificacion'],
                 'primer_nombre'          => $datos['primer_nombre'],
                 'segundo_nombre'         => $datos['segundo_nombre'],
@@ -165,7 +163,7 @@ class PersonaModel
                 'id_sexo'                => $datos['id_sexo'],
                 'id_rol'                 => $datos['id_rol'],
             ]);
-            if($query){
+            if ($query) {
                 return true;
             }
         } catch (PDOException $e) {

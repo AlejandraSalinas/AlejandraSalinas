@@ -20,12 +20,11 @@ class TipoIdentificacionModel
 
     public function getById($id_tipo_identificacion)
     {
-        // operacion
         $datos_tipo_identificacion = [];
 
         try {
             $sql = "SELECT * FROM tipo_identificacion WHERE id_tipo_identificacion = :id_tipo_identificacion";
-            $query  = $this->db->conect()->query($sql);
+            $query  = $this->db->conect()->prepare($sql);
             $query->execute([
                 'id_tipo_identificacion' => $id_tipo_identificacion
             ]);
@@ -43,7 +42,6 @@ class TipoIdentificacionModel
             die($e->getMessage());
         }
     }
-
 
     public function getAll()
     {

@@ -13,7 +13,7 @@ $datos = new PersonaModel();
 $registro = $datos->getById($_REQUEST['id_persona']);
 
 $datos_identificacion = new TipoIdentificacionModel();
-$registro = $datos_identificacion->getAll();
+$registro_identificacion = $datos_identificacion->getAll();
 
 $datos_rol  = new RolesModel();
 $data  = $datos_rol->getAll();
@@ -21,7 +21,7 @@ $data  = $datos_rol->getAll();
 $datos_sexo = new SexoModel();
 $genero = $datos_sexo->getAll();
 
-foreach ($registro as $cliente) {
+foreach ($registro as $persona) {
     $id_persona            = $persona->getId();
     $tipo_identificacion   = $persona->getTipoIdentificacion();
     $numero_identificacion = $persona->getNumeroIdentificacion();
@@ -51,7 +51,7 @@ foreach ($registro as $cliente) {
                     <select class="form-select" id="tipo_identificacion" name="tipo_identificacion" required="required">
                         <option selected>Seleccionar</option>
                         <?php
-                        foreach ($registro  as $datos) {
+                        foreach ($registro_identificacion     as $datos) {
                             echo '<option value="' . $datos->getId() . '">' . $datos->getTipoIdentificacion() . '</option>';
                         }
                         ?>

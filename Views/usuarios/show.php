@@ -1,19 +1,16 @@
-<?php 
-require_once dirname(__FILE__) . '../../../config/config.php';
-
-require_once("../Main/partials/header.php"); 
-
-require_once '../../models/PersonaModel.php';
+<?php
+include_once dirname(__FILE__) . '../../../config/config.php';
+include_once("../Main/partials/header.php");
 require_once '../../models/tipoIdentificacionModel.php';
 require_once '../../models/RolesModel.php';
 require_once '../../models/SexoModel.php';
-
+require_once '../../models/PersonaModel.php';
 
 $datos = new PersonaModel();
 $registro = $datos->getById($_REQUEST['id_persona']);
 
 $datos_identificacion = new TipoIdentificacionModel();
-$registro = $datos_identificacion->getAll();
+$registro_identificacion = $datos_identificacion->getAll();
 
 $datos_rol  = new RolesModel();
 $data  = $datos_rol->getAll();
@@ -48,10 +45,9 @@ foreach ($registro as $persona) {
             <div class="row">
                 <div class="mb-4 col-6">
                     <label for="tipo_identificacion" class="form-label">Tipo de Identificación:</label>
-                    <select class="form-select" value="<?= $tipo_identificacion ?>" id="tipo_identificacion" name="tipo_identificacion" required="required">
-                        <option selected>Seleccionar</option>
+                    <select class="form-select" value="<?= $tipo_identificacion ?>" id="id_tipo_identificacion" name="id_tipo_identificacion" disabled>
                         <?php
-                        foreach ($registro  as $datos) {
+                        foreach ($registro_identificacion  as $datos) {
                             echo '<option value="' . $datos->getId() . '">' . $datos->getTipoIdentificacion() . '</option>';
                         }
                         ?>
@@ -59,15 +55,15 @@ foreach ($registro as $persona) {
                 </div>
                 <div class="col-6 mb-4">
                     <label for="numero_identificacion" class="form-label">Número de Identificación:</label>
-                    <input type="number" class="form-control" value="<?= $numero_identificacion ?>" id="numero_identificacion" name="numero_identificacion" required="required">
+                    <input type="number" class="form-control" value="<?= $numero_identificacion ?>" id="numero_identificacion" name="numero_identificacion">
                 </div>
                 <div class="mb-4 col-6">
                     <label for="primer_nombre" class="form-label">Primer Nombre:</label>
-                    <input type="text" class="form-control" value="<?= $primer_nombre ?>" name="primer_nombre" id="primer_nombre" required>
+                    <input type="text" class="form-control" value="<?= $primer_nombre ?>" name="primer_nombre" id="primer_nombre" >
                 </div>
                 <div class="col-6 mb-4">
                     <label for="segundo_nombre" class="form-label">Segundo Nombre:</label>
-                    <input type="text" class="form-control" value="<?= $segundo_nombre?>" name="segundo_nombre" id="segundo_nombre">
+                    <input type="text" class="form-control" value="<?= $segundo_nombre ?>" name="segundo_nombre" id="segundo_nombre">
                 </div>
                 <div class="mb-4 col-6">
                     <label for="primer_apellido" class="form-label">Primer Apellido:</label>
@@ -75,7 +71,7 @@ foreach ($registro as $persona) {
                 </div>
                 <div class="col-6 mb-4">
                     <label for="segundo_apellido" class="form-label">Segundo Apellido:</label>
-                    <input type="text" class="form-control" value="<?= $segundo_apellido ?>" name="segundo_apellido" id="segundo_apellido" required>
+                    <input type="text" class="form-control" value="<?= $segundo_apellido ?>" name="segundo_apellido" id="segundo_apellido" >
                 </div>
                 <div class="mb-4 col-6">
                     <label for="email" class="form-label">Email:</label>
@@ -91,32 +87,32 @@ foreach ($registro as $persona) {
                 </div>
                 <div class="mb-4 col-6">
                     <label for="id_sexo" class="form-label">Sexo:</label>
-                    <select class="form-select" value="<?= $id_sexo ?>" id="id_sexo" name="id_sexo" required="required">
-                    <option selected>Seleccionar</option>
-                    <?php
-                    foreach ($genero  as $datos) {
-                        echo '<option value="' . $datos->getId() . '">' . $datos->getSexo() . '</option>';
-                    }
-                    ?>
+                    <select class="form-select" value="<?= $id_sexo ?>" id="id_sexo" name="id_sexo" disabled>
+                        <?php
+                        foreach ($genero  as $sexo) {
+                            echo '<option value="' . $sexo->getId() . '">' . $sexo->getSexo() . '</option>';
+                        }
+                        ?>
                     </select>
                 </div>
                 <div class="col-6 mb-2">
                     <label for="id_rol" class="form-label">Rol:</label>
-                    <select class="form-select" value="<?= $id_rol ?>" id="id_rol" name="id_rol" required="required">
-                    <option selected>Seleccionar</option>
-                    <?php
-                    foreach ($data  as $datos) {
-                        echo '<option value="' . $datos->getId() . '">' . $datos->getRoles() . '</option>';
-                    }
-                    ?>
+                    <select class="form-select" value="<?= $id_rol ?>" id="id_rol" name="id_rol" disabled>
+                        <?php
+                        foreach ($data  as $datos) {
+                            echo '<option value="' . $datos->getId() . '">' . $datos->getRoles() . '</option>';
+                        }
+                        ?>
                     </select>
                 </div>
                 <div class="row justify-content-center">
-                    <div class="col-1">
-                        <button type="submit" class="btn btn-outline-primary">Guardar</button>
-                    </div>    
+                    <div class="col-2">
+                     
+                        <a class="btn btn-outline-primary"  href="../Main/index.php">Regresar a Inicio</a>
+                    </div>
                 </div>
-            </div>  
-        </div>        
+            </div>
+        </div>
     </form>
 </div>
+<?php require_once("../Main/partials/footer.php"); ?>

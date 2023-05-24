@@ -3,10 +3,12 @@ require_once  '../models/PersonaModel.php';
 // calculadora
 $controller = new PersonaController;
 
-class PersonaController{
+class PersonaController
+{
     private $persona;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->persona = new personaModel();
 
         if (isset($_REQUEST['c'])) {
@@ -52,7 +54,7 @@ class PersonaController{
         $result = $this->persona->store($datos);
 
         if ($result) {
-            header("Location: " . constant('URL') . "../Views/Main/index.php");
+            header("Location: ../Views/usuarios/index.php");
             exit();
         }
 
@@ -62,20 +64,20 @@ class PersonaController{
     public function show()
     {
         $id_persona = $_REQUEST['id_persona'];
-        header("location:" . constant('URL') . "../Views/Main/index.php?id_persona=" . $id_persona);
+        header("location: ../Views/usuarios/show.php?id_persona=" . $id_persona);
     }
 
     public function delete()
     {
         $this->persona->delete($_REQUEST['id_persona']);
-        header("location:" . constant('URL') . "../Views/Main/index.php");
+        header("location: ../Views/usuarios/index.php");
     }
 
     public function update()
     {
-    
+
         $datos = [
-            'id'        => $_REQUEST['id'],
+            'id_persona'             => $_REQUEST['id_persona'],
             'id_tipo_identificacion' => $_REQUEST['id_tipo_identificacion'],
             'numero_identificacion'  => $_REQUEST['numero_identificacion'],
             'primer_nombre'          => $_REQUEST['primer_nombre'],
@@ -89,12 +91,12 @@ class PersonaController{
             'id_rol'                 => $_REQUEST['id_rol'],
 
         ];
-         
+
 
         $result = $this->persona->update($datos);
 
         if ($result) {
-            header("Location: ../views/Main/index.php");
+            header("Location: ../Views/usuario/index.php");
             exit();
         }
 

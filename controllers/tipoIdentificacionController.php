@@ -14,15 +14,9 @@ class tipoIdentificacionController{
                 case 1: //Almacenar en la base de datos
                     self::store();
                     break;
-                // case 2: //Ver usuario
-                //     self::show();
-                //     break;
-                // case 3: //Actualizar el registro 
-                //     self::update();
-                //     break;
-                // case 4: //Actualizar el registro 
-                //     self::delete();
-                //     break;
+                case 2: //Ver documento
+                    self::show();
+                    break;
                 default:
                     self::index();
                     break;
@@ -42,10 +36,15 @@ class tipoIdentificacionController{
         $result = $this->tipo_identificacion->store($datos);
 
         if ($result) {
-            header("Location: " . constant('URL') . "../Views/Main/index.php");
+            header("Location: ../Views/usaurios/index.php");
             exit();
         }
 
         return $result;
+    }
+    public function show()
+    {
+        $id_tipo_identificacion = $_REQUEST['id_tipo_documento'];
+        header("Location: ../Views/usuarios/show.php?id_tipo_documento=" .$id_tipo_identificacion);
     }
 }

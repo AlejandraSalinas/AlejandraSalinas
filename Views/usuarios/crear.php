@@ -40,7 +40,7 @@ $genero = $datos_sexo->getAll();
                 </div>
                 <div class="col-6 mb-4">
                     <label for="numero_identificacion" class="form-label">Número de Identificación:</label>
-                    <input type="number" class="form-control" id="numero_identificacion" name="numero_identificacion" required="required" maxlength="10" minlength="10">
+                    <input type="number" class="form-control" id="numero_identificacion" name="numero_identificacion" required="required">
                 </div>
                 <div class="mb-4 col-6">
                     <label for="primer_nombre" class="form-label">Primer Nombre:</label>
@@ -52,11 +52,11 @@ $genero = $datos_sexo->getAll();
                 </div>
                 <div class="mb-4 col-6">
                     <label for="primer_apellido" class="form-label">Primer Apellido:</label>
-                    <input type="text" class="form-control" name="primer_apellido" id="primer_apellido">
+                    <input type="text" class="form-control" name="primer_apellido" id="primer_apellido" required>
                 </div>
                 <div class="col-6 mb-4">
                     <label for="segundo_apellido" class="form-label">Segundo Apellido:</label>
-                    <input type="text" class="form-control" name="segundo_apellido" id="segundo_apellido" required>
+                    <input type="text" class="form-control" name="segundo_apellido" id="segundo_apellido">
                 </div>
                 <div class="mb-4 col-6">
                     <label for="email" class="form-label">Email:</label>
