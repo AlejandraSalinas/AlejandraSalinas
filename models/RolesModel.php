@@ -23,7 +23,7 @@ class RolesModel
         $datos_rol = [];
 
         try {
-            $sql   =  "SELECT * FROM roles WHERE id_rol = :id_rol";
+            $sql   =  "SELECT *FROM roles WHERE id_rol = :id_rol";
             $query = $this->db->conect()->query($sql);
             $query->execute([
                 'id_rol' => $id_rol
@@ -47,7 +47,7 @@ class RolesModel
         $rol = [];
 
         try {
-            $sql= 'SELECT * FROM roles ORDER BY id_rol ASC';
+            $sql= 'SELECT * FROM roles ORDER BY id_rol ASC ';
             $query = $this->db->conect()->query($sql);
 
             while ($row = $query->fetch()){
@@ -65,7 +65,7 @@ class RolesModel
     public function store($datos)
     {
         try {
-            $sql = 'INSERT INTO roles(id_rol) VALUES (:roles)';
+            $sql = 'INSERT INTO roles(nombre) VALUES (:nombre)';
             $prepare = $this->db->conect()->query($sql);
             $query = $prepare->execute([
                 'roles' => $datos['roles']
@@ -77,6 +77,40 @@ class RolesModel
             die($e->getMessage());
         }
     }
+    public function update($datos)
+    {
+        try {
+            $sql = 'UPDATE roles SET  nombre = :nombre WHERE id_rol = :id_rol';
+            $prepare = $this->db->conect()->prepare($sql);
+            $query = $prepare->execute([
+                'id_rol'      => $datos['id_rol'],
+                'nombre'      => $datos['nombre']
+            ]);
+
+            if ($query) {
+                return true;
+            }
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function delete($id_rol)
+    {
+        try {
+            $sql = 'DELETE FROM rol WHERE id_rol = :id_rol';
+            $prepare = $this->db->conect()->prepare($sql);
+            $query = $prepare->execute([
+                'id_rol'  => $id_rol
+            ]);
+            if ($query) {
+                return true;
+            }
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
     // GETTER Y SETTER
     public function getRoles()
     {

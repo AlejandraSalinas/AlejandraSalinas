@@ -1,6 +1,6 @@
 <?php
 include_once dirname(__FILE__) . '../../../config/config.php';
-include_once("../Main/partials/header.php");
+include_once ("../Main/partials/header.php");
 require_once '../../models/tipoIdentificacionModel.php';
 require_once '../../models/RolesModel.php';
 require_once '../../models/SexoModel.php';
@@ -36,7 +36,7 @@ foreach ($registro as $persona) {
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Ver Usuario</h1>
+    <h1 class="h3 mb-4 text-gray-800">Ver usuarios</h1>
     <hr class="hr mb-5">
     <form method="post">
         <!-- <input type="hidden" name="id" value="2"> -->
@@ -89,8 +89,8 @@ foreach ($registro as $persona) {
                     <label for="id_sexo" class="form-label">Sexo:</label>
                     <select class="form-select" value="<?= $id_sexo ?>" id="id_sexo" name="id_sexo" disabled>
                         <?php
-                        foreach ($genero  as $sexo) {
-                            echo '<option value="' . $sexo->getId() . '">' . $sexo->getSexo() . '</option>';
+                        foreach ($genero  as $sexo_persona) {
+                            echo '<option value="' . $sexo_persona->getId() . '">' . $sexo_persona->getSexo() . '</option>';
                         }
                         ?>
                     </select>
@@ -107,8 +107,7 @@ foreach ($registro as $persona) {
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-2">
-                     
-                        <a class="btn btn-outline-primary"  href="../Main/index.php">Regresar a Inicio</a>
+                        <a class="btn btn-outline-success"  href="index.php">Regresar a Inicio</a>
                     </div>
                 </div>
             </div>

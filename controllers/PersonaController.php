@@ -1,6 +1,6 @@
 <?php
 require_once  '../models/PersonaModel.php';
-// calculadora
+
 $controller = new PersonaController;
 
 class PersonaController
@@ -64,7 +64,7 @@ class PersonaController
     public function show()
     {
         $id_persona = $_REQUEST['id_persona'];
-        header("location: ../Views/usuarios/show.php?id_persona=" . $id_persona);
+        header("location: ../Views/usuarios/update.php?id_persona=" . $id_persona);
     }
 
     public function delete()
@@ -75,8 +75,7 @@ class PersonaController
 
     public function update()
     {
-
-        $datos = [
+         $datos = [
             'id_persona'             => $_REQUEST['id_persona'],
             'id_tipo_identificacion' => $_REQUEST['id_tipo_identificacion'],
             'numero_identificacion'  => $_REQUEST['numero_identificacion'],
@@ -89,14 +88,12 @@ class PersonaController
             'direccion'              => $_REQUEST['direccion'],
             'id_sexo'                => $_REQUEST['id_sexo'],
             'id_rol'                 => $_REQUEST['id_rol'],
-
         ];
-
 
         $result = $this->persona->update($datos);
 
         if ($result) {
-            header("Location: ../Views/usuario/index.php");
+            header('location: ../Views/usuarios/update.php');
             exit();
         }
 

@@ -108,7 +108,7 @@ class PersonaModel
     {
         try {
 
-            $sql = 'INSERT INTO personas(id_tipo_identificacion, numero_identificacion, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, telefono, direccion, id_sexo, id_rol) VALUES(:tipo_identificacion, :numero_identificacion, :primer_nombre, :primer_apellido, :segundo_apellido, :segundo_nombre, :email, :telefono, :direccion, :id_sexo, :id_rol)';
+            $sql = 'INSERT INTO personas(id_tipo_identificacion, numero_identificacion, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, telefono, direccion, id_sexo, id_rol) VALUES(:tipo_identificacion, :numero_identificacion, :primer_nombre, :segundo_nombre, :primer_apellido, :segundo_apellido, :email, :telefono, :direccion, :id_sexo, :id_rol)';
 
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([

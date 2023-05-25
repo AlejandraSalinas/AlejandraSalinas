@@ -41,41 +41,38 @@ foreach ($registro as $persona) {
 <div class="container-fluid">
     <h1 class="h3 mb-4 text-gray-800">Actualizar Usuario</h1>
     <hr class="hr mb-5">
-    <form action="<?= constant('URL') ?>/controllers/PersonaController.php" method="post">
-        <input type="hidden" name="c" value="3">
-        <input type="hidden" name="id" value="<?= $id_persona ?>">
+    <form action="../../controllers/PersonaController.php?c=3&id_persona=<?= $id_persona ?> " method="post">
         <div class="container">
             <div class="row">
                 <div class="mb-4 col-6">
                     <label for="tipo_identificacion" class="form-label">Tipo de Identificación:</label>
                     <select class="form-select" id="tipo_identificacion" name="tipo_identificacion" required="required">
-                        <option selected>Seleccionar</option>
-                        <?php
-                        foreach ($registro_identificacion     as $datos) {
-                            echo '<option value="' . $datos->getId() . '">' . $datos->getTipoIdentificacion() . '</option>';
-                        }
-                        ?>
+                        <?php foreach ($registro_identificacion as $datos) : ?> 
+                               
+                            <option value="<?= $datos->getId() ?>" <?= $datos->getId() == $persona->getTipoIdentificacion() ? 'selected' :  "" ?>><?= $datos->getTipoIdentificacion() ?></option>
+                           
+                        <?php endforeach ?>
                     </select>
                 </div>
                 <div class="col-6 mb-4">
                     <label for="numero_identificacion" class="form-label">Número de Identificación:</label>
-                    <input type="number" class="form-control" id="numero_identificacion" name="numero_identificacion" required="required">
+                    <input type="number" class="form-control" id="numero_identificacion" name="numero_identificacion" value="<?= $numero_identificacion ?>">
                 </div>
                 <div class="mb-4 col-6">
                     <label for="primer_nombre" class="form-label">Primer Nombre:</label>
-                    <input type="text" class="form-control" name="primer_nombre" id="primer_nombre" required>
+                    <input type="text" class="form-control" name="primer_nombre" id="primer_nombre" value="<?= $primer_nombre ?>">
                 </div>
                 <div class="col-6 mb-4">
                     <label for="segundo_nombre" class="form-label">Segundo Nombre:</label>
-                    <input type="text" class="form-control" name="segundo_nombre" id="segundo_nombre">
+                    <input type="text" class="form-control" name="segundo_nombre" id="segundo_nombre" value="<?= $segundo_nombre ?>">
                 </div>
                 <div class="mb-4 col-6">
                     <label for="primer_apellido" class="form-label">Primer Apellido:</label>
-                    <input type="text" class="form-control" name="primer_apellido" id="primer_apellido">
+                    <input type="text" class="form-control" name="primer_apellido" id="primer_apellido" value="<?= $primer_apellido ?>">
                 </div>
                 <div class="col-6 mb-4">
                     <label for="segundo_apellido" class="form-label">Segundo Apellido:</label>
-                    <input type="text" class="form-control" name="segundo_apellido" id="segundo_apellido" required>
+                    <input type="text" class="form-control" name="segundo_apellido" id="segundo_apellido" value="<?= $segundo_apellido ?>">
                 </div>
                 <div class="mb-4 col-6">
                     <label for="email" class="form-label">Email:</label>
@@ -92,23 +89,21 @@ foreach ($registro as $persona) {
                 <div class="mb-4 col-6">
                     <label for="id_sexo" class="form-label">Sexo:</label>
                     <select class="form-select" id="id_sexo" name="id_sexo" required="required">
-                    <option selected>Seleccionar</option>
-                    <?php
-                    foreach ($genero  as $datos) {
-                        echo '<option value="' . $datos->getId() . '">' . $datos->getSexo() . '</option>';
-                    }
-                    ?>
+                        <?php foreach ($genero as $sexo_persona) : ?> 
+                               
+                            <option value="<?= $sexo_persona->getId() ?>" <?= $sexo_persona->getId() == $persona->getSexo() ? 'selected' :  "" ?>><?= $sexo_persona->getSexo() ?></option>
+                           
+                        <?php endforeach ?>
                     </select>
                 </div>
                 <div class="col-6 mb-2">
                     <label for="id_rol" class="form-label">Rol:</label>
-                    <select class="form-select" id="id_rol" name="id_rol" required="required">
-                    <option selected>Seleccionar</option>
-                    <?php
-                    foreach ($data  as $datos) {
-                        echo '<option value="' . $datos->getId() . '">' . $datos->getRoles() . '</option>';
-                    }
-                    ?>
+                    <select class="form-select" id="id_rol" name="id_rol" required="required">                    
+                    <?php foreach ($data as $datos) : ?> 
+                               
+                       <option value="<?= $datos->getId() ?>" <?= $datos->getId() == $persona->getRol() ? 'selected' :  "" ?>><?= $datos->getRol() ?></option>
+                              
+                    <?php endforeach ?>
                     </select>
                 </div>
                 <div class="row justify-content-center">
@@ -116,10 +111,16 @@ foreach ($registro as $persona) {
                         <button type="submit" class="btn btn-outline-primary">Guardar</button>
                     </div>    
                 </div>
-          
+            </div>   
         </div>        
     </form>
-
+    <div class="row justify-content-center">
+        <div class="col-3 mb-2">
+            <button type="submit" class="btn btn-outline-primary">Guardar</button>
+                        
+            <a class="btn btn-outline-success"  href="../Main/index.php">Regresar a Inicio</a>
+        </div>    
+    </div>
 </div>
 <!-- /.container-fluid -->
 

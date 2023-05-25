@@ -7,7 +7,7 @@ require_once '../../models/RolesModel.php';
 require_once '../../models/SexoModel.php';
 
 $datos_identificacion = new TipoIdentificacionModel();
-$registro = $datos_identificacion->getAll();
+$registro_identificacion = $datos_identificacion->getAll();
 
 $datos_rol  = new RolesModel();
 $data  = $datos_rol->getAll();
@@ -32,7 +32,7 @@ $genero = $datos_sexo->getAll();
                     <select class="form-select" id="tipo_identificacion" name="tipo_identificacion" required="required">
                         <option selected>Seleccionar</option>
                         <?php
-                        foreach ($registro  as $datos) {
+                        foreach ($registro_identificacion  as $datos) {
                             echo '<option value="' . $datos->getId() . '">' . $datos->getTipoIdentificacion() . '</option>';
                         }
                         ?>
@@ -75,8 +75,8 @@ $genero = $datos_sexo->getAll();
                     <select class="form-select" id="id_sexo" name="id_sexo" required="required">
                     <option selected>Seleccionar</option>
                     <?php
-                    foreach ($genero  as $datos) {
-                        echo '<option value="' . $datos->getId() . '">' . $datos->getSexo() . '</option>';
+                    foreach ($genero  as $sexo_persona) {
+                        echo '<option value="' . $sexo_persona->getId() . '">' . $sexo_persona->getSexo() . '</option>';
                     }
                     ?>
                     </select>
@@ -93,8 +93,10 @@ $genero = $datos_sexo->getAll();
                     </select>
                 </div>
                 <div class="row justify-content-center">
-                    <div class="col-1">
+                    <div class="col-3 mb-2">
                         <button type="submit" class="btn btn-outline-primary">Guardar</button>
+                                     
+                        <a class="btn btn-outline-success"  href="../Main/index.php">Regresar a Inicio</a>
                     </div>    
                 </div>
             </div>  
