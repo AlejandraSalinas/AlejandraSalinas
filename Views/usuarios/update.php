@@ -106,11 +106,11 @@ foreach ($registro as $persona) {
                     <?php endforeach ?>
                     </select>
                 </div>
-                <div class="row justify-content-center">
+                <!-- <div class="row justify-content-center">
                     <div class="col-1">
                         <button type="submit" class="btn btn-outline-primary">Guardar</button>
                     </div>    
-                </div>
+                </div> -->
             </div>   
         </div>        
     </form>

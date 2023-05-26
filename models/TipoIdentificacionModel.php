@@ -69,13 +69,46 @@ class TipoIdentificacionModel
     {
         try {
 
-            $sql = 'INSERT INTO tipo_identificacion(id_tipo_identificacion) VALUES(:tipo_identificacion)';
+            $sql = 'INSERT INTO tipo_identificacion(nombre) VALUES(:nombre)';
 
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
-                'tipo_identificacion'    => $datos['tipo_identificacion']
+                'nombre' => $datos['nombre']
             ]);
 
+            if ($query) {
+                return true;
+            }
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+    public function update($datos)
+    {
+        try {
+            $sql = 'UPDATE tipo_identificacion SET tipo_identificacion= :tipo_identificacion WHERE id_tipo_documento = :id_tipo_documento';
+            $prepare = $this->db->conect()->prepare($sql);
+            $query = $prepare->execute([
+                'id_tipo_identificacion' => $datos['id_tipo_identificacion'],
+                'nombre'     => $datos['nombre']
+            ]);
+
+            if ($query) {
+                return true;
+            }
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function delete($id_tipo_identificacion)
+    {
+        try {
+            $sql = 'DELETE FROM tipo_identificaion WHERE id_tipo_identificaion = :id_tipo_identificacion';
+            $prepare = $this->db->conect()->prepare($sql);
+            $query = $prepare->execute([
+                'id_tipo_identificacion' => $id_tipo_identificacion,
+            ]);
             if ($query) {
                 return true;
             }

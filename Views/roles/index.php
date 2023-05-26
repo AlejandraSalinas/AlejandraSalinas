@@ -1,7 +1,7 @@
 <?php
-// include_once(__FILE__ . "../../../config/config.example.php");
-// include_once('../../views/main/partials/header.php');
-// require_once '../../models/RolesModel.php';
+// include_once(__FILE__ . '../../../../Config/config.php');
+include_once('../Main/partials/header.php');
+require_once '../../models/RolesModel.php';
 
 $datos_rol  = new RolesModel();
 $data  = $datos_rol->getAll();
@@ -16,11 +16,13 @@ foreach ($registros as $rol) {
     <div class="container text-center">
         <h1 class="h3 mb-4 text-gray-800">Configuración Del Sistema</h1>
         <hr>
-        <?php include_once('../../views/main/partials/menu.php'); ?>
+        <?php include_once('../Main/partials/lista.php'); ?>
         <hr>
-        <h1 class="h3 mb-4 text-gray-800 text-left">Departamentos
+        <h1 class="h3 mb-4 text-gray-800 text-left">Roles
             <button type="button" class="btn btn-outline-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                <i class="bi bi-plus-circle-fill" style="font-size: 1.5rem; "></i>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                </svg>
             </button>
         </h1>
         <div class="row">
@@ -65,7 +67,7 @@ foreach ($registros as $rol) {
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Departemento</th>
+                            <th scope="col">Roles</th>
                             <th scope="col" colspan="2">opciones</th>
 
                         </tr>
@@ -134,5 +136,5 @@ foreach ($registros as $rol) {
 <!-- /.container-fluid -->
 
 <?php
-include_once('../../views/main/partials/footer.php');
+include_once('../Main/partials/footer.php');
 ?>
