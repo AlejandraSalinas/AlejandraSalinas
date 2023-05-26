@@ -2,15 +2,15 @@
 
     require_once '../models/dispositivosModel.php';
 
-    $dispositivo = new DispositivoController;
+    $controllerDispositivo = new DispositivoController;
 
     class DispositivoController
     {
-        private $registroDispositivo;
+        private $dispositivo;
 
         public function __construct()
         {
-            $this->registroDispositivo = new DispositivoController();
+            $this->dispositivo = new DispositivoModel();
     
             if (isset($_REQUEST['c'])) {
                 switch ($_REQUEST['c']) {
@@ -35,49 +35,55 @@
     
         public function index()
         {
-            return $this->registroDispositivo->getAll();
+            return $this->dispositivo->getAll();
         }
+
         public function store()
         {
             $datos = [
-                'id_registro_dispositivos'   => $_REQUEST['id_registro_dispositivos',
+                'id_tipo_identificacion'   => $_REQUEST['id_tipo_identificacion'],
+                'numero_identificacion' => $_REQUEST['numero_identificacion'],
                 'id_tipo_dispositivos'       => $_REQUEST['id_tipo_dispositivos'],
                 'id_marca'                   => $_REQUEST['id_marca'],
                 'id_color'                   => $_REQUEST['id_color'],
                 'id_accesorios'              => $_REQUEST['id_accesorios'],
                 'serie'                      => $_REQUEST['serie'],
             ];
-            $result = $this->registroDispositivo->store($datos);
+            $result = $this->dispositivo->store($datos);
             if ($result) {
                 header("Location: ../Views/dispositivos/index.php");
                 exit();
-            } else {
-                echo $error = "Error";
             }
+            return $result;
         }
+
         public function show()
         {
-            $id = $_REQUEST['id_tipo_dispositivos'];
-            header("Location: ../Views/dispositivos/index.php?id_trpo_dispositivo=".$id);
+            $id_ingresar = $_REQUEST['id_ingresar'];
+            header("Location: ../Views/dispositivos/update.php?id_ingresar=" . $id_ingresar);
         }
+
         public function delete()
         {
-            $this->dispositivo->delete($_REQUEST['id_tipo_dispositivos']);
+            $this->dispositivo->delete($_REQUEST['id_ingresar']);
             header("Location: ../Views/dispositivos/index.php");
         }
+
         public function update()
         {
             $datos = [
-                'id_tipo_dispositivos'       = $_REQUEST['id_tipo_dispositivos'],
-                'id_marca'                   = $_REQUEST['id_marca'],
-                'id_color'                   = $_REQUEST['id_color'],
-                'id_accesorios'              = $_REQUEST['id_accesorios'],
-                'serie'                      = $_REQUEST['serie']
+                'id_tipo_identificacion'   => $_REQUEST['id_tipo_identificacion'],
+                'numero_identificacion' => $_REQUEST['numero_identificacion'],
+                'id_tipo_dispositivos'       => $_REQUEST['id_tipo_dispositivos'],
+                'id_marca'                   => $_REQUEST['id_marca'],
+                'id_color'                   => $_REQUEST['id_color'],
+                'id_accesorios'              => $_REQUEST['id_accesorios'],
+                'serie'                      => $_REQUEST['serie']
             ];
-            $result = $this->registroDispositivo->update($datos);
+            $result = $this->dispositivo->update($datos);
     
             if ($result) {
-                header("Location: ../Views/dispositivos/actualizar.php");
+                header("Location: ../Views/dispositivos/update.php");
                 exit();
             }
             return $result;

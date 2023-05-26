@@ -1,12 +1,37 @@
 <?php
     require_once dirname(__FILE__) . '../../../config/config.php';
     require_once('../../Views/Main/partials/header.php');
+    require_once('../../models/dispositivosModel.php');
     require_once('../../models/tipoIdentificacionModel.php');
     require_once('../../models/tipoDispositivoModel.php');
     require_once('../../models/marcaDispositivoModel.php');
     require_once('../../models/colorDispositivoModel.php');
     require_once('../../models/accesoriosDispositivoModel.php');
+
+    $datos = new DispositivoModel();
+$registro = $datos->getById($_REQUEST['id_persona']);
+
+$datos_identificacion = new TipoIdentificacionModel();
+$registro_identificacion = $datos_identificacion->getAll();
+
+    foreach( $registro as $dispositivo){
+        $id_ingresar                = $ingresar -> getId();
+        $id_tipo_identificacion     = $ingresar -> getTipo_identificacion();
+        $numero_identificacion      = $ingresar -> getNumero_identificacion();
+        $id_tipo_dispositivos       = $ingresar -> getTipo_dispositivos();
+        $id_marca                   = $ingresar -> getMarca();
+        $id_color                   = $ingresar -> getCcolor();
+        $id_accesorios              = $ingresar -> getAccesorios();
+        $serie                      = $ingresar -> getSerie();
+    }
+
     ?>
+
+
+
+
+
+
 
         <div class="container-fluid">
             <h1  class="h3 mb-4 text-gray-800">Registro de Dispositivo</h1>
@@ -19,8 +44,8 @@
                             <select class="form-select" id="tipo_identificacion" name="tipo_identificacion" required="required">
                                 <option selected>Seleccionar</option>
                                 <?php
-                                foreach ($tipo_identificacion  as $datos) {
-                                    echo '<option value="' . $datos->getId() . '">' . $datos->gettipoIdentificacion() . '</option>';
+                                foreach ($registro_identificacion  as $datos) {
+                                    echo '<option value="' . $datos->getId() . '">' . $datos->getTipoIdentificacion() . '</option>';
                                 }
                                 ?>
                             </select>
@@ -34,13 +59,6 @@
                         <div class="col-6 mb-4">
                             <label for="id_tipo_dispositivos" class="form_label">Tipo de Dispositivo</label>
                             <select class="form-select" id="id_tipo_dispositivos" name="id_tipo_dispositivos" required="required">
-                                <option selected>Seleccionar</option>
-                                <?php
-                                foreach ($tipo_dispositivo as $datos) {
-                                    echo '<option value="' . $datos->getId() . '">' . $datos->getmarc() . '</option>';
-
-                                }
-                                ?>
                                 
                             </select>
                         </div>
