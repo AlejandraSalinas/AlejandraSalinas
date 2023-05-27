@@ -27,7 +27,7 @@
                         </div>
 
                         <div class="col-4 mb-6">
-                            <label for="numero_identificacion" class="form_label">Número de Identificacion</label>
+                            <label for="numero_identificacion" class="form_label">Número de Identificación</label>
                             <input type="number" class="form-control" id="numero_identificacion" name="numero_identificacion" required="required">
                         </div>
 

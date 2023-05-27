@@ -6,7 +6,6 @@ require_once 'dataBaseModel.php';
 
 class DispositivoModel
 {
-
     private $id_ingresar;
     private $id_tipo_identificacion;
     private $numero_identificacion;
@@ -119,7 +118,7 @@ class DispositivoModel
 public function delete($id_persona)
 {
     try {
-        $sql = 'DELETE FROM personas WHERE id_ingresar = :id_ingresar';
+        $sql = 'DELETE FROM ingresar WHERE id_ingresar = :id_ingresar';
 
         $prepare = $this->db->conect()->prepare($sql);
         $query = $prepare->execute([

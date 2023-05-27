@@ -1,6 +1,6 @@
 <?php
 include_once dirname(__FILE__) . '../../Config/config.php';
-require_once 'DataBaseModel.php';
+require_once 'dataBaseModel.php';
 
 class TipoIdentificacionModel
 {
@@ -23,14 +23,14 @@ class TipoIdentificacionModel
         $datos_tipo_identificacion = [];
 
         try {
-            $sql = "SELECT * FROM id_tipo_identificacion WHERE id_tipo_identificacion = :id_tipo_identificacion";
+            $sql = "SELECT * FROM tipo_identificacion WHERE id_tipo_identificacion = :id_tipo_identificacion";
             $query  = $this->db->conect()->prepare($sql);
             $query->execute([
                 'id_tipo_identificacion' => $id_tipo_identificacion
             ]);
 
             while ($row = $query->fetch()) {
-                $item                          = new tipoIdentificacionModel();
+                $item                          = new TipoIdentificacionModel();
                 $item->id_tipo_identificacion  = $row['id_tipo_identificacion'];
                 $item->nombre                  = $row['nombre'];
 
@@ -52,7 +52,7 @@ class TipoIdentificacionModel
             $query  = $this->db->conect()->query($sql);
 
             while ($row = $query->fetch()) {
-                $datos                         = new tipoIdentificacionModel();
+                $datos                         = new TipoIdentificacionModel();
                 $datos->id_tipo_identificacion = $row['id_tipo_identificacion'];
                 $datos->nombre                 = $row['nombre'];
 
@@ -69,11 +69,11 @@ class TipoIdentificacionModel
     {
         try {
 
-            $sql = 'INSERT INTO tipo_identificacion(id_tipo_identificacion) VALUES(:tipo_identificacion)';
+            $sql = 'INSERT INTO tipo_identificacion(nombre) VALUES(:nombre)';
 
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
-                'tipo_identificacion'    => $datos['tipo_identificacion']
+                'nombre'    => $datos['nombre']
             ]);
 
             if ($query) {
@@ -83,6 +83,40 @@ class TipoIdentificacionModel
             die($e->getMessage());
         }
     }
+    public function update($datos)
+    {
+        try {
+            $sql = 'UPDATE tipo_identificacion SET tipo_identificacion= :tipo_identificacion WHERE id_tipo_identificacion = :id_tipo_identificacion';
+            $prepare = $this->db->conect()->prepare($sql);
+            $query = $prepare->execute([
+                'id_tipo_identificacion' => $datos['id_tipo_identificacion'],
+                'nombre'     => $datos['nombre']
+            ]);
+
+            if ($query) {
+                return true;
+            }
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function delete($id_tipo_identificacion)
+    {
+        try {
+            $sql = 'DELETE FROM tipo_identificacion WHERE id_tipo_identificacion = :id_tipo_identificacion';
+            $prepare = $this->db->conect()->prepare($sql);
+            $query = $prepare->execute([
+                'id_tipo_identificacion' => $id_tipo_identificacion,
+            ]);
+            if ($query) {
+                return true;
+            }
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
 
     // GETTER Y SETTER
     public function getTipoIdentificacion()

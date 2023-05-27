@@ -1,13 +1,13 @@
 <?php
-require_once  '../models/accesoriosDispositivoModel.php';
+require_once  '../models/tipoIdentificacionModel.php.php';
 
-$controllersDispositivo = new accesoriosDispositivoController;
+$controllersDispositivo = new tipoIdentificacionController;
 
-class accesoriosDispositivoController{
-    private $accesorios_dispositivo;
+class tipoIdentificacionController{
+    private $tipo_identificacion;
 
     public function __construct(){
-        $this->accesorios_dispositivo = new AccesoriosDispositivoModel();
+        $this->tipo_identificacion = new TipoIdentificacionModel();
 
         if (isset($_REQUEST['c'])) {
             switch ($_REQUEST['c']) {
@@ -31,7 +31,7 @@ class accesoriosDispositivoController{
     }
     public function index()
     {
-        return $this->accesorios_dispositivo->getAll();
+        return $this->tipo_identificacion->getAll();
     }
     public function store()
     {
@@ -39,10 +39,10 @@ class accesoriosDispositivoController{
             'nombre'   => $_REQUEST['nombre']
         ];
 
-        $result = $this->accesorios_dispositivo->store($datos);
+        $result = $this->tipo_identificacion->store($datos);
 
         if ($result) {
-            //header("Location: ../Views/tipoDispositivoC/index.php");
+            //header("Location: ../Views/tipoIdentificacion/index.php");
             exit();
         }
 
@@ -50,21 +50,21 @@ class accesoriosDispositivoController{
     }
     public function show()
     {
-        $id_accesorios = $_REQUEST['id_accesorios'];
-        header("Location: ../Views/dispositivos/show.php?id_accesorios=" . $id_accesorios);
+        $id_tipo_identificacion = $_REQUEST['id_tipo_identificacion'];
+        header("Location: ../Views/dispositivo/show.php?id_tipo_identificaion=" . $id_tipo_identificacion);
     }
     public function delete()
     {
-        $this->accesorios_dispositivo->delete($_REQUEST['id_accesorios ']);
+        $this->tipo_identificacion->delete($_REQUEST['id_tipo_identificacion']);
         //header("Location: ../Views/tipoIdentificaion/index.php");
     }
     public function update()
     {
         $datos = [
-            'id_accesorios ' => $_REQUEST['id_accesorios '],
+            'id_tipo_identificaion' => $_REQUEST['id_tipo_identificaion'],
             'nombre' => $_REQUEST['nombre']
         ];
-        $result = $this->accesorios_dispositivo->update($datos);
+        $result = $this->tipo_identificacion->update($datos);
 
         if ($result) {
             echo json_encode(array('succes' => 1, 'nombre' => $datos['nombre']));

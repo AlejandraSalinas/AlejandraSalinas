@@ -1,13 +1,13 @@
 <?php
-require_once  '../models/accesoriosDispositivoModel.php';
+require_once  '../models/marcaDispositivoModel.php';
 
-$controllersDispositivo = new accesoriosDispositivoController;
+$controllersDispositivo = new marcaDispositivoController;
 
-class accesoriosDispositivoController{
-    private $accesorios_dispositivo;
+class marcaDispositivoController{
+    private $marca_dispositivo;
 
     public function __construct(){
-        $this->accesorios_dispositivo = new AccesoriosDispositivoModel();
+        $this->marca_dispositivo = new MarcaDispositivoModel();
 
         if (isset($_REQUEST['c'])) {
             switch ($_REQUEST['c']) {
@@ -31,7 +31,7 @@ class accesoriosDispositivoController{
     }
     public function index()
     {
-        return $this->accesorios_dispositivo->getAll();
+        return $this->marca_dispositivo->getAll();
     }
     public function store()
     {
@@ -39,7 +39,7 @@ class accesoriosDispositivoController{
             'nombre'   => $_REQUEST['nombre']
         ];
 
-        $result = $this->accesorios_dispositivo->store($datos);
+        $result = $this->marca_dispositivo->store($datos);
 
         if ($result) {
             //header("Location: ../Views/tipoDispositivoC/index.php");
@@ -50,21 +50,21 @@ class accesoriosDispositivoController{
     }
     public function show()
     {
-        $id_accesorios = $_REQUEST['id_accesorios'];
-        header("Location: ../Views/dispositivos/show.php?id_accesorios=" . $id_accesorios);
+        $id_marca = $_REQUEST['id_marca'];
+        header("Location: ../Views/dispositivos/show.php?id_marca=" . $id_marca);
     }
     public function delete()
     {
-        $this->accesorios_dispositivo->delete($_REQUEST['id_accesorios ']);
+        $this->marca_dispositivo->delete($_REQUEST['id_marca']);
         //header("Location: ../Views/tipoIdentificaion/index.php");
     }
     public function update()
     {
         $datos = [
-            'id_accesorios ' => $_REQUEST['id_accesorios '],
+            'id_marca' => $_REQUEST['id_marca'],
             'nombre' => $_REQUEST['nombre']
         ];
-        $result = $this->accesorios_dispositivo->update($datos);
+        $result = $this->marca_dispositivo->update($datos);
 
         if ($result) {
             echo json_encode(array('succes' => 1, 'nombre' => $datos['nombre']));

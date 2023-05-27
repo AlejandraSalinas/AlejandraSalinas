@@ -1,8 +1,8 @@
 <?php
 include_once dirname(__FILE__) . '../../Config/config.php';
-require_once 'DataBaseModel.php';
+require_once 'dataBaseModel.php';
 
-class TipoIdentificacionModel
+class TipoDispositivoModel
 {
     private $id_tipo_dispositivo;
     private $nombre;
@@ -23,14 +23,14 @@ class TipoIdentificacionModel
         $datos_tipo_dispositivo = [];
 
         try {
-            $sql = "SELECT * FROM id_tipodispositivon WHERE id_tipo_dispositivo = :id_tipo_dispositivo";
+            $sql = "SELECT * FROM tipo_dispositivo WHERE id_tipo_dispositivo = :id_tipo_dispositivo";
             $query  = $this->db->conect()->prepare($sql);
             $query->execute([
                 'id_tipo_dispositivo' => $id_tipo_dispositivo
             ]);
 
             while ($row = $query->fetch()) {
-                $item                          = new tipoIdentificacionModel();
+                $item                          = new TipoDispositivoModel();
                 $item->id_tipo_dispositivo  = $row['id_tipo_dispositivo'];
                 $item->nombre                  = $row['nombre'];
 
@@ -52,7 +52,7 @@ class TipoIdentificacionModel
             $query  = $this->db->conect()->query($sql);
 
             while ($row = $query->fetch()) {
-                $datos                         = new tipoIdentificacionModel();
+                $datos                         = new TipoDispositivoModel();
                 $datos->id_tipo_dispositivo = $row['id_tipo_dispositivo'];
                 $datos->nombre                 = $row['nombre'];
 
@@ -69,11 +69,28 @@ class TipoIdentificacionModel
     {
         try {
 
-            $sql = 'INSERT INTO tipo_dispositivo(id_tipo_dispositivo) VALUES(:tipo_dispositivo)';
+            $sql = 'INSERT INTO tipo_dispositivo(nombre) VALUES(:nombre)';
 
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
-                'tipo_dispositivo'    => $datos['tipo_dispositivo']
+                'nombre'    => $datos['nombre']
+            ]);
+
+            if ($query) {
+                return true;
+            }
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+    public function update($datos)
+    {
+        try {
+            $sql = 'UPDATE tipo_dispositivo SET tipo_dispositivo= :tipo_dispositivo WHERE id_tipo_dispositivo = :id_tipo_dispositivo';
+            $prepare = $this->db->conect()->prepare($sql);
+            $query = $prepare->execute([
+                'id_tipo_dispositivo' => $datos['id_tipo_dispositivo'],
+                'nombre'     => $datos['nombre']
             ]);
 
             if ($query) {
@@ -84,12 +101,29 @@ class TipoIdentificacionModel
         }
     }
 
+    public function delete($id_tipo_dispositivo)
+    {
+        try {
+            $sql = 'DELETE FROM tipo_dispositivo WHERE id_tipo_dispositivo = :id_tipo_dispositivo';
+            $prepare = $this->db->conect()->prepare($sql);
+            $query = $prepare->execute([
+                'id_tipo_dispositivo' => $id_tipo_dispositivo,
+            ]);
+            if ($query) {
+                return true;
+            }
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
+
     // GETTER Y SETTER
-    public function getTipodispositivo()
+    public function getTipoDispositivo()
     {
         return $this->nombre;
     }
-    public function setTipodispositivo($nombre)
+    public function setTipoDispositivo($nombre)
     {
         return $this->nombre;
     }
