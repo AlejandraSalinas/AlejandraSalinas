@@ -5,18 +5,12 @@ require_once '../../models/TipoIdentificacionModel.php';
 
 $datos_identificacion = new TipoIdentificacionModel();
 $registro_identificacion = $datos_identificacion->getAll();
-
-foreach ($registro_identificacion as $identificacion) {
-    $id_tipo_identificacion = $identificacion->getId();
-    $nombre = $identificacion->getTipoIdentificacion();
-}
-
 ?>
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Configiración</h1>
+    <h1 class="h3 mb-4 text-gray-800">Configuración</h1>
     <div class="container text-center">
         <?php include_once('../Main/partials/lista.php'); ?>
         <br>
@@ -29,9 +23,11 @@ foreach ($registro_identificacion as $identificacion) {
                         <form action="../../controllers/tipoIdentificacionController.php?c=1" method="POST">
                             <div class="input-group ">
                                 <div class="input-group mb-3">
-                                    <input type="text" name="nombre" class="form-control" placeholder="Ingrese un nuevo tipo de identificación" required>
+                                    <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Ingrese un nuevo tipo de identificación" required>
                                     <button class="btn btn-primary" type="submit" id="btn_guardar">Guardar</button>
-                                    <button class="btn btn-danger" type="button">Cancelar</button>
+                                    <a class="btn btn-warning" onclick="editar()" id="btn_editar">Editar</a>
+                                    <a class="btn btn-danger" onclick="borrar()">Cancelar</a>
+
                                 </div>
                             </div>
                         </form>
@@ -54,6 +50,7 @@ foreach ($registro_identificacion as $identificacion) {
                             if ($registro_identificacion) {
                                 $pos = 1;
                                 foreach ($registro_identificacion as $identificacion) {
+
                             ?>
                         <tr>
                             <td><?= $pos ?></td>
@@ -61,22 +58,21 @@ foreach ($registro_identificacion as $identificacion) {
                                 <span id="tipo_identificacion<?= $identificacion->getId() ?>"> <?= $identificacion->getTipoIdentificacion() ?> </span>
                             </td>
                             <td>
-                                <a class="btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="id_tipo_identificaion"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-                                    </svg>
+                            <td>
+                                <a class="btn btn-sm btn-outline-warning" onclick="show(<?= $identificacion->getId() ?>)">
+                                    <i class="bi bi-pencil-square" style="font-size: 1.4rem;"></i>
                                 </a>
-                                <a class="btn btn-sm btn-outline-danger" href="../../controller/tipoIdentificacionController.php?c=4&id_tipo_documento="><svg xmlns="http://www.w3.org/2000/svg" width="40" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                                        <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                                    </svg>
+                                <a class="btn btn-sm btn-outline-danger" onclick="eliminar()" href="../../controllers/tipoIdentificacionController.php?c=4&id_tipo_identificacion=<?= $identificacion->getId() ?>">
+                                    <i class="bi bi-trash3-fill" style="font-size: 1.4rem;"></i>
                                 </a>
+                               
                             </td>
-
+                            </td>
                         </tr>
                     <?php
-                                    $pos++;
-                                }
-                            } else {
+                            $pos++;
+                            }
+                        } else {
                     ?>
                     <tr>
                         <td colspan="3" class="text-center">No hay datos</td>
@@ -93,26 +89,72 @@ foreach ($registro_identificacion as $identificacion) {
 </div>
 
 <script>
-    function update(id) {
-        let elemento = document.getElementById(`documento${id}`);
+    document.addEventListener("DOMContentLoaded", () => {
+        var btn_editar = document.getElementById("btn_editar");
+        btn_editar.hidden = true;
+    });
+
+    function show(id_tipo_identificacion) {
+        var btn_editar = document.getElementById("btn_guardar");
+        btn_editar.hidden = true;
+
+        var btn_editar = document.getElementById("btn_editar");
+        btn_editar.hidden = false;
+
+        let elemento = document.getElementById(`tipo_identificacion${id_tipo_identificacion}`);
         let documento = elemento.textContent
 
-        document.getElementById('tipo_actualizado').value = documento
+        document.getElementById('nombre').value = documento
+        document.getElementById('nombre').setAttribute('data-id', id_tipo_identificacion);
     }
 
-    function recarga(id) {
+    function editar() {
 
-        let elemento = document.getElementById("tipo_actualizado");
-        let documento = elemento.value
+        let elemento = document.getElementById("nombre");
+        let id_tipo_identificacion = elemento.dataset.id
+        let nombre = elemento.value
 
-        axios.post(`../../controller/documentoController.php?c=3&id_tipo_documento=${id}&tipo=${ documento }`)
+        axios.post(`../../controllers/tipoIdentificacionController.php?c=3&id_tipo_identificacion=${id_tipo_identificacion}&nombre=${nombre}`)
             .then(function(response) {
-                window.location.reload()
+                window.location.reload();
+                document.getElementById('nombre').focus();
             })
             .catch(function(error) {
                 console.error(error);
             });
     }
+
+    function borrar() {
+
+        var btn_editar = document.getElementById("btn_guardar");
+        btn_editar.hidden = false;
+
+        var btn_editar = document.getElementById("btn_editar");
+        btn_editar.hidden = true;
+
+        document.getElementById('nombre').removeAttribute('data-id');
+
+        document.getElementById('nombre').value = "";
+        document.getElementById('nombre').focus();
+    }
+    function eliminar(){
+        Swal.fire({
+            title: 'Esta seguro de eliminar el tipo de documento?',
+            
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: 'Save',
+                denyButtonText: `Don't save`,
+            }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                Swal.fire('Saved!', '', 'success')
+            } else if (result.isDenied) {
+                Swal.fire('Changes are not saved', '', 'info')
+            }
+        })
+    }
+
 </script>
 <!-- /.container-fluid -->
 

@@ -70,8 +70,8 @@ class TipoIdentificacionModel
         try {
 
             $sql = 'INSERT INTO tipo_identificacion(nombre) VALUES(:nombre)';
-
             $prepare = $this->db->conect()->prepare($sql);
+
             $query = $prepare->execute([
                 'nombre' => $datos['nombre']
             ]);
@@ -86,11 +86,11 @@ class TipoIdentificacionModel
     public function update($datos)
     {
         try {
-            $sql = 'UPDATE tipo_identificacion SET tipo_identificacion= :tipo_identificacion WHERE id_tipo_documento = :id_tipo_documento';
+            $sql = 'UPDATE tipo_identificacion SET nombre = :nombre WHERE id_tipo_identificacion = :id_tipo_identificacion';
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
                 'id_tipo_identificacion' => $datos['id_tipo_identificacion'],
-                'nombre'     => $datos['nombre']
+                'nombre'                 => $datos['nombre']
             ]);
 
             if ($query) {
@@ -104,7 +104,7 @@ class TipoIdentificacionModel
     public function delete($id_tipo_identificacion)
     {
         try {
-            $sql = 'DELETE FROM tipo_identificaion WHERE id_tipo_identificaion = :id_tipo_identificacion';
+            $sql = 'DELETE FROM tipo_identificacion WHERE id_tipo_identificacion = :id_tipo_identificacion';
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
                 'id_tipo_identificacion' => $id_tipo_identificacion,

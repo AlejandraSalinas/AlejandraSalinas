@@ -15,9 +15,6 @@ $registro_identificacion = $datos_identificacion->getAll();
 $datos_rol  = new RolesModel();
 $data  = $datos_rol->getAll();
 
-// $datos_documento = new TipoDocumento();
-// $registros = $datos_documento->getAll();
-
 $datos_sexo = new SexoModel();
 $genero = $datos_sexo->getAll();
 

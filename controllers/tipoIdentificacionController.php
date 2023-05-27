@@ -53,23 +53,24 @@ class tipoIdentificacionController
     public function show()
     {
         $id_tipo_identificacion = $_REQUEST['id_tipo_identificacion'];
-        header("Location: ../Views/usuarios/show.php?id_tipo_identificaion=" . $id_tipo_identificacion);
+        header("Location: ../Views/tipoIdentificacion/index.php?id_tipo_identificacion=" . $id_tipo_identificacion);
     }
     public function delete()
     {
         $this->tipo_identificacion->delete($_REQUEST['id_tipo_identificacion']);
-        header("Location: ../Views/tipoIdentificaion/index.php");
+        header("Location: ../Views/tipoIdentificacion/index.php");
     }
     public function update()
     {
         $datos = [
-            'id_tipo_identificaion' => $_REQUEST['id_tipo_identificaion'],
-            'nombre' => $_REQUEST['nombre']
+            'id_tipo_identificacion' => $_REQUEST['id_tipo_identificacion'],
+            'nombre'                 => $_REQUEST['nombre']
         ];
+
         $result = $this->tipo_identificacion->update($datos);
 
         if ($result) {
-            echo json_encode(array('succes' => 1, 'tipo_identificacion' => $datos['tipo_identificacion']));
+            echo json_encode(array('succes' => 1, 'nombre' => $datos['nombre']));
         }
     }
 }
