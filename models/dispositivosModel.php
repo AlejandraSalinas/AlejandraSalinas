@@ -88,7 +88,7 @@ class DispositivoModel
     }
     public function update($datos)
     {
-        $SQL = 'UPDATE 
+        $sql= 'UPDATE 
         id_tipo_identificacion = id_tipo_identificacion,
         numero_identificacion = numero_identificacion,
         id_tipo_dispositivo = id_tipo_dispositivo,
