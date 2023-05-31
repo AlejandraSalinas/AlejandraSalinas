@@ -9,7 +9,7 @@
     require_once('../../models/accesoriosDispositivoModel.php');
 
     $datos = new DispositivoModel();
-    $datos_dipositivo = $datos->getById($_REQUEST['id_ingresar']);
+    $datos_dipositivo = $datos->getById($_REQUEST['id_registro_dispositivos']);
 
     $datos_identificacion = new TipoIdentificacionModel();
     $registro_identificacion = $datos_identificacion->getAll();
@@ -27,21 +27,21 @@
     $registro_accesorios = $datos_accesorios->getAll();
 
     foreach( $registro as $dispositivo){
-        $id_ingresar                = $ingresar -> getId();
-        $id_tipo_identificacion     = $ingresar -> getTipoIdentificacion();
-        $numero_identificacion      = $ingresar -> getNumeroIdentificacion();
-        $id_tipo_dispositivos       = $ingresar -> getTipoDispositivos();
-        $id_marca                   = $ingresar -> getMarca();
-        $id_color                   = $ingresar -> getColor();
-        $id_accesorios              = $ingresar -> getAccesorios();
-        $serie                      = $ingresar -> getSerie();
+        $id_registro_dispositivos   = $registro_dispositivos -> getId();
+        $id_tipo_identificacion     = $registro_dispositivos -> getTipoIdentificacion();
+        $numero_identificacion      = $registro_dispositivos -> getNumeroIdentificacion();
+        $id_tipo_dispositivos       = $registro_dispositivos -> getTipoDispositivos();
+        $id_marca                   = $registro_dispositivos -> getMarca();
+        $id_color                   = $registro_dispositivos -> getColor();
+        $id_accesorios              = $registro_dispositivos -> getAccesorios();
+        $serie                      = $registro_dispositivos -> getSerie();
     }
 
 ?>
 <div class="container-fluid">
     <h1  class="h3 mb-4 text-gray-800">Dispositivo Registrado</h1>
     <form method="POST">
-    <input type="hidden" name="id" value="<?= $id_ingresar ?>">
+    <input type="hidden" name="id" value="<?= $id_registro_dispositivos ?>">
         <div class="container">
             <div class="row">
                 <div class="mb-4 col-6">

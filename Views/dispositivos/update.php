@@ -9,7 +9,7 @@
     require_once('../../models/accesoriosDispositivoModel.php');
 
     $datos = new DispositivoModel();
-    $datos_dipositivo = $datos->getById($_REQUEST['id_ingresar']);
+    $datos_dipositivo = $datos->getById($_REQUEST['id_registro_dispositivos']);
 
     $datos_identificacion = new TipoIdentificacionModel();
     $registro_identificacion = $datos_identificacion->getAll();
@@ -27,7 +27,7 @@
     $registro_accesorios = $datos_accesorios->getAll();
 
     foreach( $registro as $dispositivo){
-        $id_ingresar                = $ingresar -> getId();
+        $id_registro_dispositivos                = $ingresar -> getId();
         $id_tipo_identificacion     = $ingresar -> getTipoIdentificacion();
         $numero_identificacion      = $ingresar -> getNumeroIdentificacion();
         $id_tipo_dispositivos       = $ingresar -> getTipoDispositivos();
@@ -40,15 +40,15 @@
 ?>
 <div class="container-fluid">
     <h1  class="h3 mb-4 text-gray-800">Actualizar Dispositivo Registrado</h1>
-    <form action="../../controllers/dispositivosController.php?c=3&id_ingresar=<?= $id_ingresar ?> " method="post">
-    <input type="hidden" name="id" value="<?= $id_ingresar ?>">
+    <form action="../../controllers/dispositivosController.php?c=3&id_registro_dispositivos=<?= $id_registro_dispositivos ?> " method="post">
+    <input type="hidden" name="id" value="<?= $id_registro_dispositivos ?>">
         <div class="container">
             <div class="row">
                 <div class="mb-4 col-6">
                     <label for="id_tipo_identificacion" class="form-label">Tipo de Identificación:</label>
                     <select class="form-select" id="id_tipo_identificacion" name="id_tipo_identificacion" require="required">
                         <?php foreach ($registro_identificacion  as $datos) : ?>
-                        <option value="<?= $datos->getId() ?>" <?= $datos->getId() == $ingresar->getTipoIdentificacion() ? 'selected' : "" ?><?= $datos->getTipoIdentificacion()?>></option>
+                        <option value="<?= $datos->getId() ?>" <?= $datos->getId() == $registro_dispositivos->getTipoIdentificacion() ? 'selected' : "" ?><?= $datos->getTipoIdentificacion()?>></option>
                         <?php endforeach?>
                     </select>
                 </div>
@@ -62,7 +62,7 @@
                     <label for="id_tipo_dispositivos" class="form_label">Tipo de Dispositivo</label>
                     <select class="form-select" value="<?= $id_tipo_dispositivos ?>" id="id_tipo_dispositivos" name="id_tipo_dispositivos" require="required">
                         <?php foreach ($registro_dispositivo  as $datos) : ?>
-                        <option value="<?= $datos->getId() ?>" <?= $datos->getId() == $ingresar->getTipoDispositivos() ? 'selected' : "" ?><?= $datos->getTipoDispositivos()?>></option>
+                        <option value="<?= $datos->getId() ?>" <?= $datos->getId() == $registro_dispositivos->getTipoDispositivos() ? 'selected' : "" ?><?= $datos->getTipoDispositivos()?>></option>
                         <?php endforeach?>
                     </select>
                 <div>
@@ -71,7 +71,7 @@
                     <label for="id_marca" class="form_label">Marca</label>
                     <select class="form-select" value="<?= $id_marca ?>" id="id_marca" name="id_marca" require="required">
                         <?php foreach ($registro_marca  as $datos) : ?>
-                        <option value="<?= $datos->getId() ?>" <?= $datos->getId() == $ingresar->getMarca() ? 'selected' : "" ?><?= $datos->getMarca()?>></option>
+                        <option value="<?= $datos->getId() ?>" <?= $datos->getId() == $registro_dispositivos->getMarca() ? 'selected' : "" ?><?= $datos->getMarca()?>></option>
                         <?php endforeach?>
                     </select>
                 </div>
@@ -80,7 +80,7 @@
                     <label for="id_color" class="form_label">Color</label>
                     <select class="form-select" value="<?= $id_color ?>" id="id_color" name="id_color" require="required">
                         <?php foreach ($registro_color  as $datos) : ?>
-                        <option value="<?= $datos->getId() ?>" <?= $datos->getId() == $ingresar->getColor() ? 'selected' : "" ?><?= $datos->getColor()?>></option>
+                        <option value="<?= $datos->getId() ?>" <?= $datos->getId() == $registro_dispositivos->getColor() ? 'selected' : "" ?><?= $datos->getColor()?>></option>
                         <?php endforeach?>
                     </select>
                 </div>
@@ -89,7 +89,7 @@
                     <label for="id_accesorios" class="form_label">Accesorios</label>
                     <select class="form-select" value="<?= $id_accesorios ?>" id="id_accesorios" name="id_accesorios" require="required">
                         <?php foreach ($registro_accesorios  as $datos) : ?>
-                        <option value="<?= $datos->getId() ?>" <?= $datos->getId() == $ingresar->getAccesorios() ? 'selected' : "" ?><?= $datos->getAccesorios()?>></option>
+                        <option value="<?= $datos->getId() ?>" <?= $datos->getId() == $registro_dispositivos->getAccesorios() ? 'selected' : "" ?><?= $datos->getAccesorios()?>></option>
                         <?php endforeach?>
                     </select>
                 </div>

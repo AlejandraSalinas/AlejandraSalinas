@@ -59,13 +59,13 @@
 
         public function show()
         {
-            $id_ingresar = $_REQUEST['id_ingresar'];
-            header("Location: ../Views/dispositivos/update.php?id_ingresar=" . $id_ingresar);
+            $id_registro_dispositivos = $_REQUEST['id_registro_dispositivos'];
+            header("Location: ../Views/dispositivos/update.php?id_registro_dispositivos=" . $id_registro_dispositivos);
         }
 
         public function delete()
         {
-            $this->dispositivo->delete($_REQUEST['id_ingresar']);
+            $this->dispositivo->delete($_REQUEST['id_registro_dispositivos']);
             header("Location: ../Views/dispositivos/index.php");
         }
 
