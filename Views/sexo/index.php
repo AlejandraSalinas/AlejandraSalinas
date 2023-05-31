@@ -1,10 +1,11 @@
 <?php
 include_once(__DIR__ . "../../../Config/config.php");
 include_once('../Main/partials/header.php');
-require_once '../../models/TipoIdentificacionModel.php';
+require_once '../../models/SexoModel.php';
 
-$datos_identificacion = new TipoIdentificacionModel();
-$registro_identificacion = $datos_identificacion->getAll();
+$datos_sexo = new SexoModel();
+$genero = $datos_sexo->getAll();
+
 ?>
 
 <!-- Begin Page Content -->
@@ -18,12 +19,12 @@ $registro_identificacion = $datos_identificacion->getAll();
         <div class="row">
             <div class="col">
                 <div class="card card-body">
-                    <h3>Crear Tipo De Identificación:</h3>
+                    <h3>Crear Sexo:</h3>
                     <div class="mb-3">
-                        <form action="../../controllers/tipoIdentificacionController.php?c=1" method="POST">
+                        <form action="../../controllers/SexoController.php?c=1" method="POST">
                             <div class="input-group ">
                                 <div class="input-group mb-3">
-                                    <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Ingrese un nuevo tipo de identificación" required>
+                                    <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Ingrese un nuevo sexo" required>
                                     <button class="btn btn-primary" type="submit" id="btn_guardar">Guardar</button>
                                     <a class="btn btn-warning" onclick="editar()" id="btn_editar">Editar</a>
                                     <a class="btn btn-danger" onclick="borrar()">Cancelar</a>
@@ -40,29 +41,29 @@ $registro_identificacion = $datos_identificacion->getAll();
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Tipo Identificación</th>
+                            <th scope="col">Tipo de Sexo</th>
                             <th scope="col" colspan="2">Opciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <?php
-                            if ($registro_identificacion) {
+                            if ($genero) {
                                 $pos = 1;
-                                foreach ($registro_identificacion as $identificacion) {
+                                foreach ($genero as $sexo) {
 
                             ?>
                         <tr>
                             <td><?= $pos ?></td>
                             <td>
-                                <span id="tipo_identificacion<?= $identificacion->getId() ?>"> <?= $identificacion->getTipoIdentificacion() ?> </span>
+                                <span id="sexo<?= $sexo->getId() ?>"> <?= $sexo->getSexo() ?> </span>
                             </td>
                             <td>
                             <td>
-                                <a class="btn btn-sm btn-outline-warning" onclick="show(<?= $identificacion-> getId()  ?>)">
+                                <a class="btn btn-sm btn-outline-warning" onclick="show(<?= $sexo-> getId()  ?>)">
                                     <i class="bi bi-pencil-square" style="font-size: 1.4rem;"></i>
                                 </a>
-                                <a class="btn btn-sm btn-outline-danger" href="../../controllers/tipoIdentificacionController.php?c=4&id_tipo_identificacion=<?= $identificacion-> getId() ?>">
+                                <a class="btn btn-sm btn-outline-danger" href="../../controllers/SexoController.php?c=4&id_sexo=<?= $sexo-> getId() ?>">
                                     <i class="bi bi-trash3-fill" style="font-size: 1.4rem;"></i>
                                 </a>
                                
@@ -94,27 +95,27 @@ $registro_identificacion = $datos_identificacion->getAll();
         btn_editar.hidden = true;
     });
 
-    function show(id_tipo_identificacion) {
+    function show(id_sexo) {
         var btn_editar = document.getElementById("btn_guardar");
         btn_editar.hidden = true;
 
         var btn_editar = document.getElementById("btn_editar");
         btn_editar.hidden = false;
 
-        let elemento = document.getElementById(`tipo_identificacion${id_tipo_identificacion}`);
+        let elemento = document.getElementById(`sexo${id_sexo}`);
         let documento = elemento.textContent
 
         document.getElementById('nombre').value = documento
-        document.getElementById('nombre').setAttribute('data-id', id_tipo_identificacion);
+        document.getElementById('nombre').setAttribute('data-id', id_sexo);
     }
 
     function editar() {
 
         let elemento = document.getElementById("nombre");
-        let id_tipo_identificacion = elemento.dataset.id
+        let id_sexo = elemento.dataset.id
         let nombre = elemento.value
 
-        axios.post(`../../controllers/tipoIdentificacionController.php?c=3&id_tipo_identificacion=${id_tipo_identificacion}&nombre=${nombre}`)
+        axios.post(`../../controllers/SexoController.php?c=3&id_sexo=${id_sexo}&nombre=${nombre}`)
             .then(function(response) {
                 window.location.reload();
                 document.getElementById('nombre').focus();

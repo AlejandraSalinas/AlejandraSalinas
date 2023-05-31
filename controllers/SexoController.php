@@ -1,5 +1,5 @@
 <?php
-require_once '../models/SexoModel.php';
+require_once  '../models/SexoModel.php';
 
 $controller = new SexoController;
 
@@ -16,13 +16,13 @@ class SexoController
                 case '1': //Almacenar en la base de datos
                     self::store();
                     break;
-                case '2': //ver Sexo
+                case '2': //Ver sexo
                     self::show();
                     break;
-                case '3': //Actualizar Sexo
+                case '3': //Actualizar sexo
                     self::update();
                     break;
-                case '4': //eliminar Sexo
+                case '4': //eliminar sexo
                     self::delete();
                     break;
                 default:
@@ -38,39 +38,39 @@ class SexoController
     public function store()
     {
         $datos = [
-            'id_sexo' => $_REQUEST['id_sexo']
+            'nombre'   => $_REQUEST['nombre']
         ];
+
         $result = $this->sexo->store($datos);
 
         if ($result) {
-            header('Location: ../Views/usuarios/index.php');
+            header("Location: ../Views/sexo/index.php");
             exit();
-        } 
+        }
+
+        return $result;
     }
     public function show()
     {
         $id_sexo = $_REQUEST['id_sexo'];
-        header('Location: ../Views/usuarios/index.php='.$id_sexo);
+        header("Location: ../Views/sexo/index.php?id_sexo=" . $id_sexo);
     }
     public function delete()
     {
         $this->sexo->delete($_REQUEST['id_sexo']);
-        header('Location: ../Views/usuarios/index.php');
+        header("Location: ../Views/sexo/index.php");
     }
     public function update()
     {
-         $datos = [
+        $datos = [
             'id_sexo' => $_REQUEST['id_sexo'],
             'nombre'  => $_REQUEST['nombre']
-
         ];
+
         $result = $this->sexo->update($datos);
 
         if ($result) {
-            header('Location: ../Views/usuarios/index.php');
-            exit();
+            echo json_encode(array('succes' => 1, 'nombre' => $datos['nombre']));
         }
-        return $result;
     }
-    
 }

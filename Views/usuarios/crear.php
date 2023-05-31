@@ -40,21 +40,21 @@ $genero = $datos_sexo->getAll();
                 </div>
                 <div class="col-6 mb-4">
                     <label for="numero_identificacion" class="form-label">Número de Identificación:</label>
-                    <input type="number" class="form-control" id="numero_identificacion" name="numero_identificacion" required="required">
+                    <input type="number" class="form-control"  id="numero_identificacion" name="numero_identificacion" required="required">
                 </div>
-                <div class="mb-4 col-6">
+                <div class="mb-4 col-3">
                     <label for="primer_nombre" class="form-label">Primer Nombre:</label>
                     <input type="text" class="form-control" name="primer_nombre" id="primer_nombre" required>
                 </div>
-                <div class="col-6 mb-4">
+                <div class="col-3 mb-4">
                     <label for="segundo_nombre" class="form-label">Segundo Nombre:</label>
                     <input type="text" class="form-control" name="segundo_nombre" id="segundo_nombre">
                 </div>
-                <div class="mb-4 col-6">
+                <div class="mb-4 col-3">
                     <label for="primer_apellido" class="form-label">Primer Apellido:</label>
                     <input type="text" class="form-control" name="primer_apellido" id="primer_apellido" required>
                 </div>
-                <div class="col-6 mb-4">
+                <div class="col-3 mb-4">
                     <label for="segundo_apellido" class="form-label">Segundo Apellido:</label>
                     <input type="text" class="form-control" name="segundo_apellido" id="segundo_apellido">
                 </div>
@@ -75,8 +75,8 @@ $genero = $datos_sexo->getAll();
                     <select class="form-select" id="id_sexo" name="id_sexo" required="required">
                     <option selected>Seleccionar</option>
                     <?php
-                    foreach ($genero  as $sexo_persona) {
-                        echo '<option value="' . $sexo_persona->getId() . '">' . $sexo_persona->getSexo() . '</option>';
+                    foreach ($genero  as $sexo) {
+                        echo '<option value="' . $sexo->getId() . '">' . $sexo->getSexo() . '</option>';
                     }
                     ?>
                     </select>

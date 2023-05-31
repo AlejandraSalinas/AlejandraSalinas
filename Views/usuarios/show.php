@@ -1,5 +1,5 @@
 <?php
-include_once dirname(__FILE__) . '../../../config/config.php';
+include_once dirname(__FILE__) . '../../../Config/config.php';
 include_once ("../Main/partials/header.php");
 require_once '../../models/tipoIdentificacionModel.php';
 require_once '../../models/RolesModel.php';
@@ -30,7 +30,7 @@ foreach ($registro as $persona) {
     $telefono              = $persona->getTelefono();
     $direccion             = $persona->getDireccion();
     $id_sexo               = $persona->getSexo();
-    $id_rol                = $persona->getRol();
+    $id_rol                = $persona->getRoles();
 }
 ?>
 <div class="container-fluid">
@@ -39,12 +39,11 @@ foreach ($registro as $persona) {
     <h1 class="h3 mb-4 text-gray-800">Ver usuarios</h1>
     <hr class="hr mb-5">
     <form method="post">
-        <!-- <input type="hidden" name="id" value="2"> -->
         <input type="hidden" name="id" value="<?= $id_persona ?>">
         <div class="container">
             <div class="row">
                 <div class="mb-4 col-6">
-                    <label for="tipo_identificacion" class="form-label">Tipo de Identificación:</label>
+                    <label for="id_tipo_identificacion" class="form-label">Tipo de Identificación:</label>
                     <select class="form-select" value="<?= $tipo_identificacion ?>" id="id_tipo_identificacion" name="id_tipo_identificacion" disabled>
                         <?php
                         foreach ($registro_identificacion  as $datos) {
@@ -55,42 +54,42 @@ foreach ($registro as $persona) {
                 </div>
                 <div class="col-6 mb-4">
                     <label for="numero_identificacion" class="form-label">Número de Identificación:</label>
-                    <input type="number" class="form-control" value="<?= $numero_identificacion ?>" id="numero_identificacion" name="numero_identificacion">
+                    <input type="number" class="form-control" value="<?= $numero_identificacion ?>" id="numero_identificacion" name="numero_identificacion" disabled>
                 </div>
                 <div class="mb-4 col-6">
                     <label for="primer_nombre" class="form-label">Primer Nombre:</label>
-                    <input type="text" class="form-control" value="<?= $primer_nombre ?>" name="primer_nombre" id="primer_nombre" >
+                    <input type="text" class="form-control" value="<?= $primer_nombre ?>" name="primer_nombre" id="primer_nombre" disabled>
                 </div>
                 <div class="col-6 mb-4">
                     <label for="segundo_nombre" class="form-label">Segundo Nombre:</label>
-                    <input type="text" class="form-control" value="<?= $segundo_nombre ?>" name="segundo_nombre" id="segundo_nombre">
+                    <input type="text" class="form-control" value="<?= $segundo_nombre ?>" name="segundo_nombre" id="segundo_nombre" disabled>
                 </div>
                 <div class="mb-4 col-6">
                     <label for="primer_apellido" class="form-label">Primer Apellido:</label>
-                    <input type="text" class="form-control" value="<?= $primer_apellido ?>" name="primer_apellido" id="primer_apellido">
+                    <input type="text" class="form-control" value="<?= $primer_apellido ?>" name="primer_apellido" id="primer_apellido" disabled>
                 </div>
                 <div class="col-6 mb-4">
                     <label for="segundo_apellido" class="form-label">Segundo Apellido:</label>
-                    <input type="text" class="form-control" value="<?= $segundo_apellido ?>" name="segundo_apellido" id="segundo_apellido" >
+                    <input type="text" class="form-control" value="<?= $segundo_apellido ?>" name="segundo_apellido" id="segundo_apellido" disabled>
                 </div>
                 <div class="mb-4 col-6">
                     <label for="email" class="form-label">Email:</label>
-                    <input type="email" class="form-control" value="<?= $email ?>" name="email" id="email">
+                    <input type="email" class="form-control" value="<?= $email ?>" name="email" id="email" disabled>
                 </div>
                 <div class="col-3 mb-4">
                     <label for="telefono" class="form-label">Teléfono:</label>
-                    <input type="number" class="form-control" value="<?= $telefono   ?>" id="telefono" name="telefono">
+                    <input type="number" class="form-control" value="<?= $telefono   ?>" id="telefono" name="telefono" disabled>
                 </div>
                 <div class="col-3 mb-4">
                     <label for="direccion" class="form-label">Dirección:</label>
-                    <input type="text" class="form-control" value="<?= $direccion ?>" id="direccion" name="direccion">
+                    <input type="text" class="form-control" value="<?= $direccion ?>" id="direccion" name="direccion" disabled>
                 </div>
                 <div class="mb-4 col-6">
                     <label for="id_sexo" class="form-label">Sexo:</label>
                     <select class="form-select" value="<?= $id_sexo ?>" id="id_sexo" name="id_sexo" disabled>
                         <?php
-                        foreach ($genero  as $sexo_persona) {
-                            echo '<option value="' . $sexo_persona->getId() . '">' . $sexo_persona->getSexo() . '</option>';
+                        foreach ($genero  as $sexo) {
+                            echo '<option value="' . $sexo->getId() . '">' . $sexo->getSexo() . '</option>';
                         }
                         ?>
                     </select>
@@ -107,7 +106,7 @@ foreach ($registro as $persona) {
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-2">
-                        <a class="btn btn-outline-success"  href="index.php">Regresar a Inicio</a>
+                        <a class="btn btn-outline-success"  href="index.php">Regresar a vista</a>
                     </div>
                 </div>
             </div>

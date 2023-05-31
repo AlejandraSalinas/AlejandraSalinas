@@ -24,7 +24,7 @@ class RolesModel
 
         try {
             $sql   =  "SELECT *FROM roles WHERE id_rol = :id_rol";
-            $query = $this->db->conect()->query($sql);
+            $query = $this->db->conect()->prepare($sql);
             $query->execute([
                 'id_rol' => $id_rol
             ]);
@@ -47,7 +47,7 @@ class RolesModel
         $rol = [];
 
         try {
-            $sql= 'SELECT * FROM roles ORDER BY id_rol ASC ';
+            $sql= 'SELECT * FROM roles ORDER BY nombre ASC ';
             $query = $this->db->conect()->query($sql);
 
             while ($row = $query->fetch()){
@@ -66,9 +66,9 @@ class RolesModel
     {
         try {
             $sql = 'INSERT INTO roles(nombre) VALUES (:nombre)';
-            $prepare = $this->db->conect()->query($sql);
+            $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
-                'roles' => $datos['roles']
+                'nombre' => $datos['nombre']
             ]);
             if ($query) {
                 return true;
@@ -98,7 +98,7 @@ class RolesModel
     public function delete($id_rol)
     {
         try {
-            $sql = 'DELETE FROM rol WHERE id_rol = :id_rol';
+            $sql = 'DELETE FROM roles WHERE id_rol = :id_rol';
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
                 'id_rol'  => $id_rol

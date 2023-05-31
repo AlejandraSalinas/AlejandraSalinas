@@ -1,13 +1,10 @@
 <?php 
-require_once dirname(__FILE__) . '../../../config/config.php';
-
-require_once("../Main/partials/header.php"); 
-
-require_once '../../models/PersonaModel.php';
+include_once dirname(__FILE__) . '../../../Config/config.php';
+include_once ("../Main/partials/header.php");
 require_once '../../models/tipoIdentificacionModel.php';
 require_once '../../models/RolesModel.php';
 require_once '../../models/SexoModel.php';
-
+require_once '../../models/PersonaModel.php';
 
 $datos = new PersonaModel();
 $registro = $datos->getById($_REQUEST['id_persona']);
@@ -33,7 +30,7 @@ foreach ($registro as $persona) {
     $telefono              = $persona->getTelefono();
     $direccion             = $persona->getDireccion();
     $id_sexo               = $persona->getSexo();
-    $id_rol                = $persona->getRol();
+    $id_rol                = $persona->getRoles();
 }
 ?>
 
@@ -76,15 +73,15 @@ foreach ($registro as $persona) {
                 </div>
                 <div class="mb-4 col-6">
                     <label for="email" class="form-label">Email:</label>
-                    <input type="email" class="form-control" name="email" id="email">
+                    <input type="email" class="form-control" name="email" id="email" value="<?= $email ?>">
                 </div>
                 <div class="col-3 mb-4">
                     <label for="telefono" class="form-label">Teléfono:</label>
-                    <input type="number" class="form-control" id="telefono" name="telefono">
+                    <input type="number" class="form-control" value="<?= $telefono ?>" id="telefono" name="telefono">
                 </div>
                 <div class="col-3 mb-4">
                     <label for="direccion" class="form-label">Dirección:</label>
-                    <input type="text" class="form-control" id="direccion" name="direccion">
+                    <input type="text" class="form-control" id="direccion" name="direccion" value="<?= $direccion ?>">
                 </div>
                 <div class="mb-4 col-6">
                     <label for="id_sexo" class="form-label">Sexo:</label>
@@ -98,27 +95,23 @@ foreach ($registro as $persona) {
                 </div>
                 <div class="col-6 mb-2">
                     <label for="id_rol" class="form-label">Rol:</label>
-                    <select class="form-select" id="id_rol" name="id_rol" required="required">                    
-                    <?php foreach ($data as $datos) : ?> 
+                    <select class="form-select" id="id_rol" name="id_rol" required="required">
+                        <?php foreach ($data as $datos) : ?> 
                                
-                       <option value="<?= $datos->getId() ?>" <?= $datos->getId() == $persona->getRol() ? 'selected' :  "" ?>><?= $datos->getRol() ?></option>
-                              
-                    <?php endforeach ?>
+                            <option value="<?= $datos->getId() ?>" <?= $datos->getId() == $persona->getRoles() ? 'selected' :  "" ?>><?= $datos->getRoles() ?></option>
+                           
+                        <?php endforeach ?>
                     </select>
                 </div>
-                <!-- <div class="row justify-content-center">
-                    <div class="col-1">
-                        <button type="submit" class="btn btn-outline-primary">Guardar</button>
-                    </div>    
-                </div> -->
+                
             </div>   
         </div>        
     </form>
     <div class="row justify-content-center">
         <div class="col-3 mb-2">
             <button type="submit" class="btn btn-outline-primary">Guardar</button>
-                        
-            <a class="btn btn-outline-success"  href="../Main/index.php">Regresar a Inicio</a>
+                            
+            <a class="btn btn-outline-success"  href="crear.php">Regresar a </a>
         </div>    
     </div>
 </div>

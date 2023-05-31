@@ -279,11 +279,11 @@ class PersonaModel
         return $this->sexo;
     }
 
-    public function getRol()
+    public function getRoles()
     {
         return $this->rol;
     }
-    public function setRol($rol)
+    public function setRoles($rol)
     {
         return $this->rol;
     }

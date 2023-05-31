@@ -15,7 +15,7 @@ $registro = $data->getAll();
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800">Vista de usuarios</h1>
 
-    <table class="table table-sm table-hover">
+    <table class="table table-striped">
         <thead>
             <tr class="text-center">          
                 <th scope="col">Número de Identificación</th>
@@ -48,7 +48,7 @@ $registro = $data->getAll();
                         <td><?= $row->getTelefono() ?></td>
                         <td><?= $row->getDireccion() ?></td>
                         <td><?= $row->getSexo() ?></td>
-                        <td><?= $row->getRol()?></td>
+                        <td><?= $row->getRoles()?></td>
 
                         <td>
                             <a class="btn btn-sm btn-outline-primary" href="show.php?id_persona=<?= $row->getId() ?>">
