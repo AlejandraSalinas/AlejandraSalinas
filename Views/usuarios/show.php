@@ -1,6 +1,6 @@
 <?php
 include_once dirname(__FILE__) . '../../../Config/config.php';
-include_once ("../Main/partials/header.php");
+include_once("../Main/partials/header.php");
 require_once '../../models/tipoIdentificacionModel.php';
 require_once '../../models/RolesModel.php';
 require_once '../../models/SexoModel.php';
@@ -87,11 +87,11 @@ foreach ($registro as $persona) {
                 <div class="mb-4 col-6">
                     <label for="id_sexo" class="form-label">Sexo:</label>
                     <select class="form-select" value="<?= $id_sexo ?>" id="id_sexo" name="id_sexo" disabled>
-                        <?php
-                        foreach ($genero  as $sexo) {
-                            echo '<option value="' . $sexo->getId() . '">' . $sexo->getSexo() . '</option>';
-                        }
-                        ?>
+                        <?php foreach ($genero  as $sexo) : ?>
+                            
+                            <option value="<?= $sexo->getId() ?>" <?= $sexo->getId() == $persona->getSexo() ? 'selected' : "" ?>> <?= $sexo->getSexo() ?></option>;                                
+                            
+                        <?php endforeach ?>
                     </select>
                 </div>
                 <div class="col-6 mb-2">
@@ -106,7 +106,7 @@ foreach ($registro as $persona) {
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-2">
-                        <a class="btn btn-outline-success"  href="index.php">Regresar a vista</a>
+                        <a class="btn btn-outline-success" href="index.php">Regresar a vista</a>
                     </div>
                 </div>
             </div>

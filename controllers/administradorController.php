@@ -1,15 +1,15 @@
 <?php
-require_once  '../models/PersonaModel.php';
+require_once  '../models/AdministradorModel.php';
 
-$controller = new PersonaController;
+$controller = new AdministradorController;
 
-class PersonaController
+class AdministradorController
 {
-    private $persona;
+    private $administrador;
 
     public function __construct()
     {
-        $this->persona = new personaModel();
+        $this->administrador = new AdministradorModel();
 
         if (isset($_REQUEST['c'])) {
             switch ($_REQUEST['c']) {
@@ -33,12 +33,13 @@ class PersonaController
     }
     public function index()
     {
-        return $this->persona->getAll();
+        return $this->administrador->getAll();
     }
     public function store()
     {
         $datos = [
-            'tipo_identificacion' => $_REQUEST['tipo_identificacion'],
+            
+            'tipo_identificacion'   => $_REQUEST['tipo_identificacion'],
             'numero_identificacion' => $_REQUEST['numero_identificacion'],
             'primer_nombre'         => $_REQUEST['primer_nombre'],
             'segundo_nombre'        => $_REQUEST['segundo_nombre'],
@@ -47,11 +48,15 @@ class PersonaController
             'email'                 => $_REQUEST['email'],
             'telefono'              => $_REQUEST['telefono'],
             'direccion'             => $_REQUEST['direccion'],
+            'password'              => $_REQUEST['password'],
+            'inicio_contrato'       => $_REQUEST['inicio_contrato'],
+            'fin_contrato'          => $_REQUEST['fin_contrato'],
+            'estado'                => $_REQUEST['estado'],
             'id_sexo'               => $_REQUEST['id_sexo'],
             'id_rol'                => $_REQUEST['id_rol'],
         ];
 
-        $result = $this->persona->store($datos);
+        $result = $this->administrador->store($datos);
 
         if ($result) {
             header("Location: ../Views/usuarios/index.php");
@@ -69,7 +74,7 @@ class PersonaController
 
     public function delete()
     {
-        $this->persona->delete($_REQUEST['id_persona']);
+        $this->administrador->delete($_REQUEST['id_persona']);
         header("location: ../Views/usuarios/index.php");
     }
 
@@ -90,7 +95,7 @@ class PersonaController
             'id_rol'                 => $_REQUEST['id_rol'],
         ];
 
-        $result = $this->persona->update($datos);
+        $result = $this->administrador->update($datos);
 
         if ($result) {
             header('location: ../Views/usuarios/index.php');

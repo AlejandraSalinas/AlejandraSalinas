@@ -1,10 +1,10 @@
 <?php
 require_once dirname(__FILE__) . '../../../config/config.php';
 require_once("../Main/partials/header.php");
-
 require_once '../../models/tipoIdentificacionModel.php';
 require_once '../../models/RolesModel.php';
 require_once '../../models/SexoModel.php';
+require_once '../../models/PersonaModel.php';
 
 $datos_identificacion = new TipoIdentificacionModel();
 $registro_identificacion = $datos_identificacion->getAll();
@@ -13,15 +13,29 @@ $datos_rol  = new RolesModel();
 $data  = $datos_rol->getAll();
 
 $datos_sexo = new SexoModel();
-$genero = $datos_sexo->getAll();
+$genero = $datos_sexo->getAll(); 
 
+// foreach ($registro as $persona) {
+//     $id_persona            = $persona->getId();
+//     $tipo_identificacion   = $persona->getTipoIdentificacion();
+//     $numero_identificacion = $persona->getNumeroIdentificacion();
+//     $primer_nombre         = $persona->getPrimerNombre();
+//     $segundo_nombre        = $persona->getSegundoNombre();
+//     $primer_apellido       = $persona->getPrimerApellido();
+//     $segundo_apellido      = $persona->getSegundoApellido();
+//     $email                 = $persona->getEmail();
+//     $telefono              = $persona->getTelefono();
+//     $direccion             = $persona->getDireccion();
+//     $id_sexo               = $persona->getSexo();
+//     $id_rol                = $persona->getRoles();
+// }
 ?>
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Crear Usuario</h1>
+    <h1 class="h3 mb-4 text-gray-800">Administrador</h1>
     <hr class="hr mb-5">
     <form action="../../controllers/PersonaController.php" method="post">
         <input type="hidden" name="c" value="1">
@@ -29,8 +43,7 @@ $genero = $datos_sexo->getAll();
             <div class="row">
                 <div class="mb-4 col-6">
                     <label for="tipo_identificacion" class="form-label">Tipo de Identificación:</label>
-                    <select class="form-select" id="tipo_identificacion" name="tipo_identificacion" required="required">
-                        <option selected>Seleccionar</option>
+                    <select class="form-select" value="<?= $tipo_identificacion ?>" id="id_tipo_identificacion" name="id_tipo_identificacion">
                         <?php
                         foreach ($registro_identificacion  as $datos) {
                             echo '<option value="' . $datos->getId() . '">' . $datos->getTipoIdentificacion() . '</option>';
@@ -40,7 +53,7 @@ $genero = $datos_sexo->getAll();
                 </div>
                 <div class="col-6 mb-4">
                     <label for="numero_identificacion" class="form-label">Número de Identificación:</label>
-                    <input type="number" class="form-control"  id="numero_identificacion" name="numero_identificacion" oninput="limitarDigitos(numero_identificacion)" required="required">
+                    <input type="number" class="form-control" value="<?= $numero_identificacion ?>" id="numero_identificacion" name="numero_identificacion" oninput="limitarDigitos(numero_identificacion)" required="required">
                 </div>
                 <div class="mb-4 col-3">
                     <label for="primer_nombre" class="form-label">Primer Nombre:</label>
@@ -70,6 +83,22 @@ $genero = $datos_sexo->getAll();
                     <label for="direccion" class="form-label">Dirección:</label>
                     <input type="text" class="form-control" id="direccion" name="direccion">
                 </div>
+                <div class="col-3 mb-4">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" name="password" id="password">
+                </div>
+                <div class="col-3 mb-4">
+                    <label for="inicio_contrato" class="form-label">Inicio de Contrato</label>
+                    <input type="date" class="form-control" name="inicio_contrato" id="inicio_contrato">
+                </div>
+                <div class="col-3 mb-4">
+                    <label for="fin_contrato" class="form-label">Fin de Contrato</label>
+                    <input type="date" class="form-control" name="fin_contrato" id="fin_contrato">
+                </div>
+                <div class="col-3 mb-4">
+                    <label for="estado" class="form-label">Estado</label>
+                    <input type="text" class="form-control" name="estado" id="estado">
+                </div>
                 <div class="mb-4 col-6">
                     <label for="id_sexo" class="form-label">Sexo:</label>
                     <select class="form-select" id="id_sexo" name="id_sexo" required="required">
@@ -91,7 +120,7 @@ $genero = $datos_sexo->getAll();
                             }
                         ?>
                     </select>
-                </div>
+                </div>    
                 <div class="row justify-content-center">
                     <div class="col-3 mb-2">
                         <button type="submit" class="btn btn-outline-primary">Guardar</button>
@@ -116,3 +145,4 @@ $genero = $datos_sexo->getAll();
     }
 </script>
 <?php require_once("../Main/partials/footer.php"); ?>
+

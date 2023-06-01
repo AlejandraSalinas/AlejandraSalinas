@@ -17,7 +17,8 @@ $registro = $data->getAll();
 
     <table class="table table-striped">
         <thead>
-            <tr class="text-center">          
+            <tr class="text-center">    
+                <th scope="col">Tipo de Identificación</th>
                 <th scope="col">Número de Identificación</th>
                 <th scope="col">Primer Nombre</th>
                 <th scope="col">Segundo Nombre</th>
@@ -39,6 +40,7 @@ $registro = $data->getAll();
                 foreach ($registro as $row) {
             ?>
                     <tr class="text-center">
+                        <td><?= $row->getTipoIdentificacion()?></td>
                         <td><?= $row->getNumeroIdentificacion()?></td>
                         <td><?= $row->getPrimerNombre()?></td>
                         <td><?= $row->getSegundoNombre()?></td>

@@ -4,8 +4,9 @@ include_once dirname(__FILE__) . '../../Config/config.php';
 require_once 'DataBaseModel.php';
 
 
-class PersonaModel
+class AdministradorModel
 {
+    private $id_vigilante;
     private $id_persona;
     private $tipo_identificacion;
     private $numero_identificacion;
@@ -16,6 +17,10 @@ class PersonaModel
     private $email;
     private $telefono;
     private $direccion;
+    private $password;
+    private $inicio_contrato;
+    private $fin_contrato;
+    private $estado;
     private $sexo;
     private $rol;
     private $db;
@@ -27,22 +32,23 @@ class PersonaModel
 
     public function getId()
     {
-        return $this->id_persona;
+        return $this->id_vigilante;
     }
 
-    public function getById($id_persona)
+    public function getById($id_vigilante)
     {
         $datos_usuario = [];
 
         try {
-            $sql  = 'SELECT * FROM personas WHERE id_persona = :id_persona';
+            $sql  = 'SELECT * FROM vigilantes WHERE id_vigilante = :id_vigilante';
             $query = $this->db->conect()->prepare($sql);
             $query->execute([
-                'id_persona' => $id_persona
+                'id_vigilante' => $id_vigilante
             ]);
 
             while ($row = $query->fetch()) {
-                $item                        = new PersonaModel();
+                $item                        = new AdministradorModel();
+                $item->id_vigilante          = $row['id_vigilante'];
                 $item->id_persona            = $row['id_persona'];
                 $item->tipo_identificacion   = $row['id_tipo_identificacion'];
                 $item->numero_identificacion = $row['numero_identificacion'];
@@ -53,6 +59,10 @@ class PersonaModel
                 $item->email                 = $row['email'];
                 $item->telefono              = $row['telefono'];
                 $item->direccion             = $row['direccion'];
+                $item->password              = $row['password'];
+                $item->inicio_contrato       = $row['inicio_contrato'];
+                $item->fin_contrato          = $row['fin_contrato'];
+                $item->estado                = $row['estado'];
                 $item->sexo                  = $row['id_sexo'];
                 $item->rol                   = $row['id_rol'];
 
@@ -72,8 +82,9 @@ class PersonaModel
 
         try {
 
-            $sql = 'SELECT id_persona, tipo_identificacion.nombre AS tipo_identificacion, numero_identificacion, roles.nombre AS rol, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, telefono, direccion, sexo.nombre AS sexo
-            FROM personas
+            $sql = 'SELECT id_vigilante, id_persona, tipo_identificacion.nombre AS tipo_identificacion, numero_identificacion, roles.nombre AS rol, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, telefono, 
+            direccion, password, inicio_contrato, fin_contrato, estado, sexo.nombre AS sexo
+            FROM vigilantes
             JOIN tipo_identificacion ON personas.id_tipo_identificacion = tipo_identificacion.id_tipo_identificacion
             JOIN roles ON personas.id_rol = roles.id_rol
             JOIN sexo ON personas.id_sexo = sexo.id_sexo';
@@ -81,7 +92,7 @@ class PersonaModel
 
 
             while ($row = $query->fetch()) {
-                $item                        = new PersonaModel();
+                $item                        = new AdministradorModel();
                 $item->id_persona            = $row['id_persona'];
                 $item->tipo_identificacion   = $row['tipo_identificacion'];
                 $item->numero_identificacion = $row['numero_identificacion'];
@@ -92,6 +103,10 @@ class PersonaModel
                 $item->email                 = $row['email'];
                 $item->telefono              = $row['telefono'];
                 $item->direccion             = $row['direccion'];
+                $item->password              = $row['password'];
+                $item->inicio_contrato       = $row['inicio_contrato'];
+                $item->fin_contrato          = $row['fin_contrato'];
+                $item->estado                = $row['estado'];
                 $item->sexo                  = $row['sexo'];
                 $item->rol                   = $row['rol'];
 
@@ -108,7 +123,8 @@ class PersonaModel
     {
         try {
 
-            $sql = 'INSERT INTO personas(id_tipo_identificacion, numero_identificacion, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, telefono, direccion, id_sexo, id_rol) VALUES(:tipo_identificacion, :numero_identificacion, :primer_nombre, :segundo_nombre, :primer_apellido, :segundo_apellido, :email, :telefono, :direccion, :id_sexo, :id_rol)';
+            $sql = 'INSERT INTO vigilantes(id_persona, id_tipo_identificacion, numero_identificacion, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, telefono, direccion, password, inicio_contrato, fin_contrato, estado, id_sexo, id_rol) 
+            VALUES(:tipo_identificacion, :numero_identificacion, :primer_nombre, :segundo_nombre, :primer_apellido, :segundo_apellido, :email, :telefono, :direccion, :password, :inicio_contrato, :fin_contrato, :estado, :id_sexo, :id_rol)';
 
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
@@ -121,6 +137,10 @@ class PersonaModel
                 'email'                  => $datos['email'],
                 'telefono'               => $datos['telefono'],
                 'direccion'              => $datos['direccion'],
+                'password'               => $datos['password'],
+                'inicio_contrato'        => $datos['inicio_contrato'],
+                'fin_contrato'           => $datos['fin_contrato'],
+                'estado'                 => $datos['estado'],
                 'id_sexo'                => $datos['id_sexo'],
                 'id_rol'                 => $datos['id_rol'],
             ]);
@@ -136,7 +156,8 @@ class PersonaModel
     {
         try {
 
-            $sql = 'UPDATE personas SET 
+            $sql = 'UPDATE vigilantes SET 
+            id_persona  = id_persona,
             id_tipo_identificacion = :id_tipo_identificacion,
             numero_identificacion = :numero_identificacion,
             primer_nombre = :primer_nombre,
@@ -146,9 +167,13 @@ class PersonaModel
             email = :email, 
             telefono = :telefono, 
             direccion = :direccion,
+            password = :password,
+            inicio_contrato = :inicio_contrato,
+            fin_contrato = :fin_contrato],
+            estado = :estado],
             id_sexo = :id_sexo,
             id_rol = :id_rol
-            WHERE id_persona = :id_persona';
+            WHERE id_vigilante = :id_vigilante';
 
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
@@ -162,6 +187,10 @@ class PersonaModel
                 'email'                  => $datos['email'],
                 'telefono'               => $datos['telefono'],
                 'direccion'              => $datos['direccion'],
+                'password'               => $datos['password'],
+                'inicio_contrato'        => $datos['inicio_contrato'],
+                'fin_contrato'           => $datos['fin_contrato'],
+                'estado'                 => $datos['estado'],
                 'id_sexo'                => $datos['id_sexo'],
                 'id_rol'                 => $datos['id_rol'],
             ]);
@@ -173,14 +202,14 @@ class PersonaModel
             die($e->getMessage());
         }
     }
-    public function delete($id_persona)
+    public function delete($id_vigilante)
     {
         try {
-            $sql = 'DELETE FROM personas WHERE id_persona = :id_persona';
+            $sql = 'DELETE FROM vigilantes WHERE id_vigilante = :id_vigilante';
 
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
-                'id_persona'        => $id_persona
+                'id_vigilante'        => $id_vigilante
             ]);
             if ($query) {
                 return true;
@@ -290,4 +319,29 @@ class PersonaModel
     {
         return $this->rol;
     }
+    public function getPassword(){
+        return $this->password;
+    }
+    public function setPassword($password){
+        return $this->password;
+    }
+    public function getInicioContrato(){
+        return $this->inicio_contrato;
+    }
+    public function setInicionContrato($inicio_contrato){
+        return $this->inicio_contrato;
+    }
+    public function getfinContrato(){
+        return $this->fin_contrato;
+    }
+    public function setfinContrato($fin_contrato){
+        return $this->fin_contrato;
+    }
+    public function getEstado(){
+        return $this->estado;
+    }    
+    public function setEstado($estado){
+        return $this->estado;
+    }
+   
 }

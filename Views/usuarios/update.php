@@ -1,6 +1,6 @@
-<?php 
+<?php
 include_once dirname(__FILE__) . '../../../Config/config.php';
-include_once ("../Main/partials/header.php");
+include_once("../Main/partials/header.php");
 require_once '../../models/tipoIdentificacionModel.php';
 require_once '../../models/RolesModel.php';
 require_once '../../models/SexoModel.php';
@@ -42,12 +42,12 @@ foreach ($registro as $persona) {
         <div class="container">
             <div class="row">
                 <div class="mb-4 col-6">
-                    <label for="tipo_identificacion" class="form-label">Tipo de Identificación:</label>
-                    <select class="form-select" id="tipo_identificacion" name="tipo_identificacion" required="required">
-                        <?php foreach ($registro_identificacion as $datos) : ?> 
-                               
+                    <label for="id_tipo_identificacion" class="form-label">Tipo de Identificación:</label>
+                    <select class="form-select" id="id_tipo_identificacion" name="id_tipo_identificacion" required="required">
+                        <?php foreach ($registro_identificacion as $datos) : ?>
+
                             <option value="<?= $datos->getId() ?>" <?= $datos->getId() == $persona->getTipoIdentificacion() ? 'selected' :  "" ?>><?= $datos->getTipoIdentificacion() ?></option>
-                           
+
                         <?php endforeach ?>
                     </select>
                 </div>
@@ -86,34 +86,33 @@ foreach ($registro as $persona) {
                 <div class="mb-4 col-6">
                     <label for="id_sexo" class="form-label">Sexo:</label>
                     <select class="form-select" id="id_sexo" name="id_sexo" required="required">
-                        <?php foreach ($genero as $sexo_persona) : ?> 
-                               
-                            <option value="<?= $sexo_persona->getId() ?>" <?= $sexo_persona->getId() == $persona->getSexo() ? 'selected' :  "" ?>><?= $sexo_persona->getSexo() ?></option>
-                           
+                        <?php foreach ($genero as $sexo) : ?>
+                            <option value="<?= $sexo->getId() ?>" <?= $sexo->getId() == $persona->getSexo() ? 'selected' :  "" ?>><?= $sexo->getSexo() ?></option>
                         <?php endforeach ?>
                     </select>
                 </div>
                 <div class="col-6 mb-2">
                     <label for="id_rol" class="form-label">Rol:</label>
                     <select class="form-select" id="id_rol" name="id_rol" required="required">
-                        <?php foreach ($data as $datos) : ?> 
-                               
+                        <?php foreach ($data as $datos) : ?>
+
                             <option value="<?= $datos->getId() ?>" <?= $datos->getId() == $persona->getRoles() ? 'selected' :  "" ?>><?= $datos->getRoles() ?></option>
-                           
+
                         <?php endforeach ?>
                     </select>
                 </div>
-                
-            </div>   
-        </div>        
+
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-3 mb-2">
+                <button type="submit" href="index.php" class="btn btn-outline-primary">Guardar Usuario</button>
+                <!-- <a class="btn btn-outline-primary"  href="index.php">Guardar</a> -->
+
+                <a class="btn btn-outline-success" href="index.php">Regresar a Vista</a>
+            </div>
+        </div>
     </form>
-    <div class="row justify-content-center">
-        <div class="col-3 mb-2">
-            <button type="submit" class="btn btn-outline-primary">Guardar</button>
-                            
-            <a class="btn btn-outline-success"  href="crear.php">Regresar a </a>
-        </div>    
-    </div>
 </div>
 <!-- /.container-fluid -->
 

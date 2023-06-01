@@ -31,6 +31,13 @@
 </li>
 <hr class="sidebar-divider">
 <li class="nav-item">
+    <a class="nav-link" href="<?= constant('URL') ?>./Views/administrador/crear.php">
+        <i class="bi bi-person-gear" style="font-size: 1.4rem;"></i>
+        <span>Administrador</span>
+    </a>
+</li>
+<hr class="sidebar-divider">
+<li class="nav-item">
     <a class="nav-link" href="<?= constant('URL') ?>./Views/tipoIdentificacion/index.php">
         <i class="bi bi-gear-fill" style="font-size: 1.4rem;"></i>
         <span>Configuración</span>
