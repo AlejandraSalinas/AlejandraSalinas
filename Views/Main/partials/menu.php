@@ -31,10 +31,17 @@
 </li>
 <hr class="sidebar-divider">
 <li class="nav-item">
-    <a class="nav-link" href="<?= constant('URL') ?>./Views/administrador/crear.php">
+    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
         <i class="bi bi-person-gear" style="font-size: 1.4rem;"></i>
-        <span>Administrador</span>
+        <span>Vigilante</span>
     </a>
+    <div id="collapsePages" class="collapse show" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Opciones:</h6>
+            <a class="collapse-item" href="<?php constant('URL') ?>../../Views/vigilante/index.php">Ver</a>
+            <a class="collapse-item" href="<?php constant('URL') ?>../../Views/vigilante/crear.php">Crear</a>
+        </div>
+    </div>
 </li>
 <hr class="sidebar-divider">
 <li class="nav-item">

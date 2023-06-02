@@ -23,7 +23,7 @@ class RolesModel
         $datos_rol = [];
 
         try {
-            $sql   =  "SELECT *FROM roles WHERE id_rol = :id_rol";
+            $sql   =  "SELECT * FROM roles WHERE id_rol = :id_rol";
             $query = $this->db->conect()->prepare($sql);
             $query->execute([
                 'id_rol' => $id_rol

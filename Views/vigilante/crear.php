@@ -15,20 +15,23 @@ $data  = $datos_rol->getAll();
 $datos_sexo = new SexoModel();
 $genero = $datos_sexo->getAll(); 
 
-// foreach ($registro as $persona) {
-//     $id_persona            = $persona->getId();
-//     $tipo_identificacion   = $persona->getTipoIdentificacion();
-//     $numero_identificacion = $persona->getNumeroIdentificacion();
-//     $primer_nombre         = $persona->getPrimerNombre();
-//     $segundo_nombre        = $persona->getSegundoNombre();
-//     $primer_apellido       = $persona->getPrimerApellido();
-//     $segundo_apellido      = $persona->getSegundoApellido();
-//     $email                 = $persona->getEmail();
-//     $telefono              = $persona->getTelefono();
-//     $direccion             = $persona->getDireccion();
-//     $id_sexo               = $persona->getSexo();
-//     $id_rol                = $persona->getRoles();
-// }
+$data = new PersonaModel();
+$registro = $data->getAll();
+
+foreach ($registro as $persona) {
+    $id_persona            = $persona->getId();
+    $tipo_identificacion   = $persona->getTipoIdentificacion();
+    $numero_identificacion = $persona->getNumeroIdentificacion();
+    $primer_nombre         = $persona->getPrimerNombre();
+    $segundo_nombre        = $persona->getSegundoNombre();
+    $primer_apellido       = $persona->getPrimerApellido();
+    $segundo_apellido      = $persona->getSegundoApellido();
+    $email                 = $persona->getEmail();
+    $telefono              = $persona->getTelefono();
+    $direccion             = $persona->getDireccion();
+    $id_sexo               = $persona->getSexo();
+    $id_rol                = $persona->getRoles();
+}
 ?>
 
 <!-- Begin Page Content -->
@@ -37,13 +40,17 @@ $genero = $datos_sexo->getAll();
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800">Administrador</h1>
     <hr class="hr mb-5">
+    <?php include_once('../Main/partials/list.php'); ?>
+    <br>
+    <br>
+
     <form action="../../controllers/PersonaController.php" method="post">
         <input type="hidden" name="c" value="1">
         <div class="container">
             <div class="row">
                 <div class="mb-4 col-6">
                     <label for="tipo_identificacion" class="form-label">Tipo de Identificación:</label>
-                    <select class="form-select" value="<?= $tipo_identificacion ?>" id="id_tipo_identificacion" name="id_tipo_identificacion">
+                    <select class="form-select" value="<?= $tipo_identificacion ?>" id="id_tipo_identificacion" name="id_tipo_identificacion" disabled>
                         <?php
                         foreach ($registro_identificacion  as $datos) {
                             echo '<option value="' . $datos->getId() . '">' . $datos->getTipoIdentificacion() . '</option>';
@@ -53,74 +60,73 @@ $genero = $datos_sexo->getAll();
                 </div>
                 <div class="col-6 mb-4">
                     <label for="numero_identificacion" class="form-label">Número de Identificación:</label>
-                    <input type="number" class="form-control" value="<?= $numero_identificacion ?>" id="numero_identificacion" name="numero_identificacion" oninput="limitarDigitos(numero_identificacion)" required="required">
+                    <input type="number" class="form-control" value="<?= $numero_identificacion ?>" id="numero_identificacion" name="numero_identificacion" oninput="limitarDigitos(numero_identificacion)" required="required" disabled>
                 </div>
                 <div class="mb-4 col-3">
                     <label for="primer_nombre" class="form-label">Primer Nombre:</label>
-                    <input type="text" class="form-control" name="primer_nombre" id="primer_nombre" required>
+                    <input type="text" class="form-control" value="<?= $primer_nombre ?>" name="primer_nombre" id="primer_nombre" required disabled>
                 </div>
                 <div class="col-3 mb-4">
                     <label for="segundo_nombre" class="form-label">Segundo Nombre:</label>
-                    <input type="text" class="form-control" name="segundo_nombre" id="segundo_nombre">
+                    <input type="text" class="form-control" value="<?= $segundo_nombre ?>"  name="segundo_nombre" id="segundo_nombre" disabled>
                 </div>
                 <div class="mb-4 col-3">
                     <label for="primer_apellido" class="form-label">Primer Apellido:</label>
-                    <input type="text" class="form-control" name="primer_apellido" id="primer_apellido" required>
+                    <input type="text" class="form-control" value="<?= $primer_apellido ?>" name="primer_apellido" id="primer_apellido" disabled required>
                 </div>
                 <div class="col-3 mb-4">
                     <label for="segundo_apellido" class="form-label">Segundo Apellido:</label>
-                    <input type="text" class="form-control" name="segundo_apellido" id="segundo_apellido">
+                    <input type="text" class="form-control" value="<?= $segundo_apellido ?>" name="segundo_apellido" id="segundo_apellido" disabled>
                 </div>
                 <div class="mb-4 col-6">
                     <label for="email" class="form-label">Email:</label>
-                    <input type="email" class="form-control" name="email" id="email">
+                    <input type="email" class="form-control" value="<?= $email ?>" name="email" id="email" disabled>
                 </div>
                 <div class="col-3 mb-4">
                     <label for="telefono" class="form-label">Teléfono:</label>
-                    <input type="number" class="form-control" id="telefono" name="telefono" oninput="limitarDigitos(telefono)">
+                    <input type="number" class="form-control" value="<?= $telefono  ?>" id="telefono" name="telefono" oninput="limitarDigitos(telefono)" disabled>
                 </div>
                 <div class="col-3 mb-4">
                     <label for="direccion" class="form-label">Dirección:</label>
-                    <input type="text" class="form-control" id="direccion" name="direccion">
+                    <input type="text" class="form-control" value="<?= $direccion ?>" id="direccion" name="direccion" disabled>
                 </div>
                 <div class="col-3 mb-4">
-                    <label for="password" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" name="password" id="password">
+                    <label for="pass" class="form-label">Contraseña:</label>
+                    <input type="password" class="form-control" name="pass" id="pass">
                 </div>
                 <div class="col-3 mb-4">
-                    <label for="inicio_contrato" class="form-label">Inicio de Contrato</label>
+                    <label for="inicio_contrato" class="form-label">Inicio de Contrato:</label>
                     <input type="date" class="form-control" name="inicio_contrato" id="inicio_contrato">
                 </div>
                 <div class="col-3 mb-4">
-                    <label for="fin_contrato" class="form-label">Fin de Contrato</label>
+                    <label for="fin_contrato" class="form-label">Fin de Contrato:</label>
                     <input type="date" class="form-control" name="fin_contrato" id="fin_contrato">
                 </div>
                 <div class="col-3 mb-4">
-                    <label for="estado" class="form-label">Estado</label>
+                    <label for="estado" class="form-label">Estado:</label>
                     <input type="text" class="form-control" name="estado" id="estado">
                 </div>
                 <div class="mb-4 col-6">
                     <label for="id_sexo" class="form-label">Sexo:</label>
-                    <select class="form-select" id="id_sexo" name="id_sexo" required="required">
-                    <option selected>Seleccionar</option>
-                    <?php
-                    foreach ($genero  as $sexo) {
-                        echo '<option value="' . $sexo->getId() . '">' . $sexo->getSexo() . '</option>';
-                    }
-                    ?>
+                    <select class="form-select" value="<?= $id_sexo ?>" id="id_sexo" name="id_sexo" disabled>
+                        <?php foreach ($genero  as $sexo) : ?>
+                            
+                            <option value="<?= $sexo->getId() ?>" <?= $sexo->getId() == $persona->getSexo() ? 'selected' : "" ?>> <?= $sexo->getSexo() ?></option>;                                
+                            
+                        <?php endforeach ?>
                     </select>
                 </div>
                 <div class="col-6 mb-2">
                     <label for="id_rol" class="form-label">Rol:</label>
-                    <select class="form-select" id="id_rol" name="id_rol" required="required">
-                        <option selected>Seleccionar</option>
-                        <?php
-                            foreach ($data  as $datos) {
-                                echo '<option value="' . $datos->getId() . '">' . $datos->getRoles() . '</option>';
-                            }
-                        ?>
+                    <select class="form-select" value="<?= $id_rol ?>" id="id_rol" name="id_rol" disabled>
+                        <?php foreach ($data  as $datos) : ?>
+                            
+                            <option value="<?= $datos->getId() ?>" <?= $datos->getId() == $persona->getRoles() ? 'selected' : "" ?>> <?= $datos->getRoles() ?></option>;                                
+                            
+                        <?php endforeach ?>
+                        
                     </select>
-                </div>    
+                </div>
                 <div class="row justify-content-center">
                     <div class="col-3 mb-2">
                         <button type="submit" class="btn btn-outline-primary">Guardar</button>
