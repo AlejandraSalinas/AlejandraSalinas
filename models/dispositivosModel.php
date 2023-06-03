@@ -31,10 +31,11 @@ class DispositivoModel
         $datos_dipositivo = [];
 
         try {
+            
             $sql = "SELECT * FROM id_registro_dispositivos WHERE id_registro_dispositivos = $id_registro_dispositivos";
             $query  = $this->db->conect()->query($sql);
             $query -> execute([
-                '$id_registro_dispositivos' => id_registro_dispositivos
+                'id_registro_dispositivos'        => $id_registro_dispositivos
             ]);
 
 
@@ -63,11 +64,11 @@ class DispositivoModel
         $items = [];
 
         try {
-            $sql = 'SELECT id_registro_dispositivos, tipo_identificacion.nombre AS id_tipo_identificacion, numero_identifiacion, tipo_dispositivos.nombre AS id_tipo_dispositivos, marca.nombre AS id_marca, color.nombre AS id_color, accesorios.nombre AS id_accesorios, serie
+            $sql = 'SELECT id_registro_dispositivos, tipo_identificacion.nombre AS id_tipo_identificacion, numero_identificacion, tipo_dispositivos.nombre AS id_tipo_dispositivos, marcas.nombre AS id_marca, color.nombre AS id_color, accesorios.nombre AS id_accesorios, serie
             FROM dispositivos
             JOIN tipo_identificacion ON dispositivos.id_tipo_identificacion = tipo_identificacion.id_tipo_identificacion
             JOIN tipo_dispositivos ON dispositivos.id_tipo_dispositivos = tipo_dispositivos.id_tipo_dispositivos
-            JOIN marca ON dispositivos.id_marca = marca.id_marca
+            JOIN marcas ON dispositivos.id_marca = marcas.id_marca
             JOIN color ON dispositivos.id_color = color.id_color
             JOIN accesorios ON dispositivos.id_accesorios = accesorios.id_accesorios';
      
@@ -75,7 +76,7 @@ class DispositivoModel
 
             while ($row = $query->fetch()) {
                 $item                                   = new DispositivoModel();
-                $item -> id_registro_dispositivos                    = $row['id_registro_dispositivos'];
+                $item -> id_registro_dispositivos       = $row['id_registro_dispositivos'];
                 $item -> id_tipo_identificacion         = $row['id_tipo_identificacion'];
                 $item -> numero_identificacion          = $row['numero_identificacion'];
                 $item -> id_tipo_dispositivos           = $row['id_tipo_dispositivos'];
@@ -98,14 +99,14 @@ class DispositivoModel
             VALUE(:id_tipo_identificacion, :numero_identificacion, :id_tipo_dispositivos, :id_marca, :id_color, :id_accesorios, :serie)';
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
-                'id_registro_dispositivos'                    = $datos['id_registro_dispositivos'],
-                'id_tipo_identificacion'         = $datos['id_tipo_identificacion'],
-                'numero_identificacion '         = $datos['numero_identificacion'],
-                'id_tipo_dispositivos'           = $datos['id_tipo_dispositivos'],
-                'id_marca'                       = $datos['id_marca'],
-                'id_color'                       = $datos['id_color'],
-                'id_accesorios'                  = $datos['id_accesorios'],
-                'serie'                          = $datos['serie'],
+                'id_registro_dispositivos'       => $datos['id_registro_dispositivos'],
+                'id_tipo_identificacion'         => $datos['id_tipo_identificacion'],
+                'numero_identificacion '         => $datos['numero_identificacion'],
+                'id_tipo_dispositivos'           => $datos['id_tipo_dispositivos'],
+                'id_marca'                       => $datos['id_marca'],
+                'id_color'                       => $datos['id_color'],
+                'id_accesorios'                  => $datos['id_accesorios'],
+                'serie'                          => $datos['serie'],
             ]); 
             if ($query) {
                 return true;
@@ -122,14 +123,14 @@ class DispositivoModel
                 WHERE id_registro_dispositivos = :id_registro_dispositivos';
             $prepare = $this->db->conect()->query($sql);
             $query = $prepare->execute([
-                'id_registro_dispositivos'                    = $datos['id_registro_dispositivos'],
-                'id_tipo_identificacion'                      = $datos['id_tipo_identificacion'],
-                'numero_identificacion '                      = $datos['numero_identificacion'],
-                'id_tipo_dispositivos'                        = $datos['id_tipo_dispositivos'],
-                'id_marca'                                    = $datos['id_marca'],
-                'id_color'                                    = $datos['id_color'],
-                'id_accesorios'                               = $datos['id_accesorios'],
-                'serie'                                       = $datos['serie'],
+                'id_registro_dispositivos'                    => $datos['id_registro_dispositivos'],
+                'numero_identificacion '                      => $datos['numero_identificacion'],
+                'id_tipo_identificacion'                      => $datos['id_tipo_identificacion'],
+                'id_tipo_dispositivos'                        => $datos['id_tipo_dispositivos'],
+                'id_marca'                                    => $datos['id_marca'],
+                'id_color'                                    => $datos['id_color'],
+                'id_accesorios'                               => $datos['id_accesorios'],
+                'serie'                                       => $datos['serie'],
             ]); 
             if ($query) {
                 return true;
@@ -138,7 +139,7 @@ class DispositivoModel
             die($e->getMessage());
         }
     }
-    public function delete($id_persona)
+    public function delete($id_registro_dispositivos)
     {
         try {
             $sql = 'DELETE FROM registro_dispositivos WHERE id_registro_dispositivos = :id_registro_dispositivos';
@@ -153,6 +154,7 @@ class DispositivoModel
     } catch (PDOException $e) {
         die($e->getMessage());
     }
+}
     ///GET Y SET
     public function getTipoIdentificacion()
     {

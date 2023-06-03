@@ -23,7 +23,7 @@ class MarcaDispositivoModel
         $datos_marca = [];
 
         try {
-            $sql = "SELECT * FROM marca WHERE id_marca = :id_marca";
+            $sql = "SELECT * FROM marcas WHERE id_marca = :id_marca";
             $query  = $this->db->conect()->prepare($sql);
             $query->execute([
                 'id_marca' => $id_marca
@@ -48,7 +48,7 @@ class MarcaDispositivoModel
         $identificacion = [];
 
         try {
-            $sql = 'SELECT * FROM marca ORDER BY id_marca ASC';
+            $sql = 'SELECT * FROM marcas ORDER BY id_marca ASC';
             $query  = $this->db->conect()->query($sql);
 
             while ($row = $query->fetch()) {
@@ -69,7 +69,7 @@ class MarcaDispositivoModel
     {
         try {
 
-            $sql = 'INSERT INTO marca(nombre) VALUES(:nombre)';
+            $sql = 'INSERT INTO marcas(nombre) VALUES(:nombre)';
 
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
@@ -86,7 +86,7 @@ class MarcaDispositivoModel
     public function update($datos)
     {
         try {
-            $sql = 'UPDATE marca SET marca= :marca WHERE id_marca = :id_marca';
+            $sql = 'UPDATE marcas SET marca= :marca WHERE id_marca = :id_marca';
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
                 'id_marca' => $datos['id_marca'],
@@ -104,7 +104,7 @@ class MarcaDispositivoModel
     public function delete($id_marca)
     {
         try {
-            $sql = 'DELETE FROM marca WHERE id_marca = :id_marca';
+            $sql = 'DELETE FROM marcas WHERE id_marca = :id_marca';
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
                 'id_marca' => $id_marca,

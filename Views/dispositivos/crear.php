@@ -31,7 +31,7 @@
             <div class="row">
                 <div class="mb-4 col-6">
                     <label for="id_tipo_identificacion" class="form-label">Tipo de Identificación:</label>
-                    <select class="form-select" value="<?= $id_tipo_identificacion ?>" id="id_tipo_identificacion" name="id_tipo_identificacion" disabled>
+                    <select class="form-select" value="<?= $id_tipo_identificacion ?>" id="id_tipo_identificacion" name="id_tipo_identificacion">
                         <option selected>Seleccionar</option>
                         <?php
                             foreach ($registro_identificacion  as $datos) {
@@ -48,7 +48,7 @@
 
                 <div class="mb-4 col-6">
                     <label for="id_tipo_dispositivos" class="form_label">Tipo de Dispositivo</label>
-                    <select class="form-select" value="<?= $id_tipo_dispositivos ?>" id="id_tipo_dispositivos" name="id_tipo_dispositivos" disabled>
+                    <select class="form-select" value="<?= $id_tipo_dispositivos ?>" id="id_tipo_dispositivos" name="id_tipo_dispositivos">
                         <option selected>Seleccionar</option>
                             <?php
                             foreach ($registro_dispositivo  as $datos) {
@@ -60,7 +60,7 @@
 
                 <div class="col-6 mb-4">
                     <label for="id_marca" class="form_label">Marca</label>
-                    <select class="form-select" value="<?= $id_marca ?>" id="id_marca" name="id_marca" disabled>
+                    <select class="form-select" value="<?= $id_marca ?>" id="id_marca" name="id_marca">
                         <option selected>Seleccionar</option>
                         <?php
                             foreach ($registro_marca  as $datos) {
@@ -72,7 +72,7 @@
 
                 <div class="mb-4 col-6">
                     <label for="id_color" class="form_label">Color</label>
-                    <select class="form-select" value="<?= $id_color ?>" id="id_color" name="id_color" disabled>
+                    <select class="form-select" value="<?= $id_color ?>" id="id_color" name="id_color">
                         <option selected>Seleccionar</option>
                         <?php
                             foreach ($registro_color  as $datos) {
@@ -84,7 +84,7 @@
 
                 <div class="col-6 mb-4">
                     <label for="id_accesorios" class="form_label">Accesorios</label>
-                    <select class="form-select" value="<?= $id_accesorios ?>" id="id_accesorios" name="id_accesorios" disabled>
+                    <select class="form-select" value="<?= $id_accesorios ?>" id="id_accesorios" name="id_accesorios" >
                         <option selected>Seleccionar</option>
                         <?php
                             foreach ($registro_accesorios  as $datos) {

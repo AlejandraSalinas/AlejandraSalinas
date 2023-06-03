@@ -1,16 +1,7 @@
 <?php
     if (!empty($_POST["btnentrada"])) {
-        if (!empty($_POST["ndit"])) {
-            # code...
-        }else {
-            # code...
-        }
-    }
-
-
-    if (!empty($_POST["btnentrada"])) {
-        if (!empty($_POST["ndit"])) {
-            $numero_identificacion = $_POST["ndit"];
+        if (!empty($_POST["txtdni"])) {
+            $numero_identificacion = $_POST["txtdni"];
             $consulta = $conexion -> query("$numero_identificacion");
             $id = $conexion -> query("$numero_identificacion");
 
@@ -70,13 +61,13 @@
             }, 0);
         </script>
 
-        }
+        
         
 ?>
     
 <?php
 
-if (!empty($_POST["fecha_salida"])) {
+if (!empty($_POST["btnsalida"])) {
     if (!empty($_POST["ndit"])) {
         $numero_identificacion = $_POST["ndit"];
         $consulta = $conexion -> query("$numero_identificacion");

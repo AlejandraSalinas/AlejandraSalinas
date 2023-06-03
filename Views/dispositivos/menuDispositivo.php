@@ -2,8 +2,7 @@
     require_once dirname(__FILE__) . '../../../config/config.php';
     include_once '../../Config/config.php';
     include_once('../../Views/Main/partials/header.php'); 
-    include_once('../../controllers/entradaController.php');
-    include_once('../../controllers/salidaController.php');
+
     ?>
 <div class="container-fluid">
     <!DOCTYPE html>
@@ -22,14 +21,19 @@
             <div class="row">
                 <div class="col">
                     <h1>Bienvenidos </h1>
-                    <p class="ndi">Ingrese su número de identificación</p>
+                    <?php
+                    include "../../models/dataBaseModel.php";
+                    include "../../controllers/entradaSalidaController.php";
+
+                    ?>
+                    <p class="txtdni">Ingrese su número de identificación</p>
                     <form action="<?= constant('URL') ?>../../../../controllers/dispositivosController.php" method="POST">
                         <div class="col-6 mb-3">
                             <input type="number" placeholder="Número de identificación" class="form-control" id="numero_identificacion" name="numero_identificacion">
                         </div>
                         <div class="mb-3">
                             <button type="submit" class="btn btn-primary mb-3" name="btnentrada" id="fecha_entrada">Entrada</button>
-                            <button type="submit" class="btn btn-primary mb-3" name="fecha_salida" id="fecha_salida">Salida</button>
+                            <button type="submit" class="btn btn-primary mb-3" name="btnsalida" id="fecha_salida">Salida</button>
                         </div>
                     </form>
                 </div>
@@ -39,8 +43,16 @@
             setInterval(() => {
                 let fecha = new Date();
                 let fechaHora = fecha.toLocaleString();
-                Document.getElementById("fecha").textContent = fechaHora
+                document.getElementById("fecha").textContent = fechaHora;
             ), 1000};
+        </script>
+        <script>
+            let numero_identificacion = document.getElementById(txtdni);
+            numero_identificacion.addEventListener("input", function() {
+                if (this.value.length > 8){
+                    this.value=this.value.slice()
+                }
+            })   
         </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
     </body>

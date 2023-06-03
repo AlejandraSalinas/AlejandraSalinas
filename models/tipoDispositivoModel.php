@@ -23,7 +23,7 @@ class TipoDispositivoModel
         $datos_tipo_dispositivo = [];
 
         try {
-            $sql = "SELECT * FROM tipo_dispositivo WHERE id_tipo_dispositivo = :id_tipo_dispositivo";
+            $sql = "SELECT * FROM tipo_dispositivos WHERE id_tipo_dispositivo = :id_tipo_dispositivo";
             $query  = $this->db->conect()->prepare($sql);
             $query->execute([
                 'id_tipo_dispositivo' => $id_tipo_dispositivo
@@ -48,7 +48,7 @@ class TipoDispositivoModel
         $identificacion = [];
 
         try {
-            $sql = 'SELECT * FROM tipo_dispositivo ORDER BY id_tipo_dispositivo ASC';
+            $sql = 'SELECT * FROM tipo_dispositivos ORDER BY id_tipo_dispositivo ASC';
             $query  = $this->db->conect()->query($sql);
 
             while ($row = $query->fetch()) {
@@ -69,7 +69,7 @@ class TipoDispositivoModel
     {
         try {
 
-            $sql = 'INSERT INTO tipo_dispositivo(nombre) VALUES(:nombre)';
+            $sql = 'INSERT INTO tipo_dispositivos(nombre) VALUES(:nombre)';
 
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
@@ -86,7 +86,7 @@ class TipoDispositivoModel
     public function update($datos)
     {
         try {
-            $sql = 'UPDATE tipo_dispositivo SET tipo_dispositivo= :tipo_dispositivo WHERE id_tipo_dispositivo = :id_tipo_dispositivo';
+            $sql = 'UPDATE tipo_dispositivos SET tipo_dispositivo= :tipo_dispositivo WHERE id_tipo_dispositivo = :id_tipo_dispositivo';
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
                 'id_tipo_dispositivo' => $datos['id_tipo_dispositivo'],
@@ -104,7 +104,7 @@ class TipoDispositivoModel
     public function delete($id_tipo_dispositivo)
     {
         try {
-            $sql = 'DELETE FROM tipo_dispositivo WHERE id_tipo_dispositivo = :id_tipo_dispositivo';
+            $sql = 'DELETE FROM tipo_dispositivos WHERE id_tipo_dispositivo = :id_tipo_dispositivo';
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
                 'id_tipo_dispositivo' => $id_tipo_dispositivo,
