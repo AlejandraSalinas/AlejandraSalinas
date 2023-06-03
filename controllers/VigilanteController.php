@@ -1,5 +1,5 @@
 <?php
-require_once  '../models/AdministradorModel.php';
+require_once  '../models/VigilanteModel.php';
 
 $controller = new VigilanteController;
 
@@ -38,13 +38,14 @@ class VigilanteController
     public function store()
     {
         $datos = [            
-            'pass'              => $_REQUEST['pass'],
-            'inicio_contrato'   => $_REQUEST['inicio_contrato'],
-            'fin_contrato'      => $_REQUEST['fin_contrato'],
-            'estado'            => $_REQUEST['estado']
+            // 'id_persona'      => $_REQUEST['d_persona'],
+            'pass'            => $_REQUEST['pass'],
+            'inicio_contrato' => $_REQUEST['inicio_contrato'],
+            'fin_contrato'    => $_REQUEST['fin_contrato'],
+            'estado'          => $_REQUEST['estado']
         ];
 
-        $result = $this->administrador->store($datos);
+        $result = $this->vigilante->store($datos);
 
         if ($result) {
             header("Location: ../Views/vigilante/index.php");
@@ -56,27 +57,27 @@ class VigilanteController
 
     public function show()
     {
-        $id_persona = $_REQUEST['id_vigilante'];
+        $id_vigilante = $_REQUEST['id_vigilante'];
         header("location: ../Views/vigilante/update.php?id_vigilante=" . $id_vigilante);
     }
 
     public function delete()
     {
-        $this->administrador->delete($_REQUEST['id_vigilante']);
+        $this->vigilante->delete($_REQUEST['id_vigilante']);
         header("location: ../Views/vigilante/index.php");
     }
 
     public function update()
     {
         $datos = [
-            
+            'id_vigilante'       => $_REQUEST['id_vigilante'],
             'pass'               => $_REQUEST['pass'],
             'inicio_contrato'    => $_REQUEST['inicio_contrato'],
             'fin_contrato'       => $_REQUEST['fin_contrato'],
             'estado'             => $_REQUEST['estado']
         ];
 
-        $result = $this->administrador->update($datos);
+        $result = $this->vigilante->update($datos);
 
         if ($result) {
             header('location: ../Views/vigilante/index.php');

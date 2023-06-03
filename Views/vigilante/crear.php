@@ -13,12 +13,13 @@ $datos_rol  = new RolesModel();
 $data  = $datos_rol->getAll();
 
 $datos_sexo = new SexoModel();
-$genero = $datos_sexo->getAll(); 
+$genero = $datos_sexo->getAll();
 
 $data = new PersonaModel();
 $registro = $data->getAll();
 
 foreach ($registro as $persona) {
+
     $id_persona            = $persona->getId();
     $tipo_identificacion   = $persona->getTipoIdentificacion();
     $numero_identificacion = $persona->getNumeroIdentificacion();
@@ -38,14 +39,14 @@ foreach ($registro as $persona) {
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Administrador</h1>
+    <h1 class="h3 mb-4 text-gray-800">Vigilante</h1>
     <hr class="hr mb-5">
     <?php include_once('../Main/partials/list.php'); ?>
     <br>
     <br>
 
-    <form action="../../controllers/PersonaController.php" method="post">
-        <input type="hidden" name="c" value="1">
+    <form action="../../controllers/VigilanteController.php?c=1" method="post">
+        <!-- <input type="hidden" name="c" value="1"> -->
         <div class="container">
             <div class="row">
                 <div class="mb-4 col-6">
@@ -60,7 +61,7 @@ foreach ($registro as $persona) {
                 </div>
                 <div class="col-6 mb-4">
                     <label for="numero_identificacion" class="form-label">Número de Identificación:</label>
-                    <input type="number" class="form-control" value="<?= $numero_identificacion ?>" id="numero_identificacion" name="numero_identificacion" oninput="limitarDigitos(numero_identificacion)" required="required" disabled>
+                    <input type="number" class="form-control" value="<?= $numero_identificacion ?>" id="numero_identificacion" name="numero_identificacion" required="required" disabled>
                 </div>
                 <div class="mb-4 col-3">
                     <label for="primer_nombre" class="form-label">Primer Nombre:</label>
@@ -68,7 +69,7 @@ foreach ($registro as $persona) {
                 </div>
                 <div class="col-3 mb-4">
                     <label for="segundo_nombre" class="form-label">Segundo Nombre:</label>
-                    <input type="text" class="form-control" value="<?= $segundo_nombre ?>"  name="segundo_nombre" id="segundo_nombre" disabled>
+                    <input type="text" class="form-control" value="<?= $segundo_nombre ?>" name="segundo_nombre" id="segundo_nombre" disabled>
                 </div>
                 <div class="mb-4 col-3">
                     <label for="primer_apellido" class="form-label">Primer Apellido:</label>
@@ -84,7 +85,7 @@ foreach ($registro as $persona) {
                 </div>
                 <div class="col-3 mb-4">
                     <label for="telefono" class="form-label">Teléfono:</label>
-                    <input type="number" class="form-control" value="<?= $telefono  ?>" id="telefono" name="telefono" oninput="limitarDigitos(telefono)" disabled>
+                    <input type="number" class="form-control" value="<?= $telefono  ?>" id="telefono" name="telefono" disabled>
                 </div>
                 <div class="col-3 mb-4">
                     <label for="direccion" class="form-label">Dirección:</label>
@@ -104,51 +105,46 @@ foreach ($registro as $persona) {
                 </div>
                 <div class="col-3 mb-4">
                     <label for="estado" class="form-label">Estado:</label>
-                    <input type="text" class="form-control" name="estado" id="estado">
+                    <input type="number" class="form-control" name="estado" id="estado">
                 </div>
                 <div class="mb-4 col-6">
                     <label for="id_sexo" class="form-label">Sexo:</label>
-                    <select class="form-select" value="<?= $id_sexo ?>" id="id_sexo" name="id_sexo" disabled>
-                        <?php foreach ($genero  as $sexo) : ?>
-                            
-                            <option value="<?= $sexo->getId() ?>" <?= $sexo->getId() == $persona->getSexo() ? 'selected' : "" ?>> <?= $sexo->getSexo() ?></option>;                                
-                            
+                    <select class="form-select" id="id_sexo" name="id_sexo" readonly>
+                        <?php
+
+                        foreach ($genero  as $sexo) : ?>
+                            <?= var_dump($persona->getSexo()); ?>
+
+                            <option value="<?= $sexo->getId() ?>" <?= $sexo->getId() == $persona->getSexo() ? 'selected' : "" ?>> <?= $sexo->getSexo() ?></option>;
+
                         <?php endforeach ?>
                     </select>
                 </div>
                 <div class="col-6 mb-2">
                     <label for="id_rol" class="form-label">Rol:</label>
                     <select class="form-select" value="<?= $id_rol ?>" id="id_rol" name="id_rol" disabled>
-                        <?php foreach ($data  as $datos) : ?>
-                            
-                            <option value="<?= $datos->getId() ?>" <?= $datos->getId() == $persona->getRoles() ? 'selected' : "" ?>> <?= $datos->getRoles() ?></option>;                                
-                            
-                        <?php endforeach ?>
-                        
+                        <?php
+                        foreach ($data  as $datos) {
+                            echo '<option value="' . $datos->getId() . '">' . $datos->getRoles() . '</option>';
+                        }
+                        ?>
+                    </select>
+                    <?php foreach ($data  as $datos) : ?>
+
+                        <option value="<?= $datos->getId() ?>" <?= $datos->getId() == $persona->getRoles() ? 'selected' : "" ?>> <?= $datos->getRoles() ?></option>;
+
+                    <?php endforeach ?>
                     </select>
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-3 mb-2">
                         <button type="submit" class="btn btn-outline-primary">Guardar</button>
-                                     
-                        <a class="btn btn-outline-success"  href="../Main/index.php">Regresar a Inicio</a>
-                    </div>    
+
+                        <a class="btn btn-outline-success" href="../Main/index.php">Regresar a Inicio</a>
+                    </div>
                 </div>
-            </div>  
-        </div>        
+            </div>
+        </div>
     </form>
 </div>
-<script>
-    function limitarDigitos(numero_identificacion) {
-        if (numero_identificacion.value.length > 10) {
-            numero_identificacion.value = numero_identificacion.value.slice(0, 10); // Corta el valor a los primeros diez dígitos
-        }
-    }
-    function limitarDigitos(telefono) {
-        if (telefono.value.length > 10) {
-            telefono.value = telefono.value.slice(0, 10); // Corta el valor a los primeros diez dígitos
-        }
-    }
-</script>
 <?php require_once("../Main/partials/footer.php"); ?>
-

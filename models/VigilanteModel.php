@@ -3,7 +3,6 @@ include_once dirname(__FILE__) . '../../Config/config.php';
 
 require_once 'DataBaseModel.php';
 
-
 class VigilanteModel
 {
     private $id_vigilante;
@@ -28,7 +27,8 @@ class VigilanteModel
         $datos_usuario = [];
 
         try {
-            $sql  = 'SELECT * FROM vigilantes WHERE id_vigilante = :id_vigilante';
+            $sql  = 'SELECT * FROM personas WHERE id_rol = 4';
+            // $sql  = 'SELECT * FROM info_vigilantes WHERE id_vigilante = :id_vigilante';
             $query = $this->db->conect()->prepare($sql);
             $query->execute([
                 'id_vigilante' => $id_vigilante
@@ -57,9 +57,9 @@ class VigilanteModel
         $items = [];
 
         try {
-
+           
             $sql= 'SELECT id_vigilante, pass, inicio_contrato, fin_contrato, estado
-            FROM vigilantes  ORDER BY id_vigilante ASC ';
+            FROM info_vigilantes  ORDER BY id_vigilante ASC ';
             $query  = $this->db->conect()->query($sql);
 
             while ($row = $query->fetch()) {
@@ -83,12 +83,13 @@ class VigilanteModel
     {
         try {
 
-            $sql = 'INSERT INTO vigilantes(pass, inicio_contrato, fin_contrato, estado) 
-            VALUES(:pass, :inicio_contrato, :fin_contrato, :estado)';
+            $sql = 'INSERT INTO info_vigilantes(pass, inicio_contrato, fin_contrato, estado) 
+            VALUES(:id_persona, :pass, :inicio_contrato, :fin_contrato, :estado)';
 
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
                 'pass'            => $datos['pass'],
+                // 'id_persona'      => $datos['id_persona'],
                 'inicio_contrato' => $datos['inicio_contrato'],
                 'fin_contrato'    => $datos['fin_contrato'],
                 'estado'          => $datos['estado'],
@@ -106,20 +107,22 @@ class VigilanteModel
     {
         try {
 
-            $sql = 'UPDATE vigilantes SET 
+            $sql = 'UPDATE info_vigilantes SET 
             pass = :pass,
+            id_persona = :id_persona,
             inicio_contrato = :inicio_contrato,
-            fin_contrato = :fin_contrato],
-            estado = :estado]
+            fin_contrato = :fin_contrato,
+            estado = :estado
             WHERE id_vigilante = :id_vigilante';
 
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
-                'id_persona'             => $datos['id_persona'],
-                'password'               => $datos['password'],
-                'inicio_contrato'        => $datos['inicio_contrato'],
-                'fin_contrato'           => $datos['fin_contrato'],
-                'estado'                 => $datos['estado']
+                'id_vigilante'       => $datos['id_vigilante'],
+                'id_persona'         => $datos['id_persona'],
+                'password'           => $datos['password'],
+                'inicio_contrato'    => $datos['inicio_contrato'],
+                'fin_contrato'       => $datos['fin_contrato'],
+                'estado'             => $datos['estado']
             ]);
 
             if ($query) {
@@ -132,7 +135,7 @@ class VigilanteModel
     public function delete($id_vigilante)
     {
         try {
-            $sql = 'DELETE FROM vigilantes WHERE id_vigilante = :id_vigilante';
+            $sql = 'DELETE FROM info_vigilantes WHERE id_vigilante = :id_vigilante';
 
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([

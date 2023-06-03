@@ -1,7 +1,7 @@
 <div class="container mt-3">
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a class="nav-link active bg-secondary text-bg-dark" href="<?= constant('URL') ?>./Views/administrador/crear.php">Crear Vigilante</a></button>           
+            <a class="nav-link active bg-secondary text-bg-dark" href="<?= constant('URL') ?>./Views/vigilante/crear.php">Crear Vigilante</a></button>           
         </li>
         <li class="nav-item">            
             <a class="nav-link active bg-info" href="<?= constant('URL') ?>./Views//index.php">Crear Supervisor</a></button>  

@@ -7,34 +7,35 @@ require_once '../../models/SexoModel.php';
 require_once '../../models/PersonaModel.php';
 require_once '../../models/Administrador.php';
 
-// $datos = new PersonaModel();
-// $registro = $datos->getById($_REQUEST['id_persona']);
+$datos = new PersonaModel();
+$registro = $datos->getById($_REQUEST['id_persona']);
 
-// $datos_identificacion = new TipoIdentificacionModel();
-// $registro_identificacion = $datos_identificacion->getAll();
+$datos_identificacion = new TipoIdentificacionModel();
+$registro_identificacion = $datos_identificacion->getAll();
 
-// $datos_rol  = new RolesModel();
-// $data  = $datos_rol->getAll();
+$datos_rol  = new RolesModel();
+$data  = $datos_rol->getAll();
 
-// $datos_sexo = new SexoModel();
-// $genero = $datos_sexo->getAll();
+$datos_sexo = new SexoModel();
+$genero = $datos_sexo->getAll();
 
-// $datos_vigilante = new 
+$datos_vigilante = new VigilanteModel();
+$datos = $datos_vigilante->getAll();
 
-// foreach ($registro as $persona) {
-//     $id_persona            = $persona->getId();
-//     $tipo_identificacion   = $persona->getTipoIdentificacion();
-//     $numero_identificacion = $persona->getNumeroIdentificacion();
-//     $primer_nombre         = $persona->getPrimerNombre();
-//     $segundo_nombre        = $persona->getSegundoNombre();
-//     $primer_apellido       = $persona->getPrimerApellido();
-//     $segundo_apellido      = $persona->getSegundoApellido();
-//     $email                 = $persona->getEmail();
-//     $telefono              = $persona->getTelefono();
-//     $direccion             = $persona->getDireccion();
-//     $id_sexo               = $persona->getSexo();
-//     $id_rol                = $persona->getRoles();
-// }
+foreach ($registro as $persona) {
+    $id_persona            = $persona->getId();
+    $tipo_identificacion   = $persona->getTipoIdentificacion();
+    $numero_identificacion = $persona->getNumeroIdentificacion();
+    $primer_nombre         = $persona->getPrimerNombre();
+    $segundo_nombre        = $persona->getSegundoNombre();
+    $primer_apellido       = $persona->getPrimerApellido();
+    $segundo_apellido      = $persona->getSegundoApellido();
+    $email                 = $persona->getEmail();
+    $telefono              = $persona->getTelefono();
+    $direccion             = $persona->getDireccion();
+    $id_sexo               = $persona->getSexo();
+    $id_rol                = $persona->getRoles();
+}
 ?>
 <div class="container-fluid">
 
@@ -48,11 +49,11 @@ require_once '../../models/Administrador.php';
                 <div class="mb-4 col-6">
                     <label for="id_tipo_identificacion" class="form-label">Tipo de Identificación:</label>
                     <select class="form-select" value="<?= $tipo_identificacion ?>" id="id_tipo_identificacion" name="id_tipo_identificacion" disabled>
-                        <?php
-                        foreach ($registro_identificacion  as $datos) {
-                            echo '<option value="' . $datos->getId() . '">' . $datos->getTipoIdentificacion() . '</option>';
-                        }
-                        ?>
+                     <?php foreach ($registro_identificacion  as $identificacion) : ?>
+                            
+                            <option value="<?= $identificacion->getId() ?>" <?= $identificacion->getId() == $persona->getTipoIdentificacion() ? 'selected' : "" ?>> <?= $identificacion->getTipoIdentificacion() ?></option>;                                
+                            
+                        <?php endforeach ?>
                     </select>
                 </div>
                 <div class="col-6 mb-4">
