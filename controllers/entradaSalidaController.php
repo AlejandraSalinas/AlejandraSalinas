@@ -55,16 +55,22 @@
                 })
             </script>
         <?php } ?>
-        <script>
-            setTimeout(() => {
-                window.history.replaceState(null, null, window.location.pathnase);
-            }, 0);
-        </script>
 
-        
-        
-?>
-    
+
+
+        <script>
+        setTimeout(() => {
+            window.history.replaceState(null, null,  window.location.pathname);
+        }, 0);
+        </script>   
+
+
+<?php } ?>
+
+
+
+
+<!--SALIDA-->
 <?php
 
 if (!empty($_POST["btnsalida"])) {

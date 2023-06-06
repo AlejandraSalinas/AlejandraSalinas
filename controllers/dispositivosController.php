@@ -41,13 +41,16 @@
         public function store()
         {
             $datos = [
-                'id_tipo_identificacion'   => $_REQUEST['id_tipo_identificacion'],
-                'numero_identificacion' => $_REQUEST['numero_identificacion'],
+                'id_tipo_identificacion'     => $_REQUEST['id_tipo_identificacion'],
+                'numero_identificacion'      => $_REQUEST['numero_identificacion'],
                 'id_tipo_dispositivos'       => $_REQUEST['id_tipo_dispositivos'],
                 'id_marca'                   => $_REQUEST['id_marca'],
                 'id_color'                   => $_REQUEST['id_color'],
                 'id_accesorios'              => $_REQUEST['id_accesorios'],
                 'serie'                      => $_REQUEST['serie'],
+                'fecha_entrada'              => $_REQUEST['fecha_entrada'],
+                'fecha_salida'               => $_REQUEST['fecha_salida'],
+
             ];
             $result = $this->dispositivo->store($datos);
             if ($result) {
@@ -59,26 +62,28 @@
 
         public function show()
         {
-            $id_registro_dispositivos = $_REQUEST['id_registro_dispositivos'];
-            header("Location: ../Views/dispositivos/update.php?id_registro_dispositivos=" . $id_registro_dispositivos);
+            $id_ingresar = $_REQUEST['id_ingresar'];
+            header("Location: ../Views/dispositivos/update.php?id_ingresar=" . $id_ingresar);
         }
 
         public function delete()
         {
-            $this->dispositivo->delete($_REQUEST['id_registro_dispositivos']);
+            $this->dispositivo->delete($_REQUEST['id_ingresar']);
             header("Location: ../Views/dispositivos/index.php");
         }
 
         public function update()
         {
             $datos = [
-                'id_tipo_identificacion'   => $_REQUEST['id_tipo_identificacion'],
-                'numero_identificacion' => $_REQUEST['numero_identificacion'],
+                'id_tipo_identificacion'     => $_REQUEST['id_tipo_identificacion'],
+                'numero_identificacion'      => $_REQUEST['numero_identificacion'],
                 'id_tipo_dispositivos'       => $_REQUEST['id_tipo_dispositivos'],
                 'id_marca'                   => $_REQUEST['id_marca'],
                 'id_color'                   => $_REQUEST['id_color'],
                 'id_accesorios'              => $_REQUEST['id_accesorios'],
-                'serie'                      => $_REQUEST['serie']
+                'serie'                      => $_REQUEST['serie'],
+                'fecha_entrada'              => $_REQUEST['fecha_entrada'],
+                'fecha_salida'               => $_REQUEST['fecha_salida'],
             ];
             $result = $this->dispositivo->update($datos);
     

@@ -31,7 +31,7 @@
             <div class="row">
                 <div class="mb-4 col-6">
                     <label for="id_tipo_identificacion" class="form-label">Tipo de Identificación:</label>
-                    <select class="form-select" value="<?= $id_tipo_identificacion ?>" id="id_tipo_identificacion" name="id_tipo_identificacion">
+                    <select class="form-select" value="<?= $id_tipo_identificacion ?>" id="id_tipo_identificacion" name="id_tipo_identificacion" required="required">
                         <option selected>Seleccionar</option>
                         <?php
                             foreach ($registro_identificacion  as $datos) {
@@ -43,12 +43,12 @@
 
                 <div class="col-6 mb-4">
                     <label for="numero_identificacion" class="form_label">Número de Identificacion</label>
-                    <input type="number" class="form-control" value="<?= $numero_identificacion ?>" id="numero_identificacion" name="numero_identificacion">
+                    <input type="number" class="form-control" value="<?= $numero_identificacion ?>" id="numero_identificacion" name="numero_identificacion" required="required">
                 </div>
 
                 <div class="mb-4 col-6">
                     <label for="id_tipo_dispositivos" class="form_label">Tipo de Dispositivo</label>
-                    <select class="form-select" value="<?= $id_tipo_dispositivos ?>" id="id_tipo_dispositivos" name="id_tipo_dispositivos">
+                    <select class="form-select" value="<?= $id_tipo_dispositivos ?>" id="id_tipo_dispositivos" name="id_tipo_dispositivos" required="required">
                         <option selected>Seleccionar</option>
                             <?php
                             foreach ($registro_dispositivo  as $datos) {
@@ -60,7 +60,7 @@
 
                 <div class="col-6 mb-4">
                     <label for="id_marca" class="form_label">Marca</label>
-                    <select class="form-select" value="<?= $id_marca ?>" id="id_marca" name="id_marca">
+                    <select class="form-select" value="<?= $id_marca ?>" id="id_marca" name="id_marca" required="required">
                         <option selected>Seleccionar</option>
                         <?php
                             foreach ($registro_marca  as $datos) {
@@ -72,7 +72,7 @@
 
                 <div class="mb-4 col-6">
                     <label for="id_color" class="form_label">Color</label>
-                    <select class="form-select" value="<?= $id_color ?>" id="id_color" name="id_color">
+                    <select class="form-select" value="<?= $id_color ?>" id="id_color" name="id_color" required="required">
                         <option selected>Seleccionar</option>
                         <?php
                             foreach ($registro_color  as $datos) {
@@ -84,7 +84,7 @@
 
                 <div class="col-6 mb-4">
                     <label for="id_accesorios" class="form_label">Accesorios</label>
-                    <select class="form-select" value="<?= $id_accesorios ?>" id="id_accesorios" name="id_accesorios" >
+                    <select class="form-select" value="<?= $id_accesorios ?>" id="id_accesorios" name="id_accesorios" required="required">
                         <option selected>Seleccionar</option>
                         <?php
                             foreach ($registro_accesorios  as $datos) {
@@ -96,7 +96,7 @@
 
                 <div class="mb-4 col-6">
                     <label for="serie" class="form_label">Serie</label>
-                    <input type="number" class="form-control" value="<?= $serie ?>" id="serie" name="serie">
+                    <input type="number" class="form-control" value="<?= $serie ?>" id="serie" name="serie" required="required">
                 </div>
 
                 <div class="col-6 mb-4">

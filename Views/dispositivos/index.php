@@ -20,6 +20,9 @@
                 <th scope="col">Color del Dispositivo</th>
                 <th scope="col">Accesorios</th>
                 <th scope="col">Serie del Dispositivo</th>
+                <th scope="col">Entrada</th>
+                <th scope="col">Salida</th>
+
                 
                 <th scope="col" colspan="2">Opciones</th>
             </tr>
@@ -37,6 +40,9 @@
                         <td><?= $row->id_color ?></td>
                         <td><?= $row->id_accesorios ?></td>
                         <td><?= $row->serie ?></td>
+                        <td><?= $row->fecha_entrada ?></td>
+                        <td><?= $row->fecha_salida ?></td>
+                        
                         <td>
                             <a class="btn btn-sm btn-outline-warning" href="../../controllers/dispositivosController.phpc=2&id=<?= $row->getId() ?>">Actualizar</a>
                         </td>
@@ -58,5 +64,4 @@
     </table>
             
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
 <?php require_once('../main/partials/footer.php');?>

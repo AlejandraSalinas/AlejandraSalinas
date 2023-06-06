@@ -14,6 +14,8 @@ class DispositivoModel
     private $id_color;
     private $id_accesorios;
     private $serie;
+    private $fecha_entrada;
+    private $fecha_salida;
     private $db;
 
     public function __construct()
@@ -49,6 +51,8 @@ class DispositivoModel
                 $item -> id_color                       = $row['id_color'];
                 $item -> id_accesorios                  = $row['id_accesorios'];
                 $item -> serie                          = $row['serie'];
+                $item -> fecha_entrada                  = $row['fecha_entrada'];
+                $item -> fecha_salida                   = $row['fecha_salida'];
                 array_push($datos_dipositivo, $item);
             }
 
@@ -64,8 +68,7 @@ class DispositivoModel
         $items = [];
 
         try {
-            $sql = 'SELECT id_registro_dispositivos, tipo_identificacion.nombre AS id_tipo_identificacion, numero_identificacion, tipo_dispositivos.nombre AS id_tipo_dispositivos, marcas.nombre AS id_marca, color.nombre AS id_color, accesorios.nombre AS id_accesorios, serie
-            FROM dispositivos
+            $sql = 'SELECT id_registro_dispositivos, tipo_identificacion.nombre AS id_tipo_identificacion, numero_identificacion, tipo_dispositivos.nombre AS id_tipo_dispositivos, marcas.nombre AS id_marca, color.nombre AS id_color, accesorios.nombre AS id_accesorios, serie, fecha_entrada, fecha_salida            FROM dispositivos
             JOIN tipo_identificacion ON dispositivos.id_tipo_identificacion = tipo_identificacion.id_tipo_identificacion
             JOIN tipo_dispositivos ON dispositivos.id_tipo_dispositivos = tipo_dispositivos.id_tipo_dispositivos
             JOIN marcas ON dispositivos.id_marca = marcas.id_marca
@@ -84,6 +87,8 @@ class DispositivoModel
                 $item -> id_color                       = $row['id_color'];
                 $item -> id_accesorios                  = $row['id_accesorios'];
                 $item -> serie                          = $row['serie'];
+                $item -> fecha_entrada                  = $row['fecha_entrada'];
+                $item -> fecha_salida                   = $row['fecha_salida'];
                 array_push($items, $item);
             }
 
@@ -95,8 +100,8 @@ class DispositivoModel
     public function store($datos)
     {
         try {
-            $sql = 'INSERT INTO dispositivos(id_tipo_identificacion, numero_identificacion, id_tipo_dispositivos, id_marca, id_color, id_accesorios, serie)
-            VALUE(:id_tipo_identificacion, :numero_identificacion, :id_tipo_dispositivos, :id_marca, :id_color, :id_accesorios, :serie)';
+            $sql = 'INSERT INTO dispositivos(id_tipo_identificacion, numero_identificacion, id_tipo_dispositivos, id_marca, id_color, id_accesorios, serie, fecha_entrada, fecha_salida)
+            VALUE(:id_tipo_identificacion, :numero_identificacion, :id_tipo_dispositivos, :id_marca, :id_color, :id_accesorios, :serie, fecha_entrada, fecha_salida)';
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
                 'id_registro_dispositivos'       => $datos['id_registro_dispositivos'],
@@ -107,6 +112,8 @@ class DispositivoModel
                 'id_color'                       => $datos['id_color'],
                 'id_accesorios'                  => $datos['id_accesorios'],
                 'serie'                          => $datos['serie'],
+                'fecha_entrada'                  => $datos['fecha_entrada'],
+                'fecha_salida'                   => $datos['fecha_salida'],
             ]); 
             if ($query) {
                 return true;
@@ -119,18 +126,20 @@ class DispositivoModel
     public function update($datos)
     {
         try {
-            $sql = 'UPDATE id_tipo_identificacion = :id_tipo_identificacion,  numero_identificacion = :numero_identificacion, id_tipo_dispositivos = :id_tipo_dispositivos, id_marca = :id_marca, id_color = :id_color, id_accesorios = :id_accesorios, serie  = :serie  
+            $sql = 'UPDATE id_tipo_identificacion = :id_tipo_identificacion,  numero_identificacion = :numero_identificacion, id_tipo_dispositivos = :id_tipo_dispositivos, id_marca = :id_marca, id_color = :id_color, id_accesorios = :id_accesorios, serie  = :serie  fecha_entrada = :fecha_entrada fecha_salida = :fecha_salida
                 WHERE id_registro_dispositivos = :id_registro_dispositivos';
             $prepare = $this->db->conect()->query($sql);
             $query = $prepare->execute([
-                'id_registro_dispositivos'                    => $datos['id_registro_dispositivos'],
-                'numero_identificacion '                      => $datos['numero_identificacion'],
-                'id_tipo_identificacion'                      => $datos['id_tipo_identificacion'],
-                'id_tipo_dispositivos'                        => $datos['id_tipo_dispositivos'],
-                'id_marca'                                    => $datos['id_marca'],
-                'id_color'                                    => $datos['id_color'],
-                'id_accesorios'                               => $datos['id_accesorios'],
-                'serie'                                       => $datos['serie'],
+                'id_registro_dispositivos'       => $datos['id_registro_dispositivos'],
+                'numero_identificacion '         => $datos['numero_identificacion'],
+                'id_tipo_identificacion'         => $datos['id_tipo_identificacion'],
+                'id_tipo_dispositivos'           => $datos['id_tipo_dispositivos'],
+                'id_marca'                       => $datos['id_marca'],
+                'id_color'                       => $datos['id_color'],
+                'id_accesorios'                  => $datos['id_accesorios'],
+                'serie'                          => $datos['serie'],
+                'fecha_entrada'                  => $datos['fecha_entrada'],
+                'fecha_salida'                   => $datos['fecha_salida'],
             ]); 
             if ($query) {
                 return true;
@@ -209,6 +218,7 @@ class DispositivoModel
     {
         return $this->id_accesorios;
     }
+
     public function getSerie()
     {
         return $this->serie;
@@ -217,9 +227,24 @@ class DispositivoModel
     {
         return $this->serie;
     }
-        
 
-        
+    public function getEntrada()
+    {
+        return $this->fecha_entrada;
+    }
+    public function setEntrada($fecha_entrada)
+    {
+        return $this->fecha_entrada;
+    }
 
+    public function getSalida()
+    {
+        return $this->fecha_salida;
+    }
+    public function setSalida($fecha_salida)
+    {
+        return $this->fecha_salida;
+    }
+        
     
 }

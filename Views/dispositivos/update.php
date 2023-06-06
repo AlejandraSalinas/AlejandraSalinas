@@ -27,7 +27,7 @@
     $registro_accesorios = $datos_accesorios->getAll();
 
     foreach( $registro as $dispositivo){
-        $id_registro_dispositivos                = $ingresar -> getId();
+        $id_registro_dispositivos                = $id_registro_dispositivos -> getId();
         $id_tipo_identificacion     = $ingresar -> getTipoIdentificacion();
         $numero_identificacion      = $ingresar -> getNumeroIdentificacion();
         $id_tipo_dispositivos       = $ingresar -> getTipoDispositivos();
