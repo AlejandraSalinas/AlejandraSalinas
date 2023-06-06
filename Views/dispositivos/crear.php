@@ -9,7 +9,6 @@
 
     $datos_identificacion = new TipoIdentificacionModel();
     $registro_identificacion = $datos_identificacion->getAll();
-cd vc
     $datos_dispositivo = new TipoDispositivoModel();
     $registro_dispositivo = $datos_dispositivo->getAll();
 
