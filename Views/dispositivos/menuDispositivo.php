@@ -24,6 +24,7 @@
                     <?php
                     include "../../models/dataBaseModel.php";
                     include "../../controllers/entradaSalidaController.php";
+                    include "../../controllers/dispositivosController.php";
 
                     ?>
                     <p class="txtdni">Ingrese su número de identificación</p>
@@ -32,8 +33,8 @@
                             <input type="number" placeholder="Número de identificación" class="form-control" id="numero_identificacion" name="numero_identificacion">
                         </div>
                         <div class="mb-3">
-                            <button type="submit" class="btn btn-primary mb-3" name="btnentrada" id="fecha_entrada">Entrada</button>
-                            <button type="submit" class="btn btn-primary mb-3" name="btnsalida" id="fecha_salida">Salida</button>
+                            <button type="submit" class="btn btn-primary mb-3" name="fecha_entrada" id="fecha_entrada">Entrada</button>
+                            <button type="submit" class="btn btn-primary mb-3" name="fecha_salida" id="fecha_salida">Salida</button>
                         </div>
                     </form>
                 </div>

@@ -1,5 +1,5 @@
 <?php
-    if (!empty($_POST["btnentrada"])) {
+    if (!empty($_POST["fecha_entrada"])) {
         if (!empty($_POST["txtdni"])) {
             $numero_identificacion = $_POST["txtdni"];
             $consulta = $conexion -> query("$numero_identificacion");
@@ -65,15 +65,13 @@
         </script>   
 
 
-<?php } ?>
-
 
 
 
 <!--SALIDA-->
 <?php
 
-if (!empty($_POST["btnsalida"])) {
+if (!empty($_POST["fecha_salida"])) {
     if (!empty($_POST["ndit"])) {
         $numero_identificacion = $_POST["ndit"];
         $consulta = $conexion -> query("$numero_identificacion");
@@ -134,4 +132,3 @@ if (!empty($_POST["btnsalida"])) {
             window.history.replaceState(null, null, window.location.pathnase);
         }, 0);
     </script>
-?>

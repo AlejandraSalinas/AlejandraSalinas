@@ -24,7 +24,7 @@
                 <th scope="col">Salida</th>
 
                 
-                <th scope="col" colspan="2">Opciones</th>
+                <th scope="col" colspan="3">Opciones</th>
             </tr>
         </thead>
         <tbody>
@@ -33,13 +33,13 @@
                     foreach ($registroDispositivo as $row) {
                  ?>
                     <tr class="text-center">
-                        <td><?= $row->id_tipo_identificacion?></td>
-                        <td><?= $row->id_numero_identificacion?></td>
-                        <td><?= $row->id_tipo_dispositivos ?></td>
-                        <td><?= $row->id_marca ?></td>
-                        <td><?= $row->id_color ?></td>
-                        <td><?= $row->id_accesorios ?></td>
-                        <td><?= $row->serie ?></td>
+                        <td><?= $row->getTipoIdentificacion()?></td>
+                        <td><?= $row->getNumeroIdentificacion()?></td>
+                        <td><?= $row->getTipoDispositivos() ?></td>
+                        <td><?= $row->getMarca() ?></td>
+                        <td><?= $row->getColor() ?></td>
+                        <td><?= $row->getAccesorios() ?></td>
+                        <td><?= $row->getSerie() ?></td>
                         <td><?= $row->fecha_entrada ?></td>
                         <td><?= $row->fecha_salida ?></td>
                         
@@ -48,6 +48,7 @@
                         </td>
                         <td>
                             <a class="btn btn-sm btn-outline-warning" href="../../controllers/dispositivosController.phpc=4&id=<?= $row->getId() ?>">Eliminar</a>
+                            
                         </td>
                     </tr>
                     <?php
@@ -55,7 +56,7 @@
                 } else {
                     ?>
                     <tr class=" text-center">
-                        <td colspan="6">Sin datos</td>
+                        <td colspan="10">Sin datos</td>
                 </tr>
             <?php
                 }

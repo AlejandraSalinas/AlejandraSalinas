@@ -48,8 +48,8 @@
                 'id_color'                   => $_REQUEST['id_color'],
                 'id_accesorios'              => $_REQUEST['id_accesorios'],
                 'serie'                      => $_REQUEST['serie'],
-                'fecha_entrada'              => $_REQUEST['fecha_entrada'],
-                'fecha_salida'               => $_REQUEST['fecha_salida'],
+                //'fecha_entrada'              => $_REQUEST['fecha_entrada'],
+                //'fecha_salida'               => $_REQUEST['fecha_salida'],
 
             ];
             $result = $this->dispositivo->store($datos);
@@ -75,6 +75,7 @@
         public function update()
         {
             $datos = [
+                'id_ingresar'             => $_REQUEST['id_ingresar'],
                 'id_tipo_identificacion'     => $_REQUEST['id_tipo_identificacion'],
                 'numero_identificacion'      => $_REQUEST['numero_identificacion'],
                 'id_tipo_dispositivos'       => $_REQUEST['id_tipo_dispositivos'],
@@ -82,8 +83,8 @@
                 'id_color'                   => $_REQUEST['id_color'],
                 'id_accesorios'              => $_REQUEST['id_accesorios'],
                 'serie'                      => $_REQUEST['serie'],
-                'fecha_entrada'              => $_REQUEST['fecha_entrada'],
-                'fecha_salida'               => $_REQUEST['fecha_salida'],
+                //'fecha_entrada'              => $_REQUEST['fecha_entrada'],
+               // 'fecha_salida'               => $_REQUEST['fecha_salida'],
             ];
             $result = $this->dispositivo->update($datos);
     
