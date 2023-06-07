@@ -6,6 +6,7 @@ require_once '../../models/VigilanteModel.php';
 $datos_vigilante = new VigilanteModel();
 $registro_vigilante = $datos_vigilante->getAll();
 
+
 ?>
 
 <!-- Begin Page Content -->
@@ -23,12 +24,8 @@ $registro_vigilante = $datos_vigilante->getAll();
                         <tr>
                             <th scope="col">Tipo de Identificación</th>
                             <th scope="col">Número de Identificación</th>
-                            <th scope="col">Primer Nombre</th>
-                            <th scope="col">Segundo Nombre</th>
-                            <th scope="col">Primer Apellido</th>
-                            <th scope="col">Segundo Apellido</th>
+                            <th scope="col">Nombre Completo</th>
                             <th scope="col">Teléfono:</th>                            
-                            <th scope="col">Rol:</th>
                             <th scope="col" colspan="3">Opciones</th>
                         </tr>
                     </thead>
@@ -41,14 +38,10 @@ $registro_vigilante = $datos_vigilante->getAll();
 
                         ?>
                                 <tr class="text-center">
-                                    <td><?= $row->getTipoIdentificacion() ?></td>
+                                    <td><?= $row->getPersona() ?></td>
                                     <td><?= $row->getNumeroIdentificacion() ?></td>
-                                    <td><?= $row->getPrimerNombre() ?></td>
-                                    <td><?= $row->getSegundoNombre() ?></td>
-                                    <td><?= $row->getPrimerApellido() ?></td>
-                                    <td><?= $row->getSegundoApellido() ?></td>                                    
+                                    <td><?= $row->getPrimerNombre() ?></td>                                    
                                     <td><?= $row->getTelefono() ?></td>
-                                    <td><?= $row->getRoles() ?></td>
 
                                     <td hfer="show.php">Guardar</td>
                                 </tr>
@@ -58,7 +51,7 @@ $registro_vigilante = $datos_vigilante->getAll();
                         } else {
                             ?>
                             <tr>
-                                <td colspan="10" class="text-center">No hay datos</td>
+                                <td colspan="9" class="text-center">No hay datos</td>
                             </tr>
                         <?php
                         }

@@ -5,34 +5,25 @@ require_once '../../models/tipoIdentificacionModel.php';
 require_once '../../models/RolesModel.php';
 require_once '../../models/SexoModel.php';
 require_once '../../models/PersonaModel.php';
+require_once '../../models/VigilanteModel.php';
+
+$datos_vigilante = new VigilanteModel();
+$registro_vigilante = $datos_vigilante->getId();
 
 $datos_identificacion = new TipoIdentificacionModel();
-$registro_identificacion = $datos_identificacion->getAll();
+$registro_identificacion = $datos_identificacion->getId();
 
 $datos_rol  = new RolesModel();
-$data  = $datos_rol->getAll();
+$data  = $datos_rol->getId();
 
 $datos_sexo = new SexoModel();
-$genero = $datos_sexo->getAll();
+$genero = $datos_sexo->getId();
 
 $data = new PersonaModel();
-$registro = $data->getAll();
+$registro = $data->getId();
 
-foreach ($registro as $persona) {
-
-    $id_persona            = $persona->getId();
-    $tipo_identificacion   = $persona->getTipoIdentificacion();
-    $numero_identificacion = $persona->getNumeroIdentificacion();
-    $primer_nombre         = $persona->getPrimerNombre();
-    $segundo_nombre        = $persona->getSegundoNombre();
-    $primer_apellido       = $persona->getPrimerApellido();
-    $segundo_apellido      = $persona->getSegundoApellido();
-    $email                 = $persona->getEmail();
-    $telefono              = $persona->getTelefono();
-    $direccion             = $persona->getDireccion();
-    $id_sexo               = $persona->getSexo();
-    $id_rol                = $persona->getRoles();
-}
+// var_dump($persona);
+// die();
 ?>
 
 <!-- Begin Page Content -->
@@ -52,11 +43,11 @@ foreach ($registro as $persona) {
                 <div class="mb-4 col-6">
                     <label for="tipo_identificacion" class="form-label">Tipo de Identificación:</label>
                     <select class="form-select" value="<?= $tipo_identificacion ?>" id="id_tipo_identificacion" name="id_tipo_identificacion" disabled>
-                        <?php
-                        foreach ($registro_identificacion  as $datos) {
-                            echo '<option value="' . $datos->getId() . '">' . $datos->getTipoIdentificacion() . '</option>';
-                        }
-                        ?>
+                        <?php foreach ($registro_identificacion  as $identificacion) : ?>
+                            
+                            <option value="<?= $identificacion->getId() ?>" <?= $identificacion->getId() == $persona->getTipoIdentificacion() ? 'selected' : "" ?>> <?= $identificacion->getTipoIdentificacion() ?></option>;                                
+                            
+                        <?php endforeach ?>
                     </select>
                 </div>
                 <div class="col-6 mb-4">

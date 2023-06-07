@@ -38,7 +38,7 @@ class VigilanteController
     public function store()
     {
         $datos = [            
-            // 'id_persona'      => $_REQUEST['d_persona'],
+            'id_persona'      => $_REQUEST['d_persona'],
             'pass'            => $_REQUEST['pass'],
             'inicio_contrato' => $_REQUEST['inicio_contrato'],
             'fin_contrato'    => $_REQUEST['fin_contrato'],
@@ -71,6 +71,7 @@ class VigilanteController
     {
         $datos = [
             'id_vigilante'       => $_REQUEST['id_vigilante'],
+            'id_persona'         => $_REQUEST['d_persona'],
             'pass'               => $_REQUEST['pass'],
             'inicio_contrato'    => $_REQUEST['inicio_contrato'],
             'fin_contrato'       => $_REQUEST['fin_contrato'],

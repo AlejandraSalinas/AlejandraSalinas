@@ -97,11 +97,11 @@ foreach ($registro as $persona) {
                 <div class="col-6 mb-2">
                     <label for="id_rol" class="form-label">Rol:</label>
                     <select class="form-select" value="<?= $id_rol ?>" id="id_rol" name="id_rol" disabled>
-                        <?php
-                        foreach ($data  as $datos) {
-                            echo '<option value="' . $datos->getId() . '">' . $datos->getRoles() . '</option>';
-                        }
-                        ?>
+                        <?php foreach ($data  as $datos) : ?>
+                            
+                            <option value="<?= $datos->getId() ?>" <?= $datos->getId() == $persona->getRoles() ? 'selected' : "" ?>> <?= $datos->getRoles() ?></option>;                                
+                            
+                        <?php endforeach ?>
                     </select>
                 </div>
                 <div class="row justify-content-center">
