@@ -71,8 +71,6 @@ class DispositivoModel
             $sql = 'SELECT *
             FROM dispositivos AS d
             JOIN personas AS p ON p.id_persona = d.id_persona
-            JOIN tipo_identificacion AS ti ON ti.id_tipo_identificacion = ti.tipo_identificacion
-
             JOIN tipo_dispositivos AS td ON d.id_tipo_dispositivo = td.id_tipo_dispositivo
             JOIN marcas AS m ON m.id_marca = m.id_marca
             JOIN color AS c ON c.id_color = c.id_color 
@@ -155,7 +153,7 @@ class DispositivoModel
     public function delete($id_dispositivo)
     {
         try {
-            $sql = 'DELETE FROM registro_dispositivos WHERE id_dispositivo = :id_dispositivo';
+            $sql = 'DELETE FROM dispositivos WHERE id_dispositivo = :id_dispositivo';
 
         $prepare = $this->db->conect()->prepare($sql);
         $query = $prepare->execute([

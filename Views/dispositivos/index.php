@@ -40,16 +40,25 @@
                         <td><?= $row->getColor() ?></td>
                         <td><?= $row->getAccesorios() ?></td>
                         <td><?= $row->getSerie() ?></td>
-                        <td><?= $row->fecha_entrada ?></td>
-                        <td><?= $row->fecha_salida ?></td>
-                        
+                        <td><?= $row->getEntrada() ?></td>
+                        <td><?= $row->getSalida() ?></td>
                         <td>
-                            <a class="btn btn-sm btn-outline-warning" href="../../controllers/dispositivosController.phpc=2&id=<?= $row->getId() ?>">Actualizar</a>
+                            <a class="btn btn-sm btn-outline-primary" href="show.php?id_dispositivo=<?= $row->getId() ?>">
+                                <i class="bi bi-eye-fill" style="font-size: 1.4rem;"></i>
+                            </a>
                         </td>
                         <td>
-                            <a class="btn btn-sm btn-outline-warning" href="../../controllers/dispositivosController.phpc=4&id=<?= $row->getId() ?>">Eliminar</a>
+                            <a class="btn btn-sm btn-outline-warning" href="../../controllers/dispositivosController.php?c=2&id_dispositivo=<?= $row->getId() ?>">
+                                <i class="bi bi-pencil-square" style="font-size: 1.4rem;"></i>
+                            </a>   
+                        </td>
+                        <td>
+                            <a class="btn btn-sm btn-outline-danger" href="../../controllers/dispositivosController.php?c=4&id_dispositivo=<?=$row->getId() ?>">
+                                <i class="bi bi-trash3-fill" style="font-size: 1.4rem;"></i>
+                            </a>
                             
                         </td>
+
                     </tr>
                     <?php
                         }
