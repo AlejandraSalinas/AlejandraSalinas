@@ -7,23 +7,43 @@ require_once '../../models/SexoModel.php';
 require_once '../../models/PersonaModel.php';
 require_once '../../models/VigilanteModel.php';
 
-$datos_vigilante = new VigilanteModel();
-$registro_vigilante = $datos_vigilante->getId();
 
 $datos_identificacion = new TipoIdentificacionModel();
-$registro_identificacion = $datos_identificacion->getId();
+$registro_identificacion = $datos_identificacion->getAll();
 
 $datos_rol  = new RolesModel();
-$data  = $datos_rol->getId();
+$data  = $datos_rol->getAll();
 
 $datos_sexo = new SexoModel();
-$genero = $datos_sexo->getId();
+$genero = $datos_sexo->getAll();
 
 $data = new PersonaModel();
 $registro = $data->getId();
 
-// var_dump($persona);
+$datos_vigilante = new VigilanteModel();
+$datas = $datos_vigilante->getId();
+
+// var_dump($datas);
 // die();
+
+foreach ($datas as $vigilante) {
+    $id_vigilante          = $vigilante->getId();
+    $tipo_identificacion   = $vigilante->getTipoIdentificacion();
+    $numero_identificacion = $vigilante->getNumeroIdentificacion();
+    $primer_nombre         = $vigilante->getPrimerNombre();
+    $segundo_nombre        = $vigilante->getSegundoNombre();
+    $primer_apellido       = $vigilante->getPrimerApellido();
+    $segundo_apellido      = $vigilante->getSegundoApellido();
+    $email                 = $vigilante->getEmail();
+    $telefono              = $vigilante->getTelefono();
+    $direccion             = $vigilante->getDireccion();
+    $id_sexo               = $vigilante->getSexo();
+    $id_rol                = $vigilante->getRoles();
+
+    // var_dump($tipo_identificacion);
+    // die();
+                    
+}
 ?>
 
 <!-- Begin Page Content -->
@@ -45,7 +65,7 @@ $registro = $data->getId();
                     <select class="form-select" value="<?= $tipo_identificacion ?>" id="id_tipo_identificacion" name="id_tipo_identificacion" disabled>
                         <?php foreach ($registro_identificacion  as $identificacion) : ?>
                             
-                            <option value="<?= $identificacion->getId() ?>" <?= $identificacion->getId() == $persona->getTipoIdentificacion() ? 'selected' : "" ?>> <?= $identificacion->getTipoIdentificacion() ?></option>;                                
+                            <option value="<?= $identificacion->getId() ?>" <?= $identificacion->getId() == $vigilante->getTipoIdentificacion() ? 'selected' : "" ?>> <?= $identificacion->getTipoIdentificacion() ?></option>;                                
                             
                         <?php endforeach ?>
                     </select>
@@ -100,31 +120,23 @@ $registro = $data->getId();
                 </div>
                 <div class="mb-4 col-6">
                     <label for="id_sexo" class="form-label">Sexo:</label>
-                    <select class="form-select" id="id_sexo" name="id_sexo" readonly>
+                    <select class="form-select" id="id_sexo" name="id_sexo" readonly disabled>
                         <?php
-
                         foreach ($genero  as $sexo) : ?>
-                            <?= var_dump($persona->getSexo()); ?>
 
-                            <option value="<?= $sexo->getId() ?>" <?= $sexo->getId() == $persona->getSexo() ? 'selected' : "" ?>> <?= $sexo->getSexo() ?></option>;
+                            <option value="<?= $sexo->getId() ?>" <?= $sexo->getId() == $vigilante->getSexo() ? 'selected' : "" ?>> <?= $sexo->getSexo() ?></option>;
 
                         <?php endforeach ?>
                     </select>
                 </div>
                 <div class="col-6 mb-2">
                     <label for="id_rol" class="form-label">Rol:</label>
-                    <select class="form-select" value="<?= $id_rol ?>" id="id_rol" name="id_rol" disabled>
-                        <?php
-                        foreach ($data  as $datos) {
-                            echo '<option value="' . $datos->getId() . '">' . $datos->getRoles() . '</option>';
-                        }
-                        ?>
-                    </select>
-                    <?php foreach ($data  as $datos) : ?>
+                    <select class="form-select" value="<?= $id_rol ?>" id="id_rol" name="id_rol" disabled>  
+                        <?php foreach ($data  as $datos) : ?>
 
-                        <option value="<?= $datos->getId() ?>" <?= $datos->getId() == $persona->getRoles() ? 'selected' : "" ?>> <?= $datos->getRoles() ?></option>;
+                            <option value="<?= $datos->getId() ?>" <?= $datos->getId() == $vigilante->getRoles() ? 'selected' : "" ?>> <?= $datos->getRoles() ?></option>;
 
-                    <?php endforeach ?>
+                        <?php endforeach ?>
                     </select>
                 </div>
                 <div class="row justify-content-center">

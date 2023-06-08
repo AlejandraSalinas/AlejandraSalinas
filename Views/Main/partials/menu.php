@@ -17,11 +17,11 @@
 
 <!-- Nav Item - Utilities Collapse Menu -->
 <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDispositivos" aria-expanded="true" aria-controls="collapseDispositivos">
         <i class="bi bi-pc-display" style="font-size: 1.4rem;"></i>
         <span>Dispositivos</span>
     </a>
-    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+    <div id="collapseDispositivos" class="collapse" aria-labelledby="headingDispositivos" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Opciones:</h6>
             <a class="collapse-item" href="<?php constant('URL') ?>../../Views/dispositivos/index.php">Ver</a>
@@ -31,11 +31,11 @@
 </li>
 <hr class="sidebar-divider">
 <li class="nav-item">
-    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseinformacionVigilante" aria-expanded="true" aria-controls="collapseinformacionVigilante">
         <i class="bi bi-person-gear" style="font-size: 1.4rem;"></i>
         <span>información Vigilante</span>
     </a>
-    <div id="collapsePages" class="collapse show" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+    <div id="collapseinformacionVigilante" class="collapse show" aria-labelledby="headinginformacionVigilante" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Opciones:</h6>
             <a class="collapse-item" href="<?php constant('URL') ?>../../Views/vigilante/index.php">Ver</a>

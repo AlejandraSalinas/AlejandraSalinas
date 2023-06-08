@@ -13,7 +13,7 @@ $datos_identificacion = new TipoIdentificacionModel();
 $registro_identificacion = $datos_identificacion->getAll();
 
 $datos_rol  = new RolesModel();
-$data  = $datos_rol->getAll();
+$registro_rol  = $datos_rol->getAll();
 
 $datos_sexo = new SexoModel();
 $genero = $datos_sexo->getAll();
@@ -46,8 +46,8 @@ foreach ($registro as $persona) {
                     <label for="id_tipo_identificacion" class="form-label">Tipo de Identificación:</label>
                     <select class="form-select" value="<?= $tipo_identificacion ?>" id="id_tipo_identificacion" name="id_tipo_identificacion" disabled>
                         <?php
-                        foreach ($registro_identificacion  as $datos) {
-                            echo '<option value="' . $datos->getId() . '">' . $datos->getTipoIdentificacion() . '</option>';
+                        foreach ($registro_identificacion  as $identificacion) {
+                            echo '<option value="' . $identificacion->getId() . '">' . $identificacion->getTipoIdentificacion() . '</option>';
                         }
                         ?>
                     </select>
@@ -97,9 +97,9 @@ foreach ($registro as $persona) {
                 <div class="col-6 mb-2">
                     <label for="id_rol" class="form-label">Rol:</label>
                     <select class="form-select" value="<?= $id_rol ?>" id="id_rol" name="id_rol" disabled>
-                        <?php foreach ($data  as $datos) : ?>
+                        <?php foreach ($registro_rol  as $rol) : ?>
                             
-                            <option value="<?= $datos->getId() ?>" <?= $datos->getId() == $persona->getRoles() ? 'selected' : "" ?>> <?= $datos->getRoles() ?></option>;                                
+                            <option value="<?= $rol->getId() ?>" <?= $rol->getId() == $persona->getRoles() ? 'selected' : "" ?>> <?= $rol->getRoles() ?></option>;                                
                             
                         <?php endforeach ?>
                     </select>

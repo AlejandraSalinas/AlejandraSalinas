@@ -5,6 +5,7 @@ require_once '../../models/TipoIdentificacionModel.php';
 
 $datos_identificacion = new TipoIdentificacionModel();
 $registro_identificacion = $datos_identificacion->getAll();
+
 ?>
 
 <!-- Begin Page Content -->
