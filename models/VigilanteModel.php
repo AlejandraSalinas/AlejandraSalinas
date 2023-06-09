@@ -4,7 +4,7 @@ require_once 'DataBaseModel.php';
 
 class VigilanteModel
 {
-    private $id_vigilante; 
+    private $id_vigilante;
     private $id_persona;
     private $tipo_identificacion;
     private $numero_identificacion;
@@ -17,6 +17,7 @@ class VigilanteModel
     private $direccion;
     private $sexo;
     private $rol;
+    private $pass;
     private $inicio_contrato;
     private $fin_contrato;
     private $estado;
@@ -36,7 +37,7 @@ class VigilanteModel
     {
         $datos_vigilante = [];
 
-        try { 
+        try {
             $sql  = 'SELECT id_vigilante, ti.nombre AS t_identificacion, numero_identificacion, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, 
             telefono, direccion, s.nombre AS sex_sexo, r.nombre AS ro_rol, inicio_contrato, fin_contrato, estado
             FROM info_vigilantes AS iv
@@ -114,12 +115,13 @@ class VigilanteModel
     {
         try {
 
-            $sql = 'INSERT INTO info_vigilantes(id_persona, inicio_contrato, fin_contrato, estado) 
-            VALUES(:id_persona, :inicio_contrato, :fin_contrato, :estado)';
+            $sql = 'INSERT INTO info_vigilantes(id_persona, pass,  inicio_contrato, fin_contrato, estado) 
+            VALUES(:id_persona, :pass, :inicio_contrato, :fin_contrato, :estado)';
 
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
                 'id_persona'      => $datos['id_persona'],
+                'pass'            => $datos['pass'],
                 'inicio_contrato' => $datos['inicio_contrato'],
                 'fin_contrato'    => $datos['fin_contrato'],
                 'estado'          => $datos['estado'],
@@ -299,6 +301,15 @@ class VigilanteModel
     public function setTelefono($telefono)
     {
         $this->telefono = $telefono;
+    }
+
+    public function getContraseña()
+    {
+        return $this->pass;
+    }
+    public function setContraseña($pass)
+    {
+        $this->pass = $pass;
     }
 
     public function getInicioContrato()

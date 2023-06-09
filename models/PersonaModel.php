@@ -190,24 +190,42 @@ class PersonaModel
         }
     }
 
+    public function getPersonasByRol($id_rol)
+    {
+        try {
+            $sql = "SELECT id_persona, CONCAT( primer_nombre, ' ', segundo_nombre, ' ', primer_apellido, ' ', segundo_apellido) AS nombre
+            FROM personas
+            WHERE id_rol = $id_rol";
+
+            $query  = $this->db->conect()->query($sql);
+
+            return $query->fetchAll();
+            
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
+
 
     // GETTER Y SETTER
     public function getTipoIdentificacion()
     {
         return $this->tipo_identificacion;
     }
+
     public function setTipoIdentificacion($tipo_identificacion)
     {
-        return $this->tipo_identificacion;
+        $this->tipo_identificacion = $tipo_identificacion;
     }
 
     public function getNumeroIdentificacion()
     {
         return $this->numero_identificacion;
     }
+
     public function setNumeroIdentificacion($numero_identificacion)
     {
-        return $this->numero_identificacion;
+        $this->numero_identificacion = $numero_identificacion;
     }
 
     public function getPrimerNombre()
@@ -216,7 +234,7 @@ class PersonaModel
     }
     public function setPrimerNombre($primer_nombre)
     {
-        return $this->primer_nombre;
+        $this->primer_nombre = $primer_nombre;
     }
 
     public function getSegundoNombre()
@@ -225,16 +243,16 @@ class PersonaModel
     }
     public function setSegundoNombre($segundo_nombre)
     {
-        return $this->segundo_nombre;
+        $this->segundo_nombre = $segundo_nombre;
     }
 
     public function getPrimerApellido()
     {
         return $this->primer_apellido;
     }
-    public function setPrimerApellido($segundo_apellido)
+    public function setPrimerApellido($primer_apellido)
     {
-        return $this->primer_apellido;
+        $this->primer_apellido = $primer_apellido;
     }
 
     public function getSegundoApellido()
@@ -243,7 +261,7 @@ class PersonaModel
     }
     public function setSegundoApellido($segundo_apellido)
     {
-        return $this->segundo_apellido;
+        $this->segundo_apellido = $segundo_apellido;
     }
 
     public function getEmail()
@@ -252,16 +270,7 @@ class PersonaModel
     }
     public function setEmail($email)
     {
-        return $this->email;
-    }
-
-    public function getTelefono()
-    {
-        return $this->telefono;
-    }
-    public function setTelefono($telefono)
-    {
-        return $this->telefono;
+        $this->email = $email;
     }
 
     public function getDireccion()
@@ -270,7 +279,7 @@ class PersonaModel
     }
     public function setDireccion($direccion)
     {
-        return $this->direccion;
+        $this->direccion = $direccion;
     }
 
     public function getSexo()
@@ -279,7 +288,7 @@ class PersonaModel
     }
     public function setSexo($sexo)
     {
-        return $this->sexo;
+        $this->sexo = $sexo;
     }
 
     public function getRoles()
@@ -288,6 +297,15 @@ class PersonaModel
     }
     public function setRoles($rol)
     {
-        return $this->rol;
+        $this->rol = $rol;
+    }
+
+    public function getTelefono()
+    {
+        return $this->telefono;
+    }
+    public function setTelefono($telefono)
+    {
+        $this->telefono = $telefono;
     }
 }

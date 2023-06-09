@@ -10,11 +10,14 @@ require_once '../../models/VigilanteModel.php';
 $datos_identificacion = new TipoIdentificacionModel();
 $registro_identificacion = $datos_identificacion->getAll();
 
-$datos_rol  = new RolesModel();
-$registro_rol  = $datos_rol->getAll();
+$datos_rol = new RolesModel();
+$registro_rol = $datos_rol->getAll();
 
 $datos_sexo = new SexoModel();
 $genero = $datos_sexo->getAll();
+
+// var_dump($genero);
+// die();
 
 $datos_vigilante = new VigilanteModel();
 $data = $datos_vigilante->getById($_REQUEST['id_vigilante']);
@@ -30,6 +33,9 @@ foreach ($data as $vigilante) {
     $email                 = $vigilante->getEmail();
     $telefono              = $vigilante->getTelefono();
     $direccion             = $vigilante->getDireccion();
+    $inicio_contrato       = $vigilante->getInicioContrato();
+    $fin_contrato          = $vigilante->getFinContrato();
+    $estado                = $vigilante->getEstado();
     $id_sexo               = $vigilante->getSexo();
     $id_rol                = $vigilante->getRoles();
     
@@ -88,25 +94,46 @@ foreach ($data as $vigilante) {
                     <label for="direccion" class="form-label">Dirección</label>
                     <input type="text" class="form-control" value="<?= $direccion ?>" id="direccion" name="direccion" disabled>
                 </div>
+                <div class="col-3 mb-4">
+                    <label for="inicio_contrato" class="form-label">Inicio de Contrato:</label>
+                    <input type="date" class="form-control" value="<?= $inicio_contrato?>" name="inicio_contrato" id="inicio_contrato" disabled>
+                </div>
+                <div class="col-3 mb-4">
+                    <label for="fin_contrato" class="form-label">Fin de Contrato:</label>
+                    <input type="date" class="form-control" value="<?= $fin_contrato?>" name="fin_contrato" id="fin_contrato" disabled>
+                </div>
+                <!-- <div class="col-3 mb-4">
+                    <label for="pass" class="form-label">Contraseña:</label>
+                    <input type="password" class="form-control" name="pass" id="pass">
+                </div> -->
+                <div class="col-6 mb-4">
+                    <label for="estado" class="form-label">Estado:</label>
+                    <select class="form-select" value="<?= $estado ?>" id="estado" name="estado" disabled>
+                        <?php foreach ($data  as $situacion) : ?>
+                            
+                            <option value="<?= $situacion->getId() ?>" <?= $situacion->getId() == $vigilante->getEstado() ? 'selected' : "" ?>> <?= $situacion->getEstado() ?></option>;                                
+                            
+                        <?php endforeach ?>
+                    </select>
+                </div>
                 <div class="mb-4 col-6">
                     <label for="id_sexo" class="form-label">Sexo</label>
                     <select class="form-select" value="<?= $id_sexo ?>" id="id_sexo" name="id_sexo" disabled>
                         <?php foreach ($genero  as $sexo) : ?>
-
-                            <option value="<?= $sexo->getId() ?>" <?= $sexo->getId() == $vigilante->getSexo() ? 'selected' : "" ?>> <?= $sexo->getSexo() ?></option>;
-
-                        <?php endforeach ?>
-                        
+                            
+                            <option value="<?= $sexo->getId() ?>" <?= $sexo->getId() == $vigilante->getSexo() ? 'selected' : "" ?>> <?= $sexo->getSexo() ?></option>;                                
+                            
+                        <?php endforeach ?>                       
                     </select>
                 </div>
                 <div class="col-6 mb-2">
                     <label for="id_rol" class="form-label">Rol</label>
                     <select class="form-select" value="<?= $id_rol ?>" id="id_rol" name="id_rol" disabled>
-                        <?php foreach ($registro_rol  as $rol) : ?>
+                    <?php foreach ($data as $datos) : ?>
 
-                            <option value="<?= $rol->getId() ?>" <?= $rol->getId() == $vigilante->getRoles() ? 'selected' : "" ?>> <?= $rol->getRoles() ?></option>;
+                        <option value="<?= $datos->getId() ?>" <?= $datos->getId() == $vigilante->getRoles() ? 'selected' :  "" ?>><?= $datos->getRoles() ?></option>
 
-                        <?php endforeach ?>
+                    <?php endforeach ?>
                     </select>
                 </div>
                 <div class="row justify-content-center">
