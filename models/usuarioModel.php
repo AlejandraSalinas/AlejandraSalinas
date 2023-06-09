@@ -2,9 +2,9 @@
 include_once dirname(__FILE__) . '../../Config/config.php';
 require_once 'dataBaseModel.php';
 
-class TipoIdentificacionModel
+class UsuarioModel
 {
-    private $id_tipo_identificacion;
+    private $id_persona;
     private $nombre;
     private $db;
 
@@ -15,29 +15,29 @@ class TipoIdentificacionModel
 
     public function getId()
     {
-        return $this->id_tipo_identificacion;
+        return $this->id_persona;
     }
 
-    public function getById($id_tipo_identificacion)
+    public function getById($id_persona)
     {
-        $datos_tipo_identificacion = [];
+        $datos_tipo_dispositivo = [];
 
         try {
-            $sql = "SELECT * FROM tipo_identificacion WHERE id_tipo_identificacion = :id_tipo_identificacion";
+            $sql = "SELECT * FROM tipo_dispositivos WHERE id_persona = :id_persona";
             $query  = $this->db->conect()->prepare($sql);
             $query->execute([
-                'id_tipo_identificacion' => $id_tipo_identificacion
+                'id_persona' => $id_persona
             ]);
 
             while ($row = $query->fetch()) {
-                $item                          = new TipoIdentificacionModel();
-                $item->id_tipo_identificacion  = $row['id_tipo_identificacion'];
+                $item                          = new UsuarioModel();
+                $item->id_persona  = $row['id_persona'];
                 $item->nombre                  = $row['nombre'];
 
-                array_push($datos_tipo_identificacion, $item);
+                array_push($datos_tipo_dispositivo, $item);
             }
 
-            return $datos_tipo_identificacion;
+            return $datos_tipo_dispositivo;
         } catch (PDOException $e) {
             die($e->getMessage());
         }
@@ -48,12 +48,12 @@ class TipoIdentificacionModel
         $identificacion = [];
 
         try {
-            $sql = 'SELECT * FROM tipo_identificacion ORDER BY id_tipo_identificacion ASC';
+            $sql = 'SELECT * FROM tipo_dispositivos ORDER BY id_persona ASC';
             $query  = $this->db->conect()->query($sql);
 
             while ($row = $query->fetch()) {
-                $datos                         = new TipoIdentificacionModel();
-                $datos->id_tipo_identificacion = $row['id_tipo_identificacion'];
+                $datos                         = new UsuarioModel();
+                $datos->id_persona = $row['id_persona'];
                 $datos->nombre                 = $row['nombre'];
 
                 array_push($identificacion, $datos);
@@ -69,7 +69,7 @@ class TipoIdentificacionModel
     {
         try {
 
-            $sql = 'INSERT INTO tipo_identificacion(nombre) VALUES(:nombre)';
+            $sql = 'INSERT INTO tipo_dispositivos(nombre) VALUES(:nombre)';
 
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
@@ -86,10 +86,10 @@ class TipoIdentificacionModel
     public function update($datos)
     {
         try {
-            $sql = 'UPDATE tipo_identificacion SET tipo_identificacion= :tipo_identificacion WHERE id_tipo_identificacion = :id_tipo_identificacion';
+            $sql = 'UPDATE tipo_dispositivos SET tipo_dispositivo= :tipo_dispositivo WHERE id_persona = :id_persona';
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
-                'id_tipo_identificacion' => $datos['id_tipo_identificacion'],
+                'id_persona' => $datos['id_persona'],
                 'nombre'     => $datos['nombre']
             ]);
 
@@ -101,13 +101,13 @@ class TipoIdentificacionModel
         }
     }
 
-    public function delete($id_tipo_identificacion)
+    public function delete($id_persona)
     {
         try {
-            $sql = 'DELETE FROM tipo_identificacion WHERE id_tipo_identificacion = :id_tipo_identificacion';
+            $sql = 'DELETE FROM tipo_dispositivos WHERE id_persona = :id_persona';
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
-                'id_tipo_identificacion' => $id_tipo_identificacion,
+                'id_persona' => $id_persona,
             ]);
             if ($query) {
                 return true;
@@ -115,15 +115,19 @@ class TipoIdentificacionModel
         } catch (PDOException $e) {
             die($e->getMessage());
         }
+    
     }
 
 
+
+    
+
     // GETTER Y SETTER
-    public function getTipoIdentificacion()
+    public function getTipoDispositivo()
     {
         return $this->nombre;
     }
-    public function setTipoIdentificacion($nombre)
+    public function setTipoDispositivo($nombre)
     {
         return $this->nombre;
     }

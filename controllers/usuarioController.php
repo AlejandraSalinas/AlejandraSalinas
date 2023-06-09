@@ -1,13 +1,13 @@
 <?php
-require_once  '../models/tipoIdentificacionModel.php.php';
+require_once  '../models/usuarioModel.php.php';
 
-$controllersDispositivo = new tipoIdentificacionController;
+$controllersDispositivo = new UsuarioController;
 
-class tipoIdentificacionController{
-    private $tipo_identificacion;
+class UsuarioController{
+    private $id_persona;
 
     public function __construct(){
-        $this->tipo_identificacion = new TipoIdentificacionModel();
+        $this->id_persona = new UsuarioModel();
 
         if (isset($_REQUEST['c'])) {
             switch ($_REQUEST['c']) {
@@ -31,7 +31,7 @@ class tipoIdentificacionController{
     }
     public function index()
     {
-        return $this->tipo_identificacion->getAll();
+        return $this->id_persona->getAll();
     }
     public function store()
     {
@@ -39,10 +39,10 @@ class tipoIdentificacionController{
             'nombre'   => $_REQUEST['nombre']
         ];
 
-        $result = $this->tipo_identificacion->store($datos);
+        $result = $this->id_persona->store($datos);
 
         if ($result) {
-            //header("Location: ../Views/tipoIdentificacion/index.php");
+            //header("Location: ../Views/tipoDispositivoC/index.php");
             exit();
         }
 
@@ -50,21 +50,21 @@ class tipoIdentificacionController{
     }
     public function show()
     {
-        $id_tipo_identificacion = $_REQUEST['id_tipo_identificacion'];
-        header("Location: ../Views/dispositivo/show.php?id_tipo_identificaion=" . $id_tipo_identificacion);
+        $id_id_persona = $_REQUEST['id_id_persona'];
+        header("Location: ../Views/dispositivos/show.php?id_id_persona=" . $id_id_persona);
     }
     public function delete()
     {
-        $this->tipo_identificacion->delete($_REQUEST['id_tipo_identificacion']);
+        $this->id_persona->delete($_REQUEST['id_id_persona']);
         //header("Location: ../Views/tipoIdentificaion/index.php");
     }
     public function update()
     {
         $datos = [
-            'id_tipo_identificaion' => $_REQUEST['id_tipo_identificaion'],
+            'id_id_persona' => $_REQUEST['id_id_persona'],
             'nombre' => $_REQUEST['nombre']
         ];
-        $result = $this->tipo_identificacion->update($datos);
+        $result = $this->id_persona->update($datos);
 
         if ($result) {
             echo json_encode(array('succes' => 1, 'nombre' => $datos['nombre']));

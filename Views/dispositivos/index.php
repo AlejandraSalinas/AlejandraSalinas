@@ -13,18 +13,31 @@
     <table class="table table-sm table-hover">
         <thead>
             <tr class="text-center">
+                <th scope="col" colspan="3">Informacion del Usuario</th>
+                <th scope="col" colspan="5">Dispositivo Registrado</th>
+                <th scope="col" colspan="2">Informacion del Usuario</th>
+                <th scope="col" colspan="3">Opciones</th>              
+            </tr>
+            <tr class="text-center">
                 <th scope="col">Tipo de Identificación</th>
                 <th scope="col">Número de Identificación</th>
+                <th scope="col">Nombre Completo</th>
+
                 <th scope="col">Tipo de Dispositivo</th>
-                <th scope="col">Marca de Dispositivo</th>
-                <th scope="col">Color del Dispositivo</th>
-                <th scope="col">Accesorios</th>
-                <th scope="col">Serie del Dispositivo</th>
+                <th scope="col">Marca</th>
+                <th scope="col">Color</th>
+                <th scope="col">Accesorio</th>
+                <th scope="col">Serie</th>
+
                 <th scope="col">Entrada</th>
                 <th scope="col">Salida</th>
 
                 
-                <th scope="col" colspan="3">Opciones</th>
+                <th scope="col">Actualizar</th>
+                <th scope="col">Ver</th>
+                <th scope="col">Eliminar</th>
+                
+                
             </tr>
         </thead>
         <tbody>
@@ -35,6 +48,7 @@
                     <tr class="text-center">
                         <td><?= $row->getTipoIdentificacion()?></td>
                         <td><?= $row->getNumeroIdentificacion()?></td>
+                        <td><?= $row->getNombreCompleto()?></td>
                         <td><?= $row->getTipoDispositivos() ?></td>
                         <td><?= $row->getMarca() ?></td>
                         <td><?= $row->getColor() ?></td>

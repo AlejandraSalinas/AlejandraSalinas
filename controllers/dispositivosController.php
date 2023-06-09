@@ -43,6 +43,7 @@ class DispositivoController
         $datos = [
             'id_tipo_identificacion'     => $_REQUEST['id_tipo_identificacion'],
             'numero_identificacion'      => $_REQUEST['numero_identificacion'],
+            'id_persona'         => $_REQUEST['id_persona'],
             'id_tipo_dispositivo'        => $_REQUEST['id_tipo_dispositivo'],
             'id_marca'                   => $_REQUEST['id_marca'],
             'id_color'                   => $_REQUEST['id_color'],
@@ -78,6 +79,7 @@ class DispositivoController
             'id_dispositivo'             => $_REQUEST['id_dispositivo'],
             'id_tipo_identificacion'     => $_REQUEST['id_tipo_identificacion'],
             'numero_identificacion'      => $_REQUEST['numero_identificacion'],
+            'id_persona'         => $_REQUEST['id_persona'],
             'id_tipo_dispositivos'       => $_REQUEST['id_tipo_dispositivos'],
             'id_marca'                   => $_REQUEST['id_marca'],
             'id_color'                   => $_REQUEST['id_color'],

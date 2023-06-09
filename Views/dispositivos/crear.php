@@ -1,23 +1,27 @@
 <?php
 require_once dirname(__FILE__) . '../../../config/config.php';
 require_once('../../Views/Main/partials/header.php');
-require_once('../../models/tipoIdentificacionModel.php');
+require_once('../../models/usuarioModel.php');
 require_once('../../models/tipoDispositivoModel.php');
 require_once('../../models/marcaDispositivoModel.php');
 require_once('../../models/colorDispositivoModel.php');
 require_once('../../models/accesoriosDispositivoModel.php');
 
-$datos_identificacion = new TipoIdentificacionModel();
-$registro_identificacion = $datos_identificacion->getAll();
+//$data = new DispositivoModel();
+//$registro = $data->getId();
 
-$datos_dispositivo = new TipoDispositivoModel();
-$registro_dispositivo = $datos_dispositivo->getAll();
+
+// $datos_usuario = new UsuarioModel();
+// $registro_usuario = $datos_usuario->getAll();
+
+//$datos_dispositivo = new TipoDispositivoModel();
+//$registro_dispositivo = $datos_dispositivo->getAll();
 
 $datos_marca = new MarcaDispositivoModel();
 $registro_marca = $datos_marca->getAll();
 
-$datos_color = new ColorDispositivoModel();
-$registro_color = $datos_color->getAll();
+ $datos_color = new ColorDispositivoModel();
+ $registro_color = $datos_color->getAll();
 
 $datos_accesorios = new AccesoriosDispositivoModel();
 $registro_accesorios = $datos_accesorios->getAll();
@@ -32,8 +36,8 @@ $registro_accesorios = $datos_accesorios->getAll();
         <div class="container">
             <div class="row">
                 <div class="col-12 mb-3">
-                    <label for="id_tipo_identificacion" class="form-label">Tipo de Identificación:</label>
-                    <select class="form-select" value="<?= $id_tipo_identificacion ?>" id="id_tipo_identificacion" name="id_tipo_identificacion" required="required">
+                    <label for="id_persona" class="form-label">Nombre Completo:</label>
+                    <select class="form-select" value="<?= $id_persona ?>" id="id_persona" name="id_persona" required="required">
                         <option selected>Seleccionar</option>
                         <?php
                         foreach ($usuarios  as $datos) {

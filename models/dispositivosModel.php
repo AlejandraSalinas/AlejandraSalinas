@@ -9,6 +9,7 @@ class DispositivoModel
     private $id_dispositivo;
     private $id_tipo_identificacion;
     private $numero_identificacion;
+    private $id_persona;
     private $id_tipo_dispositivo;
     private $id_marca;
     private $id_color;
@@ -43,10 +44,10 @@ class DispositivoModel
 
             while ($row = $query->fetch()) {
                 $item                                   = new DispositivoModel();
-                $item -> id_dispositivo       = $row['id_dispositivo'];
+                $item -> id_dispositivo                 = $row['id_dispositivo'];
                 $item -> id_tipo_identificacion         = $row['id_tipo_identificacion'];
                 $item -> numero_identificacion          = $row['numero_identificacion'];
-                $item -> id_tipo_dispositivo           = $row['id_tipo_dispositivo'];
+                $item -> id_tipo_dispositivo            = $row['id_tipo_dispositivo'];
                 $item -> id_marca                       = $row['id_marca'];
                 $item -> id_color                       = $row['id_color'];
                 $item -> id_accesorios                  = $row['id_accesorios'];
@@ -68,10 +69,12 @@ class DispositivoModel
         $items = [];
 
         try {
-            $sql = 'SELECT *
-            FROM dispositivos AS d
+            $sql = 'SELECT * id_dispositivo, ti.nombre AS id_tipo_identificacion, numero_identificacion, CONCAT( primer_nombre, " ", segundo_nombre, " ", primer_apellido, " ", segundo_apellido) AS nombre, 
+            td.nombre AS id_tipo_dispositivo, m.nombre AS id_marcas, c.nombre AS  id_color, a.nombre AS id_accesorios, serie
+            FROM dispositivos AS d, 
             JOIN personas AS p ON p.id_persona = d.id_persona
-            JOIN tipo_dispositivos AS td ON d.id_tipo_dispositivo = td.id_tipo_dispositivo
+            JOIN tipo_identificacion AS ti ON ti.tipo_identificacion = ti.id_tipo_identificacion
+            JOIN tipo_dispositivos AS td ON td.id_tipo_dispositivo = td.id_tipo_dispositivo
             JOIN marcas AS m ON m.id_marca = m.id_marca
             JOIN color AS c ON c.id_color = c.id_color 
             JOIN accesorios AS a ON a.id_accesorios = a.id_accesorios';
@@ -81,9 +84,10 @@ class DispositivoModel
 
             while ($row = $query->fetch()) {
                 $item                                   = new DispositivoModel();
-                $item -> id_dispositivo       = $row['id_dispositivo'];
+                $item -> id_dispositivo                 = $row['id_dispositivo'];
                 $item -> id_tipo_identificacion         = $row['id_tipo_identificacion'];
                 $item -> numero_identificacion          = $row['numero_identificacion'];
+                $item -> id_persona                       = $row['nombre'];
                 $item -> id_tipo_dispositivo           = $row['id_tipo_dispositivo'];
                 $item -> id_marca                       = $row['id_marca'];
                 $item -> id_color                       = $row['id_color'];
@@ -102,11 +106,13 @@ class DispositivoModel
     public function store($datos)
     {
         try {
-            $sql = 'INSERT INTO dispositivos(id_tipo_identificacion, numero_identificacion, id_tipo_dispositivo, id_marca, id_color, id_accesorios, serie, fecha_entrada, fecha_salida)
+            $sql = 'INSERT INTO dispositivos(id_persona, id_tipo_identificacion, numero_identificacion, id_tipo_dispositivo, id_marca, id_color, id_accesorios, serie, fecha_entrada, fecha_salida)
             VALUE(:id_tipo_identificacion, :numero_identificacion, :id_tipo_dispositivo, :id_marca, :id_color, :id_accesorios, :serie, fecha_entrada, fecha_salida)';
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
                 'id_dispositivo'       => $datos['id_dispositivo'],
+            'id_persona'                       => $datos['nombre'],
+
                 'id_tipo_identificacion'         => $datos['id_tipo_identificacion'],
                 'numero_identificacion '         => $datos['numero_identificacion'],
                 'id_tipo_dispositivo'           => $datos['id_tipo_dispositivo'],
@@ -128,8 +134,20 @@ class DispositivoModel
     public function update($datos)
     {
         try {
-            $sql = 'UPDATE id_tipo_identificacion = :id_tipo_identificacion,  numero_identificacion = :numero_identificacion, id_tipo_dispositivo = :id_tipo_dispositivo, id_marca = :id_marca, id_color = :id_color, id_accesorios = :id_accesorios, serie  = :serie  fecha_entrada = :fecha_entrada fecha_salida = :fecha_salida
-                WHERE id_dispositivo = :id_dispositivo';
+            $sql = 'UPDATE dispositivos SET 
+            
+            id_tipo_identificacion = :id_tipo_identificacion,
+            numero_identificacion = :numero_identificacion,
+            id_tipo_dispositivo = :id_tipo_dispositivo,
+            id_marca = :id_marca,
+            id_color = :id_color,
+            id_accesorios = :id_accesorios,
+            serie  = :serie 
+            fecha_entrada = :fecha_entrada
+            fecha_salida = :fecha_salida
+            
+            WHERE id_dispositivo = :id_dispositivo';
+            
             $prepare = $this->db->conect()->query($sql);
             $query = $prepare->execute([
                 'id_dispositivo'       => $datos['id_dispositivo'],
@@ -165,8 +183,24 @@ class DispositivoModel
     } catch (PDOException $e) {
         die($e->getMessage());
     }
-}
+    }
+
+    public function getNombreCompleto($id_persona)
+    {
+        try {
+            $sql = "SELECT id_persona, CONCAT( primer_nombre, ' ', segundo_nombre, ' ', primer_apellido, ' ', segundo_apellido) AS nombre
+            FROM personas
+            WHERE id_persona = $id_persona";
+            $query =  $this->db->conect()->prepare($sql);
+            return $query->fetchAll();
+        } catch (PDOException $e) {
+         die($e->getMessage());
+        }
+    }
     ///GET Y SET
+    
+
+    
     public function getTipoIdentificacion()
     {
         return $this->id_tipo_identificacion;

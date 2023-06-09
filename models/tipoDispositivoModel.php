@@ -20,7 +20,7 @@ class TipoDispositivoModel
 
     public function getById($id_tipo_dispositivo)
     {
-        $datos_tipo_dispositivo = [];
+        $datos_tipo_dispositivos = [];
 
         try {
             $sql = "SELECT * FROM tipo_dispositivos WHERE id_tipo_dispositivo = :id_tipo_dispositivo";
@@ -34,10 +34,10 @@ class TipoDispositivoModel
                 $item->id_tipo_dispositivo  = $row['id_tipo_dispositivo'];
                 $item->nombre                  = $row['nombre'];
 
-                array_push($datos_tipo_dispositivo, $item);
+                array_push($datos_tipo_dispositivos, $item);
             }
 
-            return $datos_tipo_dispositivo;
+            return $datos_tipo_dispositivos;
         } catch (PDOException $e) {
             die($e->getMessage());
         }
@@ -86,7 +86,7 @@ class TipoDispositivoModel
     public function update($datos)
     {
         try {
-            $sql = 'UPDATE tipo_dispositivos SET tipo_dispositivo= :tipo_dispositivo WHERE id_tipo_dispositivo = :id_tipo_dispositivo';
+            $sql = 'UPDATE tipo_dispositivos SET tipo_dispositivos= :tipo_dispositivos WHERE id_tipo_dispositivo = :id_tipo_dispositivo';
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
                 'id_tipo_dispositivo' => $datos['id_tipo_dispositivo'],
@@ -119,11 +119,11 @@ class TipoDispositivoModel
 
 
     // GETTER Y SETTER
-    public function getTipoDispositivo()
+    public function getTipoIdentificacion()
     {
         return $this->nombre;
     }
-    public function setTipoDispositivo($nombre)
+    public function setTipoIdentificacion($nombre)
     {
         return $this->nombre;
     }
