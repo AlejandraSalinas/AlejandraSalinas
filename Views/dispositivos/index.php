@@ -15,7 +15,7 @@
             <tr class="text-center">
                 <th scope="col" colspan="3">Informacion del Usuario</th>
                 <th scope="col" colspan="5">Dispositivo Registrado</th>
-                <th scope="col" colspan="2">Informacion del Usuario</th>
+                <th scope="col" colspan="2">------------------------</th>
                 <th scope="col" colspan="3">Opciones</th>              
             </tr>
             <tr class="text-center">
@@ -48,12 +48,14 @@
                     <tr class="text-center">
                         <td><?= $row->getTipoIdentificacion()?></td>
                         <td><?= $row->getNumeroIdentificacion()?></td>
-                        <td><?= $row->getNombreCompleto()?></td>
+                        <td><?= $row->getPersona() ?></td>
+
                         <td><?= $row->getTipoDispositivos() ?></td>
                         <td><?= $row->getMarca() ?></td>
                         <td><?= $row->getColor() ?></td>
                         <td><?= $row->getAccesorios() ?></td>
                         <td><?= $row->getSerie() ?></td>
+
                         <td><?= $row->getEntrada() ?></td>
                         <td><?= $row->getSalida() ?></td>
                         <td>

@@ -11,8 +11,9 @@
     $datos = new DispositivoModel();
     $datos_dipositivo = $datos->getById($_REQUEST['id_dispositivo']);
 
-    $datos_identificacion = new TipoIdentificacionModel();
-    $registro_identificacion = $datos_identificacion->getAll();
+// $datos_usuario = new UsuarioModel();
+// $registro_usuario = $datos_usuario->getAll();
+
 
     $datos_dispositivo = new TipoDispositivoModel();
     $registro_dispositivo = $datos_dispositivo->getAll();

@@ -123,12 +123,12 @@ class UsuarioModel
     
 
     // GETTER Y SETTER
-    public function getTipoDispositivo()
+ 
+    public function getPersona()
     {
-        return $this->nombre;
+        return $this->id_persona;
     }
-    public function setTipoDispositivo($nombre)
+    public function setPersona($id_persona)
     {
-        return $this->nombre;
-    }
-}
+        $this->id_persona = $id_persona;
+    }}

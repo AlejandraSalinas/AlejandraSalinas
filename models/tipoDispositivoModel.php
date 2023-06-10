@@ -56,10 +56,10 @@ class TipoDispositivoModel
                 $datos->id_tipo_dispositivo = $row['id_tipo_dispositivo'];
                 $datos->nombre                 = $row['nombre'];
 
-                array_push($identificacion, $datos);
+                array_push($dispositivo, $datos);
             }
 
-            return $identificacion;
+            return $dispositivo;
         } catch (PDOException $e) {
             die($e->getMessage());
         }

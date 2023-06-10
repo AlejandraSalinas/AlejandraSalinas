@@ -14,8 +14,8 @@ require_once('../../models/accesoriosDispositivoModel.php');
 // $datos_usuario = new UsuarioModel();
 // $registro_usuario = $datos_usuario->getAll();
 
-//$datos_dispositivo = new TipoDispositivoModel();
-//$registro_dispositivo = $datos_dispositivo->getAll();
+$datos_dispositivo = new TipoDispositivoModel();
+$registro_dispositivo = $datos_dispositivo->getAll();
 
 $datos_marca = new MarcaDispositivoModel();
 $registro_marca = $datos_marca->getAll();
@@ -36,16 +36,14 @@ $registro_accesorios = $datos_accesorios->getAll();
         <div class="container">
             <div class="row">
                 <div class="col-12 mb-3">
-                    <label for="id_persona" class="form-label">Nombre Completo:</label>
-                    <select class="form-select" value="<?= $id_persona ?>" id="id_persona" name="id_persona" required="required">
-                        <option selected>Seleccionar</option>
+                <label for="id_tipo_dispositivo" class="form_label">Tipo de Dispositivo</label>
+                    <select class="form-select" value="<?= $id_persona ?>" id="id_persona" name="id_persona">
                         <?php
-                        foreach ($usuarios  as $datos) {
-                            echo '<option value="' . $datos->getId() . '">' . $datos->getNombreCompleto() . '</option>';
+                        foreach ($registro_usuario  as $datos) {
+                            echo '<option value="' . $datos["id_persona"] . '">' . $datos["nombre"] . '</option>';
                         }
                         ?>
                     </select>
-                </div>
             </div>
             <div class="row">
                 <div class="col-6 mb-3">

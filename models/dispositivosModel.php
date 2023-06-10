@@ -185,7 +185,7 @@ class DispositivoModel
     }
     }
 
-    public function getNombreCompleto($id_persona)
+    public function getPersona($id_persona)
     {
         try {
             $sql = "SELECT id_persona, CONCAT( primer_nombre, ' ', segundo_nombre, ' ', primer_apellido, ' ', segundo_apellido) AS nombre
@@ -199,8 +199,12 @@ class DispositivoModel
     }
     ///GET Y SET
     
-
     
+    public function setPersona($id_persona)
+    {
+        $this->id_persona = $id_persona;
+    }
+  
     public function getTipoIdentificacion()
     {
         return $this->id_tipo_identificacion;
