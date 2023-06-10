@@ -36,7 +36,7 @@ foreach ($registro as $persona) {
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Ver usuarios</h1>
+    <h1 class="h3 mb-4 text-gray-800">Ver Usuarios</h1>
     <hr class="hr mb-5">
     <form method="post">
         <input type="hidden" name="id" value="<?= $id_persona ?>">
@@ -45,11 +45,11 @@ foreach ($registro as $persona) {
                 <div class="mb-4 col-6">
                     <label for="id_tipo_identificacion" class="form-label">Tipo de Identificación:</label>
                     <select class="form-select" value="<?= $tipo_identificacion ?>" id="id_tipo_identificacion" name="id_tipo_identificacion" disabled>
-                        <?php
-                        foreach ($registro_identificacion  as $identificacion) {
-                            echo '<option value="' . $identificacion->getId() . '">' . $identificacion->getTipoIdentificacion() . '</option>';
-                        }
-                        ?>
+                        <?php foreach ($registro_identificacion as $identificacion) : ?>
+
+                            <option value="<?= $identificacion->getId() ?>" <?= $identificacion->getId() == $persona->getTipoIdentificacion() ? 'selected' : "" ?>> <?= $identificacion->getTipoIdentificacion() ?></option>;
+
+                        <?php endforeach ?>
                     </select>
                 </div>
                 <div class="col-6 mb-4">
@@ -106,7 +106,7 @@ foreach ($registro as $persona) {
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-2">
-                        <a class="btn btn-outline-success" href="index.php">Regresar a vista</a>
+                        <a class="btn btn-outline-success" href="index.php">Regresar</a>
                     </div>
                 </div>
             </div>

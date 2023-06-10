@@ -48,7 +48,7 @@ $genero = $datos_sexo->getAll();
                 </div>
                 <div class="col-3 mb-4">
                     <label for="segundo_nombre" class="form-label">Segundo Nombre:</label>
-                    <input type="text" class="form-control" name="segundo_nombre" id="segundo_nombre">
+                    <input type="text" class="form-control" name="segundo_nombre"  id="segundo_nombre">
                 </div>
                 <div class="mb-4 col-3">
                     <label for="primer_apellido" class="form-label">Primer Apellido:</label>
@@ -114,5 +114,14 @@ $genero = $datos_sexo->getAll();
             telefono.value = telefono.value.slice(0, 10); // Corta el valor a los primeros diez dígitos
         }
     }
+    const inputs = document.querySelectorAll('#primer_nombre, #segundo_nombre, #primer_apellido, #segundo_apellido');
+
+    inputs.forEach(function(input) {
+    input.addEventListener('input', function(event) {
+      const value = input.value;
+      input.value = value.replace(/[0-9]/g, '').replace(/[^a-zA-Z]/g, '');
+    });
+  });
+
 </script>
 <?php require_once("../Main/partials/footer.php"); ?>

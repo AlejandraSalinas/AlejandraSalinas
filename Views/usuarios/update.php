@@ -44,44 +44,44 @@ foreach ($registro as $persona) {
                 <div class="mb-4 col-6">
                     <label for="id_tipo_identificacion" class="form-label">Tipo de Identificación:</label>
                     <select class="form-select" id="id_tipo_identificacion" name="id_tipo_identificacion" required="required">
-                        <?php foreach ($registro_identificacion as $datos) : ?>
+                        <?php foreach ($registro_identificacion as $identificacion) : ?>
 
-                            <option value="<?= $datos->getId() ?>" <?= $datos->getId() == $persona->getTipoIdentificacion() ? 'selected' :  "" ?>><?= $datos->getTipoIdentificacion() ?></option>
+                            <option value="<?= $identificacion->getId() ?>" <?= $identificacion->getId() == $persona->getTipoIdentificacion() ? 'selected' :  "" ?>><?= $identificacion->getTipoIdentificacion() ?></option>
 
                         <?php endforeach ?>
                     </select>
                 </div>
                 <div class="col-6 mb-4">
                     <label for="numero_identificacion" class="form-label">Número de Identificación:</label>
-                    <input type="number" class="form-control" id="numero_identificacion" name="numero_identificacion" value="<?= $numero_identificacion ?>">
+                    <input type="number" class="form-control" value="<?= $numero_identificacion ?>" id="numero_identificacion" name="numero_identificacion"  oninput="limitarDigitos(numero_identificacion)">
                 </div>
                 <div class="mb-4 col-6">
                     <label for="primer_nombre" class="form-label">Primer Nombre:</label>
-                    <input type="text" class="form-control" name="primer_nombre" id="primer_nombre" value="<?= $primer_nombre ?>">
+                    <input type="text" class="form-control" value="<?= $primer_nombre ?>" name="primer_nombre" id="primer_nombre" >
                 </div>
                 <div class="col-6 mb-4">
                     <label for="segundo_nombre" class="form-label">Segundo Nombre:</label>
-                    <input type="text" class="form-control" name="segundo_nombre" id="segundo_nombre" value="<?= $segundo_nombre ?>">
+                    <input type="text" class="form-control"  value="<?= $segundo_nombre ?>" name="segundo_nombre" id="segundo_nombre">
                 </div>
                 <div class="mb-4 col-6">
                     <label for="primer_apellido" class="form-label">Primer Apellido:</label>
-                    <input type="text" class="form-control" name="primer_apellido" id="primer_apellido" value="<?= $primer_apellido ?>">
+                    <input type="text" class="form-control" value="<?= $primer_apellido ?>" name="primer_apellido" id="primer_apellido" >
                 </div>
                 <div class="col-6 mb-4">
                     <label for="segundo_apellido" class="form-label">Segundo Apellido:</label>
-                    <input type="text" class="form-control" name="segundo_apellido" id="segundo_apellido" value="<?= $segundo_apellido ?>">
+                    <input type="text" class="form-control" value="<?= $segundo_apellido ?>" name="segundo_apellido" id="segundo_apellido">
                 </div>
                 <div class="mb-4 col-6">
                     <label for="email" class="form-label">Email:</label>
-                    <input type="email" class="form-control" name="email" id="email" value="<?= $email ?>">
+                    <input type="email" class="form-control" value="<?= $email ?>" name="email" id="email">
                 </div>
                 <div class="col-3 mb-4">
                     <label for="telefono" class="form-label">Teléfono:</label>
-                    <input type="number" class="form-control" value="<?= $telefono ?>" id="telefono" name="telefono">
+                    <input type="number" class="form-control" value="<?= $telefono ?>" id="telefono" name="telefono" oninput="limitarDigitos(telefono)">
                 </div>
                 <div class="col-3 mb-4">
                     <label for="direccion" class="form-label">Dirección:</label>
-                    <input type="text" class="form-control" id="direccion" name="direccion" value="<?= $direccion ?>">
+                    <input type="text" class="form-control" value="<?= $direccion ?>" id="direccion" name="direccion" >
                 </div>
                 <div class="mb-4 col-6">
                     <label for="id_sexo" class="form-label">Sexo:</label>
@@ -105,15 +105,25 @@ foreach ($registro as $persona) {
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-3 mb-2">
-                <button type="submit" href="index.php" class="btn btn-outline-primary">Guardar Usuario</button>
-                <!-- <a class="btn btn-outline-primary"  href="index.php">Guardar</a> -->
-
-                <a class="btn btn-outline-success" href="index.php">Regresar a Vista</a>
+            <div class="col-2 mb-4">
+                <button type="submit" href="index.php" class="btn btn-outline-primary">Guardar</button>
+                <a class="btn btn-outline-success" href="index.php">Regresar</a>
             </div>
         </div>
     </form>
 </div>
+<script>
+    function limitarDigitos(numero_identificacion) {
+        if (numero_identificacion.value.length > 10) {
+            numero_identificacion.value = numero_identificacion.value.slice(0, 10); // Corta el valor a los primeros diez dígitos
+        }
+    }
+    function limitarDigitos(telefono) {
+        if (telefono.value.length > 10) {
+            telefono.value = telefono.value.slice(0, 10); // Corta el valor a los primeros diez dígitos
+        }
+    }
+</script>
 <!-- /.container-fluid -->
 
 

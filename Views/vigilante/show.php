@@ -7,17 +7,8 @@ require_once '../../models/SexoModel.php';
 require_once '../../models/PersonaModel.php';
 require_once '../../models/VigilanteModel.php';
 
-$datos_identificacion = new TipoIdentificacionModel();
-$registro_identificacion = $datos_identificacion->getAll();
-
-$datos_rol = new RolesModel();
-$registro_rol = $datos_rol->getAll();
-
-$datos_sexo = new SexoModel();
-$genero = $datos_sexo->getAll();
-
-// var_dump($genero);
-// die();
+$datos = new PersonaModel();
+$registro = $datos->getAll();
 
 $datos_vigilante = new VigilanteModel();
 $data = $datos_vigilante->getById($_REQUEST['id_vigilante']);
@@ -53,13 +44,11 @@ foreach ($data as $vigilante) {
                 <div class="mb-4 col-6">
                     <label for="id_tipo_identificacion" class="form-label">Tipo de Identificación</label>
                     <select class="form-select" value="<?= $tipo_identificacion ?>" id="id_tipo_identificacion" name="id_tipo_identificacion" disabled>
-                        <?php foreach ($registro_identificacion as $identificacion) : ?>
+                        <?php foreach ($data as $identificacion) : ?>
 
                             <option value="<?= $identificacion->getId() ?>" <?= $identificacion->getId() == $vigilante->getTipoIdentificacion() ? 'selected' : "" ?>> <?= $identificacion->getTipoIdentificacion() ?></option>;
 
                         <?php endforeach ?>
-                        
-                       
                     </select>
                 </div>
                 <div class="col-6 mb-4">
@@ -102,16 +91,20 @@ foreach ($data as $vigilante) {
                     <label for="fin_contrato" class="form-label">Fin de Contrato:</label>
                     <input type="date" class="form-control" value="<?= $fin_contrato?>" name="fin_contrato" id="fin_contrato" disabled>
                 </div>
-                <!-- <div class="col-3 mb-4">
-                    <label for="pass" class="form-label">Contraseña:</label>
-                    <input type="password" class="form-control" name="pass" id="pass">
-                </div> -->
                 <div class="col-6 mb-4">
                     <label for="estado" class="form-label">Estado:</label>
                     <select class="form-select" value="<?= $estado ?>" id="estado" name="estado" disabled>
-                        <?php foreach ($data  as $situacion) : ?>
+                        <?php foreach ($data  as $estados) : 
                             
-                            <option value="<?= $situacion->getId() ?>" <?= $situacion->getId() == $vigilante->getEstado() ? 'selected' : "" ?>> <?= $situacion->getEstado() ?></option>;                                
+                            if($vigilante->getEstado() == 1){
+                                $dato = "Activo";
+                            } else {
+                                $dato = "Inactivo";
+                            }
+                        ?>
+
+                        <option value="1" <?= $estados->getId() == $vigilante->getEstado() ? 'selected' : "" ?>> <?= $dato ?></option>;
+                        <option value="0" <?= $estados->getId() == $vigilante->getEstado() ? 'selected' : "" ?>> <?= $dato ?></option>;
                             
                         <?php endforeach ?>
                     </select>
@@ -119,12 +112,11 @@ foreach ($data as $vigilante) {
                 <div class="mb-4 col-6">
                     <label for="id_sexo" class="form-label">Sexo</label>
                     <select class="form-select" value="<?= $id_sexo ?>" id="id_sexo" name="id_sexo" disabled>
-                        <?php foreach ($genero  as $sexo) : ?>
+                        <?php foreach ($data  as $sexo) : ?>
                             
                             <option value="<?= $sexo->getId() ?>" <?= $sexo->getId() == $vigilante->getSexo() ? 'selected' : "" ?>> <?= $sexo->getSexo() ?></option>;                                
-                            
                         <?php endforeach ?>                       
-                    </select>
+                    </select>                            
                 </div>
                 <div class="col-6 mb-2">
                     <label for="id_rol" class="form-label">Rol</label>
@@ -137,8 +129,8 @@ foreach ($data as $vigilante) {
                     </select>
                 </div>
                 <div class="row justify-content-center">
-                    <div class="col-2">
-                        <a class="btn btn-outline-success" href="index.php">Regresar a vista</a>
+                    <div class="col-1">
+                        <a class="btn btn-outline-success" href="index.php">Regresar</a>
                     </div>
                 </div>
             </div>

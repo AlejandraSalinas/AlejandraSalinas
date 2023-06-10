@@ -13,7 +13,7 @@ $registro = $data->getAll();
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Vista de usuarios</h1>
+    <h1 class="h3 mb-4 text-gray-800">Tabla de Usuarios</h1>
 
     <table class="table table-striped">
         <thead>
