@@ -9,8 +9,8 @@
     <div id="collapseUsuarios" class="collapse" aria-labelledby="headingUsuarios" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Opciones:</h6>
-            <a class="collapse-item" href="<?php constant('URL') ?>../../Views/usuarios/index.php">Ver</a>
             <a class="collapse-item" href="<?php constant('URL') ?>../../Views/usuarios/crear.php">Crear</a>
+            <a class="collapse-item" href="<?php constant('URL') ?>../../Views/usuarios/index.php">Ver</a>
         </div>
     </div>
 </li>
@@ -38,8 +38,8 @@
     <div id="collapseinformacionVigilante" class="collapse show" aria-labelledby="headinginformacionVigilante" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Opciones:</h6>
-            <a class="collapse-item" href="<?php constant('URL') ?>../../Views/vigilante/index.php">Ver</a>
             <a class="collapse-item" href="<?php constant('URL') ?>../../Views/vigilante/crear.php">Crear</a>
+            <a class="collapse-item" href="<?php constant('URL') ?>../../Views/vigilante/index.php">Ver</a>
         </div>
     </div>
 </li>

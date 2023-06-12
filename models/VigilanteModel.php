@@ -110,7 +110,7 @@ class VigilanteModel
             die($e->getMessage());
         }
     }
-
+    
     public function store($datos)
     {
         try {
@@ -140,8 +140,8 @@ class VigilanteModel
         try {
 
             $sql = 'UPDATE info_vigilantes SET 
-            id_persona = :id_persona,
-            tipo_identificacion = t_identificacion,
+            -- id_persona = :id_persona,
+           
             inicio_contrato = :inicio_contrato,
             fin_contrato = :fin_contrato,
             estado = :estado
@@ -150,18 +150,6 @@ class VigilanteModel
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
                 'id_vigilante'                => $datos['id_vigilante'],
-                'id_persona'                  => $datos['id_persona'],
-                'item->tipo_identificacion'   => $datos['t_identificacion'],
-                'item->numero_identificacion' => $datos['numero_identificacion'],
-                'item->primer_nombre'         => $datos['primer_nombre'],
-                'item->segundo_nombre'        => $datos['segundo_nombre'],
-                'item->primer_apellido'       => $datos['primer_apellido'],
-                'item->segundo_apellido'      => $datos['segundo_apellido'],
-                'item->telefono'              => $datos['telefono'],
-                'item->email'                 => $datos['email'],
-                'item->direccion'             => $datos['direccion'],
-                'item->sexo'                  => $datos['id_sexo'],
-                'item->rol'                   => $datos['id_rol'],
                 'inicio_contrato'             => $datos['inicio_contrato'],
                 'fin_contrato'                => $datos['fin_contrato'],
                 'estado'                      => $datos['estado'],
@@ -174,6 +162,7 @@ class VigilanteModel
             die($e->getMessage());
         }
     }
+   
     public function delete($id_vigilante)
     {
         try {

@@ -36,11 +36,11 @@ $vigilantes = $data->getPersonasByRol(4);
             <div class="row justify-content-center">
                 <div class="col-4 mb-4">
                     <label for="inicio_contrato" class="form-label">Inicio de Contrato:</label>
-                    <input type="date" class="form-control" name="inicio_contrato" id="inicio_contrato">
+                    <input type="date" class="form-control" name="inicio_contrato" id="inicio_contrato" max="2030-01-31" min="2023-01-01">
                 </div>
                 <div class="mb-4 col-4">
                     <label for="fin_contrato" class="form-label">Fin de Contrato:</label>
-                    <input type="date" class="form-control" name="fin_contrato" id="fin_contrato">
+                    <input type="date" class="form-control" name="fin_contrato" id="fin_contrato" max="2030-01-01" min="2023-01-01">
                 </div>
             </div>
             <div class="row justify-content-center">
@@ -51,6 +51,7 @@ $vigilantes = $data->getPersonasByRol(4);
                 <div class="mb-3 col-4">
                     <label for="estado" class="form-label">Estado:</label>
                     <select class="form-select" name="estado" id="estado">
+
                         <option selected>Seleccionar</option>
                         <option value="1">Activo</option>
                         <option value="0">Inactivo</option>

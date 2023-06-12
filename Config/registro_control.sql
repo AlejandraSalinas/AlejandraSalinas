@@ -61,6 +61,21 @@ CREATE TABLE IF NOT EXISTS `dispositivos` (
 
 -- La exportación de datos fue deseleccionada.
 
+-- Volcando estructura para tabla registro_control.info_vigilantes
+CREATE TABLE IF NOT EXISTS `info_vigilantes` (
+  `id_vigilante` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `id_persona` bigint unsigned NOT NULL,
+  `pass` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `inicio_contrato` date NOT NULL,
+  `fin_contrato` date NOT NULL,
+  `estado` tinyint DEFAULT '1' COMMENT '1 =activo, 0=inactivo',
+  PRIMARY KEY (`id_vigilante`) USING BTREE,
+  KEY `FK_vigilantes_personas` (`id_persona`),
+  CONSTRAINT `FK_vigilantes_personas` FOREIGN KEY (`id_persona`) REFERENCES `personas` (`id_persona`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
+
+-- La exportación de datos fue deseleccionada.
+
 -- Volcando estructura para tabla registro_control.ingresar
 CREATE TABLE IF NOT EXISTS `ingresar` (
   `id_ingresar` bigint unsigned NOT NULL AUTO_INCREMENT,
@@ -90,7 +105,8 @@ CREATE TABLE IF NOT EXISTS `marcas` (
 -- Volcando estructura para tabla registro_control.personas
 CREATE TABLE IF NOT EXISTS `personas` (
   `id_persona` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `numero_identificacion` varchar(45) NOT NULL,
+  `id_tipo_identificacion` bigint unsigned NOT NULL,
+  `numero_identificacion` varchar(10) NOT NULL,
   `primer_nombre` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `segundo_nombre` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `primer_apellido` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
@@ -98,9 +114,8 @@ CREATE TABLE IF NOT EXISTS `personas` (
   `telefono` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `email` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `direccion` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
-  `id_sexo` bigint unsigned NOT NULL DEFAULT '0' COMMENT '1 H, 2 M',
+  `id_sexo` bigint unsigned NOT NULL COMMENT '1 F, 2 M',
   `id_rol` bigint unsigned NOT NULL,
-  `id_tipo_identificacion` bigint unsigned NOT NULL,
   `foto` longtext,
   PRIMARY KEY (`id_persona`),
   KEY `FK_personas_roles` (`id_rol`),
@@ -109,7 +124,7 @@ CREATE TABLE IF NOT EXISTS `personas` (
   CONSTRAINT `FK_personas_roles` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id_rol`),
   CONSTRAINT `FK_personas_sexo` FOREIGN KEY (`id_sexo`) REFERENCES `sexo` (`id_sexo`),
   CONSTRAINT `FK_personas_tipo_identificacion` FOREIGN KEY (`id_tipo_identificacion`) REFERENCES `tipo_identificacion` (`id_tipo_identificacion`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb3;
 
 -- La exportación de datos fue deseleccionada.
 
@@ -140,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `roles` (
   `id_rol` bigint unsigned NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   PRIMARY KEY (`id_rol`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3;
 
 -- La exportación de datos fue deseleccionada.
 
@@ -157,9 +172,9 @@ CREATE TABLE IF NOT EXISTS `sedes` (
 -- Volcando estructura para tabla registro_control.sexo
 CREATE TABLE IF NOT EXISTS `sexo` (
   `id_sexo` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `nombre` tinyint unsigned NOT NULL DEFAULT '0' COMMENT '1 H, 2 M',
+  `nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '1 F, 2 M',
   PRIMARY KEY (`id_sexo`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- La exportación de datos fue deseleccionada.
 
@@ -191,7 +206,7 @@ CREATE TABLE IF NOT EXISTS `tipo_identificacion` (
   `id_tipo_identificacion` bigint unsigned NOT NULL AUTO_INCREMENT,
   `nombre` varchar(40) NOT NULL,
   PRIMARY KEY (`id_tipo_identificacion`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb3;
 
 -- La exportación de datos fue deseleccionada.
 
@@ -213,22 +228,7 @@ CREATE TABLE IF NOT EXISTS `turnos` (
   CONSTRAINT `FK_turnos_posiciones` FOREIGN KEY (`id_posicion`) REFERENCES `posiciones` (`id_posicion`),
   CONSTRAINT `FK_turnos_sedes` FOREIGN KEY (`id_sede`) REFERENCES `sedes` (`id_sede`),
   CONSTRAINT `FK_turnos_supervisores` FOREIGN KEY (`id_supervisor`) REFERENCES `supervisores` (`id_supervisor`),
-  CONSTRAINT `FK_turnos_vigilantes` FOREIGN KEY (`id_vigilante`) REFERENCES `vigilantes` (`id_vigilante`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
--- La exportación de datos fue deseleccionada.
-
--- Volcando estructura para tabla registro_control.vigilantes
-CREATE TABLE IF NOT EXISTS `vigilantes` (
-  `id_vigilante` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `id_persona` bigint unsigned NOT NULL,
-  `password` varchar(45) NOT NULL,
-  `inicio_contrato` date NOT NULL,
-  `fin_contrato` date NOT NULL,
-  `estado` tinyint DEFAULT '1' COMMENT '1 =activo, 0=inactivo',
-  PRIMARY KEY (`id_vigilante`) USING BTREE,
-  KEY `FK_vigilantes_personas` (`id_persona`),
-  CONSTRAINT `FK_vigilantes_personas` FOREIGN KEY (`id_persona`) REFERENCES `personas` (`id_persona`)
+  CONSTRAINT `FK_turnos_vigilantes` FOREIGN KEY (`id_vigilante`) REFERENCES `info_vigilantes` (`id_vigilante`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- La exportación de datos fue deseleccionada.

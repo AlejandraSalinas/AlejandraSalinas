@@ -25,9 +25,6 @@ class VigilanteController
                 case 4: //Eliminar vigilante 
                     self::delete();
                     break;
-                // case 5: //enviar vigilante a la tabla show
-                //     self::enviar();
-                //     break;
 
                 default:
                     self::index();
@@ -75,8 +72,6 @@ class VigilanteController
     {
         $datos = [
             'id_vigilante'       => $_REQUEST['id_vigilante'],
-            'id_persona'         => $_REQUEST['d_persona'],
-            'pass'               => $_REQUEST['pass'],
             'inicio_contrato'    => $_REQUEST['inicio_contrato'],
             'fin_contrato'       => $_REQUEST['fin_contrato'],
             'estado'             => $_REQUEST['estado']
@@ -93,23 +88,4 @@ class VigilanteController
 
         return $result;
     }
-    // public function enviar()
-    // {
-    //     $datos = [            
-    //         'id_persona'      => $_REQUEST['id_persona'],
-    //         'pass'            => $_REQUEST['pass'],
-    //         'inicio_contrato' => $_REQUEST['inicio_contrato'],
-    //         'fin_contrato'    => $_REQUEST['fin_contrato'],
-    //         'estado'          => $_REQUEST['estado']
-    //     ];
-
-    //     $result = $this->vigilante->store($datos);
-
-    //     if ($result) {
-    //         header("Location: ../Views/vigilante/show.php");
-    //         exit();
-    //     }
-
-    //     return $result;
-    // }
 }

@@ -44,7 +44,7 @@ $genero = $datos_sexo->getAll();
                 </div>
                 <div class="mb-4 col-3">
                     <label for="primer_nombre" class="form-label">Primer Nombre:</label>
-                    <input type="text" class="form-control" name="primer_nombre" id="primer_nombre" required>
+                    <input type="text" class="form-control" name="primer_nombre" id="primer_nombre"  required>
                 </div>
                 <div class="col-3 mb-4">
                     <label for="segundo_nombre" class="form-label">Segundo Nombre:</label>
