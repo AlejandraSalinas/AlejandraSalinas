@@ -15,8 +15,7 @@ class DispositivoModel
     private $id_color;
     private $id_accesorios;
     private $serie;
-    private $fecha_entrada;
-    private $fecha_salida;
+
     private $db;
 
     public function __construct()
@@ -52,8 +51,7 @@ class DispositivoModel
                 $item -> id_color                       = $row['id_color'];
                 $item -> id_accesorios                  = $row['id_accesorios'];
                 $item -> serie                          = $row['serie'];
-                //$item -> fecha_entrada                  = $row['fecha_entrada'];
-                //$item -> fecha_salida                   = $row['fecha_salida'];
+             
                 array_push($datos_dipositivo, $item);
             }
 
@@ -69,8 +67,8 @@ class DispositivoModel
         $items = [];
 
         try {
-            $sql = 'SELECT * id_dispositivo, ti.nombre AS id_tipo_identificacion, numero_identificacion, CONCAT( primer_nombre, " ", segundo_nombre, " ", primer_apellido, " ", segundo_apellido) AS nombre, 
-            td.nombre AS id_tipo_dispositivo, m.nombre AS id_marcas, c.nombre AS  id_color, a.nombre AS id_accesorios, serie
+            $sql = 'SELECT * id_dispositivo, ti.nombre AS id_tipo_identificacion, numero_identificacion, td.nombre AS id_tipo_dispositivo, m.nombre AS id_marcas, c.nombre AS  id_color,
+            a.nombre AS id_accesorios, serie
             FROM dispositivos AS d, 
             JOIN personas AS p ON p.id_persona = d.id_persona
             JOIN tipo_identificacion AS ti ON ti.tipo_identificacion = ti.id_tipo_identificacion
@@ -87,14 +85,13 @@ class DispositivoModel
                 $item -> id_dispositivo                 = $row['id_dispositivo'];
                 $item -> id_tipo_identificacion         = $row['id_tipo_identificacion'];
                 $item -> numero_identificacion          = $row['numero_identificacion'];
-                $item -> id_persona                       = $row['nombre'];
-                $item -> id_tipo_dispositivo           = $row['id_tipo_dispositivo'];
+                $item -> id_persona                     = $row['nombre'];
+                $item -> id_tipo_dispositivo            = $row['id_tipo_dispositivo'];
                 $item -> id_marca                       = $row['id_marca'];
                 $item -> id_color                       = $row['id_color'];
                 $item -> id_accesorios                  = $row['id_accesorios'];
                 $item -> serie                          = $row['serie'];
-                //$item -> fecha_entrada                  = $row['fecha_entrada'];
-                //$item -> fecha_salida                   = $row['fecha_salida'];
+          
                 array_push($items, $item);
             }
 
@@ -106,22 +103,19 @@ class DispositivoModel
     public function store($datos)
     {
         try {
-            $sql = 'INSERT INTO dispositivos(id_persona, id_tipo_identificacion, numero_identificacion, id_tipo_dispositivo, id_marca, id_color, id_accesorios, serie, fecha_entrada, fecha_salida)
-            VALUE(:id_tipo_identificacion, :numero_identificacion, :id_tipo_dispositivo, :id_marca, :id_color, :id_accesorios, :serie, fecha_entrada, fecha_salida)';
+            $sql = 'INSERT INTO dispositivos(id_persona, id_tipo_identificacion, numero_identificacion, id_tipo_dispositivo, id_marca, id_color, id_accesorios, serie)
+            VALUE(:id_tipo_identificacion, :numero_identificacion, :id_tipo_dispositivo, :id_marca, :id_color, :id_accesorios, :serie)';
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
-                'id_dispositivo'       => $datos['id_dispositivo'],
-            'id_persona'                       => $datos['nombre'],
-
+                'id_dispositivo'                 => $datos['id_dispositivo'],
+                'id_persona'                     => $datos['nombre'],
                 'id_tipo_identificacion'         => $datos['id_tipo_identificacion'],
                 'numero_identificacion '         => $datos['numero_identificacion'],
-                'id_tipo_dispositivo'           => $datos['id_tipo_dispositivo'],
+                'id_tipo_dispositivo'            => $datos['id_tipo_dispositivo'],
                 'id_marca'                       => $datos['id_marca'],
                 'id_color'                       => $datos['id_color'],
                 'id_accesorios'                  => $datos['id_accesorios'],
                 'serie'                          => $datos['serie'],
-                //'fecha_entrada'                  => $datos['fecha_entrada'],
-                //'fecha_salida'                   => $datos['fecha_salida'],
             ]); 
             if ($query) {
                 return true;
@@ -142,12 +136,9 @@ class DispositivoModel
             id_marca = :id_marca,
             id_color = :id_color,
             id_accesorios = :id_accesorios,
-            serie  = :serie 
-            fecha_entrada = :fecha_entrada
-            fecha_salida = :fecha_salida
-            
+            serie  = :serie             
             WHERE id_dispositivo = :id_dispositivo';
-            
+
             $prepare = $this->db->conect()->query($sql);
             $query = $prepare->execute([
                 'id_dispositivo'       => $datos['id_dispositivo'],
@@ -158,8 +149,7 @@ class DispositivoModel
                 'id_color'                       => $datos['id_color'],
                 'id_accesorios'                  => $datos['id_accesorios'],
                 'serie'                          => $datos['serie'],
-                'fecha_entrada'                  => $datos['fecha_entrada'],
-                'fecha_salida'                   => $datos['fecha_salida'],
+
             ]); 
             if ($query) {
                 return true;
@@ -211,7 +201,7 @@ class DispositivoModel
     }
     public function setTipoIdentificacion($id_tipo_identificacion)
     {
-        return $this->id_tipo_identificacion;
+        return $this->id_tipo_identificacion = $id_tipo_identificacion;
     }
 
     public function getNumeroIdentificacion()
@@ -220,7 +210,7 @@ class DispositivoModel
     }
     public function setNumeroIdentificacion($numero_identificacion)
     {
-        return $this->numero_identificacion;
+        return $this->numero_identificacion = $numero_identificacion;
     }
 
     public function getTipoDispositivos()
@@ -229,7 +219,7 @@ class DispositivoModel
     }
     public function setTipoDispositivos($id_tipo_dispositivo)
     {
-        return $this->id_tipo_dispositivo;
+        return $this->id_tipo_dispositivo = $id_tipo_dispositivo;
     }
 
     public function getMarca()
@@ -238,7 +228,7 @@ class DispositivoModel
     }
     public function setMarca($id_marca)
     {
-        return $this->id_marca;
+        return $this->id_marca = $id_marca;
     }
 
     public function getColor()
@@ -247,7 +237,7 @@ class DispositivoModel
     }
     public function setColor($id_color)
     {
-        return $this->id_color;
+        return $this->id_color = $id_color;
     }
 
     public function getAccesorios()
@@ -256,7 +246,7 @@ class DispositivoModel
     }
     public function setAccesorios($id_accesorios)
     {
-        return $this->id_accesorios;
+        return $this->id_accesorios = $id_accesorios;
     }
 
     public function getSerie()
@@ -265,26 +255,9 @@ class DispositivoModel
     }
     public function setSerie($serie)
     {
-        return $this->serie;
+        return $this->serie = $serie;
     }
 
-    public function getEntrada()
-    {
-        return $this->fecha_entrada;
-    }
-    public function setEntrada($fecha_entrada)
-    {
-        return $this->fecha_entrada;
-    }
-
-    public function getSalida()
-    {
-        return $this->fecha_salida;
-    }
-    public function setSalida($fecha_salida)
-    {
-        return $this->fecha_salida;
-    }
-        
+  
     
 }

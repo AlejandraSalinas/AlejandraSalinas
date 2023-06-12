@@ -24,7 +24,7 @@
                     <?php
                     include "../../models/dataBaseModel.php";
                     include "../../controllers/entradaSalidaController.php";
-                    include "../../controllers/dispositivosController.php";
+      
 
                     ?>
                     <p class="txtdni">Ingrese su número de identificación</p>

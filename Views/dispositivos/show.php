@@ -2,7 +2,7 @@
     require_once dirname(__FILE__) . '../../../config/config.php';
     require_once('../../Views/Main/partials/header.php');
     require_once('../../models/dispositivosModel.php');
-    require_once('../../models/tipoIdentificacionModel.php');
+    
     require_once('../../models/tipoDispositivoModel.php');
     require_once('../../models/marcaDispositivoModel.php');
     require_once('../../models/colorDispositivoModel.php');
@@ -29,8 +29,8 @@
 
     foreach( $registro as $dispositivo){
         $id_dispositivo   = $registro_dispositivos -> getId();
-        $id_dispositivo                = $id_dispositivo -> getId();
-        $id_tipo_identificacion     = $ingresar -> getTipoIdentificacion();
+        //$id_dispositivo                = $id_dispositivo -> getId();
+       // $id_tipo_identificacion     = $ingresar -> getTipoIdentificacion();
         $numero_identificacion      = $ingresar -> getNumeroIdentificacion();
         $id_tipo_dispositivos       = $ingresar -> getTipoDispositivos();
         $id_marca                   = $ingresar -> getMarca();
@@ -51,18 +51,14 @@
                     <select class="form-select" value="<?= $id_tipo_identificacion ?>" id="id_tipo_identificacion" name="id_tipo_identificacion" disabled>
                         <option selected>Seleccionar</option>
                         <?php
-                            foreach ($registro_identificacion  as $datos) {
-                                echo '<option value="' . $datos->getId() . '">' . $datos->getTipoIdentificacion() . '</option>';
-                            }
+                           // foreach ($registro_identificacion  as $datos) {
+                            //    echo '<option value="' . $datos->getId() . '">' . $datos->getTipoIdentificacion() . '</option>';
+                          //  }
                         ?>
                     </select>
                 </div>
 
-                <div class="col-6 mb-4">
-                    <label for="numero_identificacion" class="form_label">Número de Identificación</label>
-                    <input type="number" class="form-control" value="<?= $numero_identificacion ?>" id="numero_identificacion" name="numero_identificacion">
-                </div>
-
+               
                 <div class="mb-4 col-6">
                     <label for="id_tipo_dispositivos" class="form_label">Tipo de Dispositivo</label>
                     <select class="form-select" value="<?= $id_tipo_dispositivos ?>" id="id_tipo_dispositivos" name="id_tipo_dispositivos" disabled>
@@ -118,7 +114,6 @@
 
                 <div class="col-6 mb-4">
                     <button type="submit" class="btn btn-primary mb-3">Guardar</button>
-                    <button type="submit" href="../../Views/dispositivos/menuDispositivo.php" class="btn btn-primary mb-3">Menú Principal</button>
                 </div>
             </div>
         </div>

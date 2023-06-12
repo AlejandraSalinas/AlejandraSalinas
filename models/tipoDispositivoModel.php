@@ -20,7 +20,7 @@ class TipoDispositivoModel
 
     public function getById($id_tipo_dispositivo)
     {
-        $datos_tipo_dispositivos = [];
+        $datos_marca = [];
 
         try {
             $sql = "SELECT * FROM tipo_dispositivos WHERE id_tipo_dispositivo = :id_tipo_dispositivo";
@@ -31,13 +31,13 @@ class TipoDispositivoModel
 
             while ($row = $query->fetch()) {
                 $item                          = new TipoDispositivoModel();
-                $item->id_tipo_dispositivo  = $row['id_tipo_dispositivo'];
+                $item->$id_tipo_dispositivo  = $row['id_tipo_dispositivo'];
                 $item->nombre                  = $row['nombre'];
 
-                array_push($datos_tipo_dispositivos, $item);
+                array_push($datos_marca, $item);
             }
 
-            return $datos_tipo_dispositivos;
+            return $datos_marca;
         } catch (PDOException $e) {
             die($e->getMessage());
         }
@@ -56,10 +56,10 @@ class TipoDispositivoModel
                 $datos->id_tipo_dispositivo = $row['id_tipo_dispositivo'];
                 $datos->nombre                 = $row['nombre'];
 
-                array_push($dispositivo, $datos);
+                array_push($identificacion, $datos);
             }
 
-            return $dispositivo;
+            return $identificacion;
         } catch (PDOException $e) {
             die($e->getMessage());
         }
@@ -118,13 +118,14 @@ class TipoDispositivoModel
     }
 
 
+
     // GETTER Y SETTER
-    public function getTipoIdentificacion()
+    public function getTipoDispositivos()
     {
         return $this->nombre;
     }
-    public function setTipoIdentificacion($nombre)
+    public function setTipoDispositivos($id_tipo_dispositivo)
     {
-        return $this->nombre;
+        return $this->nombre =$id_tipo_dispositivo;
     }
 }

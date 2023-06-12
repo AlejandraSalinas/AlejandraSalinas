@@ -3,19 +3,18 @@
     include_once('../../Views/Main/partials/header.php');
     include_once('../../models/dispositivosModel.php');
     
-    $data = new DispositivoModel();
-    $registroDispositivo = $data->getAll();
+   // $data = new DispositivoModel();
+    //$registroDispositivo = $data->getAll();
 ?>
 <div class=container-fluis>
-    <h1>Registro de Dispositivo</h1>
-    <hr>
+
     <h3>Base de datos de los dispositivos registrados</h3>
     <table class="table table-sm table-hover">
         <thead>
             <tr class="text-center">
                 <th scope="col" colspan="3">Informacion del Usuario</th>
                 <th scope="col" colspan="5">Dispositivo Registrado</th>
-                <th scope="col" colspan="2">------------------------</th>
+                <th scope="col" colspan="2">Ingreso</th>
                 <th scope="col" colspan="3">Opciones</th>              
             </tr>
             <tr class="text-center">
@@ -42,8 +41,12 @@
         </thead>
         <tbody>
             <?php
-                if ($registroDispositivo) {
-                    foreach ($registroDispositivo as $row) {
+
+                        if ($registroDispositivo) {
+                            $pos = 1;
+            
+                            foreach ($registroDispositivo as $row) {
+
                  ?>
                     <tr class="text-center">
                         <td><?= $row->getTipoIdentificacion()?></td>
@@ -81,7 +84,7 @@
                 } else {
                     ?>
                     <tr class=" text-center">
-                        <td colspan="10">Sin datos</td>
+                        <td colspan="13">Sin datos</td>
                 </tr>
             <?php
                 }
