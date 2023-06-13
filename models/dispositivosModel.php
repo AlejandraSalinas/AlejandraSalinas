@@ -185,7 +185,7 @@ class DispositivoModel
             return $query->fetchAll();
         } catch (PDOException $e) {
          die($e->getMessage());
-        }
+ }
     }
     ///GET Y SET
     

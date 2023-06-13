@@ -49,8 +49,8 @@ class MarcaDispositivoModel
 
         try {
             $sql = 'SELECT * FROM marcas ORDER BY id_marca ASC';
-            $query  = $this->db->conect()->query($sql);
-
+            $query = $this->db->conect()->query($sql);
+            
             while ($row = $query->fetch()) {
                 $datos                         = new MarcaDispositivoModel();
                 $datos->id_marca = $row['id_marca'];

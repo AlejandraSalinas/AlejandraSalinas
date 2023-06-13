@@ -111,3 +111,11 @@ $registro_accesorios = $datos_accesorios->getAll();
 </div>
 
 <?php require_once('../Main/partials/footer.php'); ?>
+<script>
+
+    $(".persona").select2({
+     placeholder: "Seleccionar",
+     allowClear: true
+    });
+    
+</script>
