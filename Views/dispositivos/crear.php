@@ -118,4 +118,4 @@ $registro_accesorios = $datos_accesorios->getAll();
      allowClear: true
     });
     
-</script>
+</script>3
