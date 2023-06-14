@@ -67,7 +67,7 @@ class DispositivoModel
         $items = [];
 
         try {
-            $sql = 'SELECT id_dispositivo, td.nombre AS t_dispositivo, m.nombre AS marca, c.nombre AS c_color, a.nombre AS accesorio, serie
+            $sql = 'SELECT id_dispositivo, td.nombre AS id_tipo_dispositivo, m.nombre AS id_marca, c.nombre AS id_color, a.nombre AS id_accesorio, serie
             FROM dispositivos AS d
             JOIN personas AS p ON d.id_persona = p.id_persona
             JOIN tipo_dispositivos AS td ON td.id_tipo_dispositivo = td.id_tipo_dispositivo
@@ -82,10 +82,10 @@ class DispositivoModel
                 $item                                   = new DispositivoModel();
                 $item -> id_dispositivo                 = $row['id_dispositivo'];
                 // $item -> id_persona                     = $row['nombre'];
-                $item -> id_tipo_dispositivo            = $row['t_dispositivo'];
-                $item -> id_marca                       = $row['marca'];
-                $item -> id_color                       = $row['c_color'];
-                $item -> id_accesorios                  = $row['accesorio'];
+                $item -> id_tipo_dispositivo            = $row['id_tipo_dispositivo'];
+                $item -> id_marca                       = $row['id_marca'];
+                $item -> id_color                       = $row['id__color'];
+                $item -> id_accesorios                  = $row['id_accesorio'];
                 $item -> serie                          = $row['serie'];
           
                 array_push($items, $item);

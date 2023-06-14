@@ -155,13 +155,5 @@ class PersonaModel
         $this->id_persona = $id_persona;
     }
 
-    function getNombre()
-    {
-        return $this->nombre;
-    }
-
-    function setNombre($nombre)
-    {
-        return $this->nombre = $nombre;
-    }
+    
 }
