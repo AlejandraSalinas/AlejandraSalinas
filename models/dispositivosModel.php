@@ -67,14 +67,12 @@ class DispositivoModel
         $items = [];
 
         try {
-            $sql = 'SELECT * id_dispositivo, ti.nombre AS id_tipo_identificacion, numero_identificacion, td.nombre AS id_tipo_dispositivo, m.nombre AS id_marcas, c.nombre AS  id_color,
-            a.nombre AS id_accesorios, serie
-            FROM dispositivos AS d, 
-            JOIN personas AS p ON p.id_persona = d.id_persona
-            JOIN tipo_identificacion AS ti ON ti.tipo_identificacion = ti.id_tipo_identificacion
+            $sql = 'SELECT id_dispositivo, td.nombre AS t_dispositivo, m.nombre AS marca, c.nombre AS c_color, a.nombre AS accesorio, serie
+            FROM dispositivos AS d
+            JOIN personas AS p ON d.id_persona = p.id_persona
             JOIN tipo_dispositivos AS td ON td.id_tipo_dispositivo = td.id_tipo_dispositivo
             JOIN marcas AS m ON m.id_marca = m.id_marca
-            JOIN color AS c ON c.id_color = c.id_color 
+            JOIN color AS c ON c.id_color = c.id_color
             JOIN accesorios AS a ON a.id_accesorios = a.id_accesorios';
             
      
@@ -83,13 +81,11 @@ class DispositivoModel
             while ($row = $query->fetch()) {
                 $item                                   = new DispositivoModel();
                 $item -> id_dispositivo                 = $row['id_dispositivo'];
-                $item -> id_tipo_identificacion         = $row['id_tipo_identificacion'];
-                $item -> numero_identificacion          = $row['numero_identificacion'];
-                $item -> id_persona                     = $row['nombre'];
-                $item -> id_tipo_dispositivo            = $row['id_tipo_dispositivo'];
-                $item -> id_marca                       = $row['id_marca'];
-                $item -> id_color                       = $row['id_color'];
-                $item -> id_accesorios                  = $row['id_accesorios'];
+                // $item -> id_persona                     = $row['nombre'];
+                $item -> id_tipo_dispositivo            = $row['t_dispositivo'];
+                $item -> id_marca                       = $row['marca'];
+                $item -> id_color                       = $row['c_color'];
+                $item -> id_accesorios                  = $row['accesorio'];
                 $item -> serie                          = $row['serie'];
           
                 array_push($items, $item);
@@ -175,25 +171,29 @@ class DispositivoModel
     }
     }
 
-    public function getPersona($id_persona)
-    {
-        try {
-            $sql = "SELECT id_persona, CONCAT( primer_nombre, ' ', segundo_nombre, ' ', primer_apellido, ' ', segundo_apellido) AS nombre
-            FROM personas
-            WHERE id_persona = $id_persona";
-            $query =  $this->db->conect()->prepare($sql);
-            return $query->fetchAll();
-        } catch (PDOException $e) {
-         die($e->getMessage());
- }
-    }
-    ///GET Y SET
-    
-    
-    public function setPersona($id_persona)
-    {
-        $this->id_persona = $id_persona;
-    }
+    // function NombreCompleto()
+    // {
+    //     $array = [];
+
+    //     try {
+    //         $sql = 'SELECT id_persona, CONCAT( primer_nombre, " ", segundo_nombre, " ", primer_apellido, " ", segundo_apellido) AS tipo_identidifica 
+    //         FROM personas 
+    //         ORDER BY id_persona ASC';
+    //         $query  = $this->db->conect()->query($sql);
+
+    //         while ($row = $query->fetch()) {
+    //             $datos                         = new PersonaModel();
+    //             $datos->id_persona = $row['id_persona'];
+    //             $datos->nombre     = $row['tipo_identidifica'];
+
+    //             array_push($array, $datos);
+    //         }
+
+    //         return $array;
+    //     } catch (PDOException $e) {
+    //         die($e->getMessage());
+    //     }
+    // }
   
     public function getTipoIdentificacion()
     {

@@ -45,10 +45,12 @@ class AccesoriosDispositivoModel
 
     public function getAll()
     {
-        $identificacion = [];
+        $array = [];
 
         try {
-            $sql = 'SELECT * FROM accesorios ORDER BY id_accesorios ASC';
+            $sql = 'SELECT id_accesorios, nombre
+            FROM accesorios 
+            ORDER BY id_accesorios ASC';
             $query  = $this->db->conect()->query($sql);
 
             while ($row = $query->fetch()) {
@@ -56,10 +58,10 @@ class AccesoriosDispositivoModel
                 $datos->id_accesorios = $row['id_accesorios'];
                 $datos->nombre                 = $row['nombre'];
 
-                array_push($identificacion, $datos);
+                array_push($array, $datos);
             }
 
-            return $identificacion;
+            return $array;
         } catch (PDOException $e) {
             die($e->getMessage());
         }

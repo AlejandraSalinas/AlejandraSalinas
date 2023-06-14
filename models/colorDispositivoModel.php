@@ -20,7 +20,7 @@ class ColorDispositivoModel
 
     public function getById($id_color)
     {
-        $datos_color = [];
+        $array = [];
 
         try {
             $sql = "SELECT * FROM color WHERE id_color = :id_color";
@@ -34,10 +34,10 @@ class ColorDispositivoModel
                 $item->id_color  = $row['id_color'];
                 $item->nombre                  = $row['nombre'];
 
-                array_push($datos_color, $item);
+                array_push($array, $item);
             }
 
-            return $datos_color;
+            return $array;
         } catch (PDOException $e) {
             die($e->getMessage());
         }
@@ -48,7 +48,9 @@ class ColorDispositivoModel
         $identificacion = [];
 
         try {
-            $sql = 'SELECT * FROM color ORDER BY id_color ASC';
+            $sql = 'SELECT id_color, nombre
+            FROM color 
+            ORDER BY id_color ASC';
             $query  = $this->db->conect()->query($sql);
 
             while ($row = $query->fetch()) {

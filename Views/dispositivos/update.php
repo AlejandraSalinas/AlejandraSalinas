@@ -10,21 +10,24 @@
     $datos = new DispositivoModel();
     $datos_dipositivo = $datos->getById($_REQUEST['id_dispositivo']);
 
-// $datos_usuario = new UsuarioModel();
+// $datos_usuario = new PersonaModel();
 // $registro_usuario = $datos_usuario->getAll();
 
 
-    $datos_dispositivo = new TipoDispositivoModel();
-    $registro_dispositivo = $datos_dispositivo->getAll();
+$personas_model = new PersonaModel();
+$personas = $personas_model->NombreCompleto();
 
-    $datos_marca = new MarcaDispositivoModel();
-    $registro_marca = $datos_marca->getAll();
+$datos_dispositivo = new TipoDispositivoModel();
+$dispositivos = $datos_dispositivo->getAll();
 
-    $datos_color = new ColorDispositivoModel();
-    $registro_color = $datos_color->getAll();
+$datos_marca = new MarcaDispositivoModel();
+$marca = $datos_marca->getAll();
 
-    $datos_accesorios = new AccesoriosDispositivoModel();
-    $registro_accesorios = $datos_accesorios->getAll();
+$datos_color = new ColorDispositivoModel();
+$color = $datos_color->getAll();
+
+$datos_accesorios = new AccesoriosDispositivoModel();
+$accesorios = $datos_accesorios->getAll();
 
     foreach( $registro as $dispositivo){
         $id_dispositivo                = $id_dispositivo -> getId();
@@ -46,20 +49,21 @@
     <input type="hidden" name="id" value="<?= $id_dispositivo ?>">
         <div class="container">
             <div class="row">
-                <div class="mb-4 col-6">
-                    <label for="id_tipo_identificacion" class="form-label">Tipo de Identificación:</label>
-                    <select class="form-select" id="id_tipo_identificacion" name="id_tipo_identificacion" require="required">
-                      <?php foreach ($registro_identificacion  as $datos) : ?>
-                        <option value="<?= $datos->getId() ?>" <?= $datos->getId() == $registro_dispositivos->getTipoIdentificacion() ? 'selected' : "" ?><?= $datos->getTipoIdentificacion()?>></option>
-                        <?php endforeach?>
+            <div class="col-12 mb-3">
+                    <label for="id_persona" class="form_label">Nombre Completo</label>
+                    <select class="form-select" value="<?= $id_persona ?>" id="id_persona" name="id_persona" disabled>
+                        <?php
+                        foreach ($personas  as $persona) {
+                            echo '<option value="' . $persona->getIdPersona() . '">' . $persona->getNombre() . '</option>';
+                        }
+                        ?>
                     </select>
-                </div>
 
 
                 <div class="mb-4 col-6">
                     <label for="id_tipo_dispositivos" class="form_label">Tipo de Dispositivo</label>
                     <select class="form-select" value="<?= $id_tipo_dispositivos ?>" id="id_tipo_dispositivos" name="id_tipo_dispositivos" require="required">
-                        <?php foreach ($registro_dispositivo  as $datos) : ?>
+                        <?php foreach ($dispositivos  as $dispositivo) : ?>
                         <option value="<?= $datos->getId() ?>" <?= $datos->getId() == $registro_dispositivos->getTipoDispositivos() ? 'selected' : "" ?><?= $datos->getTipoDispositivos()?>></option>
                         <?php endforeach?>
                     </select>

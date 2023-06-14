@@ -45,10 +45,12 @@ class TipoDispositivoModel
 
     public function getAll()
     {
-        $identificacion = [];
+        $array = [];
 
         try {
-            $sql = 'SELECT * FROM tipo_dispositivos ORDER BY id_tipo_dispositivo ASC';
+            $sql = 'SELECT id_tipo_dispositivo, nombre
+            FROM tipo_dispositivos 
+            ORDER BY id_tipo_dispositivo ASC';
             $query  = $this->db->conect()->query($sql);
 
             while ($row = $query->fetch()) {
@@ -56,10 +58,10 @@ class TipoDispositivoModel
                 $datos->id_tipo_dispositivo = $row['id_tipo_dispositivo'];
                 $datos->nombre                 = $row['nombre'];
 
-                array_push($identificacion, $datos);
+                array_push($array, $datos);
             }
 
-            return $identificacion;
+            return $array;
         } catch (PDOException $e) {
             die($e->getMessage());
         }
@@ -120,12 +122,12 @@ class TipoDispositivoModel
 
 
     // GETTER Y SETTER
-    public function getTipoDispositivos()
+    public function getTipoDispositivo()
     {
         return $this->nombre;
     }
-    public function setTipoDispositivos($id_tipo_dispositivo)
+    public function setTipoDispositivo($id_tipo_dispositivo)
     {
-        return $this->nombre =$id_tipo_dispositivo;
+        return $this->nombre = $id_tipo_dispositivo;
     }
 }

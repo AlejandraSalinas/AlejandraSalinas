@@ -20,7 +20,7 @@ class MarcaDispositivoModel
 
     public function getById($id_marca)
     {
-        $datos_marca = [];
+        $array = [];
 
         try {
             $sql = "SELECT * FROM marcas WHERE id_marca = :id_marca";
@@ -34,10 +34,10 @@ class MarcaDispositivoModel
                 $item->id_marca  = $row['id_marca'];
                 $item->nombre                  = $row['nombre'];
 
-                array_push($datos_marca, $item);
+                array_push($array, $item);
             }
 
-            return $datos_marca;
+            return $array;
         } catch (PDOException $e) {
             die($e->getMessage());
         }
@@ -48,8 +48,12 @@ class MarcaDispositivoModel
         $identificacion = [];
 
         try {
-            $sql = 'SELECT * FROM marcas ORDER BY id_marca ASC';
-            $query = $this->db->conect()->query($sql);
+            $sql = 'SELECT id_marca, nombre
+            FROM marcas 
+            ORDER BY id_marca ASC';
+            $query  = $this->db->conect()->query($sql);
+            
+            
             
             while ($row = $query->fetch()) {
                 $datos                         = new MarcaDispositivoModel();

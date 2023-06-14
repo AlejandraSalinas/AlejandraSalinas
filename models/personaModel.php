@@ -2,7 +2,7 @@
 include_once dirname(__FILE__) . '../../Config/config.php';
 require_once 'dataBaseModel.php';
 
-class UsuarioModel
+class PersonaModel
 {
     private $id_persona;
     private $nombre;
@@ -23,14 +23,14 @@ class UsuarioModel
         $datos_tipo_dispositivo = [];
 
         try {
-            $sql = "SELECT * FROM tipo_dispositivos WHERE id_persona = :id_persona";
+            $sql = "SELECT * FROM personas WHERE id_persona = :id_persona";
             $query  = $this->db->conect()->prepare($sql);
             $query->execute([
                 'id_persona' => $id_persona
             ]);
 
             while ($row = $query->fetch()) {
-                $item                          = new UsuarioModel();
+                $item                          = new PersonaModel();
                 $item->id_persona  = $row['id_persona'];
                 $item->nombre                  = $row['nombre'];
 
@@ -48,13 +48,15 @@ class UsuarioModel
         $identificacion = [];
 
         try {
-            $sql = 'SELECT * FROM tipo_dispositivos ORDER BY id_persona ASC';
+            $sql = 'SELECT * 
+            FROM personas 
+            ORDER BY id_persona ASC';
             $query  = $this->db->conect()->query($sql);
 
             while ($row = $query->fetch()) {
-                $datos                         = new UsuarioModel();
+                $datos                         = new PersonaModel();
                 $datos->id_persona = $row['id_persona'];
-                $datos->nombre                 = $row['nombre'];
+                $datos->nombre     = $row['nombre'];
 
                 array_push($identificacion, $datos);
             }
@@ -69,7 +71,7 @@ class UsuarioModel
     {
         try {
 
-            $sql = 'INSERT INTO tipo_dispositivos(nombre) VALUES(:nombre)';
+            $sql = 'INSERT INTO personas(nombre) VALUES(:nombre)';
 
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
@@ -86,7 +88,7 @@ class UsuarioModel
     public function update($datos)
     {
         try {
-            $sql = 'UPDATE tipo_dispositivos SET tipo_dispositivo= :tipo_dispositivo WHERE id_persona = :id_persona';
+            $sql = 'UPDATE personas SET tipo_dispositivo= :tipo_dispositivo WHERE id_persona = :id_persona';
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
                 'id_persona' => $datos['id_persona'],
@@ -104,7 +106,7 @@ class UsuarioModel
     public function delete($id_persona)
     {
         try {
-            $sql = 'DELETE FROM tipo_dispositivos WHERE id_persona = :id_persona';
+            $sql = 'DELETE FROM personas WHERE id_persona = :id_persona';
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
                 'id_persona' => $id_persona,
@@ -115,20 +117,51 @@ class UsuarioModel
         } catch (PDOException $e) {
             die($e->getMessage());
         }
-    
     }
 
+    function NombreCompleto()
+    {
+        $array = [];
 
+        try {
+            $sql = 'SELECT id_persona, CONCAT( primer_nombre, " ", segundo_nombre, " ", primer_apellido, " ", segundo_apellido) AS nombre_completo 
+            FROM personas 
+            ORDER BY id_persona ASC';
+            $query  = $this->db->conect()->query($sql);
 
-    
+            while ($row = $query->fetch()) {
+                $datos                         = new PersonaModel();
+                $datos->id_persona = $row['id_persona'];
+                $datos->nombre     = $row['nombre_completo'];
+
+                array_push($array, $datos);
+            }
+
+            return $array;
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
 
     // GETTER Y SETTER
- 
-    public function getPersona()
+
+    public function getIdPersona()
     {
         return $this->id_persona;
     }
-    public function setPersona($id_persona)
+
+    public function setIdPersona($id_persona)
     {
         $this->id_persona = $id_persona;
-    }}
+    }
+
+    function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    function setNombre($nombre)
+    {
+        return $this->nombre = $nombre;
+    }
+}

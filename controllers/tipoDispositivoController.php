@@ -4,10 +4,10 @@ require_once  '../models/tipoIdentificacionModel.php.php';
 $controllersDispositivo = new tipoDispositivoController;
 
 class tipoDispositivoController{
-    private $tipo_identificacion;
+    private $id_tipo_dispositivo;
 
     public function __construct(){
-        $this->tipo_identificacion = new TipoDispositivoModel();
+        $this->id_tipo_dispositivo = new TipoDispositivoModel();
 
         if (isset($_REQUEST['c'])) {
             switch ($_REQUEST['c']) {
@@ -31,7 +31,7 @@ class tipoDispositivoController{
     }
     public function index()
     {
-        return $this->tipo_identificacion->getAll();
+        return $this->id_tipo_dispositivo->getAll();
     }
     public function store()
     {
@@ -39,7 +39,7 @@ class tipoDispositivoController{
             'nombre'   => $_REQUEST['nombre']
         ];
 
-        $result = $this->tipo_identificacion->store($datos);
+        $result = $this->id_tipo_dispositivo->store($datos);
 
         if ($result) {
             //header("Location: ../Views/tipoIdentificacion/index.php");
@@ -50,12 +50,12 @@ class tipoDispositivoController{
     }
     public function show()
     {
-        $id_tipo_identificacion = $_REQUEST['id_tipo_identificacion'];
-        header("Location: ../Views/dispositivo/show.php?id_tipo_identificaion=" . $id_tipo_identificacion);
+        $id_id_tipo_dispositivo = $_REQUEST['id_id_tipo_dispositivo'];
+        header("Location: ../Views/dispositivo/show.php?id_tipo_identificaion=" . $id_id_tipo_dispositivo);
     }
     public function delete()
     {
-        $this->tipo_identificacion->delete($_REQUEST['id_tipo_identificacion']);
+        $this->id_tipo_dispositivo->delete($_REQUEST['id_id_tipo_dispositivo']);
         //header("Location: ../Views/tipoIdentificaion/index.php");
     }
     public function update()
@@ -64,7 +64,7 @@ class tipoDispositivoController{
             'id_tipo_identificaion' => $_REQUEST['id_tipo_identificaion'],
             'nombre' => $_REQUEST['nombre']
         ];
-        $result = $this->tipo_identificacion->update($datos);
+        $result = $this->id_tipo_dispositivo->update($datos);
 
         if ($result) {
             echo json_encode(array('succes' => 1, 'nombre' => $datos['nombre']));

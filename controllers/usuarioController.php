@@ -1,5 +1,5 @@
 <?php
-require_once  '../models/usuarioModel.php.php';
+require_once  '../models/PersonaModel.php.php';
 
 $controllersDispositivo = new UsuarioController;
 
@@ -7,7 +7,7 @@ class UsuarioController{
     private $id_persona;
 
     public function __construct(){
-        $this->id_persona = new UsuarioModel();
+        $this->id_persona = new PersonaModel();
 
         if (isset($_REQUEST['c'])) {
             switch ($_REQUEST['c']) {

@@ -28,7 +28,7 @@
 
                     ?>
                     <p class="txtdni">Ingrese su número de identificación</p>
-                    <form action="<?= constant('URL') ?>../../../../controllers/dispositivosController.php" method="POST">
+                    <form action="<?= constant('URL') ?>../../../../controllers/entradaSalidaController.php?c=1" method="POST">
                         <div class="col-6 mb-3">
                             <input type="number" placeholder="Número de identificación" class="form-control" id="numero_identificacion" name="numero_identificacion">
                         </div>
@@ -40,6 +40,10 @@
                 </div>
             </div>
         </div>
+    </body>
+
+    </html>
+</div>
         <script>
             setInterval(() => {
                 let fecha = new Date();
@@ -56,9 +60,5 @@
             })   
         </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
-    </body>
-
-    </html>
-</div>
 
 <?php require_once('../Main/partials/footer.php'); ?>
