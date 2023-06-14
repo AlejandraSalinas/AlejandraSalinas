@@ -9,14 +9,14 @@ require_once('../../models/colorDispositivoModel.php');
 require_once('../../models/accesoriosDispositivoModel.php');
 
 
-    $datos = new DispositivoModel();
-    $datos_dipositivo = $datos->getAll();
+$datos = new DispositivoModel();
+$registro = $datos->getById($_REQUEST['id_dispositivo']);
 
     // var_dump($datos);
     // die();
 
-    // $personas_model = new PersonaModel();
-    // $personas = $personas_model->NombreCompleto();
+    $personas_model = new PersonaModel();
+    $personas = $personas_model->NombreCompleto();
     
     $datos_dispositivo = new TipoDispositivoModel();
     $dispositivos = $datos_dispositivo->getAll();
@@ -34,7 +34,7 @@ foreach( $accesorios as $dispositivo){
     $id_dispositivo   = $dispositivo -> getId();
     // //$id_tipo_identificacion     = $ingresar -> getTipoIdentificacion();
     // //$numero_identificacion      = $ingresar -> getNumeroIdentificacion();
-    // $id_persona                 = $dispositivo -> getIdPersona();
+    $id_persona                 = $dispositivo -> getIdPersona();
     
     $id_tipo_dispositivos       = $dispositivo -> getTipoDispositivos();
     $id_marca                   = $dispositivo -> getMarca();
@@ -51,14 +51,14 @@ foreach( $accesorios as $dispositivo){
         <div class="container">
             <div class="row">
              <div class="col-12 mb-3">
-                    <label for="id_persona" class="form_label">Nombre Completo</label>
-                    <select class="form-select" value="<?= $id_persona ?>" id="id_persona" name="id_persona">
-                        <?php
-                        foreach ($personas  as $persona) {
-                            echo '<option value="' . $persona->getIdPersona() . '">' . $persona->getNombre() . '</option>';
-                        }
-                        ?>
+             <select class="form-select" value="<?= $personas ?>" id="id_personas" name="id_personas" disabled>
+                        <?php foreach ($personas as $persona) : ?>
+
+                            <option value="<?= $persona->getId() ?>" <?= $persona->getId() == $persona->getIdPersona() ? 'selected' : "" ?>> <?= $persona->getIdPersona() ?></option>;
+
+                        <?php endforeach ?>
                     </select>
+                </div>
                 </div>
                 <div class="row">
                     <div class="col-6 mb-3">
@@ -66,10 +66,9 @@ foreach( $accesorios as $dispositivo){
                         <select class="form-select" value="<?= $id_tipo_dispositivo ?>" id="id_tipo_dispositivo" name="id_tipo_dispositivo" disabled>
                             <option selected>Seleccionar</option>
                             <?php
-                            foreach ($dispositivos  as $dispositivo) {
-                                echo '<option value="' . $dispositivo->getId() . '">' . $dispositivo->getTipoDispositivo() . '</option>';
-                            }
-                            ?>
+                            foreach ($dispositivos  as $dispositivo) : ?>
+                                <option value="<?= $dispositivo->getId() ?>" <?= $dispositivo->getId() == $dispositivo->getTipoDispositivos() ? 'selected' : "" ?>> <?= $dispositivo->getTipoDispositivos() ?></option>;                                
+                            <?php endforeach ?>
                         </select>
                     </div>
                     <div class="col-6 mb-3 ">
@@ -77,10 +76,9 @@ foreach( $accesorios as $dispositivo){
                         <select class="form-select" value="<?= $id_marca ?>" id="id_marca" name="id_marca" disabled>
                             <option selected>Seleccionar</option>
                             <?php
-                            foreach ($marca  as $datos) {
-                                echo '<option value="' . $datos->getId() . '">' . $datos->getMarca() . '</option>';
-                            }
-                            ?>
+                            foreach ($marca  as $marca) : ?>
+                                <option value="<?= $marca->getId() ?>" <?= $marca->getId() == $marca->getMarca() ? 'selected' : "" ?>> <?= $marca->getMarca() ?></option>;                                
+                            <?php endforeach ?>
                         </select>
                     </div>
                 </div>
@@ -90,10 +88,9 @@ foreach( $accesorios as $dispositivo){
                         <select class="form-select" value="<?= $id_color ?>" id="id_color" name="id_color" disabled>
                             <option selected>Seleccionar</option>
                             <?php
-                            foreach ($color  as $datos) {
-                                echo '<option value="' . $datos->getId() . '">' . $datos->getColor() . '</option>';
-                            }
-                            ?>
+                            foreach ($color  as $color) : ?>
+                                <option value="<?= $color->getId() ?>" <?= $color->getId() == $color->getColor() ? 'selected' : "" ?>> <?= $color->getColor() ?></option>;                                
+                            <?php endforeach ?>
                         </select>
                     </div>
 
@@ -102,17 +99,16 @@ foreach( $accesorios as $dispositivo){
                         <select class="form-select" value="<?= $id_accesorios ?>" id="id_accesorios" name="id_accesorios" disabled>
                             <option selected>Seleccionar</option>
                             <?php
-                            foreach ($accesorios  as $datos) {
-                                echo '<option value="' . $datos->getId() . '">' . $datos->getAccesorios() . '</option>';
-                            }
-                            ?>
+                            foreach ($accesorios  as $accesorio) : ?>
+                                <option value="<?= $accesorio->getId() ?>" <?= $accesorio->getId() == $accesorio->getAccesorios() ? 'selected' : "" ?>> <?= $accesorio->getAccesorios() ?></option>;                                
+                            <?php endforeach ?>
                         </select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-6 mb-3">
                         <label for="serie" class="form_label">Serie</label>
-                        <input type="text" class="form-control" id="serie" name="serie" disabled>
+                        <input type="text" class="form-control" value="<?= $serie ?>" name="serie" id="serie" disabled>
                     </div>
                 </div>
                 <div class="row">
