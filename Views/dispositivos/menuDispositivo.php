@@ -40,10 +40,6 @@
                 </div>
             </div>
         </div>
-    </body>
-
-    </html>
-</div>
         <script>
             setInterval(() => {
                 let fecha = new Date();
@@ -51,14 +47,10 @@
                 document.getElementById("fecha").textContent = fechaHora;
             ), 1000};
         </script>
-        <script>
-            let numero_identificacion = document.getElementById(txtdni);
-            numero_identificacion.addEventListener("input", function() {
-                if (this.value.length > 8){
-                    this.value=this.value.slice()
-                }
-            })   
-        </script>
+    </body>
+
+    </html>
+</div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
 
 <?php require_once('../Main/partials/footer.php'); ?>

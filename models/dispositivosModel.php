@@ -7,14 +7,15 @@ require_once 'dataBaseModel.php';
 class DispositivoModel
 {
     private $id_dispositivo;
-    private $id_tipo_identificacion;
-    private $numero_identificacion;
+    // private $id_tipo_identificacion;
+    // private $numero_identificacion;
     private $id_persona;
     private $id_tipo_dispositivo;
     private $id_marca;
     private $id_color;
     private $id_accesorios;
     private $serie;
+
 
     private $db;
 
@@ -44,8 +45,8 @@ class DispositivoModel
             while ($row = $query->fetch()) {
                 $item                                   = new DispositivoModel();
                 $item -> id_dispositivo                 = $row['id_dispositivo'];
-                $item -> id_tipo_identificacion         = $row['id_tipo_identificacion'];
-                $item -> numero_identificacion          = $row['numero_identificacion'];
+                // $item -> id_tipo_identificacion         = $row['id_tipo_identificacion'];
+                // $item -> numero_identificacion          = $row['numero_identificacion'];
                 $item -> id_tipo_dispositivo            = $row['id_tipo_dispositivo'];
                 $item -> id_marca                       = $row['id_marca'];
                 $item -> id_color                       = $row['id_color'];
@@ -99,19 +100,22 @@ class DispositivoModel
     public function store($datos)
     {
         try {
-            $sql = 'INSERT INTO dispositivos(id_persona, id_tipo_identificacion, numero_identificacion, id_tipo_dispositivo, id_marca, id_color, id_accesorios, serie)
-            VALUE(:id_tipo_identificacion, :numero_identificacion, :id_tipo_dispositivo, :id_marca, :id_color, :id_accesorios, :serie)';
+            $sql = 'INSERT INTO dispositivos(id_persona, id_tipo_identificacion, numero_identificacion, id_tipo_dispositivo, id_marca, id_color, id_accesorios, serie, fecha_entrada, fecha_salida)
+            VALUE(:id_tipo_identificacion, :numero_identificacion, :id_tipo_dispositivo, :id_marca, :id_color, :id_accesorios, :serie, :fecha_entrada, :fecha_salida)';
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
                 'id_dispositivo'                 => $datos['id_dispositivo'],
                 'id_persona'                     => $datos['nombre'],
-                'id_tipo_identificacion'         => $datos['id_tipo_identificacion'],
-                'numero_identificacion '         => $datos['numero_identificacion'],
+                // 'id_tipo_identificacion'         => $datos['id_tipo_identificacion'],
+                // 'numero_identificacion '         => $datos['numero_identificacion'],
                 'id_tipo_dispositivo'            => $datos['id_tipo_dispositivo'],
                 'id_marca'                       => $datos['id_marca'],
                 'id_color'                       => $datos['id_color'],
                 'id_accesorios'                  => $datos['id_accesorios'],
-                'serie'                          => $datos['serie'],
+                'serie'                          => $datos['serie'],        
+                'fecha_entada'                   => $datos['fecha_entrada'],
+                'fecha_salida'                   => $datos['fecha_salida'],
+            
             ]); 
             if ($query) {
                 return true;
@@ -126,8 +130,8 @@ class DispositivoModel
         try {
             $sql = 'UPDATE dispositivos SET 
             
-            id_tipo_identificacion = :id_tipo_identificacion,
-            numero_identificacion = :numero_identificacion,
+            -- id_tipo_identificacion = :id_tipo_identificacion,
+            -- numero_identificacion = :numero_identificacion,
             id_tipo_dispositivo = :id_tipo_dispositivo,
             id_marca = :id_marca,
             id_color = :id_color,
@@ -195,23 +199,23 @@ class DispositivoModel
     //     }
     // }
   
-    public function getTipoIdentificacion()
-    {
-        return $this->id_tipo_identificacion;
-    }
-    public function setTipoIdentificacion($id_tipo_identificacion)
-    {
-        return $this->id_tipo_identificacion = $id_tipo_identificacion;
-    }
+    // public function getTipoIdentificacion()
+    // {
+    //     return $this->id_tipo_identificacion;
+    // }
+    // public function setTipoIdentificacion($id_tipo_identificacion)
+    // {
+    //     return $this->id_tipo_identificacion = $id_tipo_identificacion;
+    // }
 
-    public function getNumeroIdentificacion()
-    {
-        return $this->numero_identificacion;
-    }
-    public function setNumeroIdentificacion($numero_identificacion)
-    {
-        return $this->numero_identificacion = $numero_identificacion;
-    }
+    // public function getNumeroIdentificacion()
+    // {
+    //     return $this->numero_identificacion;
+    // }
+    // public function setNumeroIdentificacion($numero_identificacion)
+    // {
+    //     return $this->numero_identificacion = $numero_identificacion;
+    // }
 
     public function getTipoDispositivos()
     {
