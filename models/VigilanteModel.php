@@ -120,6 +120,7 @@ class VigilanteModel
 
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
+                
                 'id_persona'      => $datos['id_persona'],
                 'pass'            => $datos['pass'],
                 'inicio_contrato' => $datos['inicio_contrato'],

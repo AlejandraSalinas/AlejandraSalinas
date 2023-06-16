@@ -18,7 +18,7 @@ $vigilantes = $data->getPersonasByRol(4);
     <br>
     <br>
 
-    <form action="../../controllers/VigilanteController.php?c=1" method="post">
+    <form action="../../controllers/VigilanteController.php?c=1" id="crear_usuario" method="post">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="mb-4 col-8">

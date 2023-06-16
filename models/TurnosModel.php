@@ -2,10 +2,12 @@
 include_once dirname(__FILE__) . '../../Config/config.php';
 require_once 'DataBaseModel.php';
 
-class SexoModel
+class TurnosModel
 {
-    private $id_sexo;
-    private $nombre;
+    private $id_turno;
+    private $fecha;
+    private $hora_inicio;
+    private $hora_fin;
     private $db;
 
     public function __construct()
@@ -15,28 +17,31 @@ class SexoModel
 
     public function getId()
     {
-        return $this->id_sexo;
+        return $this->id_turno;
     }
 
-    public function getById($id_sexo)
+    public function getById($id_turno)
     {
-        $datos_sexo = [];
+        $datos_turno = [];
 
         try {
-            $sql = 'SELECT * FROM sexo WHERE id_sexo = :id_sexo';
+            $sql = 'SELECT * FROM turnos WHERE id_turno = :id_turno';
+            
             $query = $this->db->conect()->prepare($sql);
             $query->execute([
-                'id_sexo' => $id_sexo 
+                'id_turno' => $id_turno 
             ]);
 
             while ($row = $query->fetch()) {
-                $item          = new SexoModel();
-                $item->id_sexo = $row['id_sexo'];
-                $item->nombre  = $row['nombre'];
+                $item               = new TurnosModel();
+                $item->id_turno     = $row['id_turno'];
+                $item->fecha        = $row['fecha'];
+                $item->hora_inicio  = $row['hora_inicio'];
+                $item->hora_fin     = $row['hora_fin'];
 
-                array_push($datos_sexo, $item);
+                array_push($datos_turno, $item);
             }
-            return $datos_sexo;
+            return $datos_turno;
         } catch (PDOException $e) {
             die($e->getMessage());
         }
@@ -44,20 +49,24 @@ class SexoModel
 
     public function getAll()
     {
-        $sexo = [];
+        $turnos    = [];
 
         try {
-           $sql = 'SELECT * FROM sexo ORDER BY nombre ASC';
-           $query = $this->db->conect()->query($sql);
-           
-            while ($row = $query->fetch()) {
-                $datos      = new SexoModel();
-                $datos->id_sexo = $row['id_sexo'];
-                $datos->nombre  = $row['nombre'];
+           $sql = 'SELECT * FROM turnos 
+           ORDER BY fecha, hora_inicio, hora_fin ASC';
 
-                array_push($sexo, $datos);
+           $query = $this->db->conect()->query($sql);
+        
+            while ($row = $query->fetch()) {
+                $datos               = new TurnosModel();
+                $datos->id_turno     = $row['id_turno'];
+                $datos->fecha        = $row['fecha'];
+                $datos->hora_inicio  = $row['hora_inicio'];
+                $datos->hora_fin     = $row['hora_fin'];
+
+                array_push($turnos, $datos);
             }
-            return $sexo;
+            return $turnos;
         } catch (PDOException $e) {
             die($e->getMessage());
         }
@@ -65,10 +74,15 @@ class SexoModel
     public function store($datos)
     {
         try {
-            $sql = 'INSERT INTO sexo(nombre) VALUES (:nombre)';
+            $sql = 'INSERT INTO turnos(id_turno, fecha, hora_inicio, hora_fin) 
+            VALUES (:id_turno, :fecha, :hora_inicio, :hora_fin)';
+            
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
-                'nombre' => $datos['nombre'] 
+                'id_turno' => $datos['id_turno'],
+                'fecha' => $datos['fecha'], 
+                'hora_inicio' => $datos['hora_inicio'], 
+                'hora_fin' => $datos['hora_fin'] 
             ]);
             if ($query) {
                 return true;
@@ -110,12 +124,12 @@ class SexoModel
             die($e->getMessage());
         }
     }
-    public function getSexo()
-    {
-        return $this->nombre;
-    }
-    public function setSexo($nombre)
-    {
-         $this->nombre = $nombre;
-    }
+    // public function getSexo()
+    // {
+    //     $this->nombre;
+    // }
+    // public function setSexo($nombre)
+    // {
+    //     $this->nombre = $nombre;
+    // }
 }
