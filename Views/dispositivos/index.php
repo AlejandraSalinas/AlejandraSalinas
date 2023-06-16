@@ -3,8 +3,8 @@
     include_once('../../Views/Main/partials/header.php');
     include_once('../../models/dispositivosModel.php');
     
-   // $data = new DispositivoModel();
-    //$registroDispositivo = $data->getAll();
+   $data = new DispositivoModel();
+   $registroDispositivo = $data->getAll();
 ?>
 <div class=container-fluis>
 

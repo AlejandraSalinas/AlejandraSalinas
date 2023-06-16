@@ -129,6 +129,6 @@ class MarcaDispositivoModel
     }
     public function setMarca($nombre)
     {
-        return $this->nombre;
+        $this->nombre = $nombre;
     }
 }

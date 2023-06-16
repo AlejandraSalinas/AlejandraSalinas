@@ -36,12 +36,13 @@ $accesorios = $datos_accesorios->getAll();
             <div class="row">
                 <div class="col-12 mb-3">
                     <label for="id_persona" class="form_label">Nombre Completo</label>
-                    <select class="form-select" value="<?= $id_persona ?>" id="id_persona" name="id_persona">
-                        <?php
+                    <select class="form-select persona" aria-label="default select example" value="<?= $id_persona ?>" id="id_persona" name="id_persona">
+                    <?php    
                         foreach ($personas  as $persona) {
                             echo '<option value="' . $persona->getIdPersona() . '">' . $persona->getNombre() . '</option>';
+
                         }
-                        ?>
+                    ?>
                     </select>
                 </div>
                 <div class="row">
@@ -108,10 +109,10 @@ $accesorios = $datos_accesorios->getAll();
     </form>
 </div>
 
-<?php require_once('../Main/partials/footer.php'); ?>
 <script>
     $(".persona").select2({
         placeholder: "Seleccionar",
         allowClear: true
     });
-</script>3
+</script>
+    <?php require_once('../Main/partials/footer.php'); ?>

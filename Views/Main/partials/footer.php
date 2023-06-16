@@ -5,7 +5,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Tecnólogo en Análisis y Desarrollo de Sistemas de Información &copy; 2023</span>
+                        <span>SENA &copy; Registro y Control &copy; ADSI 2023</span>
                     </div>
                 </div>
             </footer>

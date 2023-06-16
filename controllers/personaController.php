@@ -1,9 +1,9 @@
 <?php
 require_once  '../models/PersonaModel.php.php';
 
-$controllersDispositivo = new UsuarioController;
+$controllersDispositivo = new PersonaController;
 
-class UsuarioController{
+class PersonaController{
     private $id_persona;
 
     public function __construct(){

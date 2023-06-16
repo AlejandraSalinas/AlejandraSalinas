@@ -127,6 +127,6 @@ class AccesoriosDispositivoModel
     }
     public function setAccesorios($nombre)
     {
-        return $this->nombre;
+        $this->nombre = $nombre ;
     }
 }

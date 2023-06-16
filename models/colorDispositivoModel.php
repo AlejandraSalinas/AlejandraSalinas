@@ -127,6 +127,6 @@ class ColorDispositivoModel
     }
     public function setColor($nombre)
     {
-        return $this->nombre;
+        $this->nombre = $nombre ;
     }
 }
