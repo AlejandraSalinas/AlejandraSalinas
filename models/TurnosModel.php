@@ -74,15 +74,15 @@ class TurnosModel
     public function store($datos)
     {
         try {
-            $sql = 'INSERT INTO turnos(id_turno, fecha, hora_inicio, hora_fin) 
-            VALUES (:id_turno, :fecha, :hora_inicio, :hora_fin)';
+            $sql = 'INSERT INTO turnos( fecha, hora_inicio, hora_fin) 
+            VALUES (:fecha, :hora_inicio, :hora_fin)';
             
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
-                'id_turno' => $datos['id_turno'],
-                'fecha' => $datos['fecha'], 
-                'hora_inicio' => $datos['hora_inicio'], 
-                'hora_fin' => $datos['hora_fin'] 
+                // 'id_turno'   => $datos['id_turno'],
+                'fecha'      => $datos['fecha'], 
+                'hora_inicio'=> $datos['hora_inicio'], 
+                'hora_fin'   => $datos['hora_fin'] 
             ]);
             if ($query) {
                 return true;
@@ -94,11 +94,16 @@ class TurnosModel
     public function update($datos)
     {
         try {
-            $sql = 'UPDATE sexo SET  nombre = :nombre WHERE id_sexo = :id_sexo';
+            $sql = 'UPDATE turnos SET  fecha = :fecha, hora_inicio = :hora_inicio, hora_fin = :hora_fin
+            WHERE id_sexo = :id_sexo';
+
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
-                'id_sexo'      => $datos['id_sexo'],
-                'nombre'       => $datos['nombre']
+                'id_turno'      => $datos['id_turno'],
+                'fecha'       => $datos['fecha'],
+                'hora_inicio'       => $datos['hora_inicio'],
+                'hora_fin'       => $datos['hora_fin']
+
             ]);
 
             if ($query) {
@@ -109,13 +114,13 @@ class TurnosModel
         }
     }
 
-    public function delete($id_sexo)
+    public function delete($id_turno)
     {
         try {
-            $sql = 'DELETE FROM sexo WHERE id_sexo = :id_sexo';
+            $sql = 'DELETE FROM turnos WHERE id_turno = :id_turno';
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
-                'id_sexo'  => $id_sexo
+                'id_turno'  => $id_turno
             ]);
             if ($query) {
                 return true;
@@ -124,12 +129,39 @@ class TurnosModel
             die($e->getMessage());
         }
     }
-    // public function getSexo()
-    // {
-    //     $this->nombre;
-    // }
-    // public function setSexo($nombre)
-    // {
-    //     $this->nombre = $nombre;
-    // }
+    public function getTurno()
+    {
+        $this->id_turno;
+    }
+    public function setTurno($id_turno)
+    {
+        $this->id_turno = $id_turno;
+    }
+
+    public function getFecha()
+    {
+        $this->fecha;
+    }
+    public function setFecha($fecha)
+    {
+        $this->fecha = $fecha;
+    }
+
+    public function getHoraInicio()
+    {
+        $this->hora_inicio;
+    }
+    public function setHoraInicio($hora_inicio)
+    {
+        $this->hora_inicio = $hora_inicio;
+    }
+
+    public function getHoraFin()
+    {
+        $this->hora_fin;
+    }
+    public function setHoraFin($hora_fin)
+    {
+        $this->hora_fin = $hora_fin;
+    }
 }
