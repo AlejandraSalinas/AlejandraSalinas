@@ -6,7 +6,7 @@ require_once 'dataBaseModel.php';
 
 class DispositivoModel
 {
-    private $id_dispositivo;
+    private $id_registro_dispositivos;
     private $id_persona;
     private $id_tipo_dispositivo;
     private $id_marca;
@@ -24,26 +24,26 @@ class DispositivoModel
 
     public function getId()
     {
-        return $this->id_dispositivo;
+        return $this->id_registro_dispositivos;
     }
 
-    public function getById($id_dispositivo)
+    public function getById($id_registro_dispositivos)
     {
         $datos_dipositivo = [];
 
         try {
 
-            $sql = "SELECT * FROM dispositivos WHERE id_dispositivo = $id_dispositivo";
+            $sql = "SELECT * FROM dispositivos WHERE id_registro_dispositivos = $id_registro_dispositivos";
             $query  = $this->db->conect()->query($sql);
             $query->execute([
-                'id_dispositivo'        => $id_dispositivo
+                'id_registro_dispositivos'        => $id_registro_dispositivos
             ]);
 
 
             while ($row = $query->fetch()) {
                 $item                                   = new DispositivoModel();
                 
-                $item->id_dispositivo                 = $row['id_dispositivo'];
+                $item->id_registro_dispositivos                 = $row['id_registro_dispositivos'];
                 $item->id_tipo_dispositivo            = $row['id_tipo_dispositivo'];
                 $item->id_marca                       = $row['id_marca'];
                 $item->id_color                       = $row['id_color'];
@@ -65,9 +65,9 @@ class DispositivoModel
         $items = [];
 
         try {
-            $sql = 'SELECT id_dispositivo, td.nombre AS id_tipo_dispositivo, m.nombre AS id_marca, c.nombre AS id_color, a.nombre AS id_accesorio, serie
+            $sql = 'SELECT id_registro_dispositivos, td.nombre AS id_tipo_dispositivo, m.nombre AS id_marca, c.nombre AS id_color, a.nombre AS id_accesorio, serie
             FROM dispositivos AS d
-            JOIN personas AS p ON d.id_persona = p.id_persona
+            JOIN personas AS p ON p.id_persona = p.id_persona
             JOIN tipo_dispositivos AS td ON td.id_tipo_dispositivo = td.id_tipo_dispositivo
             JOIN marcas AS m ON m.id_marca = m.id_marca
             JOIN color AS c ON c.id_color = c.id_color
@@ -78,7 +78,7 @@ class DispositivoModel
 
             while ($row = $query->fetch()) {
                 $item                                   = new DispositivoModel();
-                $item->id_dispositivo                 = $row['id_dispositivo'];
+                $item->id_registro_dispositivos                 = $row['id_registro_dispositivos'];
                 // $item -> id_persona                     = $row['id_persona'];
                 $item->id_tipo_dispositivo            = $row['id_tipo_dispositivo'];
                 $item->id_marca                       = $row['id_marca'];
@@ -128,11 +128,11 @@ class DispositivoModel
             id_color = :id_color,
             id_accesorios = :id_accesorios,
             serie  = :serie             
-            WHERE id_dispositivo = :id_dispositivo';
+            WHERE id_registro_dispositivos = :id_registro_dispositivos';
 
             $prepare = $this->db->conect()->query($sql);
             $query = $prepare->execute([
-                'id_dispositivo'       => $datos['id_dispositivo'],
+                'id_registro_dispositivos'       => $datos['id_registro_dispositivos'],
                 
                 'id_tipo_dispositivo'           => $datos['id_tipo_dispositivo'],
                 'id_marca'                       => $datos['id_marca'],
@@ -148,14 +148,14 @@ class DispositivoModel
             die($e->getMessage());
         }
     }
-    public function delete($id_dispositivo)
+    public function delete($id_registro_dispositivos)
     {
         try {
-            $sql = 'DELETE FROM dispositivos WHERE id_dispositivo = :id_dispositivo';
+            $sql = 'DELETE FROM dispositivos WHERE id_registro_dispositivos = :id_registro_dispositivos';
 
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
-                'id_dispositivo'        => $id_dispositivo
+                'id_registro_dispositivos'        => $id_registro_dispositivos
             ]);
             if ($query) {
                 return true;
