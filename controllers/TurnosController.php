@@ -40,10 +40,13 @@ class TurnosController
     {
         $datos = [            
             // 'id_turno'    => $_REQUEST['id_turno'],
-            'fecha'       => $_REQUEST['fecha'],
-            'hora_inicio' => $_REQUEST['hora_inicio'],
-            'hora_fin'    => $_REQUEST['hora_fin']
+            'fecha_inicial'  => $_REQUEST['fecha_inicial'],
+            'hora_inicial'   => $_REQUEST['hora_inicial'],
+            'fecha_final'    => $_REQUEST['fecha_final'],
+            'hora_final'     => $_REQUEST['hora_final'], 
         ];
+        // var_dump($_REQUEST);
+        // die();
 
         $result = $this->turnos->store($datos);
 
@@ -70,10 +73,10 @@ class TurnosController
     public function update()
     {
         $datos = [
-            'id_turno'     => $_REQUEST['id_turno'],
-            'fecha'         => $_REQUEST['fecha'],
-            'hora_inicio'   => $_REQUEST['hora_inicio'],
-            'hora_fin'      => $_REQUEST['hora_fin']
+            'fecha_inicial'  => $_REQUEST['fecha_inicial'],
+            'hora_inicial'   => $_REQUEST['hora_inicial'],
+            'fecha_final'    => $_REQUEST['fecha_final'],
+            'hora_final'     => $_REQUEST['hora_final'] 
         ];
 
         $result = $this->turnos->update($datos);
