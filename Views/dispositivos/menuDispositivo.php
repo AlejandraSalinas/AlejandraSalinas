@@ -40,13 +40,7 @@
                 </div>
             </div>
         </div>
-        <script>
-            setInterval(() => {
-                let fecha = new Date();
-                let fechaHora = fecha.toLocaleString();
-                document.getElementById("fecha").textContent = fechaHora;
-            ), 1000};
-        </script>
+        
     </body>
 
     </html>

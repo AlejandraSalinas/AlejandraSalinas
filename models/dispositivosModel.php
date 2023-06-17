@@ -42,6 +42,7 @@ class DispositivoModel
 
             while ($row = $query->fetch()) {
                 $item                                   = new DispositivoModel();
+                
                 $item->id_dispositivo                 = $row['id_dispositivo'];
                 $item->id_tipo_dispositivo            = $row['id_tipo_dispositivo'];
                 $item->id_marca                       = $row['id_marca'];
@@ -81,7 +82,7 @@ class DispositivoModel
                 // $item -> id_persona                     = $row['id_persona'];
                 $item->id_tipo_dispositivo            = $row['id_tipo_dispositivo'];
                 $item->id_marca                       = $row['id_marca'];
-                $item->id_color                       = $row['id__color'];
+                $item->id_color                       = $row['id_color'];
                 $item->id_accesorios                  = $row['id_accesorio'];
                 $item->serie                          = $row['serie'];
 
@@ -121,6 +122,7 @@ class DispositivoModel
     {
         try {
             $sql = 'UPDATE dispositivos SET 
+
             id_tipo_dispositivo = :id_tipo_dispositivo,
             id_marca = :id_marca,
             id_color = :id_color,
@@ -131,8 +133,7 @@ class DispositivoModel
             $prepare = $this->db->conect()->query($sql);
             $query = $prepare->execute([
                 'id_dispositivo'       => $datos['id_dispositivo'],
-                'numero_identificacion '         => $datos['numero_identificacion'],
-                'id_tipo_identificacion'         => $datos['id_tipo_identificacion'],
+                
                 'id_tipo_dispositivo'           => $datos['id_tipo_dispositivo'],
                 'id_marca'                       => $datos['id_marca'],
                 'id_color'                       => $datos['id_color'],

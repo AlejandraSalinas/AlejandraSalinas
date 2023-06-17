@@ -81,8 +81,8 @@ class DispositivoController
             'id_color'                   => $_REQUEST['id_color'],
             'id_accesorios'              => $_REQUEST['id_accesorios'],
             'serie'                      => $_REQUEST['serie'],
-            'fecha_entrada'              => $_REQUEST['fecha_entrada'],
-            'fecha_salida'              => $_REQUEST['fecha_salida'],
+            // 'fecha_entrada'              => $_REQUEST['fecha_entrada'],
+            // 'fecha_salida'              => $_REQUEST['fecha_salida'],
 
         ];
         $result = $this->dispositivo->update($datos);

@@ -9,33 +9,19 @@ require_once('../../models/colorDispositivoModel.php');
 require_once('../../models/accesoriosDispositivoModel.php');
 
 
-$datos = new DispositivoModel();
-$registro = $datos->getById($_REQUEST['id_dispositivo']);
-
+    $data = new DispositivoModel();
+   $registroDispositivo = $data->getAll('id_dispositivo');
     // var_dump($datos);
     // die();
 
     $personas_model = new PersonaModel();
     $personas = $personas_model->NombreCompleto();
-    
-    $datos_dispositivo = new TipoDispositivoModel();
-    $dispositivos = $datos_dispositivo->getAll();
-    
-    $datos_marca = new MarcaDispositivoModel();
-    $marca = $datos_marca->getAll();
-    
-    $datos_color = new ColorDispositivoModel();
-    $color = $datos_color->getAll();
-    
-    $datos_accesorios = new AccesoriosDispositivoModel();
-    $accesorios = $datos_accesorios->getAll();
 
-foreach( $accesorios as $dispositivo){
-    $id_dispositivo   = $dispositivo -> getId();
-    // //$id_tipo_identificacion     = $ingresar -> getTipoIdentificacion();
-    // //$numero_identificacion      = $ingresar -> getNumeroIdentificacion();
-    $id_persona                 = $dispositivo -> getIdPersona();
     
+foreach( $registroDispositivo as $dispositivo){
+    $id_dispositivo   = $dispositivo -> getId();
+    // //$id_tipo_identificacion     = $dispositivo -> getTipoIdentificacion();
+    // //$numero_identificacion      = $dispositivo -> getNumeroIdentificacion();
     $id_tipo_dispositivos       = $dispositivo -> getTipoDispositivos();
     $id_marca                   = $dispositivo -> getMarca();
     $id_color                   = $dispositivo -> getColor();
@@ -50,65 +36,69 @@ foreach( $accesorios as $dispositivo){
     <input type="hidden" name="id" value="<?= $id_dispositivo ?>">
         <div class="container">
             <div class="row">
-             <div class="col-12 mb-3">
-             <select class="form-select" value="<?= $personas ?>" id="id_personas" name="id_personas" disabled>
-                        <?php foreach ($personas as $persona) : ?>
-
-                            <option value="<?= $persona->getId() ?>" <?= $persona->getId() == $persona->getIdPersona() ? 'selected' : "" ?>> <?= $persona->getIdPersona() ?></option>;
-
-                        <?php endforeach ?>
+                <div class="col-12 mb-3">
+                    <label for="id_persona" class="form_label">Nombre Completo</label>
+                    <select class="form-select persona" aria-label="default select example" value="<?= $id_persona ?>" id="id_persona" name="id_persona">
+                    <?php    
+                        foreach ($personas  as $persona) {
+                            echo '<option value="' . $persona->getIdPersona() . '">' . $persona->getNombre() . '</option>';
+                        }
+                    ?>
                     </select>
-                </div>
                 </div>
                 <div class="row">
                     <div class="col-6 mb-3">
                         <label for="id_tipo_dispositivo" class="form_label">Tipo de Dispositivo</label>
-                        <select class="form-select" value="<?= $id_tipo_dispositivo ?>" id="id_tipo_dispositivo" name="id_tipo_dispositivo" disabled>
+                        <select class="form-select" value="<?= $id_tipo_dispositivo ?>" id="id_tipo_dispositivo" name="id_tipo_dispositivo" required="required">
                             <option selected>Seleccionar</option>
                             <?php
-                            foreach ($dispositivos  as $dispositivo) : ?>
-                                <option value="<?= $dispositivo->getId() ?>" <?= $dispositivo->getId() == $dispositivo->getTipoDispositivos() ? 'selected' : "" ?>> <?= $dispositivo->getTipoDispositivos() ?></option>;                                
-                            <?php endforeach ?>
+                            foreach ($dispositivos  as $dispositivo) {
+                                echo '<option value="' . $dispositivo->getId() . '">' . $dispositivo->getTipoDispositivo() . '</option>';
+                            }
+                            ?>
                         </select>
                     </div>
                     <div class="col-6 mb-3 ">
                         <label for="id_marca" class="form_label">Marca</label>
-                        <select class="form-select" value="<?= $id_marca ?>" id="id_marca" name="id_marca" disabled>
+                        <select class="form-select" value="<?= $id_marca ?>" id="id_marca" name="id_marca" required="required">
                             <option selected>Seleccionar</option>
                             <?php
-                            foreach ($marca  as $marca) : ?>
-                                <option value="<?= $marca->getId() ?>" <?= $marca->getId() == $marca->getMarca() ? 'selected' : "" ?>> <?= $marca->getMarca() ?></option>;                                
-                            <?php endforeach ?>
+                            foreach ($marca  as $datos) {
+                                echo '<option value="' . $datos->getId() . '">' . $datos->getMarca() . '</option>';
+                            }
+                            ?>
                         </select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="mb-3 col-6">
                         <label for="id_color" class="form_label">Color</label>
-                        <select class="form-select" value="<?= $id_color ?>" id="id_color" name="id_color" disabled>
+                        <select class="form-select" value="<?= $id_color ?>" id="id_color" name="id_color" required="required">
                             <option selected>Seleccionar</option>
                             <?php
-                            foreach ($color  as $color) : ?>
-                                <option value="<?= $color->getId() ?>" <?= $color->getId() == $color->getColor() ? 'selected' : "" ?>> <?= $color->getColor() ?></option>;                                
-                            <?php endforeach ?>
+                            foreach ($color  as $datos) {
+                                echo '<option value="' . $datos->getId() . '">' . $datos->getColor() . '</option>';
+                            }
+                            ?>
                         </select>
                     </div>
 
                     <div class="col-6 mb-3">
                         <label for="id_accesorios" class="form_label">Accesorios</label>
-                        <select class="form-select" value="<?= $id_accesorios ?>" id="id_accesorios" name="id_accesorios" disabled>
+                        <select class="form-select" value="<?= $id_accesorios ?>" id="id_accesorios" name="id_accesorios" required="required">
                             <option selected>Seleccionar</option>
                             <?php
-                            foreach ($accesorios  as $accesorio) : ?>
-                                <option value="<?= $accesorio->getId() ?>" <?= $accesorio->getId() == $accesorio->getAccesorios() ? 'selected' : "" ?>> <?= $accesorio->getAccesorios() ?></option>;                                
-                            <?php endforeach ?>
+                            foreach ($accesorios  as $datos) {
+                                echo '<option value="' . $datos->getId() . '">' . $datos->getAccesorios() . '</option>';
+                            }
+                            ?>
                         </select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-6 mb-3">
                         <label for="serie" class="form_label">Serie</label>
-                        <input type="text" class="form-control" value="<?= $serie ?>" name="serie" id="serie" disabled>
+                        <input type="text" class="form-control" id="serie" name="serie" required="required">
                     </div>
                 </div>
                 <div class="row">
@@ -117,8 +107,12 @@ foreach( $accesorios as $dispositivo){
                     </div>
                 </div>
             </div>
-        </div>
     </form>
 </div>
 
-<?php require_once('../Main/partials/footer.php'); ?>
+<script>
+    $(".persona").select2({
+        placeholder: "Seleccionar",
+        allowClear: true
+    });
+</script>

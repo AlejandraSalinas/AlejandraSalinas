@@ -7,10 +7,10 @@
     require_once('../../models/colorDispositivoModel.php');
     require_once('../../models/accesoriosDispositivoModel.php');
 
-    $datos = new DispositivoModel();
-    $registro = $datos->getById($_REQUEST['id_dispositivo']);
-// $datos_usuario = new PersonaModel();
-// $registro_usuario = $datos_usuario->getAll();
+    $data = new DispositivoModel();
+    $registroDispositivo = $data->getAll('id_dispositivo');
+$datos_usuario = new PersonaModel();
+$registro_usuario = $datos_usuario->getAll();
 
 
 $personas_model = new PersonaModel();
@@ -28,17 +28,17 @@ $color = $datos_color->getAll();
 $datos_accesorios = new AccesoriosDispositivoModel();
 $accesorios = $datos_accesorios->getAll();
 
-    foreach( $registro as $dispositivo){
+    foreach( $registroDispositivo as $dispositivo){
         $id_dispositivo                = $id_dispositivo -> getId();
         $id_persona                 = $id_persona -> getId();
 
-        //$id_tipo_identificacion     = $ingresar -> getTipoIdentificacion();
-        //$numero_identificacion      = $ingresar -> getNumeroIdentificacion();
-        $id_tipo_dispositivos       = $ingresar -> getTipoDispositivos();
-        $id_marca                   = $ingresar -> getMarca();
-        $id_color                   = $ingresar -> getColor();
-        $id_accesorios              = $ingresar -> getAccesorios();
-        $serie                      = $ingresar -> getSerie();
+        //$id_tipo_identificacion     = $dispositivo -> getTipoIdentificacion();
+        //$numero_identificacion      = $dispositivo -> getNumeroIdentificacion();
+        $id_tipo_dispositivos       = $dispositivo -> getTipoDispositivos();
+        $id_marca                   = $dispositivo -> getMarca();
+        $id_color                   = $dispositivo -> getColor();
+        $id_accesorios              = $dispositivo -> getAccesorios();
+        $serie                      = $dispositivo -> getSerie();
     }
 
 ?>

@@ -1,3 +1,4 @@
+<?php require_once dirname(__FILE__) . '../../../../Config/config.php'; ?>
 
 <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsuarios" aria-expanded="true" aria-controls="collapseUsuarios">

@@ -32,8 +32,8 @@
                 <th scope="col">Salida</th>
 
                 
-                <th scope="col">Actualizar</th>
                 <th scope="col">Ver</th>
+                <th scope="col">Actualizar</th>
                 <th scope="col">Eliminar</th>
                 
                 
@@ -49,9 +49,9 @@
 
                  ?>
                     <tr class="text-center">
-                        <td><?= $row->getTipoIdentificacion()?></td>
-                        <td><?= $row->getNumeroIdentificacion()?></td>
-                        <td><?= $row->getPersona() ?></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
 
                         <td><?= $row->getTipoDispositivos() ?></td>
                         <td><?= $row->getMarca() ?></td>
@@ -59,8 +59,8 @@
                         <td><?= $row->getAccesorios() ?></td>
                         <td><?= $row->getSerie() ?></td>
 
-                        <td><?= $row->getEntrada() ?></td>
-                        <td><?= $row->getSalida() ?></td>
+                        <td></td>
+                        <td></td>
                         <td>
                             <a class="btn btn-sm btn-outline-primary" href="show.php?id_dispositivo=<?= $row->getId() ?>">
                                 <i class="bi bi-eye-fill" style="font-size: 1.4rem;"></i>
