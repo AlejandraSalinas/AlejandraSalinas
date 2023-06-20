@@ -1,7 +1,7 @@
 <?php
 include_once(__DIR__ . "../../../Config/config.php");
 include_once('../Main/partials/header.php');
-require_once '../../models/RolesModel.php';
+require_once '../../models/marcaDispositivoModel.php';
 
 $datos_marca = new MarcaDispositivoModel();
 $marca = $datos_marca->getAll();
@@ -12,7 +12,7 @@ $marca = $datos_marca->getAll();
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800">Configuración</h1>
     <div class="container text-center">
-        <?php include_once('../Main/partials/lista.php'); ?>
+        <?php include_once('../Main/partials/config_dispositivo.php'); ?>
         <br>
         <br>
         <div class="row">
