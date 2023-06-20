@@ -1,5 +1,3 @@
-
-
 <div class="container mt-3">
     <ul class="nav nav-tabs">
         <li class="nav-item">
@@ -12,7 +10,10 @@
             <a class="nav-link active bg-dark text-bg-dark" href="<?= constant('URL') ?>./Views/sexo/index.php">Sexo</a>
         </li>
         <li class="nav-item">            
-            <a class="nav-link active bg-dark text-bg-dark" href="<?= constant('URL') ?>./Views/turnos/index.php">Turnos</a>
+            <a class="nav-link active bg-dark text-bg-dark" href="<?= constant('URL') ?>./Views/sedes/index.php">Sedes</a>
+        </li>
+        <li class="nav-item">            
+            <a class="nav-link active bg-dark text-bg-dark" href="<?= constant('URL') ?>./Views/posiciones/index.php">Area Asignada</a>
         </li>
     </ul>
 </div>

@@ -3,8 +3,8 @@ include_once(__DIR__ . "../../../Config/config.php");
 include_once('../Main/partials/header.php');
 require_once '../../models/TurnosModel.php';
 
-$datos_turnos = new TurnosModel();
-$turnos = $datos_turnos->getAll();
+// $datos_turnos = new TurnosModel();
+// $turnos = $datos_turnos->getAll();
 
 ?>
 
