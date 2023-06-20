@@ -6,7 +6,8 @@
    $data = new DispositivoModel();
    $registroDispositivo = $data->getAll();
 ?>
-<div class=container-fluis>
+<div style="padding:1px 16px;height:1000px;">
+
 
     <h3>Base de datos de los dispositivos registrados</h3>
     <table class="table table-sm table-hover">
@@ -62,17 +63,17 @@
                         <td></td>
                         <td></td>
                         <td>
-                            <a class="btn btn-sm btn-outline-primary" href="show.php?id_registro_dispositivos=<?= $row->getId() ?>">
+                            <a class="btn btn-sm btn-outline-primary" href="show.php?id_dispositivo=<?= $row->getId() ?>">
                                 <i class="bi bi-eye-fill" style="font-size: 1.4rem;"></i>
                             </a>
                         </td>
                         <td>
-                            <a class="btn btn-sm btn-outline-warning" href="../../controllers/dispositivosController.php?c=2&id_registro_dispositivos=<?= $row->getId() ?>">
+                            <a class="btn btn-sm btn-outline-warning" href="../../controllers/dispositivosController.php?c=2&id_dispositivo=<?= $row->getId() ?>">
                                 <i class="bi bi-pencil-square" style="font-size: 1.4rem;"></i>
                             </a>   
                         </td>
                         <td>
-                            <a class="btn btn-sm btn-outline-danger" href="../../controllers/dispositivosController.php?c=4&id_registro_dispositivos=<?=$row->getId() ?>">
+                            <a class="btn btn-sm btn-outline-danger" href="../../controllers/dispositivosController.php?c=4&id_dispositivo=<?=$row->getId() ?>">
                                 <i class="bi bi-trash3-fill" style="font-size: 1.4rem;"></i>
                             </a>
                             
