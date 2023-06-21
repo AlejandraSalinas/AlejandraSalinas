@@ -4,10 +4,10 @@ require_once  '../models/accesoriosDispositivoModel.php';
 $controllersDispositivo = new accesoriosDispositivoController;
 
 class accesoriosDispositivoController{
-    private $accesorios_dispositivo;
+    private $accesorios;
 
     public function __construct(){
-        $this->accesorios_dispositivo = new AccesoriosDispositivoModel();
+        $this->accesorios = new AccesoriosDispositivoModel();
 
         if (isset($_REQUEST['c'])) {
             switch ($_REQUEST['c']) {
@@ -31,40 +31,44 @@ class accesoriosDispositivoController{
     }
     public function index()
     {
-        return $this->accesorios_dispositivo->getAll();
+        return $this->accesorios->getAll();
     }
+
     public function store()
     {
         $datos = [
-            'nombre'   => $_REQUEST['nombre']
+            'nombre' => $_REQUEST['nombre']
         ];
 
-        $result = $this->accesorios_dispositivo->store($datos);
+        $result = $this->accesorios->store($datos);
 
         if ($result) {
-            //header("Location: ../Views/tipoDispositivoC/index.php");
+            header("Location: ../Views/configAccesorios/index.php");
             exit();
         }
 
         return $result;
     }
+    
     public function show()
     {
         $id_accesorios = $_REQUEST['id_accesorios'];
-        header("Location: ../Views/dispositivos/show.php?id_accesorios=" . $id_accesorios);
+        header('location: ../Views/configAccesorios/index.php?id_accesorios=' . $id_accesorios);
     }
+
     public function delete()
     {
-        $this->accesorios_dispositivo->delete($_REQUEST['id_accesorios ']);
-        //header("Location: ../Views/tipoIdentificaion/index.php");
+        $this->accesorios->delete($_REQUEST['id_accesorios']);
+        header("Location: ../Views/configAccesorios/index.php");
     }
     public function update()
     {
         $datos = [
-            'id_accesorios ' => $_REQUEST['id_accesorios '],
-            'nombre' => $_REQUEST['nombre']
+            'id_accesorios'   => $_REQUEST['id_accesorios'],
+            'nombre'   => $_REQUEST['nombre'],
         ];
-        $result = $this->accesorios_dispositivo->update($datos);
+
+        $result = $this->accesorios->update($datos);
 
         if ($result) {
             echo json_encode(array('succes' => 1, 'nombre' => $datos['nombre']));

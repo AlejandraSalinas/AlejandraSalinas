@@ -31,7 +31,7 @@
 <hr class="sidebar-divider">
 
 <li class="nav-item">
-    <a class="nav-link" href="<?= constant('URL') ?>./Views/config_marca/index.php">
+    <a class="nav-link" href="<?= constant('URL') ?>./Views/configMarca/index.php">
         <i class="bi bi-gear-fill" style="font-size: 1.4rem;"></i>
         <span>Configuración</span>
     </a>

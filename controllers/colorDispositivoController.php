@@ -4,10 +4,10 @@ require_once  '../models/colorDispositivoModel.php';
 $controllersDispositivo = new colorDispositivoController;
 
 class colorDispositivoController{
-    private $color_dispositivo;
+    private $color;
 
     public function __construct(){
-        $this->color_dispositivo = new ColorDispositivoModel();
+        $this->color = new ColorDispositivoModel();
 
         if (isset($_REQUEST['c'])) {
             switch ($_REQUEST['c']) {
@@ -29,42 +29,47 @@ class colorDispositivoController{
             }
         }
     }
+
     public function index()
     {
-        return $this->color_dispositivo->getAll();
+        return $this->color->getAll();
     }
+
     public function store()
     {
         $datos = [
-            'nombre'   => $_REQUEST['nombre']
+            'nombre' => $_REQUEST['nombre']
         ];
 
-        $result = $this->color_dispositivo->store($datos);
+        $result = $this->color->store($datos);
 
         if ($result) {
-            //header("Location: ../Views/tipoDispositivoC/index.php");
+            header("Location: ../Views/configColor/index.php");
             exit();
         }
 
         return $result;
     }
+    
     public function show()
     {
         $id_color = $_REQUEST['id_color'];
-        header("Location: ../Views/dispositivos/show.php?id_color=" . $id_color);
+        header('location: ../Views/configColor/index.php?id_color=' . $id_color);
     }
+
     public function delete()
     {
-        $this->color_dispositivo->delete($_REQUEST['id_color']);
-        //header("Location: ../Views/tipoIdentificaion/index.php");
+        $this->color->delete($_REQUEST['id_color']);
+        header("Location: ../Views/configColor/index.php");
     }
     public function update()
     {
         $datos = [
-            'id_color' => $_REQUEST['id_color'],
-            'nombre' => $_REQUEST['nombre']
+            'id_color'   => $_REQUEST['id_color'],
+            'nombre'   => $_REQUEST['nombre'],
         ];
-        $result = $this->color_dispositivo->update($datos);
+
+        $result = $this->color->update($datos);
 
         if ($result) {
             echo json_encode(array('succes' => 1, 'nombre' => $datos['nombre']));

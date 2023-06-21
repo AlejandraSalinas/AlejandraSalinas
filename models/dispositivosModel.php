@@ -97,7 +97,7 @@ class DispositivoModel
     public function store($datos)
     {
         try {
-            $sql = 'INSERT INTO dispositivos(id_persona, id_tipo_dispositivo, id_marca, id_color, id_accesorios, serie )
+            $sql = 'INSERT INTO dispositivos(id_persona, id_tipo_dispositivo, id_marca, id_color, id_accesorios, serie)
             VALUES (:id_persona, :id_tipo_dispositivo, :id_marca, :id_color, :id_accesorios, :serie, )';
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([

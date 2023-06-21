@@ -1,26 +1,27 @@
 <?php
-require_once  '../models/tipoIdentificacionModel.php.php';
+require_once '../models/tipoDispositivoModel.php';
 
-$controllersDispositivo = new tipoDispositivoController;
+$controller = new tipoDispositivoController;
+class tipoDispositivoController
+{
+    private $dispositivos;
 
-class tipoDispositivoController{
-    private $id_tipo_dispositivo;
-
-    public function __construct(){
-        $this->id_tipo_dispositivo = new TipoDispositivoModel();
+    public function __construct()
+    {
+        $this->dispositivos = new tipoDispositivoModel();
 
         if (isset($_REQUEST['c'])) {
             switch ($_REQUEST['c']) {
-                case 1: //Almacenar en la base de datos
+                case '1': //Almacenar en la base de datos
                     self::store();
                     break;
-                case '2': //ver usuario
+                case '2': //Ver 
                     self::show();
                     break;
-                case '3': //Actualizar el registro
+                case '3': //Actualizar  
                     self::update();
                     break;
-                case '4': //eliminar el registro
+                case '4': //Eliminar  
                     self::delete();
                     break;
                 default:
@@ -31,40 +32,44 @@ class tipoDispositivoController{
     }
     public function index()
     {
-        return $this->id_tipo_dispositivo->getAll();
+        return $this->dispositivos->getAll();
     }
+
     public function store()
     {
         $datos = [
-            'nombre'   => $_REQUEST['nombre']
+            'nombre' => $_REQUEST['nombre']
         ];
 
-        $result = $this->id_tipo_dispositivo->store($datos);
+        $result = $this->dispositivos->store($datos);
 
         if ($result) {
-            //header("Location: ../Views/tipoIdentificacion/index.php");
+            header("Location: ../Views/configTipoDispositivo/index.php");
             exit();
         }
 
         return $result;
     }
+    
     public function show()
     {
-        $id_id_tipo_dispositivo = $_REQUEST['id_id_tipo_dispositivo'];
-        header("Location: ../Views/dispositivo/show.php?id_tipo_identificaion=" . $id_id_tipo_dispositivo);
+        $id_tipo_dispositivo = $_REQUEST['id_tipo_dispositivo'];
+        header('location: ../Views/configTipoDispositivo/index.php?id_tipo_dispositivo=' . $id_tipo_dispositivo);
     }
+
     public function delete()
     {
-        $this->id_tipo_dispositivo->delete($_REQUEST['id_id_tipo_dispositivo']);
-        //header("Location: ../Views/tipoIdentificaion/index.php");
+        $this->dispositivos->delete($_REQUEST['id_tipo_dispositivo']);
+        header("Location: ../Views/configTipoDispositivo/index.php");
     }
     public function update()
     {
         $datos = [
-            'id_tipo_identificaion' => $_REQUEST['id_tipo_identificaion'],
-            'nombre' => $_REQUEST['nombre']
+            'id_tipo_dispositivo'   => $_REQUEST['id_tipo_dispositivo'],
+            'nombre'   => $_REQUEST['nombre'],
         ];
-        $result = $this->id_tipo_dispositivo->update($datos);
+
+        $result = $this->dispositivos->update($datos);
 
         if ($result) {
             echo json_encode(array('succes' => 1, 'nombre' => $datos['nombre']));
