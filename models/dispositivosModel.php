@@ -1,4 +1,5 @@
-<?php
+.
+    <?php
 
 include_once dirname(__FILE__) . '../../Config/config.php';
 require_once 'dataBaseModel.php';

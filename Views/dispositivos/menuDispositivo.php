@@ -34,6 +34,14 @@
                         </div>
                         <div class="mb-3">
                             <button type="submit" class="btn btn-primary mb-3" name="fecha_entrada" id="fecha_entrada">Entrada</button>
+                            <?php 
+                            date_default_timezone_set("America/Bogota");
+                            echo date ("h:i a - d-m-Y")
+                            ?> 
+
+                            <br>
+                            
+
                             <button type="submit" class="btn btn-primary mb-3" name="fecha_salida" id="fecha_salida">Salida</button>
                         </div>
                     </form>
