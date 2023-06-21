@@ -10,7 +10,7 @@
 
 
     <h3>Base de datos de los dispositivos registrados</h3>
-    <table class="table table-sm table-hover">
+    <table  class="table table-striped">
         <thead>
             <tr class="text-center">
                 <th scope="col" colspan="3">Informacion del Usuario</th>
