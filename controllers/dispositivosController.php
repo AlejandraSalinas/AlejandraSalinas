@@ -88,9 +88,12 @@ class DispositivoController
         $result = $this->dispositivo->update($datos);
 
         if ($result) {
-            header("Location: ../Views/dispositivos/update.php");
+            header("Location: ../Views/dispositivos/index.php");
             exit();
         }
         return $result;
     }
+    
+   
+    
 }
