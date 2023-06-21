@@ -1,7 +1,6 @@
 <?php
 require_once dirname(__FILE__) . '../../../config/config.php';
 require_once("../Main/partials/header.php");
-
 require_once '../../models/tipoIdentificacionModel.php';
 require_once '../../models/RolesModel.php';
 require_once '../../models/SexoModel.php';

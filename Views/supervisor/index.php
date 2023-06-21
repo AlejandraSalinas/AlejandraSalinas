@@ -1,10 +1,10 @@
 <?php
 include_once(__DIR__ . "../../../Config/config.php");
 include_once('../Main/partials/header.php');
-require_once '../../models/VigilanteModel.php';
+require_once '../../models/SupervisorModel.php';
 
-$vigilantes = new VigilanteModel();
-$data = $vigilantes->getAll();
+$supervisor = new SupervisorModel();
+$data = $supervisor->getAll();
 
 ?>
 <!-- Begin Page Content -->

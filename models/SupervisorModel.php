@@ -2,9 +2,9 @@
 include_once dirname(__FILE__) . '../../Config/config.php';
 require_once 'DataBaseModel.php';
 
-class VigilanteModel
+class SupervisorModel
 {
-    private $id_vigilante;
+    private $id_supervisor;
     private $id_persona;
     private $tipo_identificacion;
     private $numero_identificacion;
@@ -30,30 +30,30 @@ class VigilanteModel
 
     public function getId()
     {
-        return $this->id_vigilante;
+        return $this->id_supervisor;
     }
 
-    public function getById($id_vigilante)
+    public function getById($id_supervisor)
     {
-        $datos_vigilante = [];
+        $datos_supervisor = [];
 
         try {
-            $sql  = 'SELECT id_vigilante, ti.nombre AS t_identificacion, numero_identificacion, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, 
+            $sql  = 'SELECT id_supervisor, ti.nombre AS t_identificacion, numero_identificacion, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, email, 
             telefono, direccion, s.nombre AS sex_sexo, r.nombre AS ro_rol, inicio_contrato, fin_contrato, estado
             FROM info_vigilantes AS iv
             JOIN personas AS p ON iv.id_persona = p.id_persona
             JOIN tipo_identificacion AS ti ON p.id_tipo_identificacion = ti.id_tipo_identificacion
             JOIN sexo AS s ON p.id_sexo = s.id_sexo
             JOIN roles AS r ON p.id_rol = r.id_rol
-            WHERE id_vigilante = :id_vigilante';
+            WHERE id_supervisor = :id_supervisor';
             $query = $this->db->conect()->prepare($sql);
             $query->execute([
-                'id_vigilante' => $id_vigilante
+                'id_supervisor' => $id_supervisor
             ]);
 
             while ($row = $query->fetch()) {
-                $item                        = new VigilanteModel();
-                $item->id_vigilante          = $row['id_vigilante'];
+                $item                        = new SupervisorModel();
+                $item->id_supervisor          = $row['id_supervisor'];
                 $item->tipo_identificacion   = $row['t_identificacion'];
                 $item->numero_identificacion = $row['numero_identificacion'];
                 $item->primer_nombre         = $row['primer_nombre'];
@@ -69,10 +69,10 @@ class VigilanteModel
                 $item->fin_contrato          = $row['fin_contrato'];
                 $item->estado                = $row['estado'];
 
-                array_push($datos_vigilante, $item);
+                array_push($datos_supervisor, $item);
             }
 
-            return $datos_vigilante;
+            return $datos_supervisor;
         } catch (PDOException $e) {
             die($e->getMessage());
         }
@@ -85,17 +85,17 @@ class VigilanteModel
 
         try {
 
-            $sql = 'SELECT id_vigilante, ti.nombre AS t_identificacion, numero_identificacion, CONCAT( primer_nombre, " ", segundo_nombre, " ", primer_apellido, " ", segundo_apellido) AS nombre, telefono, estado
-            FROM info_vigilantes AS iv
+            $sql = 'SELECT id_supervisor, ti.nombre AS t_identificacion, numero_identificacion, CONCAT( primer_nombre, " ", segundo_nombre, " ", primer_apellido, " ", segundo_apellido) AS nombre, telefono, estado
+            FROM supervisores AS iv
             JOIN personas AS p ON iv.id_persona = p.id_persona
             JOIN tipo_identificacion AS ti ON p.id_tipo_identificacion = ti.id_tipo_identificacion
             JOIN roles AS r ON p.id_rol = r.id_rol
-            ORDER BY id_vigilante DESC';
+            ORDER BY id_supervisor DESC';
             $query  = $this->db->conect()->query($sql);
 
             while ($row = $query->fetch()) {
-                $item                        = new VigilanteModel();
-                $item->id_vigilante          = $row['id_vigilante'];
+                $item                        = new SupervisorModel();
+                $item->id_supervisor          = $row['id_supervisor'];
                 $item->tipo_identificacion   = $row['t_identificacion'];
                 $item->numero_identificacion = $row['numero_identificacion'];
                 $item->id_persona            = $row['nombre'];
@@ -115,7 +115,7 @@ class VigilanteModel
     {
         try {
 
-            $sql = 'INSERT INTO info_vigilantes(id_persona, pass,  inicio_contrato, fin_contrato, estado) 
+            $sql = 'INSERT INTO supervisores(id_persona, pass,  inicio_contrato, fin_contrato, estado) 
             VALUES(:id_persona, :pass, :inicio_contrato, :fin_contrato, :estado)';
 
             $prepare = $this->db->conect()->prepare($sql);
@@ -140,15 +140,15 @@ class VigilanteModel
     {
         try {
 
-            $sql = 'UPDATE info_vigilantes SET            
+            $sql = 'UPDATE supervisores SET            
             inicio_contrato = :inicio_contrato,
             fin_contrato = :fin_contrato,
             estado = :estado
-            WHERE id_vigilante = :id_vigilante';
+            WHERE id_supervisor = :id_supervisor';
 
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
-                'id_vigilante'                => $datos['id_vigilante'],
+                'id_supervisor'                => $datos['id_supervisor'],
                 'inicio_contrato'             => $datos['inicio_contrato'],
                 'fin_contrato'                => $datos['fin_contrato'],
                 'estado'                      => $datos['estado'],
@@ -162,14 +162,14 @@ class VigilanteModel
         }
     }
    
-    public function delete($id_vigilante)
+    public function delete($id_supervisor)
     {
         try {
-            $sql = 'DELETE FROM info_vigilantes WHERE id_vigilante = :id_vigilante';
+            $sql = 'DELETE FROM supervisore WHERE id_supervisor = :id_supervisor';
 
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
-                'id_vigilante'        => $id_vigilante
+                'id_supervisor'        => $id_supervisor
             ]);
             if ($query) {
                 return true;

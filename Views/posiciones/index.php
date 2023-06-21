@@ -6,8 +6,6 @@ require_once '../../models/PosicionesModel.php';
 $datos_posicion = new PosicionesModel();
 $posiciones = $datos_posicion->getAll();
 
-// var_dump($sedes);
-
 ?>
 
 <!-- Begin Page Content -->

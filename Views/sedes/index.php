@@ -6,8 +6,6 @@ require_once '../../models/SedesModel.php';
 $datos_sede = new SedesModel();
 $sedes = $datos_sede->getAll();
 
-// var_dump($sedes);
-
 ?>
 
 <!-- Begin Page Content -->
