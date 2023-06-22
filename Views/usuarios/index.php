@@ -15,7 +15,7 @@ $registro = $data->getAll();
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800">Tabla de Usuarios</h1>
 
-    <table class="table table-striped">
+    <table class="table table-striped table-bordered">
         <thead>
             <tr class="text-center">    
                 <th scope="col">Tipo de Identificación</th>
@@ -24,11 +24,11 @@ $registro = $data->getAll();
                 <th scope="col">Segundo Nombre</th>
                 <th scope="col">Primer Apellido</th>
                 <th scope="col">Segundo Apellido</th>
-                <th scope="col">Email:</th>
-                <th scope="col">Teléfono:</th>
-                <th scope="col">Dirección:</th>
-                <th scope="col">Sexo:</th>
-                <th scope="col">Rol:</th>
+                <th scope="col">Email</th>
+                <th scope="col">Teléfono</th>
+                <th scope="col">Dirección</th>
+                <th scope="col">Sexo</th>
+                <th scope="col">Rol</th>
                 <th scope="col" colspan="3">Opciones</th>
             </tr>
         </thead>

@@ -132,7 +132,6 @@ $turnos = $datos_turnos->getAll();
                     <td><?= $row->getPosiciones() ?></td>
                     <td><?= $row->getSedes() ?></td>
                     <td>
-
                         <a class="btn btn-sm btn-outline-warning" onclick="show(<?= $turno->getId()  ?>)">
                             <i class="bi bi-pencil-square" style="font-size: 1.4rem;"></i>
                         </a>

@@ -93,9 +93,9 @@ $genero = $datos_sexo->getAll();
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-3 mb-2">
-                        <button type="submit" class="btn btn-outline-primary">Guardar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
                                      
-                        <a class="btn btn-outline-success"  href="../Main/index.php">Regresar a Inicio</a>
+                        <a class="btn btn-success"  href="../Main/index.php">Regresar a Inicio</a>
                     </div>    
                 </div>
             </div>  

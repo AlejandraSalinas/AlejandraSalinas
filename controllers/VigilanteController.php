@@ -25,7 +25,9 @@ class VigilanteController
                 case 4: //Eliminar vigilante 
                     self::delete();
                     break;
-
+                case 5: //Mostar en la tabla de contratos vigilante 
+                    self::mostrarContrato();
+                    break;
                 default:
                     self::index();
                     break;
@@ -81,11 +83,13 @@ class VigilanteController
 
         if ($result) {
             header('location: ../Views/vigilante/index.php');
-            
-
             exit();
         }
-
         return $result;
+    }
+    public function mostarContrato()
+    {
+        $id_vigilante = $_REQUEST['id_vigilante'];
+        header("location: ../Views/vigilante/mostrarContrato.php?id_vigilante=" . $id_vigilante);
     }
 }

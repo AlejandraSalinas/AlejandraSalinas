@@ -79,8 +79,8 @@ foreach ($data as $vigilante) {
         </div>
         <div class="row justify-content-center">
             <div class="col-3 mb-2">
-                <button type="submit" href="index.php" class="btn btn-outline-primary">Guardar</button>
-                <a class="btn btn-outline-success" href="index.php">Regresar</a>
+                <button type="submit" href="index.php" class="btn btn-primary">Guardar</button>
+                <a class="btn btn-success" href="index.php">Regresar</a>
             </div>
         </div>
     </form>

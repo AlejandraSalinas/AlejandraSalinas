@@ -60,8 +60,8 @@ $vigilantes = $data->getPersonasByRol(4);
 
                 <div class="row justify-content-center">
                     <div class="col-4 mb-1">
-                        <button type="submit" class="btn btn-outline-primary">Guardar</button>
-                        <a class="btn btn-outline-success" href="../Main/index.php">Regresar a Inicio</a>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <a class="btn btn-success" href="../Main/index.php">Regresar a Inicio</a>
                     </div>
                 </div>
             </div>

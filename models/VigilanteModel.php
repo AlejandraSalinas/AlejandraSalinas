@@ -78,7 +78,6 @@ class VigilanteModel
         }
     }
 
-
     public function getAll()
     {
         $items = [];
@@ -128,7 +127,6 @@ class VigilanteModel
                 'estado'          => $datos['estado'],
 
             ]);
-
             if ($query) {
                 return true;
             }
@@ -136,6 +134,7 @@ class VigilanteModel
             die($e->getMessage());
         }
     }
+
     public function update($datos)
     {
         try {
@@ -178,7 +177,38 @@ class VigilanteModel
             die($e->getMessage());
         }
     }
+    public function mostarContrato()
+    {
+        $items = [];
 
+        try {
+            $sql  = 'SELECT id_vigilante, CONCAT( primer_nombre, " ", segundo_nombre, " ", primer_apellido, " ", segundo_apellido) AS nombre, inicio_contrato, fin_contrato, estado
+            FROM info_vigilantes AS iv
+            JOIN personas AS p ON iv.id_persona = p.id_persona
+            ORDER BY id_vigilante DESC';
+
+            $query = $this->db->conect()->prepare($sql);
+
+            $query->execute([
+                'id_vigilante' => $id_vigilante
+            ]);
+
+            while ($row = $query->fetch()) {
+                $item                        = new VigilanteModel();
+                $item->id_vigilante          = $row['id_vigilante'];
+                $item->id_persona            = $row['nombre'];
+                $item->inicio_contrato       = $row['inicio_contrato'];
+                $item->fin_contrato          = $row['fin_contrato'];
+                $item->estado                = $row['estado'];
+
+                array_push($items, $item);
+            }
+
+            return $items;
+        } catch (PDOException $e) {
+            die($e->getMessage());
+        }
+    }
 
     // GETTER Y SETTER
     public function getPersona()

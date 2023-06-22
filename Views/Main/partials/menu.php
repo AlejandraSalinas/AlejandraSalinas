@@ -32,8 +32,8 @@
 <hr class="sidebar-divider">
 <li class="nav-item">
     <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseinformacionVigilante" aria-expanded="true" aria-controls="collapseinformacionVigilante">
-        <i class="bi bi-person-gear" style="font-size: 1.4rem;"></i>
-        <span>información Vigilante</span>
+        <i class="bi bi-person-square" style="font-size: 1.4rem;"></i>
+        <span>Vigilante</span>
     </a>
     <div id="collapseinformacionVigilante" class="collapse show" aria-labelledby="headinginformacionVigilante" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">

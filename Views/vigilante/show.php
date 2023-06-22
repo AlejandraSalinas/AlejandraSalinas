@@ -130,7 +130,7 @@ foreach ($data as $vigilante) {
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-1">
-                        <a class="btn btn-outline-success" href="index.php">Regresar</a>
+                        <a class="btn btn-success" href="index.php">Regresar</a>
                     </div>
                 </div>
             </div>
