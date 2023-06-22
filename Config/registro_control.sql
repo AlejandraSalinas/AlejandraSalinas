@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Versión del servidor:         8.0.32 - MySQL Community Server - GPL
+-- Versión del servidor:         8.0.30 - MySQL Community Server - GPL
 -- SO del servidor:              Win64
--- HeidiSQL Versión:             12.4.0.6659
+-- HeidiSQL Versión:             12.5.0.6677
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -25,34 +25,34 @@ DROP TABLE IF EXISTS `accesorios`;
 CREATE TABLE IF NOT EXISTS `accesorios` (
   `id_accesorio` bigint unsigned NOT NULL AUTO_INCREMENT,
   `id_persona` bigint unsigned NOT NULL,
-  `nombre` varchar(100) NOT NULL,
-  `serie` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
-  `descripcion` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
-  PRIMARY KEY (`id_accesorio`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
+  `nombre_accesorio` varchar(50) NOT NULL DEFAULT '',
+  `serie` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `descripcion` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  PRIMARY KEY (`id_accesorio`),
+  KEY `id_persona` (`id_persona`),
+  CONSTRAINT `FK_accesorios_personas` FOREIGN KEY (`id_persona`) REFERENCES `personas` (`id_persona`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla registro_control.accesorios: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla registro_control.accesorios: ~0 rows (aproximadamente)
 DELETE FROM `accesorios`;
-INSERT INTO `accesorios` (`id_accesorio`, `id_persona`, `nombre`, `serie`, `descripcion`) VALUES
-	(1, 1, 'Cargador', NULL, NULL),
-	(2, 1, 'Mouse', NULL, NULL),
-	(3, 1, 'Teclado', NULL, NULL);
+INSERT INTO `accesorios` (`id_accesorio`, `id_persona`, `nombre_accesorio`, `serie`, `descripcion`) VALUES
+	(1, 1, 'cargador', 'veg', 'cargador de mouse');
 
 -- Volcando estructura para tabla registro_control.colores
 DROP TABLE IF EXISTS `colores`;
 CREATE TABLE IF NOT EXISTS `colores` (
   `id_color` bigint unsigned NOT NULL AUTO_INCREMENT,
   `nombre` varchar(60) NOT NULL,
-  `descripcion` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`id_color`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
 
 -- Volcando datos para la tabla registro_control.colores: ~3 rows (aproximadamente)
 DELETE FROM `colores`;
-INSERT INTO `colores` (`id_color`, `nombre`, `descripcion`) VALUES
-	(2, 'Gris', NULL),
-	(3, 'Negro', NULL),
-	(5, 'Azul', NULL);
+INSERT INTO `colores` (`id_color`, `nombre`) VALUES
+	(2, 'Gris'),
+	(3, 'Negro'),
+	(5, 'Azul'),
+	(6, 'Blanco');
 
 -- Volcando estructura para tabla registro_control.dispositivos
 DROP TABLE IF EXISTS `dispositivos`;
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `dispositivos` (
   `id_marca` bigint unsigned NOT NULL,
   `id_color` bigint unsigned NOT NULL,
   `serie` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
-  `descripcion` varchar(60) DEFAULT NULL,
+  `descripcion` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   PRIMARY KEY (`id_dispositivo`) USING BTREE,
   KEY `FK_dispositivos_tipo_dispositivos` (`id_tipo_dispositivo`),
   KEY `FK_dispositivos_marcas` (`id_marca`),
@@ -73,13 +73,12 @@ CREATE TABLE IF NOT EXISTS `dispositivos` (
   CONSTRAINT `FK_dispositivos_color` FOREIGN KEY (`id_color`) REFERENCES `colores` (`id_color`),
   CONSTRAINT `FK_dispositivos_marcas` FOREIGN KEY (`id_marca`) REFERENCES `marcas` (`id_marca`),
   CONSTRAINT `FK_dispositivos_tipo_dispositivos` FOREIGN KEY (`id_tipo_dispositivo`) REFERENCES `tipo_dispositivos` (`id_tipo_dispositivo`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb3;
 
 -- Volcando datos para la tabla registro_control.dispositivos: ~2 rows (aproximadamente)
 DELETE FROM `dispositivos`;
 INSERT INTO `dispositivos` (`id_dispositivo`, `id_persona`, `id_tipo_dispositivo`, `id_marca`, `id_color`, `serie`, `descripcion`) VALUES
-	(9, 1, 1, 3, 5, 'fdsfdsfds', NULL),
-	(10, 1, 3, 5, 3, '2435454', NULL);
+	(18, 3, 2, 4, 2, 're361', 'portátil con estampado rojo');
 
 -- Volcando estructura para tabla registro_control.info_vigilantes
 DROP TABLE IF EXISTS `info_vigilantes`;
@@ -111,11 +110,13 @@ CREATE TABLE IF NOT EXISTS `ingresar` (
   `id_ingresar` bigint unsigned NOT NULL AUTO_INCREMENT,
   `id_persona` bigint unsigned NOT NULL,
   `id_dispositivo` bigint unsigned NOT NULL,
+  `id_accesorio` int unsigned NOT NULL,
   `fecha_entrada` datetime NOT NULL,
   `fecha_salida` datetime NOT NULL,
   PRIMARY KEY (`id_ingresar`),
   KEY `FK_ingresar_personas` (`id_persona`),
   KEY `FK_ingresar_dispositivos` (`id_dispositivo`) USING BTREE,
+  KEY `id_accesorio` (`id_accesorio`),
   CONSTRAINT `FK_ingresar_dispositivos` FOREIGN KEY (`id_dispositivo`) REFERENCES `dispositivos` (`id_dispositivo`),
   CONSTRAINT `FK_ingresar_personas` FOREIGN KEY (`id_persona`) REFERENCES `personas` (`id_persona`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
@@ -128,21 +129,20 @@ DROP TABLE IF EXISTS `marcas`;
 CREATE TABLE IF NOT EXISTS `marcas` (
   `id_marca` bigint unsigned NOT NULL AUTO_INCREMENT,
   `nombre` varchar(60) NOT NULL,
-  `descripcion` varchar(60) DEFAULT NULL,
   PRIMARY KEY (`id_marca`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3;
 
--- Volcando datos para la tabla registro_control.marcas: ~8 rows (aproximadamente)
+-- Volcando datos para la tabla registro_control.marcas: ~7 rows (aproximadamente)
 DELETE FROM `marcas`;
-INSERT INTO `marcas` (`id_marca`, `nombre`, `descripcion`) VALUES
-	(3, 'Asus', NULL),
-	(4, 'Dell', NULL),
-	(5, 'HP', NULL),
-	(6, 'Lenovo', NULL),
-	(7, 'Microsoft Surface', NULL),
-	(8, 'Razer', NULL),
-	(9, 'Samsung', NULL),
-	(11, 'Apple', NULL);
+INSERT INTO `marcas` (`id_marca`, `nombre`) VALUES
+	(3, 'Asus'),
+	(4, 'Dell'),
+	(5, 'HP'),
+	(6, 'Lenovo'),
+	(7, 'Microsoft Surface'),
+	(8, 'Razer'),
+	(9, 'Samsung'),
+	(11, 'Apple');
 
 -- Volcando estructura para tabla registro_control.personas
 DROP TABLE IF EXISTS `personas`;
@@ -186,7 +186,7 @@ CREATE TABLE IF NOT EXISTS `posiciones` (
   PRIMARY KEY (`id_posicion`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COMMENT='Sectores de vigilancia';
 
--- Volcando datos para la tabla registro_control.posiciones: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla registro_control.posiciones: ~0 rows (aproximadamente)
 DELETE FROM `posiciones`;
 INSERT INTO `posiciones` (`id_posicion`, `nombre`, `descripcion`) VALUES
 	(1, 'PARQUEADERO', NULL);
@@ -218,7 +218,7 @@ CREATE TABLE IF NOT EXISTS `sedes` (
   PRIMARY KEY (`id_sede`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 
--- Volcando datos para la tabla registro_control.sedes: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla registro_control.sedes: ~0 rows (aproximadamente)
 DELETE FROM `sedes`;
 INSERT INTO `sedes` (`id_sede`, `nombre`, `descripcion`) VALUES
 	(1, 'SEDE MODELO', NULL);
@@ -249,7 +249,7 @@ CREATE TABLE IF NOT EXISTS `supervisores` (
   CONSTRAINT `FK_supervisores_personas` FOREIGN KEY (`id_persona`) REFERENCES `personas` (`id_persona`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 
--- Volcando datos para la tabla registro_control.supervisores: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla registro_control.supervisores: ~0 rows (aproximadamente)
 DELETE FROM `supervisores`;
 INSERT INTO `supervisores` (`id_supervisor`, `id_persona`, `password`, `estado`) VALUES
 	(1, 40, '12345', 1);
@@ -257,35 +257,33 @@ INSERT INTO `supervisores` (`id_supervisor`, `id_persona`, `password`, `estado`)
 -- Volcando estructura para tabla registro_control.tipo_accesorios
 DROP TABLE IF EXISTS `tipo_accesorios`;
 CREATE TABLE IF NOT EXISTS `tipo_accesorios` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
+  `id_tipo_accesorio` bigint NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) NOT NULL,
-  `descripcion` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id_tipo_accesorio`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Volcando datos para la tabla registro_control.tipo_accesorios: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla registro_control.tipo_accesorios: ~0 rows (aproximadamente)
 DELETE FROM `tipo_accesorios`;
-INSERT INTO `tipo_accesorios` (`id`, `nombre`, `descripcion`) VALUES
-	(1, 'Cargador', ''),
-	(2, 'Teclado', NULL),
-	(3, 'Mouse', NULL),
-	(4, 'Tablet', NULL);
+INSERT INTO `tipo_accesorios` (`id_tipo_accesorio`, `nombre`) VALUES
+	(1, 'Cargador'),
+	(2, 'Teclado'),
+	(3, 'Mouse'),
+	(4, 'Tablet');
 
 -- Volcando estructura para tabla registro_control.tipo_dispositivos
 DROP TABLE IF EXISTS `tipo_dispositivos`;
 CREATE TABLE IF NOT EXISTS `tipo_dispositivos` (
   `id_tipo_dispositivo` bigint unsigned NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
-  `descripcion` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   PRIMARY KEY (`id_tipo_dispositivo`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 
--- Volcando datos para la tabla registro_control.tipo_dispositivos: ~3 rows (aproximadamente)
+-- Volcando datos para la tabla registro_control.tipo_dispositivos: ~0 rows (aproximadamente)
 DELETE FROM `tipo_dispositivos`;
-INSERT INTO `tipo_dispositivos` (`id_tipo_dispositivo`, `nombre`, `descripcion`) VALUES
-	(1, 'Computador', NULL),
-	(2, 'Portátil', NULL),
-	(3, 'Tablets', NULL);
+INSERT INTO `tipo_dispositivos` (`id_tipo_dispositivo`, `nombre`) VALUES
+	(1, 'Computador'),
+	(2, 'Portátil'),
+	(3, 'Tablets');
 
 -- Volcando estructura para tabla registro_control.tipo_identificacion
 DROP TABLE IF EXISTS `tipo_identificacion`;
@@ -295,7 +293,7 @@ CREATE TABLE IF NOT EXISTS `tipo_identificacion` (
   PRIMARY KEY (`id_tipo_identificacion`)
 ) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb3;
 
--- Volcando datos para la tabla registro_control.tipo_identificacion: ~5 rows (aproximadamente)
+-- Volcando datos para la tabla registro_control.tipo_identificacion: ~0 rows (aproximadamente)
 DELETE FROM `tipo_identificacion`;
 INSERT INTO `tipo_identificacion` (`id_tipo_identificacion`, `nombre`) VALUES
 	(1, 'Cédula de Ciudadanía'),
