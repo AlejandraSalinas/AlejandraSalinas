@@ -55,14 +55,14 @@ $accesorios = $datos_accesorios->getAll();
                         <tr>
                             <td><?= $pos ?></td>
                             <td>
-                                <span id="id_accesorios<?= $accesorios->getId() ?>"> <?= $accesorios->getAccesorios() ?> </span>
+                                <span id="id_accesorio<?= $accesorios->getId() ?>"> <?= $accesorios->getAccesorios() ?> </span>
                             </td>
                             <td>
                             <td>
                                 <a class="btn btn-sm btn-outline-warning" onclick="show(<?= $accesorios->getId()  ?>)">
                                     <i class="bi bi-pencil-square" style="font-size: 1.4rem;"></i>
                                 </a>
-                                <a class="btn btn-sm btn-outline-danger" href="../../controllers/accesoriosDispositivoController.php?c=4&id_accesorios=<?= $accesorios->getId() ?>">
+                                <a class="btn btn-sm btn-outline-danger" href="../../controllers/accesoriosDispositivoController.php?c=4&id_accesorio=<?= $accesorios->getId() ?>">
 
                                     <i class="bi bi-trash3-fill" style="font-size: 1.4rem;"></i>
                                 </a>
@@ -95,27 +95,27 @@ $accesorios = $datos_accesorios->getAll();
         btn_editar.hidden = true;
     });
 
-    function show(id_accesorios) {
+    function show(id_accesorio) {
         var btn_editar = document.getElementById("btn_guardar");
         btn_editar.hidden = true;
 
         var btn_editar = document.getElementById("btn_editar");
         btn_editar.hidden = false;
 
-        let elemento = document.getElementById(`accesorioss${id_accesorios}`);
+        let elemento = document.getElementById(`accesorioss${id_accesorio}`);
         let documento = elemento.textContent
 
         document.getElementById('nombre').value = documento
-        document.getElementById('nombre').setAttribute('data-id', id_accesorios);
+        document.getElementById('nombre').setAttribute('data-id', id_accesorio);
     }
 
     function editar() {
 
         let elemento = document.getElementById("nombre");
-        let id_accesorios = elemento.dataset.id
+        let id_accesorio = elemento.dataset.id
         let nombre = elemento.value
 
-        axios.post(`../../controllers/accesoriosDispositivoController.php?c=3&id_accesorios=${id_accesorios}&nombre=${nombre}`)
+        axios.post(`../../controllers/accesoriosDispositivoController.php?c=3&id_accesorio=${id_accesorio}&nombre=${nombre}`)
             .then(function(response) {
                 window.location.reload();
                 document.getElementById('nombre').focus();

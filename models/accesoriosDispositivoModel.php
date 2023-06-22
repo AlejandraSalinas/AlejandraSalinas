@@ -4,7 +4,7 @@ require_once 'dataBaseModel.php';
 
 class AccesoriosDispositivoModel
 {
-    private $id_accesorios;
+    private $id_accesorio;
     private $nombre;
     private $db;
 
@@ -15,23 +15,23 @@ class AccesoriosDispositivoModel
 
     public function getId()
     {
-        return $this->id_accesorios;
+        return $this->id_accesorio;
     }
 
-    public function getById($id_accesorios)
+    public function getById($id_accesorio)
     {
         $datos_accesorios = [];
 
         try {
-            $sql = "SELECT * FROM accesorios WHERE id_accesorios = :id_accesorios";
+            $sql = "SELECT * FROM accesorios WHERE id_accesorio = :id_accesorio";
             $query  = $this->db->conect()->prepare($sql);
             $query->execute([
-                'id_accesorios' => $id_accesorios
+                'id_accesorio' => $id_accesorio
             ]);
 
             while ($row = $query->fetch()) {
                 $item                          = new AccesoriosDispositivoModel();
-                $item->id_accesorios  = $row['id_accesorios'];
+                $item->id_accesorio  = $row['id_accesorio'];
                 $item->nombre                  = $row['nombre'];
 
                 array_push($datos_accesorios, $item);
@@ -55,7 +55,7 @@ class AccesoriosDispositivoModel
 
             while ($row = $query->fetch()) {
                 $datos                         = new AccesoriosDispositivoModel();
-                $datos->id_accesorios = $row['id_accesorio'];
+                $datos->id_accesorio = $row['id_accesorio'];
                 $datos->nombre                 = $row['nombre'];
 
                 array_push($array, $datos);
@@ -88,10 +88,10 @@ class AccesoriosDispositivoModel
     public function update($datos)
     {
         try {
-            $sql = 'UPDATE accesorios SET accesorios= :accesorios WHERE id_accesorios = :id_accesorios';
+            $sql = 'UPDATE accesorios SET accesorios= :accesorios WHERE id_accesorio = :id_accesorio';
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
-                'id_accesorios' => $datos['id_accesorios'],
+                'id_accesorio' => $datos['id_accesorio'],
                 'nombre'     => $datos['nombre']
             ]);
 
@@ -103,13 +103,13 @@ class AccesoriosDispositivoModel
         }
     }
 
-    public function delete($id_accesorios)
+    public function delete($id_accesorio)
     {
         try {
-            $sql = 'DELETE FROM accesorios WHERE id_accesorios = :id_accesorios';
+            $sql = 'DELETE FROM accesorios WHERE id_accesorio = :id_accesorio';
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
-                'id_accesorios' => $id_accesorios,
+                'id_accesorio' => $id_accesorio,
             ]);
             if ($query) {
                 return true;

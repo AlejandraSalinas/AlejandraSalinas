@@ -52,19 +52,19 @@ class accesoriosDispositivoController{
     
     public function show()
     {
-        $id_accesorios = $_REQUEST['id_accesorios'];
-        header('location: ../Views/configAccesorios/index.php?id_accesorios=' . $id_accesorios);
+        $id_accesorio = $_REQUEST['id_accesorio'];
+        header('location: ../Views/configAccesorios/index.php?id_accesorio=' . $id_accesorio);
     }
 
     public function delete()
     {
-        $this->accesorios->delete($_REQUEST['id_accesorios']);
+        $this->accesorios->delete($_REQUEST['id_accesorio']);
         header("Location: ../Views/configAccesorios/index.php");
     }
     public function update()
     {
         $datos = [
-            'id_accesorios'   => $_REQUEST['id_accesorios'],
+            'id_accesorio'   => $_REQUEST['id_accesorio'],
             'nombre'   => $_REQUEST['nombre'],
         ];
 
