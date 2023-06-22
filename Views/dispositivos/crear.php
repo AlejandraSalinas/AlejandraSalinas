@@ -22,8 +22,7 @@ $marca = $datos_marca->getAll();
 $datos_color = new ColorDispositivoModel();
 $color = $datos_color->getAll();
 
-$datos_accesorios = new AccesoriosDispositivoModel();
-$accesorios = $datos_accesorios->getAll();
+
 
 //cargar getAll de personas
 
@@ -82,17 +81,7 @@ $accesorios = $datos_accesorios->getAll();
                         </select>
                     </div>
 
-                    <div class="col-6 mb-3">
-                        <label for="id_accesorios" class="form_label">Accesorios</label>
-                        <select class="form-select" value="<?= $id_accesorios ?>" id="id_accesorios" name="id_accesorios" required="required">
-                            <option selected>Seleccionar</option>
-                            <?php
-                            foreach ($accesorios  as $datos) {
-                                echo '<option value="' . $datos->getId() . '">' . $datos->getAccesorios() . '</option>';
-                            }
-                            ?>
-                        </select>
-                    </div>
+                   
                 </div>
                 <div class="row">
                     <div class="col-6 mb-3">

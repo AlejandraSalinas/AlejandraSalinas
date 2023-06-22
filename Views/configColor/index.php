@@ -101,7 +101,7 @@ $color = $datos_color->getAll();
         var btn_editar = document.getElementById("btn_editar");
         btn_editar.hidden = false;
 
-        let elemento = document.getElementById(`color${id_color}`);
+        let elemento = document.getElementById(`colores${id_color}`);
         let documento = elemento.textContent
 
         document.getElementById('nombre').value = documento

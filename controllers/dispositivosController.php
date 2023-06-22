@@ -39,13 +39,12 @@ class DispositivoController
     }
 
     public function store()
-    {
+    {        
         $datos = [
             'id_persona'                 => $_REQUEST['id_persona'],
             'id_tipo_dispositivo'        => $_REQUEST['id_tipo_dispositivo'],
             'id_marca'                   => $_REQUEST['id_marca'],
             'id_color'                   => $_REQUEST['id_color'],
-            'id_accesorios'              => $_REQUEST['id_accesorios'],
             'serie'                      => $_REQUEST['serie'],
         ];
 
@@ -66,20 +65,19 @@ class DispositivoController
     public function delete()
     {
         $this->dispositivo->delete($_REQUEST['id_dispositivo']);
-        header("Location: ../Views/dispositivos/update.php .php");
+        header("Location: ../Views/dispositivos/index.php");
     }
 
     public function update()
     {
         $datos = [
             'id_dispositivo'             => $_REQUEST['id_dispositivo'],
-            //'id_tipo_identificacion'     => $_REQUEST['id_tipo_identificacion'],
-            //'numero_identificacion'      => $_REQUEST['numero_identificacion'],
-            'id_persona'         => $_REQUEST['id_persona'],
-            'id_tipo_dispositivo'       => $_REQUEST['id_tipo_dispositivo'],
+            'id_tipo_identificacion'     => $_REQUEST['id_tipo_identificacion'],
+            'numero_identificacion'      => $_REQUEST['numero_identificacion'],
+            'id_persona'                 => $_REQUEST['id_persona'],
+            'id_tipo_dispositivo'        => $_REQUEST['id_tipo_dispositivo'],
             'id_marca'                   => $_REQUEST['id_marca'],
             'id_color'                   => $_REQUEST['id_color'],
-            'id_accesorios'              => $_REQUEST['id_accesorios'],
             'serie'                      => $_REQUEST['serie'],
             // 'fecha_entrada'              => $_REQUEST['fecha_entrada'],
             // 'fecha_salida'              => $_REQUEST['fecha_salida'],
@@ -93,7 +91,4 @@ class DispositivoController
         }
         return $result;
     }
-    
-   
-    
 }

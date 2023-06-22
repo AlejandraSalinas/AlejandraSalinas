@@ -23,7 +23,7 @@ class ColorDispositivoModel
         $array = [];
 
         try {
-            $sql = "SELECT * FROM color WHERE id_color = :id_color";
+            $sql = "SELECT * FROM colores WHERE id_color = :id_color";
             $query  = $this->db->conect()->prepare($sql);
             $query->execute([
                 'id_color' => $id_color
@@ -49,7 +49,7 @@ class ColorDispositivoModel
 
         try {
             $sql = 'SELECT id_color, nombre
-            FROM color 
+            FROM colores
             ORDER BY id_color ASC';
             $query  = $this->db->conect()->query($sql);
 
@@ -71,7 +71,7 @@ class ColorDispositivoModel
     {
         try {
 
-            $sql = 'INSERT INTO color(nombre) VALUES(:nombre)';
+            $sql = 'INSERT INTO colores(nombre) VALUES(:nombre)';
 
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
@@ -88,7 +88,7 @@ class ColorDispositivoModel
     public function update($datos)
     {
         try {
-            $sql = 'UPDATE color SET color= :color WHERE id_color = :id_color';
+            $sql = 'UPDATE colores SET color= :color WHERE id_color = :id_color';
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
                 'id_color' => $datos['id_color'],
@@ -106,7 +106,7 @@ class ColorDispositivoModel
     public function delete($id_color)
     {
         try {
-            $sql = 'DELETE FROM color WHERE id_color = :id_color';
+            $sql = 'DELETE FROM colores WHERE id_color = :id_color';
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
                 'id_color' => $id_color,

@@ -3,14 +3,15 @@
     include_once('../../Views/Main/partials/header.php');
     include_once('../../models/dispositivosModel.php');
     
-   $data = new DispositivoModel();
-   $registroDispositivo = $data->getAll();
+    $data = new DispositivoModel();
+    $registroDispositivo = $data->getAll();
+    // var_dump($registroDispositivo);
 ?>
 <div style="padding:1px 16px;height:1000px;">
 
 
     <h3>Base de datos de los dispositivos registrados</h3>
-    <table >
+    <table class="table table-striped">
         <thead>
             <tr class="text-center">
                 <th scope="col" colspan="3">Informacion del Usuario</th>
@@ -26,7 +27,6 @@
                 <th scope="col">Tipo de Dispositivo</th>
                 <th scope="col">Marca</th>
                 <th scope="col">Color</th>
-                <th scope="col">Accesorio</th>
                 <th scope="col">Serie</th>
 
                 <th scope="col">Entrada</th>
@@ -50,14 +50,12 @@
 
                  ?>
                     <tr class="text-center">
-                        <td></td>
-                        <td></td>
-                        <td></td>
-
+                        <td><?= $row->getTipoIdentificacion() ?></td>
+                        <td><?= $row->getNumeroIdentificacion() ?></td>
+                        <td><?= $row->getIdPersona() ?></td>
                         <td><?= $row->getTipoDispositivos() ?></td>
                         <td><?= $row->getMarca() ?></td>
                         <td><?= $row->getColor() ?></td>
-                        <td><?= $row->getAccesorios() ?></td>
                         <td><?= $row->getSerie() ?></td>
 
                         <td></td>

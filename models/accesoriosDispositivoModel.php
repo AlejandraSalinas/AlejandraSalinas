@@ -48,14 +48,14 @@ class AccesoriosDispositivoModel
         $array = [];
 
         try {
-            $sql = 'SELECT id_accesorios, nombre
+            $sql = 'SELECT id_accesorio, nombre
             FROM accesorios 
-            ORDER BY id_accesorios ASC';
+            ORDER BY id_accesorio ASC';
             $query  = $this->db->conect()->query($sql);
 
             while ($row = $query->fetch()) {
                 $datos                         = new AccesoriosDispositivoModel();
-                $datos->id_accesorios = $row['id_accesorios'];
+                $datos->id_accesorios = $row['id_accesorio'];
                 $datos->nombre                 = $row['nombre'];
 
                 array_push($array, $datos);

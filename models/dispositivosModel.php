@@ -1,5 +1,5 @@
 .
-    <?php
+<?php
 
 include_once dirname(__FILE__) . '../../Config/config.php';
 require_once 'dataBaseModel.php';
@@ -9,10 +9,16 @@ class DispositivoModel
 {
     private $id_dispositivo;
     private $id_persona;
+    private $tipo_identificacion;
+    private $numero_identificacion;
+    private $primer_nombre;
+    private $segundo_nombre;
+    private $primer_apellido;
+    private $segundo_apellido;
     private $id_tipo_dispositivo;
     private $id_marca;
     private $id_color;
-    private $id_accesorios;
+    private $id_accesorio;
     private $serie;
 
 
@@ -34,22 +40,30 @@ class DispositivoModel
 
         try {
 
-            $sql = "SELECT * FROM dispositivos WHERE id_dispositivo = $id_dispositivo";
+            $sql = ' SELECT id_dispositivo, ti.nombre AS id_tipo_identificacion, p.numero_identificacion,  primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, td.nombre AS id_tipo_dispositivo, m.nombre AS id_marca, c.nombre AS id_color, d.serie 
+            FROM dispositivos AS d
+            JOIN personas AS p ON p.id_persona = d.id_persona
+            JOIN tipo_identificacion AS ti ON p.id_tipo_identificacion = ti.id_tipo_identificacion
+            JOIN tipo_dispositivos AS td ON d.id_tipo_dispositivo = td.id_tipo_dispositivo
+            JOIN marcas AS m ON d.id_marca = m.id_marca
+            JOIN colores AS c ON d.id_color = c.id_color';
             $query  = $this->db->conect()->query($sql);
             $query->execute([
-                'id_dispositivo'        => $id_dispositivo
+                'id_dispositivo' => $id_dispositivo
             ]);
-
-
             while ($row = $query->fetch()) {
                 $item                                   = new DispositivoModel();
-                
-                $item->id_dispositivo                 = $row['id_dispositivo'];
-                $item->id_tipo_dispositivo            = $row['id_tipo_dispositivo'];
-                $item->id_marca                       = $row['id_marca'];
-                $item->id_color                       = $row['id_color'];
-                $item->id_accesorios                  = $row['id_accesorios'];
-                $item->serie                          = $row['serie'];
+                $item->tipo_identificacion   = $row['id_tipo_identificacion'];
+                $item->numero_identificacion = $row['numero_identificacion'];
+                $item->primer_nombre         = $row['primer_nombre'];
+                $item->segundo_nombre        = $row['segundo_nombre'];
+                $item->primer_apellido       = $row['primer_apellido'];
+                $item->segundo_apellido      = $row['segundo_apellido'];
+                $item->id_dispositivo        = $row['id_dispositivo'];
+                $item->id_tipo_dispositivo   = $row['id_tipo_dispositivo'];
+                $item->id_marca              = $row['id_marca'];
+                $item->id_color              = $row['id_color'];
+                $item->serie                 = $row['serie'];
 
                 array_push($datos_dipositivo, $item);
             }
@@ -66,26 +80,28 @@ class DispositivoModel
         $items = [];
 
         try {
-            $sql = 'SELECT id_dispositivo, td.nombre AS id_tipo_dispositivo, m.nombre AS id_marca, c.nombre AS id_color, a.nombre AS id_accesorio, serie
+            $sql = 'SELECT id_dispositivo, ti.nombre AS id_tipo_identificacion, p.numero_identificacion, CONCAT(p.primer_nombre, " ", p.segundo_nombre, " ", p.primer_apellido, " ", p.segundo_apellido) AS nombre,
+            td.nombre AS id_tipo_dispositivo, m.nombre AS id_marca, c.nombre AS id_color, d.serie 
             FROM dispositivos AS d
-            JOIN personas AS p ON p.id_persona = p.id_persona
-            JOIN tipo_dispositivos AS td ON td.id_tipo_dispositivo = td.id_tipo_dispositivo
-            JOIN marcas AS m ON m.id_marca = m.id_marca
-            JOIN color AS c ON c.id_color = c.id_color
-            JOIN accesorios AS a ON a.id_accesorios = a.id_accesorios';
+            JOIN personas AS p ON p.id_persona = d.id_persona
+            JOIN tipo_identificacion AS ti ON p.id_tipo_identificacion = ti.id_tipo_identificacion
+            JOIN tipo_dispositivos AS td ON d.id_tipo_dispositivo = td.id_tipo_dispositivo
+            JOIN marcas AS m ON d.id_marca = m.id_marca
+            JOIN colores AS c ON d.id_color = c.id_color';
 
 
             $query  = $this->db->conect()->query($sql);
 
             while ($row = $query->fetch()) {
-                $item                                   = new DispositivoModel();
-                $item->id_dispositivo                 = $row['id_dispositivo'];
-                // $item -> id_persona                     = $row['id_persona'];
-                $item->id_tipo_dispositivo            = $row['id_tipo_dispositivo'];
-                $item->id_marca                       = $row['id_marca'];
-                $item->id_color                       = $row['id_color'];
-                $item->id_accesorios                  = $row['id_accesorio'];
-                $item->serie                          = $row['serie'];
+                $item                           = new DispositivoModel();
+                $item->id_dispositivo           = $row['id_dispositivo'];
+                $item->tipo_identificacion      = $row['id_tipo_identificacion'];
+                $item->numero_identificacion    = $row['numero_identificacion'];
+                $item->id_persona               = $row['nombre'];
+                $item->id_tipo_dispositivo      = $row['id_tipo_dispositivo'];
+                $item->id_marca                 = $row['id_marca'];
+                $item->id_color                 = $row['id_color'];
+                $item->serie                    = $row['serie'];
 
                 array_push($items, $item);
             }
@@ -98,17 +114,15 @@ class DispositivoModel
     public function store($datos)
     {
         try {
-            $sql = 'INSERT INTO dispositivos(id_persona, id_tipo_dispositivo, id_marca, id_color, id_accesorios, serie)
-            VALUES (:id_persona, :id_tipo_dispositivo, :id_marca, :id_color, :id_accesorios, :serie, )';
+            $sql = "INSERT INTO dispositivos(id_persona, id_tipo_dispositivo, id_marca, id_color, serie)
+            VALUES (:id_persona, :id_tipo_dispositivo, :id_marca, :id_color, :serie)";
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
-
-                'id_persona'                     => $datos['id_persona'],
-                'id_tipo_dispositivo'            => $datos['id_tipo_dispositivo'],
-                'id_marca'                       => $datos['id_marca'],
-                'id_color'                       => $datos['id_color'],
-                'id_accesorios'                  => $datos['id_accesorios'],
-                'serie'                          => $datos['serie'],
+                'id_persona'           => $datos['id_persona'],
+                'id_tipo_dispositivo'  => $datos['id_tipo_dispositivo'],
+                'id_marca'             => $datos['id_marca'],
+                'id_color'             => $datos['id_color'],
+                'serie'                => $datos['serie'],
             ]);
 
             if ($query) {
@@ -127,19 +141,22 @@ class DispositivoModel
             id_tipo_dispositivo = :id_tipo_dispositivo,
             id_marca = :id_marca,
             id_color = :id_color,
-            id_accesorios = :id_accesorios,
+            id_accesorio = :id_accesorio,
             serie  = :serie             
             WHERE id_dispositivo = :id_dispositivo';
 
             $prepare = $this->db->conect()->query($sql);
             $query = $prepare->execute([
                 'id_dispositivo'       => $datos['id_dispositivo'],
-                
-                'id_tipo_dispositivo'           => $datos['id_tipo_dispositivo'],
-                'id_marca'                       => $datos['id_marca'],
-                'id_color'                       => $datos['id_color'],
-                'id_accesorios'                  => $datos['id_accesorios'],
-                'serie'                          => $datos['serie'],
+
+                'tipo_identificacion  '     => $datos['id_tipo_identificacion'],
+                'numero_identificacion'     => $datos['numero_identificacion'],
+                'id_persona'                => $datos['id_persona'],
+                'id_tipo_dispositivo'       => $datos['id_tipo_dispositivo'],
+                'id_marca'                  => $datos['id_marca'],
+                'id_color'                  => $datos['id_color'],
+                'id_accesorio'              => $datos['id_accesorio'],
+                'serie'                     => $datos['serie'],
 
             ]);
             if ($query) {
@@ -165,6 +182,29 @@ class DispositivoModel
             die($e->getMessage());
         }
     }
+
+
+
+    public function getTipoIdentificacion()
+    {
+        return $this->tipo_identificacion;
+    }
+
+    public function setTipoIdentificacion($tipo_identificacion)
+    {
+        $this->tipo_identificacion = $tipo_identificacion;
+    }
+
+    public function getNumeroIdentificacion()
+    {
+        return $this->numero_identificacion;
+    }
+
+    public function setNumeroIdentificacion($numero_identificacion)
+    {
+        $this->numero_identificacion = $numero_identificacion;
+    }
+
     public function getTipoDispositivos()
     {
         return $this->id_tipo_dispositivo;
@@ -194,11 +234,11 @@ class DispositivoModel
 
     public function getAccesorios()
     {
-        return $this->id_accesorios;
+        return $this->id_accesorio;
     }
-    public function setAccesorios($id_accesorios)
+    public function setAccesorios($id_accesorio)
     {
-        return $this->id_accesorios = $id_accesorios;
+        return $this->id_accesorio = $id_accesorio;
     }
 
     public function getSerie()
@@ -209,4 +249,15 @@ class DispositivoModel
     {
         return $this->serie = $serie;
     }
+    
+    public function getIdPersona()
+    {
+        return $this->id_persona;
+    }
+    public function setIdPersona($id_persona)
+    {
+        return $this->id_persona = $id_persona;
+    }
+
+
 }

@@ -61,7 +61,7 @@ $accesorios = $datos_accesorios->getAll();
                 <div class="row">
                     <div class="col-6 mb-3">
                         <label for="id_tipo_dispositivo" class="form_label">Tipo de Dispositivo</label>
-                        <select class="form-select"  value="<?= $id_tipo_dispositivos ?>"" id="id_tipo_identificacion" name="id_tipo_identificacion" disabled>
+                        <select class="form-select"  value="<?= $id_tipo_dispositivos ?>" id="id_tipo_identificacion" name="id_tipo_identificacion" disabled>
                         <select class="form-select" id="id_tipo_dispositivo" name="id_tipo_dispositivo" disabled>
                             <option selected>Seleccionar</option>
                             <?php

@@ -59,21 +59,21 @@ $accesorios = $datos_accesorios->getAll();
                             </td>
                             <td>
                             <td>
-                                <a class="btn btn-sm btn-outline-warning" onclick="show(<?= $accesorios-> getId()  ?>)">
+                                <a class="btn btn-sm btn-outline-warning" onclick="show(<?= $accesorios->getId()  ?>)">
                                     <i class="bi bi-pencil-square" style="font-size: 1.4rem;"></i>
                                 </a>
-                                <a class="btn btn-sm btn-outline-danger" href="../../controllers/accesoriosDispositivoController.php?c=4&id_accesorios=<?= $accesorios-> getId() ?>">
+                                <a class="btn btn-sm btn-outline-danger" href="../../controllers/accesoriosDispositivoController.php?c=4&id_accesorios=<?= $accesorios->getId() ?>">
 
                                     <i class="bi bi-trash3-fill" style="font-size: 1.4rem;"></i>
                                 </a>
-                               
+
                             </td>
                             </td>
                         </tr>
                     <?php
-                            $pos++;
-                            }
-                        } else {
+                                    $pos++;
+                                }
+                            } else {
                     ?>
                     <tr>
                         <td colspan="3" class="text-center">No hay datos</td>
@@ -125,7 +125,7 @@ $accesorios = $datos_accesorios->getAll();
             });
     }
 
-    function borrar(){
+    function borrar() {
         var btn_editar = document.getElementById("btn_guardar");
         btn_editar.hidden = false;
 
