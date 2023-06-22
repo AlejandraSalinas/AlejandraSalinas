@@ -44,12 +44,12 @@ class IngresarModel
             $sql = ' SELECT id_ingresar, ti.nombre AS id_tipo_identificacion, p.numero_identificacion, 
             primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, td.nombre AS id_tipo_dispositivo,
              m.nombre AS id_marca, c.nombre AS id_color, d.serie, d.descripcion, a.nombre_accesorio, a.serie, a.descripcion
-                       FROM dispositivos AS d
+                       FROM ingresar AS d
                        JOIN personas AS p ON p.id_persona = d.id_persona
                        JOIN  accesorios AS a ON a.id_accesorio = a.id_accesorio
                      
                        JOIN tipo_identificacion AS ti ON p.id_tipo_identificacion = ti.id_tipo_identificacion
-                       JOIN tipo_dispositivos AS td ON d.id_tipo_dispositivo = td.id_tipo_dispositivo
+                       JOIN tipo_ingresar AS td ON d.id_tipo_dispositivo = td.id_tipo_dispositivo
                        JOIN marcas AS m ON d.id_marca = m.id_marca
                        JOIN colores AS c ON d.id_color = c.id_color';
             $query  = $this->db->conect()->query($sql);
@@ -91,14 +91,17 @@ class IngresarModel
         $items = [];
 
         try {
-            $sql = 'SELECT id_ingresar, ti.nombre AS id_tipo_identificacion, p.numero_identificacion, CONCAT(p.primer_nombre, " ", p.segundo_nombre, " ", p.primer_apellido, " ", p.segundo_apellido) AS nombre,
-            td.nombre AS id_tipo_dispositivo, m.nombre AS id_marca, c.nombre AS id_color, d.serie, descripcion
-            FROM dispositivos AS d
-            JOIN personas AS p ON p.id_persona = d.id_persona
-            JOIN tipo_identificacion AS ti ON p.id_tipo_identificacion = ti.id_tipo_identificacion
-            JOIN tipo_dispositivos AS td ON d.id_tipo_dispositivo = td.id_tipo_dispositivo
-            JOIN marcas AS m ON d.id_marca = m.id_marca
-            JOIN colores AS c ON d.id_color = c.id_color';
+            $sql = 'SELECT id_ingresar, ti.nombre AS id_tipo_identificacion, p.numero_identificacion, 
+            CONCAT(p.primer_nombre, " ", p.segundo_nombre, " ", p.primer_apellido, " ", p.segundo_apellido) AS nombre, td.nombre AS id_tipo_dispositivo,
+             m.nombre AS id_marca, c.nombre AS id_color, d.serie, d.descripcion, a.nombre_accesorio, a.serie, a.descripcion
+                       FROM ingresar AS d
+                       JOIN personas AS p ON p.id_persona = d.id_persona
+                       JOIN  accesorios AS a ON a.id_accesorio = a.id_accesorio
+                     
+                       JOIN tipo_identificacion AS ti ON p.id_tipo_identificacion = ti.id_tipo_identificacion
+                       JOIN tipo_ingresar AS td ON d.id_tipo_dispositivo = td.id_tipo_dispositivo
+                       JOIN marcas AS m ON d.id_marca = m.id_marca
+                       JOIN colores AS c ON d.id_color = c.id_color';
 
 
             $query  = $this->db->conect()->query($sql);
@@ -114,6 +117,8 @@ class IngresarModel
                 $item->id_color                 = $row['id_color'];
                 $item->serie                    = $row['serie'];
                 $item->descripcion                 = $row['descripcion'];
+                $item->nombre_accesorio        = $row['nombre_accesorio'];
+
 
 
                 array_push($items, $item);
@@ -127,7 +132,7 @@ class IngresarModel
     public function store($datos)
     {
         try {
-            $sql = "INSERT INTO dispositivos(id_persona, id_tipo_dispositivo, id_marca, id_color, serie, descripcion)
+            $sql = "INSERT INTO ingresar(id_persona, id_tipo_dispositivo, id_marca, id_color, serie, descripcion)
             VALUES (:id_persona, :id_tipo_dispositivo, :id_marca, :id_color, :serie, :descripcion)";
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
@@ -151,7 +156,7 @@ class IngresarModel
     public function update($datos)
     {
         try {
-            $sql = 'UPDATE dispositivos SET 
+            $sql = 'UPDATE ingresar SET 
 
             id_tipo_dispositivo = :id_tipo_dispositivo,
             id_marca = :id_marca,
@@ -188,7 +193,7 @@ class IngresarModel
     public function delete($id_ingresar)
     {
         try {
-            $sql = 'DELETE FROM dispositivos WHERE id_ingresar = :id_ingresar';
+            $sql = 'DELETE FROM ingresar WHERE id_ingresar = :id_ingresar';
 
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
@@ -224,11 +229,11 @@ class IngresarModel
         $this->numero_identificacion = $numero_identificacion;
     }
 
-    public function getTipoDispositivos()
+    public function getTipoingresar()
     {
         return $this->id_tipo_dispositivo;
     }
-    public function setTipoDispositivos($id_tipo_dispositivo)
+    public function setTipoingresar($id_tipo_dispositivo)
     {
         return $this->id_tipo_dispositivo = $id_tipo_dispositivo;
     }
@@ -281,5 +286,26 @@ class IngresarModel
         return $this->id_persona = $id_persona;
     }
 
+    
+     
+    public function getNombreAccesorio()
+    {
+        return $this->nombre_accesorio;
+    }
+
+    public function setNombreAccesorio($nombre_accesorio)
+    {
+        $this->$nombre_accesorio = $nombre_accesorio;
+    }
+    
+  
+   
+
+  
+
+   
+
 
 }
+
+
