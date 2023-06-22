@@ -15,8 +15,10 @@
         <thead>
             <tr class="text-center">
                 <th scope="col" colspan="3">Informacion del Usuario</th>
-                <th scope="col" colspan="5">Dispositivo Registrado</th>
-                <th scope="col" colspan="2">Ingreso</th>
+                <th scope="col" colspan="1">Dispositivo Registrado</th>
+                <th scope="col" colspan="1">Accesorio Registrado</th>
+                
+
                 <th scope="col" colspan="3">Opciones</th>              
             </tr>
             <tr class="text-center">
@@ -24,13 +26,10 @@
                 <th scope="col">Número de Identificación</th>
                 <th scope="col">Nombre Completo</th>
 
-                <th scope="col">Tipo de Dispositivo</th>
-                <th scope="col">Marca</th>
-                <th scope="col">Color</th>
-                <th scope="col">Serie</th>
+                <th scope="col">Datos del Dispositivo Registrado</th>
+                <th scope="col">Datos del Accesorio Registrado</th>
 
-                <th scope="col">Descripcion</th>
- 
+
                 
                 <th scope="col">Ver</th>
                 <th scope="col">Actualizar</th>
@@ -52,10 +51,9 @@
                         <td><?= $row->getTipoIdentificacion() ?></td>
                         <td><?= $row->getNumeroIdentificacion() ?></td>
                         <td><?= $row->getIdPersona() ?></td>
-                        <td><?= $row->getTipoDispositivos() ?></td>
-                        <td><?= $row->getMarca() ?></td>
-                        <td><?= $row->getColor() ?></td>
-                        <td><?= $row->getSerie() ?></td>
+                        <td><?= $row->getTipoDispositivos() ?>, marca <?= $row->getMarca() ?>, color<?= $row->getColor() ?>, serie<?= $row->getSerie() ?></td>
+                        <td><?= $row->getDescripcion() ?></td>
+
                         <td><?= $row->getDescripcion() ?></td>
 
                         <td>

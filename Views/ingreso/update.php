@@ -37,6 +37,7 @@ $accesorios = $datos_accesorios->getAll();
         $id_tipo_dispositivos       = $dispositivo -> getTipoDispositivos();
         $id_marca                   = $dispositivo -> getMarca();
         $id_color                   = $dispositivo -> getColor();
+        $id_accesorios              = $dispositivo -> getAccesorios();
         $serie                      = $dispositivo -> getSerie();
     }
 

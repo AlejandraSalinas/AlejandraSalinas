@@ -2,10 +2,10 @@
 require_once dirname(__FILE__) . '../../../config/config.php';
 require_once('../../Views/Main/partials/header.php');
 require_once('../../models/PersonaModel.php');
-require_once('../../models/tipoDispositivoModel.php');
-require_once('../../models/marcaDispositivoModel.php');
-require_once('../../models/colorDispositivoModel.php');
-require_once('../../models/accesoriosDispositivoModel.php');
+// require_once('../../models/tipoDispositivoModel.php');
+// require_once('../../models/marcaDispositivoModel.php');
+// require_once('../../models/colorDispositivoModel.php');
+// require_once('../../models/accesoriosDispositivoModel.php');
 
 //$data = new DispositivoModel();
 //$registro = $data->getId();
@@ -13,14 +13,14 @@ require_once('../../models/accesoriosDispositivoModel.php');
 $personas_model = new PersonaModel();
 $personas = $personas_model->NombreCompleto();
 
-$datos_dispositivo = new TipoDispositivoModel();
-$dispositivos = $datos_dispositivo->getAll();
+// $datos_dispositivo = new TipoDispositivoModel();
+// $dispositivos = $datos_dispositivo->getAll();
 
-$datos_marca = new MarcaDispositivoModel();
-$marca = $datos_marca->getAll();
+// $datos_marca = new MarcaDispositivoModel();
+// $marca = $datos_marca->getAll();
 
-$datos_color = new ColorDispositivoModel();
-$color = $datos_color->getAll();
+// $datos_color = new ColorDispositivoModel();
+// $color = $datos_color->getAll();
 
 
 

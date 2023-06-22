@@ -46,33 +46,8 @@ $personas = $personas_model->NombreCompleto();
                     <div class="col-6 mb-3">
                     <label for="nombre_accesorio" class="form_label">Acccesorio</label>
                            <input type="text" class="form-control" id="nombre_accesorio" name="nombre_accesorio" required="required">
-
                     </div>
-                    <div class="col-6 mb-3 ">
-                        <label for="id_marca" class="form_label">Marca</label>
-                        <select class="form-select" value="<?= $id_marca ?>" id="id_marca" name="id_marca" required="required">
-                            <option selected>Seleccionar</option>
-                            <?php
-                            foreach ($marca  as $datos) {
-                                echo '<option value="' . $datos->getId() . '">' . $datos->getMarca() . '</option>';
-                            }
-                            ?>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="mb-3 col-6">
-                        <label for="id_color" class="form_label">Color</label>
-                        <select class="form-select" value="<?= $id_color ?>" id="id_color" name="id_color" required="required">
-                            <option selected>Seleccionar</option>
-                            <?php
-                            foreach ($color  as $datos) {
-                                echo '<option value="' . $datos->getId() . '">' . $datos->getColor() . '</option>';
-                            }
-                            ?>
-                        </select>
-                    </div>
-
+          
                     <div class="col-6 mb-3">
                         <label for="serie" class="form_label">Serie</label>
                         <input type="text" class="form-control" id="serie" name="serie" required="required">

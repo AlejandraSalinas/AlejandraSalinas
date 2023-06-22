@@ -2,9 +2,9 @@
 
 require_once '../models/dispositivosModel.php';
 
-$controllerDispositivo = new DispositivoController;
+$controllerDispositivo = new IngresarModel;
 
-class DispositivoController
+class IngresarModel
 {
     private $dispositivo;
 

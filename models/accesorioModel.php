@@ -133,24 +133,18 @@ class AccesorioModel
             $sql = 'UPDATE accesorios SET 
 
             id_accesorio = :id_accesorio,
-            id_marca = :id_marca,
-            id_color = :id_color,
-            id_accesorio = :id_accesorio,
+            nombre_accesorio = :nombre_accesorio,
             serie  = :serie             
+            descripcion = :descripcion,
             WHERE id_accesorio = :id_accesorio';
 
             $prepare = $this->db->conect()->query($sql);
             $query = $prepare->execute([
                 'id_accesorio'       => $datos['id_accesorio'],
-
-                'tipo_identificacion  '     => $datos['id_tipo_identificacion'],
-                'numero_identificacion'     => $datos['numero_identificacion'],
-                'id_persona'                => $datos['id_persona'],
-                'id_accesorio'              => $datos['id_accesorio'],
-                'id_marca'                  => $datos['id_marca'],
-                'id_color'                  => $datos['id_color'],
-                'serie'                     => $datos['serie'],
-
+                'id_persona'           => $datos['id_persona'],
+                'nombre_accesorio'                => $datos['nombre_accesorio'],
+                'serie'                => $datos['serie'],
+                'descripcion'                 => $datos['descripcion'],
             ]);
             if ($query) {
                 return true;

@@ -6,11 +6,11 @@ $controllerAccesorio = new AccesorioController;
 
 class AccesorioController
 {
-    private $dispositivo;
+    private $accesorio;
 
     public function __construct()
     {
-        $this->dispositivo = new AccesorioModel();
+        $this->accesorio = new AccesorioModel();
 
         if (isset($_REQUEST['c'])) {
             switch ($_REQUEST['c']) {
@@ -35,7 +35,7 @@ class AccesorioController
 
     public function index()
     {
-        return $this->dispositivo->getAll();
+        return $this->accesorio->getAll();
     }
 
     public function store()
@@ -47,7 +47,7 @@ class AccesorioController
             'descripcion'                 => $_REQUEST['descripcion'],
         ];
 
-        $result = $this->dispositivo->store($datos);
+        $result = $this->accesorio->store($datos);
         if ($result) {
             header("Location: ../Views/accesorios/index.php");
             exit();
@@ -63,7 +63,7 @@ class AccesorioController
 
     public function delete()
     {
-        $this->dispositivo->delete($_REQUEST['id_accesorio']);
+        $this->accesorio->delete($_REQUEST['id_accesorio']);
         header("Location: ../Views/accesorios/index.php");
     }
 
@@ -77,7 +77,7 @@ class AccesorioController
             'descripcion'                 => $_REQUEST['descripcion'],
 
         ];
-        $result = $this->dispositivo->update($datos);
+        $result = $this->accesorio->update($datos);
 
         if ($result) {
             header("Location: ../Views/accesorios/index.php");
