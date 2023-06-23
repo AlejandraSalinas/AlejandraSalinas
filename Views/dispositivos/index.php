@@ -16,7 +16,6 @@
             <tr class="text-center">
                 <th scope="col" colspan="3">Informacion del Usuario</th>
                 <th scope="col" colspan="5">Dispositivo Registrado</th>
-                <th scope="col" colspan="2">Ingreso</th>
                 <th scope="col" colspan="3">Opciones</th>              
             </tr>
             <tr class="text-center">
@@ -28,7 +27,6 @@
                 <th scope="col">Marca</th>
                 <th scope="col">Color</th>
                 <th scope="col">Serie</th>
-
                 <th scope="col">Descripcion</th>
  
                 

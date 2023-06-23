@@ -15,8 +15,7 @@
         <thead>
             <tr class="text-center">
                 <th scope="col" colspan="3">Informacion del Usuario</th>
-                <th scope="col" colspan="5">Accesorios Registrado</th>
-
+                <th scope="col" colspan="3">Accesorios Registrado</th>
                 <th scope="col" colspan="3">Opciones</th>              
             </tr>
             <tr class="text-center">

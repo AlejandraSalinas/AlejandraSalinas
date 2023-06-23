@@ -66,7 +66,6 @@ class AccesorioController
         $this->accesorio->delete($_REQUEST['id_accesorio']);
         header("Location: ../Views/accesorios/index.php");
     }
-
     public function update()
     {
         $datos = [

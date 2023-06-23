@@ -34,11 +34,11 @@ $personas = $personas_model->NombreCompleto();
         <div class="container">
             <div class="row">
                 <div class="col-12 mb-3">
-                    <label for="id_persona" class="form_label">Nombre Completo</label>
-                    <select class="form-select persona" aria-label="default select example" value="<?= $id_persona ?>" id="id_persona" name="id_persona">
+                    <label for="numero_identificacion" class="form_label">Número De identificación</label>
+                    <select class="form-select persona" aria-label="default select example" value="<?= $numero_identificacion ?>" id="numero_identificacion" name="numero_identificacion">
                     <?php    
                         foreach ($personas  as $persona) {
-                            echo '<option value="' . $persona->getIdPersona() . '">' . $persona->getNombre() . '</option>';
+                            echo '<option value="' . $persona->getNumeroIdentificacion() . '">' . $persona->getNumeroIdentificacion() . '</option>';
 
                         }
                     ?>
