@@ -63,10 +63,6 @@ class TurnosModel
             $sql = 'SELECT * FROM turnos 
             ORDER BY fecha_inicial, hora_inicial, fecha_final, hora_final ASC';
 
-            // -- JOIN tipo_identificacion ON personas.id_tipo_identificacion = tipo_identificacion.id_tipo_identificacion
-            // -- JOIN roles ON personas.id_rol = roles.id_rol
-            // -- JOIN sexo ON personas.id_sexo = sexo.id_sexo
-
             $query = $this->db->conect()->query($sql);
 
             while ($row = $query->fetch()) {
@@ -87,12 +83,10 @@ class TurnosModel
     }
     public function store($datos)
     {
-        print_r($datos);
-        die();
         
         try {
-            $sql = 'INSERT INTO turnos(id_vigilante, fecha_inicial, hora_inicial, fecha_final, hora_final, id_sede, id_posicion, id_supervisor) 
-            VALUES (:id_vigilante, :fecha_inicial, :hora_inicial, :fecha_final, :hora_final, :id_sede, :id_posicion, :id_supervisor)';
+            $sql = 'INSERT INTO turnos(id_vigilante, fecha_inicial, hora_inicial, fecha_final, hora_final, id_sede, id_posicion) 
+            VALUES (:id_vigilante, :fecha_inicial, :hora_inicial, :fecha_final, :hora_final, :id_sede, :id_posicion)';
 
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
@@ -103,7 +97,7 @@ class TurnosModel
                 'hora_final'     => $datos['hora_final'],
                 'id_sede'        => $datos['id_sede'],
                 'id_posicion'    => $datos['id_posicion'],
-                'id_supervisor'  => $datos['id_supervisor']
+                // 'id_supervisor'  => $datos['id_supervisor']
 
             ]);
             if ($query) {

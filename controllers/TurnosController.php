@@ -38,8 +38,6 @@ class TurnosController
     }
     public function store()
     {
-        // print_r($_REQUEST);
-        // die();
         
         $datos = [
             'id_vigilante'   => $_REQUEST['id_persona'],

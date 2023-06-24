@@ -10,7 +10,7 @@ $data = $vigilantes->getAll();
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Vigilante</h1>
+    <h1 class="h3 mb-4 text-gray-800">Tabla del Vigilante</h1>
     <div class="container text-center" >
         <!-- <?php include_once('../Main/partials/listado.php'); ?> -->
         <br>

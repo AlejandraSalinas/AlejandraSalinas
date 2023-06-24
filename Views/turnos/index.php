@@ -13,8 +13,8 @@ $datos_sede = new SedesModel();
 $sedes = $datos_sede->getAll();
 
 
-$data = new PersonaModel();
-$vigilantes = $data->getPersonasByRol(4);
+// $data = new PersonaModel();
+// $vigilantes = $data->getPersonasByRol(4);
 
 $datos_turnos = new TurnosModel();
 $turnos = $datos_turnos->getAll();
@@ -102,12 +102,13 @@ $turnos = $datos_turnos->getAll();
 
             <thead>
                 <tr>
+                    <!-- <th scope="col">Tipo de Identificación</th>
+                    <th scope="col">Número de Identificación</th> -->
                     <th scope="col">#</th>
-                    <th scope="col">Tipo de Identificación</th>
-                    <th scope="col">Número de Identificación</th>
                     <th scope="col">Nombre Completo</th>
-                    <th scope="col">Fecha Turnos</th>
-                    <th scope="col">Hora De Inicio</th>
+                    <th scope="col">Fecha Inicial</th>
+                    <th scope="col">Hora Inicial</th>
+                    <th scope="col">Fecha Final</th>
                     <th scope="col">Hora Final</th>
                     <th scope="col">Area Asignada</th>
                     <th scope="col">Sedes</th>
@@ -122,8 +123,6 @@ $turnos = $datos_turnos->getAll();
                         foreach ($turnos as $row) {
                     ?>
                 <tr>
-                    <td><?= $row->getTipoIdentificacion() ?></td>
-                    <td><?= $row->getNumeroIdentificacion() ?></td>
                     <td><?= $row->getVigilante() ?></td>
                     <td><?= $row->getFechaInicial() ?></td>
                     <td><?= $row->getHoraInicial() ?></td>
