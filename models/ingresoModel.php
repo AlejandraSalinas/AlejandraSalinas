@@ -21,6 +21,8 @@ class IngresarModel
     private $serie;
     private $descripcion;
     private $nombre_accesorio;
+    private $fecha_entrada;
+    private $fecha_salida;
 
 
     private $db;
@@ -37,7 +39,7 @@ class IngresarModel
 
     public function getById($id_ingresar)
     {
-        $datos_dipositivo = [];
+        $datos_ingreso = [];
 
         try {
 
@@ -76,10 +78,10 @@ class IngresarModel
 
 
 
-                array_push($datos_dipositivo, $item);
+                array_push($datos_ingreso, $item);
             }
 
-            return $datos_dipositivo;
+            return $datos_ingreso;
         } catch (PDOException $e) {
             die($e->getMessage());
         }
@@ -132,7 +134,7 @@ class IngresarModel
     public function store($datos)
     {
         try {
-            $sql = "INSERT INTO ingresar(id_persona, id_tipo_dispositivo, id_marca, id_color, serie, descripcion)
+            $sql = "INSERT INTO ingresar(id_persona, id_accesorio, fecha_entrada )
             VALUES (:id_persona, :id_tipo_dispositivo, :id_marca, :id_color, :serie, :descripcion)";
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([

@@ -10,15 +10,16 @@
 <div style="padding:1px 16px;height:1000px;">
 
 
-    <h3>Base de datos de los dispositivos registrados</h3>
     <table class="table table-striped">
         <thead>
+        <tr class="text-center">
+                <th scope="col" colspan="10"><h3>Base de datos del registro de Ingreso/Egreso</h3></th>
+            </tr>
             <tr class="text-center">
                 <th scope="col" colspan="3">Informacion del Usuario</th>
                 <th scope="col" colspan="1">Dispositivo Registrado</th>
                 <th scope="col" colspan="1">Accesorio Registrado</th>
-                
-
+                <th scope="col" colspan="2">Ingreso</th>
                 <th scope="col" colspan="3">Opciones</th>              
             </tr>
             <tr class="text-center">
@@ -27,7 +28,12 @@
                 <th scope="col">Nombre Completo</th>
 
                 <th scope="col">Datos del Dispositivo Registrado</th>
+                
                 <th scope="col">Datos del Accesorio Registrado</th>
+
+                <th scope="col">Entrada</th>
+                <th scope="col">Salida</th>
+
 
 
                 
@@ -51,11 +57,13 @@
                         <td><?= $row->getTipoIdentificacion() ?></td>
                         <td><?= $row->getNumeroIdentificacion() ?></td>
                         <td><?= $row->getIdPersona() ?></td>
+                        
                         <td><strong>Dispositivo:</strong> "<?= $row->getTipoDispositivos()?>", <strong>Marca</strong> "<?=$row->getMarca()?>", <strong>Color</strong> "<?=$row->getColor()?>", <strong>Serie</strong> "<?= $row->getSerie()?>", <strong>Descripción</strong> "<?= $row->getDescripcion()?>"</td>
                         <td><?= $row->getDescripcion() ?></td>
 
                         <td><?= $row->getDescripcion() ?></td>
 
+                        <td><?= $row->getDescripcion() ?></td>
                         <td>
                             <a class="btn btn-sm btn-outline-primary" href="show.php?id_dispositivo=<?= $row->getId() ?>">
                                 <i class="bi bi-eye-fill" style="font-size: 1.4rem;"></i>

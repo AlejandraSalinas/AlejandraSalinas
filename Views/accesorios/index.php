@@ -10,7 +10,7 @@
 <div style="padding:1px 16px;height:1000px;">
 
 
-    <h3>Base de datos de los dispositivos registrados</h3>
+    <h3>Base de datos de los accesorios registrados</h3>
     <table class="table table-striped">
         <thead>
             <tr class="text-center">
@@ -57,17 +57,17 @@
                         
 
                         <td>
-                            <a class="btn btn-sm btn-outline-primary" href="show.php?id_dispositivo=<?= $row->getId() ?>">
+                            <a class="btn btn-sm btn-outline-primary" href="show.php?id_accesorio=<?= $row->getId() ?>">
                                 <i class="bi bi-eye-fill" style="font-size: 1.4rem;"></i>
                             </a>
                         </td>
                         <td>
-                            <a class="btn btn-sm btn-outline-warning" href="../../controllers/dispositivosController.php?c=2&id_dispositivo=<?= $row->getId() ?>">
+                            <a class="btn btn-sm btn-outline-warning" href="../../controllers/accesorioController.php?c=2&id_accesorio=<?= $row->getId() ?>">
                                 <i class="bi bi-pencil-square" style="font-size: 1.4rem;"></i>
                             </a>   
                         </td>
                         <td>
-                            <a class="btn btn-sm btn-outline-danger" href="../../controllers/dispositivosController.php?c=4&id_dispositivo=<?=$row->getId() ?>">
+                            <a class="btn btn-sm btn-outline-danger" href="../../controllers/accesorioController.php?c=4&id_accesorio=<?=$row->getId() ?>">
                                 <i class="bi bi-trash3-fill" style="font-size: 1.4rem;"></i>
                             </a>
                             

@@ -2,7 +2,7 @@
 include_once dirname(__FILE__) . '../../Config/config.php';
 require_once 'dataBaseModel.php';
 
-class AccesoriosDispositivoModel
+class TipoAccesorioModel
 {
     private $id_tipo_accesorio;
     private $nombre;
@@ -30,8 +30,8 @@ class AccesoriosDispositivoModel
             ]);
 
             while ($row = $query->fetch()) {
-                $item                          = new AccesoriosDispositivoModel();
-                $item->id_tipo_accesorio  = $row['id_tipo_accesorio'];
+                $item                          = new TipoAccesorioModel();
+                $item->$id_tipo_accesorio  = $row['id_tipo_accesorio'];
                 $item->nombre                  = $row['nombre'];
 
                 array_push($datos_accesorios, $item);
@@ -49,12 +49,12 @@ class AccesoriosDispositivoModel
 
         try {
             $sql = 'SELECT id_tipo_accesorio, nombre
-            FROM id_tipo_accesorio
-            ORDER BY id_accesorio ASC';
-                        $query  = $this->db->conect()->query($sql);
+            FROM tipo_accesorios 
+            ORDER BY id_tipo_accesorio ASC';
+            $query  = $this->db->conect()->query($sql);
 
             while ($row = $query->fetch()) {
-                $datos                         = new AccesoriosDispositivoModel();
+                $datos                         = new TipoAccesorioModel();
                 $datos->id_tipo_accesorio = $row['id_tipo_accesorio'];
                 $datos->nombre                 = $row['nombre'];
 
@@ -120,13 +120,14 @@ class AccesoriosDispositivoModel
     }
 
 
+
     // GETTER Y SETTER
-    public function getTipoAccesorios()
+    public function getTipoAccesorio()
     {
         return $this->nombre;
     }
-    public function setTipoAccesorios($nombre)
+    public function setTipoAccesorio($id_tipo_accesorio)
     {
-        $this->nombre = $nombre ;
+        return $this->nombre = $id_tipo_accesorio;
     }
 }

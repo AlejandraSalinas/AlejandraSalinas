@@ -1,6 +1,6 @@
 <?php
 
-require_once '../models/accesorioModel.phpModel.php';
+require_once '../models/accesorioModel.php';
 
 $controllerAccesorio = new AccesorioController;
 
@@ -53,6 +53,8 @@ class AccesorioController
             exit();
         }
         return $result;
+        // var_dump($datos);
+        // die();
     }
 
     public function show()

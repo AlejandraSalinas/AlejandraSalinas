@@ -5,7 +5,7 @@ require_once('../../models/PersonaModel.php');
 // require_once('../../models/tipoDispositivoModel.php');
 // require_once('../../models/marcaDispositivoModel.php');
 // require_once('../../models/colorDispositivoModel.php');
-// require_once('../../models/accesoriosDispositivoModel.php');
+// require_once('../../models/TipoAccesorioModel.php');
 
 //$data = new DispositivoModel();
 //$registro = $data->getId();

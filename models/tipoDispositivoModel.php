@@ -20,7 +20,7 @@ class TipoDispositivoModel
 
     public function getById($id_tipo_dispositivo)
     {
-        $datos_marca = [];
+        $datos_dispositivo = [];
 
         try {
             $sql = "SELECT * FROM tipo_dispositivos WHERE id_tipo_dispositivo = :id_tipo_dispositivo";
@@ -34,10 +34,10 @@ class TipoDispositivoModel
                 $item->$id_tipo_dispositivo  = $row['id_tipo_dispositivo'];
                 $item->nombre                  = $row['nombre'];
 
-                array_push($datos_marca, $item);
+                array_push($datos_dispositivo, $item);
             }
 
-            return $datos_marca;
+            return $datos_dispositivo;
         } catch (PDOException $e) {
             die($e->getMessage());
         }

@@ -1,10 +1,6 @@
-.
 <?php
-
 include_once dirname(__FILE__) . '../../Config/config.php';
 require_once 'dataBaseModel.php';
-
-
 class AccesorioModel
 {
     private $id_accesorio;
@@ -21,7 +17,6 @@ class AccesorioModel
     private $serie;
     private $descripcion;
 
-
     private $db;
 
     public function __construct()
@@ -36,7 +31,7 @@ class AccesorioModel
 
     public function getById($id_accesorio)
     {
-        $datos_dipositivo = [];
+        $datos_accesorios = [];
 
         try {
 
@@ -64,10 +59,10 @@ class AccesorioModel
                 $item->descripcion                 = $row['descripcion'];
 
 
-                array_push($datos_dipositivo, $item);
+                array_push($datos_accesorios, $item);
             }
 
-            return $datos_dipositivo;
+            return $datos_accesorios;
         } catch (PDOException $e) {
             die($e->getMessage());
         }
@@ -110,13 +105,13 @@ class AccesorioModel
     {
         try {
             $sql = "INSERT INTO accesorios(id_persona, nombre_accesorio, serie, descripcion)
-            VALUES (:id_persona, :nombre_accesorio :id_marca, :id_color, :serie :descripcion)";
+            VALUES (:id_persona, :nombre_accesorio :serie :descripcion)";
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
                 'id_persona'           => $datos['id_persona'],
-                'nombre_accesorio'                => $datos['nombre_accesorio'],
+                'nombre_accesorio'     => $datos['nombre_accesorio'],
                 'serie'                => $datos['serie'],
-                'descripcion'                 => $datos['descripcion'],
+                'descripcion'           => $datos['descripcion'],
             ]);
 
             if ($query) {

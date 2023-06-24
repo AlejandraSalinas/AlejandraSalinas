@@ -2,7 +2,7 @@
     require_once dirname(__FILE__) . '../../../config/config.php';
     require_once('../../Views/Main/partials/header.php');
     require_once('../../models/accesorioModel.php');
-    // require_once('../../models/accesoriosDispositivoModel.php');
+    // require_once('../../models/TipoAccesorioModel.php');
     // require_once('../../models/marcaDispositivoModel.php');
     // require_once('../../models/colorDispositivoModel.php');
 
@@ -21,7 +21,7 @@
     // $datos_color = new ColorDispositivoModel();
     // $color = $datos_color->getAll();
 
-    // $datos_accesorios = new AccesoriosDispositivoModel();
+    // $datos_accesorios = new TipoAccesorioModel();
     // $accesorios = $datos_accesorios->getAll();
 
     foreach( $registroAccesorios as $dispositivo){

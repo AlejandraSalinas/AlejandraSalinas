@@ -1,13 +1,13 @@
 <?php
-require_once  '../models/accesoriosDispositivoModel.php';
+require_once  '../models/tipoAccesorioModel.php';
 
-$controllersDispositivo = new accesoriosDispositivoController;
+$controllersDispositivo = new tipoAccesorioController;
 
-class accesoriosDispositivoController{
+class tipoAccesorioController{
     private $accesorios;
 
     public function __construct(){
-        $this->accesorios = new AccesoriosDispositivoModel();
+        $this->accesorios = new TipoAccesorioModel();
 
         if (isset($_REQUEST['c'])) {
             switch ($_REQUEST['c']) {
@@ -52,19 +52,19 @@ class accesoriosDispositivoController{
     
     public function show()
     {
-        $id_accesorio = $_REQUEST['id_accesorio'];
-        header('location: ../Views/configAccesorios/index.php?id_accesorio=' . $id_accesorio);
+        $tipo_accesorio = $_REQUEST['tipo_accesorio'];
+        header('location: ../Views/configAccesorios/index.php?tipo_accesorio=' . $tipo_accesorio);
     }
 
     public function delete()
     {
-        $this->accesorios->delete($_REQUEST['id_accesorio']);
+        $this->accesorios->delete($_REQUEST['tipo_accesorio']);
         header("Location: ../Views/configAccesorios/index.php");
     }
     public function update()
     {
         $datos = [
-            'id_accesorio'   => $_REQUEST['id_accesorio'],
+            'tipo_accesorio'   => $_REQUEST['tipo_accesorio'],
             'nombre'   => $_REQUEST['nombre'],
         ];
 
