@@ -4,7 +4,7 @@ require_once 'dataBaseModel.php';
 
 class AccesoriosDispositivoModel
 {
-    private $id_tipo_accesorio;
+    private $id_accesorios;
     private $nombre;
     private $db;
 
@@ -15,23 +15,23 @@ class AccesoriosDispositivoModel
 
     public function getId()
     {
-        return $this->id_tipo_accesorio;
+        return $this->id_accesorios;
     }
 
-    public function getById($id_tipo_accesorio)
+    public function getById($id_accesorios)
     {
         $datos_accesorios = [];
 
         try {
-            $sql = "SELECT * FROM tipo_accesorios WHERE id_tipo_accesorio = :id_tipo_accesorio";
+            $sql = "SELECT * FROM accesorios WHERE id_accesorios = :id_accesorios";
             $query  = $this->db->conect()->prepare($sql);
             $query->execute([
-                'id_tipo_accesorio' => $id_tipo_accesorio
+                'id_accesorios' => $id_accesorios
             ]);
 
             while ($row = $query->fetch()) {
                 $item                          = new AccesoriosDispositivoModel();
-                $item->id_tipo_accesorio  = $row['id_tipo_accesorio'];
+                $item->id_accesorios  = $row['id_accesorios'];
                 $item->nombre                  = $row['nombre'];
 
                 array_push($datos_accesorios, $item);
@@ -48,14 +48,14 @@ class AccesoriosDispositivoModel
         $array = [];
 
         try {
-            $sql = 'SELECT id_tipo_accesorio, nombre
-            FROM id_tipo_accesorio
-            ORDER BY id_accesorio ASC';
-                        $query  = $this->db->conect()->query($sql);
+            $sql = 'SELECT id_accesorios, nombre
+            FROM accesorios 
+            ORDER BY id_accesorios ASC';
+            $query  = $this->db->conect()->query($sql);
 
             while ($row = $query->fetch()) {
                 $datos                         = new AccesoriosDispositivoModel();
-                $datos->id_tipo_accesorio = $row['id_tipo_accesorio'];
+                $datos->id_accesorios = $row['id_accesorios'];
                 $datos->nombre                 = $row['nombre'];
 
                 array_push($array, $datos);
@@ -71,7 +71,7 @@ class AccesoriosDispositivoModel
     {
         try {
 
-            $sql = 'INSERT INTO tipo_accesorios(nombre) VALUES(:nombre)';
+            $sql = 'INSERT INTO accesorios(nombre) VALUES(:nombre)';
 
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
@@ -88,10 +88,10 @@ class AccesoriosDispositivoModel
     public function update($datos)
     {
         try {
-            $sql = 'UPDATE tipo_accesorios SET tipo_accesorios= :tipo_accesorios WHERE id_tipo_accesorio = :id_tipo_accesorio';
+            $sql = 'UPDATE accesorios SET accesorios= :accesorios WHERE id_accesorios = :id_accesorios';
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
-                'id_tipo_accesorio' => $datos['id_tipo_accesorio'],
+                'id_accesorios' => $datos['id_accesorios'],
                 'nombre'     => $datos['nombre']
             ]);
 
@@ -103,13 +103,13 @@ class AccesoriosDispositivoModel
         }
     }
 
-    public function delete($id_tipo_accesorio)
+    public function delete($id_accesorios)
     {
         try {
-            $sql = 'DELETE FROM tipo_accesorios WHERE id_tipo_accesorio = :id_tipo_accesorio';
+            $sql = 'DELETE FROM accesorios WHERE id_accesorios = :id_accesorios';
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
-                'id_tipo_accesorio' => $id_tipo_accesorio,
+                'id_accesorios' => $id_accesorios,
             ]);
             if ($query) {
                 return true;
@@ -121,11 +121,11 @@ class AccesoriosDispositivoModel
 
 
     // GETTER Y SETTER
-    public function getTipoAccesorios()
+    public function getAccesorios()
     {
         return $this->nombre;
     }
-    public function setTipoAccesorios($nombre)
+    public function setAccesorios($nombre)
     {
         $this->nombre = $nombre ;
     }

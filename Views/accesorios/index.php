@@ -50,7 +50,7 @@
                         <td><?= $row->getTipoIdentificacion() ?></td>
                         <td><?= $row->getNumeroIdentificacion() ?></td>
                         <td><?= $row->getIdPersona() ?></td>
-                        <td><?= $row->getNombreAccesorio() ?></td>
+                        <td><?= $row->getTipoAccesorio() ?></td>
                         <td><?= $row->getSerie() ?></td>
                         <td><?= $row->getDescripcion() ?></td>
 

@@ -7,18 +7,19 @@ require_once('../../models/marcaDispositivoModel.php');
 require_once('../../models/colorDispositivoModel.php');
 
 
-$personas_model = new PersonaModel();
-$personas = $personas_model->NombreCompleto();
+// $personas_model = new PersonaModel();
+// $personas = $personas_model->NombreCompleto();
 
 $datos_accesorios = new TipoAccesorioModel();
 $accesorio = $datos_accesorios->getAll();
 
 
-$datos_marca = new MarcaDispositivoModel();
-$marca = $datos_marca->getAll();
 
-$datos_color = new ColorDispositivoModel();
-$color = $datos_color->getAll();
+// $datos_marca = new MarcaDispositivoModel();
+// $marca = $datos_marca->getAll();
+
+// $datos_color = new ColorDispositivoModel();
+// $color = $datos_color->getAll();
 
 
 
@@ -49,7 +50,7 @@ $color = $datos_color->getAll();
                             <option selected>Seleccionar</option>
                             <?php
                             foreach ($accesorios  as $accesorio) {
-                                echo '<option value="' . $accesorio->getId() . '">' . $accesorio->getTipoAccesorios() . '</option>';
+                                echo '<option value="' . $accesorio->getId() . '">' . $accesorio->getTipoAccesorio() . '</option>';
                             }
                             ?>
                         </select>

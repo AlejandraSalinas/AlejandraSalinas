@@ -1,9 +1,9 @@
 <?php
 include_once(__DIR__ . "../../../Config/config.php");
 include_once('../Main/partials/header.php');
-require_once '../../models/TipoAccesorioModel.php';
+require_once '../../models/accesoriosDispositivoModel.php';
 
-$datos_accesorios = new TipoAccesorioModel();
+$datos_accesorios = new AccesoriosDispositivoModel();
 $accesorios = $datos_accesorios->getAll();
 ?>
 
@@ -20,7 +20,7 @@ $accesorios = $datos_accesorios->getAll();
                 <div class="card card-body">
                     <h3>Crear Accesorios:</h3>
                     <div class="mb-3">
-                        <form action="../../controllers/tipoAccesorioController.php?c=1" method="POST">
+                        <form action="../../controllers/accesoriosDispositivoController.php?c=1" method="POST">
                             <div class="input-group ">
                                 <div class="input-group mb-3">
                                     <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Ingrese un nuevo accesorio" required>
@@ -55,25 +55,25 @@ $accesorios = $datos_accesorios->getAll();
                         <tr>
                             <td><?= $pos ?></td>
                             <td>
-                                <span id="id_tipo_dispositivo<?= $accesorios->getId() ?>"> <?= $accesorios->getAccesorios() ?> </span>
+                                <span id="id_accesorios<?= $accesorios->getId() ?>"> <?= $accesorios->getAccesorios() ?> </span>
                             </td>
                             <td>
                             <td>
-                                <a class="btn btn-sm btn-outline-warning" onclick="show(<?= $accesorios->getId()  ?>)">
+                                <a class="btn btn-sm btn-outline-warning" onclick="show(<?= $accesorios-> getId()  ?>)">
                                     <i class="bi bi-pencil-square" style="font-size: 1.4rem;"></i>
                                 </a>
-                                <a class="btn btn-sm btn-outline-danger" href="../../controllers/tipoAccesorioController.php?c=4&id_tipo_dispositivo=<?= $accesorios->getId() ?>">
+                                <a class="btn btn-sm btn-outline-danger" href="../../controllers/accesoriosDispositivoController.php?c=4&id_accesorios=<?= $accesorios-> getId() ?>">
 
                                     <i class="bi bi-trash3-fill" style="font-size: 1.4rem;"></i>
                                 </a>
-
+                               
                             </td>
                             </td>
                         </tr>
                     <?php
-                                    $pos++;
-                                }
-                            } else {
+                            $pos++;
+                            }
+                        } else {
                     ?>
                     <tr>
                         <td colspan="3" class="text-center">No hay datos</td>
@@ -95,27 +95,27 @@ $accesorios = $datos_accesorios->getAll();
         btn_editar.hidden = true;
     });
 
-    function show(id_tipo_dispositivo) {
+    function show(id_accesorios) {
         var btn_editar = document.getElementById("btn_guardar");
         btn_editar.hidden = true;
 
         var btn_editar = document.getElementById("btn_editar");
         btn_editar.hidden = false;
 
-        let elemento = document.getElementById(`tipo_accesorios${id_tipo_dispositivo}`);
+        let elemento = document.getElementById(`accesorioss${id_accesorios}`);
         let documento = elemento.textContent
 
         document.getElementById('nombre').value = documento
-        document.getElementById('nombre').setAttribute('data-id', id_tipo_dispositivo);
+        document.getElementById('nombre').setAttribute('data-id', id_accesorios);
     }
 
     function editar() {
 
         let elemento = document.getElementById("nombre");
-        let id_tipo_dispositivo = elemento.dataset.id
+        let id_accesorios = elemento.dataset.id
         let nombre = elemento.value
 
-        axios.post(`../../controllers/tipoAccesorioController.php?c=3&id_tipo_dispositivo=${id_tipo_dispositivo}&nombre=${nombre}`)
+        axios.post(`../../controllers/accesoriosDispositivoController.php?c=3&id_accesorios=${id_accesorios}&nombre=${nombre}`)
             .then(function(response) {
                 window.location.reload();
                 document.getElementById('nombre').focus();
@@ -125,7 +125,7 @@ $accesorios = $datos_accesorios->getAll();
             });
     }
 
-    function borrar() {
+    function borrar(){
         var btn_editar = document.getElementById("btn_guardar");
         btn_editar.hidden = false;
 

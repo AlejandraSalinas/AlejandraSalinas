@@ -20,7 +20,7 @@ class TipoAccesorioModel
 
     public function getById($id_tipo_accesorio)
     {
-        $datos_accesorios = [];
+        $datos_accesorio = [];
 
         try {
             $sql = "SELECT * FROM tipo_accesorios WHERE id_tipo_accesorio = :id_tipo_accesorio";
@@ -34,10 +34,10 @@ class TipoAccesorioModel
                 $item->$id_tipo_accesorio  = $row['id_tipo_accesorio'];
                 $item->nombre                  = $row['nombre'];
 
-                array_push($datos_accesorios, $item);
+                array_push($datos_accesorio, $item);
             }
 
-            return $datos_accesorios;
+            return $datos_accesorio;
         } catch (PDOException $e) {
             die($e->getMessage());
         }
@@ -122,11 +122,11 @@ class TipoAccesorioModel
 
 
     // GETTER Y SETTER
-    public function getTipoAccesorio()
+    public function getTipoaccesorio()
     {
         return $this->nombre;
     }
-    public function setTipoAccesorio($id_tipo_accesorio)
+    public function setTipoaccesorio($id_tipo_accesorio)
     {
         return $this->nombre = $id_tipo_accesorio;
     }
