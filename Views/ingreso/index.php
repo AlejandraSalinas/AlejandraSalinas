@@ -59,9 +59,9 @@
                         <td><?= $row->getIdPersona() ?></td>
                         
                         <td><strong>Dispositivo:</strong> "<?= $row->getTipoDispositivos()?>", <strong>Marca</strong> "<?=$row->getMarca()?>", <strong>Color</strong> "<?=$row->getColor()?>", <strong>Serie</strong> "<?= $row->getSerie()?>", <strong>Descripción</strong> "<?= $row->getDescripcion()?>"</td>
-                        <td><?= $row->getDescripcion() ?></td>
 
-                        <td><?= $row->getDescripcion() ?></td>
+                        <td><strong>Accesorio:</strong> "<?= $row->getTipoAccesorio()?>", <strong>Marca</strong> "<?=$row->getMarca()?>", <strong>Color</strong> "<?=$row->getColor()?>", <strong>Serie</strong> "<?= $row->getSerie()?>", <strong>Descripción</strong> "<?= $row->getDescripcion()?>"</td>
+
 
                         <td><?= $row->getDescripcion() ?></td>
                         <td>

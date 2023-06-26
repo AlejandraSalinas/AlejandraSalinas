@@ -1,27 +1,26 @@
 <?php
-require_once '../models/tipoAccesorioModel.php';
+require_once  '../models/tipoAccesorioModel.php';
 
-$controller = new TipoAccesosorioController;
-class TipoAccesosorioController
-{
-    private $accesorio;
+$controllersDispositivo = new tipoAccesorioController;
 
-    public function __construct()
-    {
-        $this->accesorio = new TipoAccesorioModel();
+class tipoAccesorioController{
+    private $accesorios;
+
+    public function __construct(){
+        $this->accesorios = new tipoAccesorioModel();
 
         if (isset($_REQUEST['c'])) {
             switch ($_REQUEST['c']) {
-                case '1': //Almacenar en la base de datos
+                case 1: //Almacenar en la base de datos
                     self::store();
                     break;
-                case '2': //Ver 
+                case '2': //ver usuario
                     self::show();
                     break;
-                case '3': //Actualizar  
+                case '3': //Actualizar el registro
                     self::update();
                     break;
-                case '4': //Eliminar  
+                case '4': //eliminar el registro
                     self::delete();
                     break;
                 default:
@@ -32,7 +31,7 @@ class TipoAccesosorioController
     }
     public function index()
     {
-        return $this->accesorio->getAll();
+        return $this->accesorios->getAll();
     }
 
     public function store()
@@ -41,10 +40,10 @@ class TipoAccesosorioController
             'nombre' => $_REQUEST['nombre']
         ];
 
-        $result = $this->accesorio->store($datos);
+        $result = $this->accesorios->store($datos);
 
         if ($result) {
-            header("Location: ../Views/configTipoaccesorio/index.php");
+            header("Location: ../Views/configAccesorios/index.php");
             exit();
         }
 
@@ -53,23 +52,23 @@ class TipoAccesosorioController
     
     public function show()
     {
-        $id_tipo_accesorio = $_REQUEST['id_tipo_accesorio'];
-        header('location: ../Views/configTipoaccesorio/index.php?id_tipo_accesorio=' . $id_tipo_accesorio);
+        $id_accesorios = $_REQUEST['id_accesorios'];
+        header('location: ../Views/configAccesorios/index.php?id_accesorios=' . $id_accesorios);
     }
 
     public function delete()
     {
-        $this->accesorio->delete($_REQUEST['id_tipo_accesorio']);
-        header("Location: ../Views/configTipoaccesorio/index.php");
+        $this->accesorios->delete($_REQUEST['id_accesorios']);
+        header("Location: ../Views/configAccesorios/index.php");
     }
     public function update()
     {
         $datos = [
-            'id_tipo_accesorio'   => $_REQUEST['id_tipo_accesorio'],
+            'id_accesorios'   => $_REQUEST['id_accesorios'],
             'nombre'   => $_REQUEST['nombre'],
         ];
 
-        $result = $this->accesorio->update($datos);
+        $result = $this->accesorios->update($datos);
 
         if ($result) {
             echo json_encode(array('succes' => 1, 'nombre' => $datos['nombre']));

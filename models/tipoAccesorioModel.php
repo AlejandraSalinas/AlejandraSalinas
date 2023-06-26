@@ -122,12 +122,13 @@ class TipoAccesorioModel
 
 
     // GETTER Y SETTER
-    public function getTipoaccesorio()
+    public function getTipoAccesorio()
     {
-        return $this->nombre;
+        return $this->id_tipo_accesorio;
     }
-    public function setTipoaccesorio($id_tipo_accesorio)
+    public function setTipoAccrsorio($id_tipo_accesorio)
     {
-        return $this->nombre = $id_tipo_accesorio;
+        return $this->id_tipo_accesorio = $id_tipo_accesorio;
     }
+
 }

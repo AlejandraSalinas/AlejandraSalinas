@@ -7,19 +7,17 @@ require_once('../../models/marcaDispositivoModel.php');
 require_once('../../models/colorDispositivoModel.php');
 
 
-// $personas_model = new PersonaModel();
-// $personas = $personas_model->NombreCompleto();
+$personas_model = new PersonaModel();
+$personas = $personas_model->NombreCompleto();
 
-$datos_accesorios = new TipoAccesorioModel();
+$datos_accesorios = new tipoAccesorioModel();
 $accesorio = $datos_accesorios->getAll();
 
+$datos_marca = new MarcaDispositivoModel();
+$marca = $datos_marca->getAll();
 
-
-// $datos_marca = new MarcaDispositivoModel();
-// $marca = $datos_marca->getAll();
-
-// $datos_color = new ColorDispositivoModel();
-// $color = $datos_color->getAll();
+$datos_color = new ColorDispositivoModel();
+$color = $datos_color->getAll();
 
 
 

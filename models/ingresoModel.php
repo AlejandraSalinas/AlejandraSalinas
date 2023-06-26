@@ -300,6 +300,29 @@ class IngresarModel
         $this->$nombre_accesorio = $nombre_accesorio;
     }
     
+        
+    public function getFechaEntrada()
+    {
+        return $this->nombre_accesorio;
+    }
+
+    public function setFechaEntrada($fecha_entrada)
+    {
+        $this->$fecha_entrada = $fecha_entrada;
+    }
+    
+
+        
+    public function getFechaSalida()
+    {
+        return $this->fecha_salida;
+    }
+
+    public function setFechaSalida($fecha_salida)
+    {
+        $this->$fecha_salida = $fecha_salida;
+    }
+    
   
    
 

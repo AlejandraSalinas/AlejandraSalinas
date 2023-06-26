@@ -167,6 +167,15 @@ class AccesorioModel
         }
     }
     
+    public function getTipoAccesorio()
+    {
+        return $this->id_tipo_accesorio;
+    }
+    public function setTipoAccrsorio($id_tipo_accesorio)
+    {
+        return $this->id_tipo_accesorio = $id_tipo_accesorio;
+    }
+
     
     public function getIdPersona()
     {
