@@ -34,14 +34,15 @@ $color = $datos_color->getAll();
         <div class="container">
             <div class="row">
                 <div class="col-12 mb-3">
-                    <label for="id_persona" class="form_label">Nombre Completo</label>
-                    <select class="form-select persona" aria-label="default select example" value="<?= $id_persona ?>" id="id_persona" name="id_persona">
-                    <?php    
+                  
+                    <label for="id_persona" class="form-label text-center">Selecione nombre del usuario:</label>
+                    <select class="form-control persona" aria-label="Default select example" value="<?= $id_persona ?>" id="id_persona" name="id_persona">
+                    <option value="">Seleccion un nombre</option>
+                        <?php
                         foreach ($personas  as $persona) {
                             echo '<option value="' . $persona->getIdPersona() . '">' . $persona->getNombre() . '</option>';
-
                         }
-                    ?>
+                        ?>
                     </select>
                 </div>
 
@@ -112,9 +113,10 @@ $color = $datos_color->getAll();
 </div>
 
 <script>
-    $(".persona").select2({
-        placeholder: "Seleccionar",
-        allowClear: true
+ 
+ (".persona").select2({
+     placeholder: "Seleccionar",
+     allowClear: true
     });
 </script>
     <?php require_once('../Main/partials/footer.php'); ?>
