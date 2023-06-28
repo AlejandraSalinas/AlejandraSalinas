@@ -42,9 +42,11 @@ class AccesorioController
     {        
         $datos = [
             'id_persona'           => $_REQUEST['id_persona'],
-            'nombre_accesorio'                => $_REQUEST['nombre_accesorio'],
+            'id_tipo_accesorio'    => $_REQUEST['id_tipo_accesorio'],
+            'id_marca'             => $_REQUEST['id_marca'],
+            'id_color'             => $_REQUEST['id_color'],
             'serie'                => $_REQUEST['serie'],
-            'descripcion'                 => $_REQUEST['descripcion'],
+            'descripcion'          => $_REQUEST['descripcion'],
         ];
 
         $result = $this->accesorio->store($datos);
@@ -71,11 +73,12 @@ class AccesorioController
     public function update()
     {
         $datos = [
-            'id_accesorio'             => $_REQUEST['id_accesorio'],
             'id_persona'           => $_REQUEST['id_persona'],
-            'nombre_accesorio'                => $_REQUEST['nombre_accesorio'],
+            'id_tipo_accesorio'    => $_REQUEST['id_tipo_accesorio'],
+            'id_marca'             => $_REQUEST['id_marca'],
+            'id_color'             => $_REQUEST['id_color'],
             'serie'                => $_REQUEST['serie'],
-            'descripcion'                 => $_REQUEST['descripcion'],
+            'descripcion'          => $_REQUEST['descripcion'],
 
         ];
         $result = $this->accesorio->update($datos);

@@ -5,16 +5,14 @@
     require_once('../../models/tipoDispositivoModel.php');
     require_once('../../models/marcaDispositivoModel.php');
     require_once('../../models/colorDispositivoModel.php');
-    require_once('../../models/accesoriosDispositivoModel.php');
+
 
     $data = new DispositivoModel();
     $registroDispositivo = $data->getAll('id_dispositivo');
-$datos_usuario = new PersonaModel();
- $registro_usuario = $datos_usuario->getAll();
 
 
-// $personas_model = new PersonaModel();
-// $personas = $personas_model->NombreCompleto();
+$personas_model = new PersonaModel();
+$personas = $personas_model->NombreCompleto();
 
 $datos_dispositivo = new TipoDispositivoModel();
 $dispositivos = $datos_dispositivo->getAll();
@@ -25,8 +23,7 @@ $marca = $datos_marca->getAll();
 $datos_color = new ColorDispositivoModel();
 $color = $datos_color->getAll();
 
-$datos_accesorios = new AccesoriosDispositivoModel();
-$accesorios = $datos_accesorios->getAll();
+
 
     foreach( $registroDispositivo as $ingresar){
         $id_dispositivo                = $id_dispositivo -> getId();

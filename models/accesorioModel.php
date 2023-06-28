@@ -101,7 +101,7 @@ class AccesorioModel
     {
         try {
             $sql = "INSERT INTO accesorios(id_persona, id_tipo_accesorio, id_marca, id_color, serie, descripcion)
-            VALUES (:id_persona, :id_tipo_accesorio :id_marca :id_color :serie :descripcion)";
+            VALUES (:id_persona :id_tipo_accesorio :id_marca :id_color :serie :descripcion)";
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
                 'id_persona'           => $datos['id_persona'],
@@ -135,13 +135,13 @@ class AccesorioModel
 
             $prepare = $this->db->conect()->query($sql);
             $query = $prepare->execute([
-                'id_accesorio'       => $datos['id_accesorio'],
+                'id_accesorio'         => $datos['id_accesorio'],
                 'id_persona'           => $datos['id_persona'],
-                'id_tipo_accesorio'                => $datos['id_tipo_accesorio'],
+                'id_tipo_accesorio'    => $datos['id_tipo_accesorio'],
                 'id_marca'             => $datos['id_marca'],
                 'id_color'             => $datos['id_color'],
                 'serie'                => $datos['serie'],
-                'descripcion'                 => $datos['descripcion'],
+                'descripcion'          => $datos['descripcion'],
             ]);
             if ($query) {
                 return true;
