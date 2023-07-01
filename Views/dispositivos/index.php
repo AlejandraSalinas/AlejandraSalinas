@@ -23,6 +23,7 @@
                 <th scope="col" colspan="3">Opciones</th>              
             </tr>
             <tr class="text-center">
+                <th scope='col'>#</th>
                 <th scope="col">Tipo de Identificación</th>
                 <th scope="col">Número de Identificación</th>
                 <th scope="col">Nombre Completo</th>
@@ -51,6 +52,8 @@
 
                  ?>
                     <tr class="text-center">
+                    <td><?= $pos ?></td>
+
                         <td><?= $row->getTipoIdentificacion() ?></td>
                         <td><?= $row->getNumeroIdentificacion() ?></td>
                         <td><?= $row->getIdPersona() ?></td>
@@ -76,18 +79,19 @@
                             </a>
                             
                         </td>
-
-                    </tr>
+                        </tr>
                     <?php
-                        }
-                } else {
+                            $pos++;
+                            }
+                        } else {
                     ?>
-                    <tr class=" text-center">
-                        <td colspan="13">Sin datos</td>
+                    <tr>
+                        <td colspan="3" class="text-center">No hay datos</td>
+                    </tr>
+                <?php
+                            }
+                ?>
                 </tr>
-            <?php
-                }
-            ?>
         </tbody>
     </table>
             
