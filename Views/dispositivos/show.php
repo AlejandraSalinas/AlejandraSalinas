@@ -2,6 +2,7 @@
     require_once dirname(__FILE__) . '../../../config/config.php';
     require_once('../../Views/Main/partials/header.php');
     require_once('../../models/dispositivosModel.php');
+    require_once('../../models/personaModel.php');
     require_once('../../models/tipoDispositivoModel.php');
     require_once('../../models/marcaDispositivoModel.php');
     require_once('../../models/colorDispositivoModel.php');
@@ -14,28 +15,16 @@
 $personas_model = new PersonaModel();
 $personas = $personas_model->NombreCompleto();
 
-$datos_dispositivo = new TipoDispositivoModel();
-$dispositivos = $datos_dispositivo->getAll();
+    foreach( $registroDispositivo as $dispositivo){
+        $id_dispositivo                = $dispositivo -> getId();
+        $id_persona                 = $dispositivo -> getId();
 
-$datos_marca = new MarcaDispositivoModel();
-$marca = $datos_marca->getAll();
-
-$datos_color = new ColorDispositivoModel();
-$color = $datos_color->getAll();
-
-
-
-    foreach( $registroDispositivo as $ingresar){
-        $id_dispositivo                = $id_dispositivo -> getId();
-        $id_persona                 = $id_persona -> getId();
-
-        //$id_tipo_identificacion     = $ingresar -> getTipoIdentificacion();
-        //$numero_identificacion      = $ingresar -> getNumeroIdentificacion();
-        $id_tipo_dispositivos       = $ingresar -> getTipoDispositivos();
-        $id_marca                   = $ingresar -> getMarca();
-        $id_color                   = $ingresar -> getColor();
-        $id_accesorios              = $ingresar -> getAccesorios();
-        $serie                      = $ingresar -> getSerie();
+        //$id_tipo_identificacion     = $dispositivo -> getTipoIdentificacion();
+        //$numero_identificacion      = $dispositivo -> getNumeroIdentificacion();
+        $id_tipo_dispositivos       = $dispositivo -> getTipoDispositivos();
+        $id_marca                   = $dispositivo -> getMarca();
+        $id_color                   = $dispositivo -> getColor();
+        $serie                      = $dispositivo -> getSerie();
     }
 
 ?>
@@ -63,7 +52,7 @@ $color = $datos_color->getAll();
                             <option selected>Seleccionar</option>
                             <?php
                             foreach ($dispositivos  as $dispositivo) : ?>
-                                <option value="<?= $dispositivo->getId() ?>" <?= $dispositivo->getId() == $ingresar->getTipoDispositivos() ? 'selected' :  "" ?>><?= $dispositivo->getTipoDispositivos() ?></option>
+                                <option value="<?= $dispositivo->getId() ?>" <?= $dispositivo->getId() == $dispositivo->getTipoDispositivos() ? 'selected' :  "" ?>><?= $dispositivo->getTipoDispositivos() ?></option>
 
                             <?php endforeach ?>
                         </select>
@@ -74,7 +63,7 @@ $color = $datos_color->getAll();
                             <option selected>Seleccionar</option>
                             <?php
                             foreach ($marca  as $marca) : ?>
-                                <option value="<?= $marca->getId() ?>" <?= $marca->getId() == $ingresar->getMarca() ? 'selected' : "" ?>> <?= $marca->getMarca() ?></option>;  
+                                <option value="<?= $marca->getId() ?>" <?= $marca->getId() == $dispositivo->getMarca() ? 'selected' : "" ?>> <?= $marca->getMarca() ?></option>;  
                               
                             <?php endforeach ?>
                         </select>
@@ -87,7 +76,7 @@ $color = $datos_color->getAll();
                             <option selected>Seleccionar</option>
                             <?php
                             foreach ($color  as $color) : ?>
-                                <option value="<?= $color->getId() ?>" <?= $color->getId() == $ingresar->getColor() ? 'selected' : "" ?>> <?= $color->getColor() ?></option>;                                
+                                <option value="<?= $color->getId() ?>" <?= $color->getId() == $dispositivo->getColor() ? 'selected' : "" ?>> <?= $color->getColor() ?></option>;                                
                             <?php endforeach ?>
                         </select>
                     </div>
@@ -98,7 +87,7 @@ $color = $datos_color->getAll();
                             <option selected>Seleccionar</option>
                             <?php
                             foreach ($accesorios  as $accesorio) : ?>
-                                <option value="<?= $accesorio->getId() ?>" <?= $accesorio->getId() == $ingresar->getAccesorios() ? 'selected' : "" ?>> <?= $accesorio->getAccesorios() ?></option>;                                
+                                <option value="<?= $accesorio->getId() ?>" <?= $accesorio->getId() == $dispositivo->getAccesorios() ? 'selected' : "" ?>> <?= $accesorio->getAccesorios() ?></option>;                                
                             <?php endforeach ?>
                         </select>
                     </div>
@@ -111,7 +100,7 @@ $color = $datos_color->getAll();
                 </div>
 
                 <div class="col-6 mb-4">
-                    <button type="submit" class="btn btn-primary mb-3">Guardar</button>
+                <a class="btn btn-success" href="../../Views/dispositivos/index.php">Regresar</a>
                 </div>
             </div>
         </div>

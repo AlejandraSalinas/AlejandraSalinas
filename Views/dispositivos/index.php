@@ -64,7 +64,7 @@
                         <td><?= $row->getDescripcion() ?></td>
 
                         <td>
-                            <a class="btn btn-sm btn-outline-primary" href="show.php?id_dispositivo=<?= $row->getId() ?>">
+                            <a class="btn btn-sm btn-outline-primary" href="show.php?id_dispositivo=27<?= $row->getId() ?>">
                                 <i class="bi bi-eye-fill" style="font-size: 1.4rem;"></i>
                             </a>
                         </td>
