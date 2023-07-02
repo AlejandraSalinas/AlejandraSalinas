@@ -99,6 +99,12 @@ $color = $datos_color->getAll();
                         <label for="descripcion" class="form_label">Descripción</label>
                         <input type="text" class="form-control" id="descripcion" name="descripcion" required="required">
                     </div>
+                    <a class="btn btn-outline-success" href="../../Views/accesorios/crear.php">Registrar Accesorio</a>
+                    <a class="btn btn-outline-success" href="../../Views/accesorios/crear.php">Registrar Accesorio</a>
+
+                    <div class="col-6 mb-3">
+                        <button type="submit" class="btn btn-outline-primary">Guardar</button>
+                    </div>
 
 
                 

@@ -1,16 +1,16 @@
 <?php
 
-require_once '../models/dispositivosModel.php';
+require_once '../models/ingresoModel.php';
 
-$controllerDispositivo = new IngresarModel;
+$controllerIngresar = new IngresarController;
 
-class IngresarModel
+class IngresarController
 {
-    private $dispositivo;
+    private $ingresar;
 
     public function __construct()
     {
-        $this->dispositivo = new DispositivoModel();
+        $this->ingresar = new IngresarModel();
 
         if (isset($_REQUEST['c'])) {
             switch ($_REQUEST['c']) {
@@ -35,24 +35,23 @@ class IngresarModel
 
     public function index()
     {
-        return $this->dispositivo->getAll();
+        return $this->ingresar->getAll();
     }
 
     public function store()
     {        
         $datos = [
-            'id_persona'                 => $_REQUEST['id_persona'],
-            'id_tipo_dispositivo'        => $_REQUEST['id_tipo_dispositivo'],
-            'id_marca'                   => $_REQUEST['id_marca'],
-            'id_color'                   => $_REQUEST['id_color'],
-            'serie'                      => $_REQUEST['serie'],
-            'descripcion'                      => $_REQUEST['descripcion'],
-
+            'id_ingresar'       => $_REQUEST['id_ingresar'],
+            'id_persona'        => $_REQUEST['id_persona'],
+            'id_dispositivo'    => $_REQUEST['id_dispositivo'],
+            'id_accesorio'      => $_REQUEST['id_accesorio'],
+            'fecha_entrada'     => $_REQUEST['fecha_entrada'],
+            'fecha_salida'      => $_REQUEST['fecha_salida'],
         ];
 
-        $result = $this->dispositivo->store($datos);
+        $result = $this->ingresar->store($datos);
         if ($result) {
-            header("Location: ../Views/dispositivos/index.php");
+            header("Location: ../Views/ingreso/index.php");
             exit();
         }
         return $result;
@@ -60,38 +59,34 @@ class IngresarModel
 
     public function show()
     {
-        $id_dispositivo = $_REQUEST['id_dispositivo'];
-        header("Location: ../Views/dispositivos/show.php?id_dispositivo=" . $id_dispositivo);
+        $ingresar = $_REQUEST['id_ingresar'];
+        header("location: ../Views/ingreso/update.php?ingresar=" . $ingresar);
     }
-
     public function delete()
     {
-        $this->dispositivo->delete($_REQUEST['id_dispositivo']);
-        header("Location: ../Views/dispositivos/index.php");
+        $this->ingresar->delete($_REQUEST['id_ingresar']);
+        header("Location: ../Views/ingreso/index.php");
     }
 
     public function update()
     {
         $datos = [
-            'id_dispositivo'             => $_REQUEST['id_dispositivo'],
-            'id_tipo_identificacion'     => $_REQUEST['id_tipo_identificacion'],
-            'numero_identificacion'      => $_REQUEST['numero_identificacion'],
-            'id_persona'                 => $_REQUEST['id_persona'],
-            'id_tipo_dispositivo'        => $_REQUEST['id_tipo_dispositivo'],
-            'id_marca'                   => $_REQUEST['id_marca'],
-            'id_color'                   => $_REQUEST['id_color'],
-            'serie'                      => $_REQUEST['serie'],
-            'descripcion'                      => $_REQUEST['descripcion'],
+            'id_ingresar'       => $_REQUEST['id_ingresar'],
+            'id_persona'        => $_REQUEST['id_persona'],
+            'id_dispositivo'    => $_REQUEST['id_dispositivo'],
+            'id_accesorio'      => $_REQUEST['id_accesorio'],
+            'fecha_entrada'     => $_REQUEST['fecha_entrada'],
+            'fecha_salida'      => $_REQUEST['fecha_salida'],
 
 
             // 'fecha_entrada'              => $_REQUEST['fecha_entrada'],
             // 'fecha_salida'              => $_REQUEST['fecha_salida'],
 
         ];
-        $result = $this->dispositivo->update($datos);
+        $result = $this->ingresar->update($datos);
 
         if ($result) {
-            header("Location: ../Views/dispositivos/index.php");
+            header("Location: ../Views/ingreso/index.php");
             exit();
         }
         return $result;

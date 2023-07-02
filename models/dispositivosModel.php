@@ -145,10 +145,10 @@ class DispositivoModel
         try {
             $sql = 'UPDATE dispositivos SET 
 
+            id_persona= :id_persona,
             id_tipo_dispositivo = :id_tipo_dispositivo,
             id_marca = :id_marca,
             id_color = :id_color,
-            id_accesorio = :id_accesorio,
             serie  = :serie           
             descripcion = :descripcion 
 
@@ -156,15 +156,11 @@ class DispositivoModel
 
             $prepare = $this->db->conect()->query($sql);
             $query = $prepare->execute([
-                'id_dispositivo'       => $datos['id_dispositivo'],
-
-                'tipo_identificacion  '     => $datos['id_tipo_identificacion'],
-                'numero_identificacion'     => $datos['numero_identificacion'],
+                'id_dispositivo'       => $datos['id_dispositivo'],     
                 'id_persona'                => $datos['id_persona'],
                 'id_tipo_dispositivo'       => $datos['id_tipo_dispositivo'],
                 'id_marca'                  => $datos['id_marca'],
                 'id_color'                  => $datos['id_color'],
-                'id_accesorio'              => $datos['id_accesorio'],
                 'serie'                     => $datos['serie'],
                 'descripcion'                  => $datos['descripcion'],
 

@@ -2,9 +2,11 @@
     require_once dirname(__FILE__) . '../../../config/config.php';
     include_once('../../Views/Main/partials/header.php');
     include_once('../../models/dispositivosModel.php');
+
     
     $data = new DispositivoModel();
     $registroDispositivo = $data->getAll();
+
     // var_dump($registroDispositivo);
 ?>
 <div style="padding:1px 16px;height:1000px;">
@@ -51,6 +53,7 @@
                             $pos = 1;
             
                             foreach ($registroDispositivo as $row) {
+                        
 
                  ?>
                     <tr class="text-center">
@@ -59,23 +62,23 @@
                         <td><?= $row->getPersonaNombre() ?></td>
                         
                         <td><strong>Dispositivo:</strong> "<?= $row->getTipoDispositivos()?>", <strong>Marca</strong> "<?=$row->getMarca()?>", <strong>Color</strong> "<?=$row->getColor()?>", <strong>Serie</strong> "<?= $row->getSerie()?>", <strong>Descripción</strong> "<?= $row->getDescripcion()?>"</td>
+                        <td><strong>Accesorio:</strong> "<?= $row->getTipoDispositivos()?>", <strong>Marca</strong> "<?=$row->getMarca()?>", <strong>Color</strong> "<?=$row->getColor()?>", <strong>Serie</strong> "<?= $row->getSerie()?>", <strong>Descripción</strong> "<?= $row->getDescripcion()?>"</td>
 
-                        <td><strong>Accesorio:</strong> "<?= $row->getTipoAccesorio()?>", <strong>Marca</strong> "<?=$row->getMarca()?>", <strong>Color</strong> "<?=$row->getColor()?>", <strong>Serie</strong> "<?= $row->getSerie()?>", <strong>Descripción</strong> "<?= $row->getDescripcion()?>"</td>
 
 
-                        <td><?= $row->getDescripcion() ?></td>
+                        <td></td><td></td>
                         <td>
-                            <a class="btn btn-sm btn-outline-primary" href="show.php?id_dispositivo=<?= $row->getId() ?>">
+                            <a class="btn btn-sm btn-outline-primary" href="show.php?id_ingresar=<?= $row->getId() ?>">
                                 <i class="bi bi-eye-fill" style="font-size: 1.4rem;"></i>
                             </a>
                         </td>
                         <td>
-                            <a class="btn btn-sm btn-outline-warning" href="../../controllers/dispositivosController.php?c=2&id_dispositivo=<?= $row->getId() ?>">
+                            <a class="btn btn-sm btn-outline-warning" href="../../controllers/ingresarController.php?c=2&id_ingresar=<?= $row->getId() ?>">
                                 <i class="bi bi-pencil-square" style="font-size: 1.4rem;"></i>
                             </a>   
                         </td>
                         <td>
-                            <a class="btn btn-sm btn-outline-danger" href="../../controllers/dispositivosController.php?c=4&id_dispositivo=<?=$row->getId() ?>">
+                            <a class="btn btn-sm btn-outline-danger" href="../../controllers/ingresarController.php?c=4&id_ingresar=<?=$row->getId() ?>">
                                 <i class="bi bi-trash3-fill" style="font-size: 1.4rem;"></i>
                             </a>
                             

@@ -19,18 +19,7 @@
         <button type="submit" class="btn btn-primary mb-3" name="fecha_entrada" id="fecha_entrada">Entrada</button>
                             <button type="submit" class="btn btn-primary mb-3" name="fecha_salida" id="fecha_salida">Salida</button>
 <br> -->
-    <label>Entrada: <br> <input type="datetime" name="fecha_entrada" value="<?php= $fecha_entrada?>"></label>
-        <input type="submit" name="ingresar" value="ingressar">
 
-
-
-        <?php
-if (isset($_REQUEST['ingresar'])){
-    $fecha $_POST['fecha'];
-    $consulta ="INSERT INTO fecha (fecha_entada) VALUES ('$fecha')";
-    $ejecutar =
-}
-?>
                             <button>
                             <a class="collapse-item" href="<?php constant('URL') ?>../../Views/ingreso/index.php">Visualizar Datos De Ingreso/egreso</a>
                             </button>

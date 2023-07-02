@@ -2,7 +2,7 @@
 include_once dirname(__FILE__) . '../../Config/config.php';
 require_once 'dataBaseModel.php';
 
-class TipoAccesorioModel
+class tipoAccesorioModel
 {
     private $id_tipo_accesorio;
     private $nombre;
@@ -20,7 +20,7 @@ class TipoAccesorioModel
 
     public function getById($id_tipo_accesorio)
     {
-        $datos_accesorio = [];
+        $datos_dispositivo = [];
 
         try {
             $sql = "SELECT * FROM tipo_accesorios WHERE id_tipo_accesorio = :id_tipo_accesorio";
@@ -30,14 +30,14 @@ class TipoAccesorioModel
             ]);
 
             while ($row = $query->fetch()) {
-                $item                          = new TipoAccesorioModel();
+                $item                          = new tipoAccesorioModel();
                 $item->$id_tipo_accesorio  = $row['id_tipo_accesorio'];
                 $item->nombre                  = $row['nombre'];
 
-                array_push($datos_accesorio, $item);
+                array_push($datos_dispositivo, $item);
             }
 
-            return $datos_accesorio;
+            return $datos_dispositivo;
         } catch (PDOException $e) {
             die($e->getMessage());
         }
@@ -54,7 +54,7 @@ class TipoAccesorioModel
             $query  = $this->db->conect()->query($sql);
 
             while ($row = $query->fetch()) {
-                $datos                         = new TipoAccesorioModel();
+                $datos                         = new tipoAccesorioModel();
                 $datos->id_tipo_accesorio = $row['id_tipo_accesorio'];
                 $datos->nombre                 = $row['nombre'];
 
@@ -124,11 +124,10 @@ class TipoAccesorioModel
     // GETTER Y SETTER
     public function getTipoAccesorio()
     {
-        return $this->id_tipo_accesorio;
+        return $this->nombre;
     }
-    public function setTipoAccrsorio($id_tipo_accesorio)
+    public function setTipoAccesorio($id_tipo_accesorio)
     {
-        return $this->id_tipo_accesorio = $id_tipo_accesorio;
+        return $this->nombre = $id_tipo_accesorio;
     }
-
 }

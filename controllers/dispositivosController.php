@@ -60,10 +60,9 @@ class DispositivoController
 
     public function show()
     {
-        $id_dispositivo = $_REQUEST['id_dispositivo'];
-        header("Location: ../Views/dispositivos/show.php?id_dispositivo=" . $id_dispositivo);
+        $dispositivo = $_REQUEST['id_dispositivo'];
+        header("location: ../Views/dispositivos/update.php?dispositivo=" . $dispositivo);
     }
-
     public function delete()
     {
         $this->dispositivo->delete($_REQUEST['id_dispositivo']);
@@ -74,8 +73,6 @@ class DispositivoController
     {
         $datos = [
             'id_dispositivo'             => $_REQUEST['id_dispositivo'],
-            'id_tipo_identificacion'     => $_REQUEST['id_tipo_identificacion'],
-            'numero_identificacion'      => $_REQUEST['numero_identificacion'],
             'id_persona'                 => $_REQUEST['id_persona'],
             'id_tipo_dispositivo'        => $_REQUEST['id_tipo_dispositivo'],
             'id_marca'                   => $_REQUEST['id_marca'],

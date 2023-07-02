@@ -101,15 +101,16 @@ class AccesorioModel
     {
         try {
             $sql = "INSERT INTO accesorios(id_persona, id_tipo_accesorio, id_marca, id_color, serie, descripcion)
-            VALUES (:id_persona :id_tipo_accesorio :id_marca :id_color :serie :descripcion)";
+            VALUES (:id_persona, :id_tipo_accesorio, :id_marca, :id_color, :serie, :descripcion)";
             $prepare = $this->db->conect()->prepare($sql);
             $query = $prepare->execute([
                 'id_persona'           => $datos['id_persona'],
-                'id_tipo_accesorio'    => $datos['id_tipo_accesorio'],
+                'id_tipo_accesorio'  => $datos['id_tipo_accesorio'],
                 'id_marca'             => $datos['id_marca'],
                 'id_color'             => $datos['id_color'],
                 'serie'                => $datos['serie'],
-                'descripcion'          => $datos['descripcion'],
+                'descripcion'                  => $datos['descripcion'],
+
             ]);
 
             if ($query) {
@@ -195,17 +196,6 @@ class AccesorioModel
     {
         $this->tipo_identificacion = $tipo_identificacion;
     }
-
-    public function getNumeroIdentificacion()
-    {
-        return $this->numero_identificacion;
-    }
-
-    public function setNumeroIdentificacion($numero_identificacion)
-    {
-        $this->numero_identificacion = $numero_identificacion;
-    }
-
 
     public function getMarca()
     {

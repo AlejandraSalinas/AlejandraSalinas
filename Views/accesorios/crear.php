@@ -7,11 +7,14 @@ require_once('../../models/marcaDispositivoModel.php');
 require_once('../../models/colorDispositivoModel.php');
 
 
+//$data = new DispositivoModel();
+//$registro = $data->getId();
+
 $personas_model = new personaNombreModel();
 $personas = $personas_model->NombreCompleto();
 
-$datos_accesorios = new tipoAccesorioModel();
-$accesorio = $datos_accesorios->getAll();
+$datos_tioAcces = new TipoAccesorioModel();
+$accesorioregis = $datos_tioAcces->getAll();
 
 $datos_marca = new MarcaDispositivoModel();
 $marca = $datos_marca->getAll();
@@ -25,30 +28,32 @@ $color = $datos_color->getAll();
 
 ?>
 <div class="container-fluid">
-    <h1 class="h3 mb-3 text-gray-800">Crear Nuevo Registro de Accesorio</h1>
+    <h1 class="h3 mb-3 text-gray-800">Crear Nuevo Registro de Dispositivo</h1>
     <form action="../../controllers/accesorioController.php" method="POST">
         <input type="hidden" name="c" value="1">
         <div class="container">
             <div class="row">
-                <div class="col-12 mb-3">
-                    <label for="id_persona" class="form_label">Nombre Completo</label>
-                    <select class="form-select persona" aria-label="default select example" value="<?= $id_persona ?>" id="id_persona" name="id_persona">
-                    <?php    
-                        foreach ($personas  as $persona) {
-                            echo '<option value="' . $persona->getPersonaNombre() . '">' . $persona->getNombre() . '</option>';
+            <div class="col-12 mb-3">
+                  
+                  <label for="id_persona" class="form-label text-center">Selecione nombre del usuario:</label>
+                  <select class="form-control persona" aria-label="Default select example" value="<?= $id_persona ?>" id="id_persona" name="id_persona">
+                  <option value="">Seleccion un nombre</option>
+                      <?php
+                      foreach ($personas  as $persona) {
+                          echo '<option value="' . $persona->getPersonaNombre() . '">' . $persona->getNombre() . '</option>';
+                      }
+                      ?>
+                  </select>
+              </div>
 
-                        }
-                    ?>
-                    </select>
-                </div>
                 <div class="row">
                     <div class="col-6 mb-3">
                         <label for="id_tipo_accesorio" class="form_label">Tipo de Accesorio</label>
                         <select class="form-select" value="<?= $id_tipo_accesorio ?>" id="id_tipo_accesorio" name="id_tipo_accesorio" required="required">
                             <option selected>Seleccionar</option>
                             <?php
-                            foreach ($accesorios  as $accesorio) {
-                                echo '<option value="' . $accesorio->getId() . '">' . $accesorio->getTipoAccesorio() . '</option>';
+                            foreach ($accesorioregis  as $accesorio_tipo) {
+                                echo '<option value="' . $accesorio_tipo->getId() . '">' . $accesorio_tipo->getTipoAccesorio() . '</option>';
                             }
                             ?>
                         </select>
@@ -93,11 +98,16 @@ $color = $datos_color->getAll();
                         <label for="descripcion" class="form_label">Descripción</label>
                         <input type="text" class="form-control" id="descripcion" name="descripcion" required="required">
                     </div>
+                    <a class="btn btn-outline-success" href="../../Views/accesorios/crear.php">Registrar Accesorio</a>
+                    <a class="btn btn-outline-success" href="../../Views/accesorios/crear.php">Registrar Accesorio</a>
+
+                    <div class="col-6 mb-3">
+                        <button type="submit" class="btn btn-outline-primary">Guardar</button>
+                    </div>
 
 
                 
                 </div>
-                <div class="row">
                 <div class="row">
                     <div class="col-6 mb-3">
                         <button type="submit" class="btn btn-outline-primary">Guardar</button>
@@ -108,9 +118,10 @@ $color = $datos_color->getAll();
 </div>
 
 <script>
-    $(".persona").select2({
-        placeholder: "Seleccionar",
-        allowClear: true
+ 
+ (".persona").select2({
+     placeholder: "Seleccionar",
+     allowClear: true
     });
 </script>
     <?php require_once('../Main/partials/footer.php'); ?>
