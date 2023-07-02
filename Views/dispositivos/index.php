@@ -7,7 +7,12 @@
     $registroDispositivo = $data->getAll();
     // var_dump($registroDispositivo);
 ?>
-
+<div style="padding:1px 16px;height:1000px;">
+    <h2>Usuario</h2>
+    <form action="" method="post">
+        <label for="campo">Buscar:</label>
+        <input type="text" name="campo" id="campo">
+    </form>
 
     <h3>Base de datos de los dispositivos registrados</h3>
     <table class="table table-striped">
