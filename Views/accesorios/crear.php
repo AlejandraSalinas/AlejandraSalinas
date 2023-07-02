@@ -1,13 +1,13 @@
 <?php
 require_once dirname(__FILE__) . '../../../config/config.php';
 require_once('../../Views/Main/partials/header.php');
-require_once('../../models/PersonaModel.php');
+require_once('../../models/personaNombreModel.php');
 require_once('../../models/tipoAccesorioModel.php');
 require_once('../../models/marcaDispositivoModel.php');
 require_once('../../models/colorDispositivoModel.php');
 
 
-$personas_model = new PersonaModel();
+$personas_model = new personaNombreModel();
 $personas = $personas_model->NombreCompleto();
 
 $datos_accesorios = new tipoAccesorioModel();
@@ -35,7 +35,7 @@ $color = $datos_color->getAll();
                     <select class="form-select persona" aria-label="default select example" value="<?= $id_persona ?>" id="id_persona" name="id_persona">
                     <?php    
                         foreach ($personas  as $persona) {
-                            echo '<option value="' . $persona->getIdPersona() . '">' . $persona->getNombre() . '</option>';
+                            echo '<option value="' . $persona->getPersonaNombre() . '">' . $persona->getNombre() . '</option>';
 
                         }
                     ?>

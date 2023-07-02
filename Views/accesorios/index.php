@@ -49,7 +49,7 @@
                     <tr class="text-center">
                         <td><?= $row->getTipoIdentificacion() ?></td>
                         <td><?= $row->getNumeroIdentificacion() ?></td>
-                        <td><?= $row->getIdPersona() ?></td>
+                        <td><?= $row->getPersonaNombre() ?></td>
                         <td><?= $row->getTipoAccesorio() ?></td>
                         <td><?= $row->getSerie() ?></td>
                         <td><?= $row->getDescripcion() ?></td>

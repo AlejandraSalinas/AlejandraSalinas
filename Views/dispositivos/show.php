@@ -2,7 +2,7 @@
     require_once dirname(__FILE__) . '../../../config/config.php';
     require_once('../../Views/Main/partials/header.php');
     require_once('../../models/dispositivosModel.php');
-    require_once('../../models/personaModel.php');
+    require_once('../../models/personaNombreModel.php');
     require_once('../../models/tipoDispositivoModel.php');
     require_once('../../models/marcaDispositivoModel.php');
     require_once('../../models/colorDispositivoModel.php');
@@ -12,7 +12,7 @@
     $registroDispositivo = $data->getAll('id_dispositivo');
 
 
-$personas_model = new PersonaModel();
+$personas_model = new personaNombreModel();
 $personas = $personas_model->NombreCompleto();
 
     foreach( $registroDispositivo as $dispositivo){
@@ -38,7 +38,7 @@ $personas = $personas_model->NombreCompleto();
              <select class="form-select"  id="id_personas" name="id_personas" disabled>
                         <?php foreach ($personas as $persona) : ?>
 
-                            <option value="<?= $persona->getId() ?>" <?= $persona->getId() == $persona->getIdPersona() ? 'selected' : "" ?>> <?= $persona->getIdPersona() ?></option>;
+                            <option value="<?= $persona->getId() ?>" <?= $persona->getId() == $persona->getPersonaNombre() ? 'selected' : "" ?>> <?= $persona->getPersonaNombre() ?></option>;
 
                         <?php endforeach ?>
                     </select>

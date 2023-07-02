@@ -1,13 +1,14 @@
 <?php
-require_once  '../models/PersonaModel.php.php';
 
-$controllersDispositivo = new PersonaController;
+require_once  '../models/personaNombreModel.php.php';
 
-class PersonaController{
+$controllersDispositivo = new personaNombreModel;
+
+class personaNombreModel{
     private $id_persona;
 
     public function __construct(){
-        $this->id_persona = new PersonaModel();
+        $this->id_persona = new personaNombreModel();
 
         if (isset($_REQUEST['c'])) {
             switch ($_REQUEST['c']) {

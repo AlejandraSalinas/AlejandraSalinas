@@ -2,7 +2,7 @@
 include_once dirname(__FILE__) . '../../Config/config.php';
 require_once 'dataBaseModel.php';
 
-class PersonaModel
+class personaNombreModel
 {
     private $id_persona;
     private $nombre;
@@ -30,7 +30,7 @@ class PersonaModel
             ]);
 
             while ($row = $query->fetch()) {
-                $item                          = new PersonaModel();
+                $item                          = new personaNombreModel();
                 $item->id_persona  = $row['id_persona'];
                 $item->nombre                  = $row['nombre'];
 
@@ -54,7 +54,7 @@ class PersonaModel
             $query  = $this->db->conect()->query($sql);
 
             while ($row = $query->fetch()) {
-                $datos                         = new PersonaModel();
+                $datos                         = new personaNombreModel();
                 $datos->id_persona = $row['id_persona'];
                 $datos->nombre     = $row['nombre'];
 
@@ -130,7 +130,7 @@ class PersonaModel
             $query  = $this->db->conect()->query($sql);
 
             while ($row = $query->fetch()) {
-                $datos                         = new PersonaModel();
+                $datos                         = new personaNombreModel();
                 $datos->id_persona = $row['id_persona'];
                 $datos->nombre     = $row['nombre_completo'];
 
@@ -145,7 +145,7 @@ class PersonaModel
 
     // GETTER Y SETTER
 
-    public function getIdPersona()
+    public function getPersonaNombre()
     {
         return $this->id_persona;
     }

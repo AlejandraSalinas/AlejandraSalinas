@@ -56,7 +56,7 @@
 
                         <td><?= $row->getTipoIdentificacion() ?></td>
                         <td><?= $row->getNumeroIdentificacion() ?></td>
-                        <td><?= $row->getIdPersona() ?></td>
+                        <td><?= $row->getPersonaNombre() ?></td>
                         <td><?= $row->getTipoDispositivos() ?></td>
                         <td><?= $row->getMarca() ?></td>
                         <td><?= $row->getColor() ?></td>

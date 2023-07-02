@@ -9,11 +9,11 @@
 
     $data = new DispositivoModel();
     $registroDispositivo = $data->getAll('id_dispositivo');
-$datos_usuario = new PersonaModel();
+$datos_usuario = new personaNombreModel();
  $registro_usuario = $datos_usuario->getAll();
 
 
-// $personas_model = new PersonaModel();
+// $personas_model = new personaNombreModel();
 // $personas = $personas_model->NombreCompleto();
 
 $datos_dispositivo = new TipoDispositivoModel();
@@ -52,7 +52,7 @@ $accesorios = $datos_accesorios->getAll();
              <select class="form-select"  id="id_personas" name="id_personas" disabled>
                         <?php foreach ($personas as $persona) : ?>
 
-                            <option value="<?= $persona->getId() ?>" <?= $persona->getId() == $persona->getIdPersona() ? 'selected' : "" ?>> <?= $persona->getIdPersona() ?></option>;
+                            <option value="<?= $persona->getId() ?>" <?= $persona->getId() == $persona->getPersonaNombre() ? 'selected' : "" ?>> <?= $persona->getPersonaNombre() ?></option>;
 
                         <?php endforeach ?>
                     </select>

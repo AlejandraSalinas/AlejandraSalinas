@@ -263,7 +263,7 @@ class DispositivoModel
         return $this->serie = $serie;
     }
     
-    public function getIdPersona()
+    public function getPersonaNombre()
     {
         return $this->id_persona;
     }

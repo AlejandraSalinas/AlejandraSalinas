@@ -56,7 +56,7 @@
                     <tr class="text-center">
                         <td><?= $row->getTipoIdentificacion() ?></td>
                         <td><?= $row->getNumeroIdentificacion() ?></td>
-                        <td><?= $row->getIdPersona() ?></td>
+                        <td><?= $row->getPersonaNombre() ?></td>
                         
                         <td><strong>Dispositivo:</strong> "<?= $row->getTipoDispositivos()?>", <strong>Marca</strong> "<?=$row->getMarca()?>", <strong>Color</strong> "<?=$row->getColor()?>", <strong>Serie</strong> "<?= $row->getSerie()?>", <strong>Descripción</strong> "<?= $row->getDescripcion()?>"</td>
 

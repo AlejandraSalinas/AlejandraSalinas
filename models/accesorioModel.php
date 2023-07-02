@@ -177,7 +177,7 @@ class AccesorioModel
     }
 
     
-    public function getIdPersona()
+    public function getPersonaNombre()
     {
         return $this->id_persona;
     }

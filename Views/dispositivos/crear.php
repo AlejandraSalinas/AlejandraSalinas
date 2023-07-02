@@ -1,7 +1,7 @@
 <?php
 require_once dirname(__FILE__) . '../../../config/config.php';
 require_once('../../Views/Main/partials/header.php');
-require_once('../../models/PersonaModel.php');
+require_once('../../models/personaNombreModel.php');
 require_once('../../models/tipoDispositivoModel.php');
 require_once('../../models/marcaDispositivoModel.php');
 require_once('../../models/colorDispositivoModel.php');
@@ -10,7 +10,7 @@ require_once('../../models/colorDispositivoModel.php');
 //$data = new DispositivoModel();
 //$registro = $data->getId();
 
-$personas_model = new PersonaModel();
+$personas_model = new personaNombreModel();
 $personas = $personas_model->NombreCompleto();
 
 $datos_dispositivo = new TipoDispositivoModel();
@@ -40,7 +40,7 @@ $color = $datos_color->getAll();
                     <option value="">Seleccion un nombre</option>
                         <?php
                         foreach ($personas  as $persona) {
-                            echo '<option value="' . $persona->getIdPersona() . '">' . $persona->getNombre() . '</option>';
+                            echo '<option value="' . $persona->getPersonaNombre() . '">' . $persona->getNombre() . '</option>';
                         }
                         ?>
                     </select>

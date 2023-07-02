@@ -9,10 +9,10 @@
     $data = new AccesorioModel();
     $registroAccesorios = $data->getAll('id_accesorio');
 
-    // $datos_usuario = new PersonaModel();
+    // $datos_usuario = new personaNombreModel();
     // $registro_usuario = $datos_usuario->getAll();
 
-    // $personas_model = new PersonaModel();
+    // $personas_model = new personaNombreModel();
     // $personas = $personas_model->NombreCompleto();
 
     // $datos_marca = new MarcaDispositivoModel();
@@ -44,7 +44,7 @@
              <select class="form-select" value="<?= $personas ?>" id="id_personas" name="id_personas" require="required">
                         <?php foreach ($personas as $persona) : ?>
 
-                            <option value="<?= $persona->getId() ?>" <?= $persona->getId() == $persona->getIdPersona() ? 'selected' : "" ?>> <?= $persona->getIdPersona() ?></option>;
+                            <option value="<?= $persona->getId() ?>" <?= $persona->getId() == $persona->getPersonaNombre() ? 'selected' : "" ?>> <?= $persona->getPersonaNombre() ?></option>;
 
                         <?php endforeach ?>
                     </select>

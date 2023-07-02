@@ -1,7 +1,7 @@
 <?php
 require_once dirname(__FILE__) . '../../../config/config.php';
 require_once('../../Views/Main/partials/header.php');
-require_once('../../models/PersonaModel.php');
+require_once('../../models/personaNombreModel.php');
 include '../../Views/dispositivos/menuDispositivo.php'
 ?>
 <?php
